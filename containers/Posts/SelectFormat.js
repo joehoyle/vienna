@@ -11,7 +11,8 @@ export default class SelectFormat extends Component {
 	}
 
 	render() {
-		var post = this.props.posts[this.props.routerData.postId]
+		var post = this.props.types[ this.props.routerData.type ].posts[this.props.routerData.postId]
+
 		var formats = [ "standard", "aside", "chat", "gallery", "link", "image", "quote", "status", "video", "audio" ]
 		return (
 			<View>

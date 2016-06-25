@@ -25,14 +25,16 @@ const styles = StyleSheet.create({
 		borderColor: '#C4D0D9',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+		alignItems: 'center',
+		height: 44,
+		padding: 5,
 	},
 	title: {
-		fontSize: 20,
+		fontSize: 16,
 		fontFamily: 'Georgia',
-		margin: 15,
+		marginLeft: 5,
 	},
 	chevron: {
-		lineHeight: 35,
-		marginRight: 5,
+
 	},
 })

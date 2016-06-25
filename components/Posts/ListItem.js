@@ -21,7 +21,7 @@ export default class ListItem extends Component {
 					{this.props.featuredMedia ?
 						<Image
 							style={styles.featuredMedia}
-							source={{uri:this.props.featuredMedia.media_details.sizes.medium_large.source_url}}
+							source={{uri:this.props.featuredMedia.media_details.sizes.medium.source_url}}
 							/>
 					: null }
 					<Text style={styles.excerpt}>{this.props.post.excerpt.rendered}</Text>

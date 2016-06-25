@@ -20,6 +20,8 @@ export default class Edit extends Component {
 	}
 
 	render() {
+
+		console.log( this.props.media )
 		var post = this.props.post
 
 		return (
@@ -39,7 +41,7 @@ export default class Edit extends Component {
 
 					<Text style={styles.sectionTitle}>TAXONOMY</Text>
 					<View style={styles.list}>
-						<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'select-categories', data: {postId: post.id}}})}>
+						<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'select-categories', data: {postId: post.id, type: this.props.routerData.type, taxonomy: 'category'}}})}>
 							<Text style={styles.listItemName}>Categories</Text>
 							<View style={styles.listItemValue}>
 								<Text style={styles.listItemValueText}>Uncategorized</Text>
@@ -56,7 +58,7 @@ export default class Edit extends Component {
 					</View>
 					<Text style={styles.sectionTitle}>PUBLISH</Text>
 					<View style={styles.list}>
-						<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'select-date', data: {postId: post.id}}})}>
+						<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'select-date', data: {postId: post.id, type: this.props.routerData.type}}})}>
 							<Text style={styles.listItemName}>Publish</Text>
 								<View style={styles.listItemValue}>
 									<Text style={styles.listItemValueText}>
@@ -85,7 +87,7 @@ export default class Edit extends Component {
 					</View>
 					<Text style={styles.sectionTitle}>POST FORMAT</Text>
 					<View style={styles.list}>
-						<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'select-format', data: {postId: post.id}}})}>
+						<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'select-format', data: {postId: post.id, type: this.props.routerData.type}}})}>
 							<Text style={styles.listItemName}>Post Format</Text>
 							<View style={styles.listItemValue}>
 								<Text style={styles.listItemValueText}>{post.format}</Text>
@@ -95,7 +97,7 @@ export default class Edit extends Component {
 					</View>
 					<Text style={styles.sectionTitle}>FEATURED IMAGE</Text>
 					<View style={styles.list}>
-						<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'select-featured-media', data: {postId: post.id}}})}>
+						<TouchableOpacity style={[styles.listItem,{height:null}]} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'select-featured-media', data: {postId: post.id, type: this.props.routerData.type}}})}>
 							{this.props.media[post.featured_image] ?
 								<Image
 									source={{uri:this.props.media[post.featured_image].media_details.sizes.thumbnail.source_url}}
@@ -159,8 +161,10 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+		alignItems: 'center',
 		padding: 10,
 		paddingLeft: 15,
+		height: 44,
 	},
 	listItemName: {
 		fontSize: 16,

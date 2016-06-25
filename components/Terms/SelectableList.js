@@ -10,24 +10,24 @@ export default class SelectableList extends Component {
 		onChange: React.PropTypes.func.isRequired,
 	}
 
-	onChange( category ) {
-		var categories = this.props.selectedCategories.slice()
-		if ( categories.indexOf( category.id ) > -1 ) {
-			categories.splice( categories.indexOf( category.id ), 1 )
+	onChange( term ) {
+		var terms = this.props.selectedTerms.slice()
+		if ( terms.indexOf( term.id ) > -1 ) {
+			terms.splice( terms.indexOf( term.id ), 1 )
 		} else {
-			categories.push( category.id )
+			terms.push( term.id )
 		}
-		this.props.onChange( categories )
+		this.props.onChange( terms )
 	}
 
 	render() {
 		return (
 			<View style={styles.list}>
-				{this.props.categories.map( category => {
+				{this.props.terms.map( category => {
 					return (
 						<TouchableOpacity key={category.id} style={styles.listItem} onPress={this.onChange.bind(this,category)}>
 							<Text style={styles.listItemName}>{category.name}</Text>
-							{this.props.selectedCategories.indexOf( category.id ) > -1 ?
+							{this.props.selectedTerms.indexOf( category.id ) > -1 ?
 								<Icon name="check" size={20} color="#A3A3A8" />
 							: null }
 						</TouchableOpacity>

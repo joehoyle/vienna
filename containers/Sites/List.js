@@ -7,7 +7,7 @@ export default class List extends Component {
 		this.props.dispatch({
 			type: 'ROUTER_PUSH',
 			payload: {
-				name: 'content',
+				name: 'site',
 				data: {
 					siteId: site.id,
 				},

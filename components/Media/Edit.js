@@ -7,13 +7,18 @@ import React, {
 import PropTypes from '../../PropTypes'
 
 export default class Edit extends Component {
+
+	static propTypes: {
+		post: PropTypes.Media,
+	}
+
 	render() {
-		var attachment = this.props.media[ this.props.routerData.mediaId ]
+		var attachment = this.props.post
 
 		return (
 			<View style={styles.container}>
 				<Image
-					source={{uri:attachment.media_details.sizes.large.source_url}}
+					source={{uri:attachment.media_details.sizes.full.source_url}}
 					style={{flex:1}}
 					resizeMode="contain"
 					/>

@@ -1,26 +1,31 @@
 import React, { Text, Component, StyleSheet, ScrollView } from 'react-native'
 import CategoriesSelectableList from '../../components/Terms/SelectableList'
-import { values } from 'lodash'
-import { fetchCategories, updatePost } from '../../actions'
+import { values, isEmpty } from 'lodash'
+import { fetchTerms, updatePost } from '../../actions'
 
 export default class SelectCategories extends Component {
 
-	componentWillMount() {
-		this.props.dispatch( fetchCategories() )
+	componentDidMount() {
+		var terms = this.props.taxonomies[ this.props.routerData.taxonomy ].terms
+		if ( isEmpty( terms ) ) {
+			this.props.dispatch( fetchTerms( {taxonomy: this.props.routerData.taxonomy}) )
+		}
 	}
 
 	handleChangeCategories( categories ) {
-		this.props.dispatch( updatePost( this.props.routerData.postId, {
+		this.props.dispatch( updatePost( this.props.routerData.postId, this.props.routerData.type, {
 			categories: categories,
 		}))
 	}
 
 	render() {
-		var post = this.props.posts[this.props.routerData.postId]
+		var post = this.props.types[ this.props.routerData.type ].posts[this.props.routerData.postId]
+		var terms = this.props.taxonomies[ this.props.routerData.taxonomy ].terms
+
 		return (
 			<ScrollView>
 				<CategoriesSelectableList
-					terms={values(this.props.categories)}
+					terms={values(terms)}
 					selectedTerms={post.categories}
 					onChange={this.handleChangeCategories.bind(this)}
 				/>

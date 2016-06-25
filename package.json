@@ -6,11 +6,13 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "oauth-1.0a": "^1.0.1",
     "query-string": "^3.0.1",
     "react": "^0.14.8",
     "react-native": "^0.24.1",
     "react-native-fbsdk": "^0.1.0",
     "react-native-hyperlink": "0.0.4",
+    "react-native-image-picker": "^0.19.4",
     "react-native-instagram-oauth": "0.0.6",
     "react-native-mapbox-gl": "^4.1.1",
     "react-native-router-redux": "^0.2.2",
@@ -18,7 +20,11 @@
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
     "redux-logger": "^2.6.1",
+    "redux-storage": "^4.0.1",
+    "redux-storage-decorator-filter": "^1.1.5",
+    "redux-storage-engine-reactnativeasyncstorage": "^1.0.1",
     "redux-thunk": "^2.0.1",
+    "superagent": "^2.0.0",
     "time-ago": "^0.1.0"
   }
 }

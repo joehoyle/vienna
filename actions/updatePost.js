@@ -1,9 +1,10 @@
-import api from '../mockApi'
-
-export default function updatePost( postId, values ) {
+export default function updatePost( postId, type, values ) {
 	return {
 		type: 'POSTS_POST_UPDATED',
-		postId: postId,
-		data: values,
+		payload: {
+			postId: postId,
+			data: values,
+			type: type,
+		}
 	}
 }

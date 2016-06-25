@@ -1,39 +1,39 @@
 import React, { Component, ScrollView, Image } from 'react-native'
 import { values } from 'lodash'
-import { fetchCategories } from '../../actions'
+import { fetchTerms } from '../../actions'
 import PropTypes from '../../PropTypes'
 import ListItem from '../../components/Terms/ListItem'
 
 export default class List extends Component {
 
-	static propTypes = {
-		categories: React.PropTypes.objectOf( PropTypes.Term ).isRequired,
-	}
 	componentWillMount() {
-		this.props.dispatch( fetchCategories() )
+		this.props.dispatch( fetchTerms( {taxonomy:this.props.routerData.taxonomy}) )
 	}
 
-	onSelectCategory( category ) {
+	onSelectTerm( term ) {
 		this.props.dispatch({
 			type: 'ROUTER_PUSH',
 			payload: {
-				name: 'categories-edit',
+				name: 'term-edit',
 				data: {
-					categoryId: category.id,
+					termId: term.id,
+					taxonomy: this.props.routerData.taxonomy
 				},
 			},
 		})
 	}
 
 	render() {
+		var taxonomy = this.props.taxonomies[ this.props.routerData.taxonomy ]
+		var terms = taxonomy.terms
 		return (
 			<ScrollView>
-				{values(this.props.categories).map( category => {
+				{values(terms).map( term => {
 					return (
 						<ListItem
-							key={category.id}
-							term={category}
-							onEdit={this.onSelectCategory.bind(this,category)}
+							key={term.id}
+							term={term}
+							onEdit={this.onSelectTerm.bind(this,term)}
 							onTrash={()=>{}}
 						/>
 					)

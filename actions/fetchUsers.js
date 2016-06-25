@@ -1,7 +1,10 @@
-import api from '../api'
+import httpapi from '../api'
 
 export default function fetchUsers( args ) {
-	return dispatch => {
+	return ( dispatch, getStore ) => {
+		const store = getStore()
+		const api = new httpapi( store.sites[ store.activeSite.id ] )
+
 		dispatch({
 			type: 'USERS_UPDATING',
 		})

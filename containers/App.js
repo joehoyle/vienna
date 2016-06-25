@@ -1,24 +1,34 @@
-import React, { Component, Text, View, StyleSheet, TabBarIOS, StatusBarIOS, ScrollView, TouchableOpacity } from 'react-native'
+import React, {
+	Component,
+	Text,
+	View,
+	StyleSheet,
+	TabBarIOS,
+	StatusBarIOS,
+	ScrollView,
+	TouchableOpacity,
+	LinkingIOS
+} from 'react-native'
+import { Linking } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchPosts, editPost, createPost } from '../actions'
+import { fetchPosts, editPost, createPost, addSite, uploadImage } from '../actions'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import SitesList from '../containers/Sites/List'
+import SitesAdd from '../containers/Sites/Add'
 import PostsList from '../containers/Posts/List'
-import MediaList from '../containers/Media/List'
+import PostsListNavBar from '../containers/Posts/ListNavBar'
 import PostsEdit from '../containers/Posts/Edit'
-import CategoriesEdit from '../containers/Categories/Edit'
-import CategoriesList from '../containers/Categories/List'
-import TagsEdit from '../containers/Tags/Edit'
-import TagsList from '../containers/Tags/List'
-import MediaEdit from '../containers/Media/Edit'
+import TermsEdit from '../containers/Terms/Edit'
+import TermsList from '../containers/Terms/List'
+import TermsListNavBar from '../containers/Terms/ListNavBar'
 import PostsCreate from '../containers/Posts/Create'
 import SelectCategories from '../containers/Posts/SelectCategories'
 import SelectDate from '../containers/Posts/SelectDate'
 import SelectFormat from '../containers/Posts/SelectFormat'
 import SelectFeaturedMedia from '../containers/Posts/SelectFeaturedMedia'
 import FilterListDropdownButton from '../components/FilterListDropdownButton'
-import Content from '../containers/Content'
+import SiteView from '../containers/Sites/View'
 
 import {
 	actions as routerActions,
@@ -28,12 +38,26 @@ import {
 	Schema,
 	TabRoute,
 	TabBar,
+	Animations,
 } from 'react-native-router-redux'
 
 class App extends Component {
 
-	componentWillMount() {
-		this.props.dispatch( fetchPosts() )
+	componentDidMount() {
+		if ( ! this.props.activeSite.id ) {
+			//this.props.dispatch( addSite( 'http://wordpress.dev/' ) )
+		} else {
+			this.props.dispatch( {
+				type: 'ROUTER_PUSH',
+				payload: {
+					name: 'site',
+				},
+			} )
+		}
+	}
+
+	componentWillUpdate() {
+
 	}
 
 	handleUpdatePost() {
@@ -42,11 +66,11 @@ class App extends Component {
 		})
 	}
 
-	handleCreatePost() {
+	handleCreateSite() {
 		this.props.dispatch( {
 			type: 'ROUTER_PUSH',
 			payload: {
-				name: 'posts-create',
+				name: 'add-site',
 			},
 		} )
 	}
@@ -58,7 +82,7 @@ class App extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Router {...this.props} initial="sites">
+				<Router {...this.props} initial={'sites'}>
 					<Schema
 						name="default"
 						navBar={NavBar}
@@ -69,46 +93,41 @@ class App extends Component {
 						navRightColor="white"
 						tabBar={TabBar}
 					/>
-					<TabRoute name="tabBar" barTint='#FFFFFF' tint="#32DEAF">
-						<Route
-							name="sites"
-							component={SitesList}
-							title="Sites"
-							navRight={<TouchableOpacity onPress={this.handleCreatePost.bind(this)}><Icon name="plus" style={{marginRight:15}} size={22} color="white" /></TouchableOpacity>}
-							tabItem={{title:'Sites'}}
-						/>
-					</TabRoute>
 					<Route
-						name="content"
-						component={Content}
+						name="sites"
+						component={SitesList}
+						title="Sites"
+						navRight={<TouchableOpacity onPress={this.handleCreateSite.bind(this)}><Icon name="plus" style={{marginRight:15}} size={22} color="white" /></TouchableOpacity>}
+						tabItem={{title:'Sites'}}
+					/>
+					<Route
+						name="add-site"
+						component={SitesAdd}
+						title="Add New Site"
+						sceneConfig={Animations.FlatFloatFromBottom}
+					/>
+					<Route
+						name="site"
+						component={SiteView}
 						title="Content"
 						navLeftTitle="Switch Site"
 					/>
 					<Route
-						name="posts"
+						name="type-posts"
 						component={PostsList}
-						title="Posts"
-						navTitle={<FilterListDropdownButton onPress={()=>this.props.dispatch({type:'POSTS_LIST_TOGGLE_FILTER'})}>Posts</FilterListDropdownButton>}
-						navRight={<TouchableOpacity onPress={this.handleCreatePost.bind(this)}><Icon name="pencil-square-o" style={{marginRight:15}} size={22} color="white" /></TouchableOpacity>}
+						navBar={PostsListNavBar}
 					/>
 					<Route
 						name="media"
-						component={MediaList}
+						component={PostsList}
 						title="Media"
 						tabItem={{title:'Media'}}
-						navRight={<Icon name="upload" style={{marginRight:15}} size={20} color="white" />}
+						navRight={<TouchableOpacity onPress={()=>this.props.dispatch(uploadImage())}><Icon name="upload" style={{marginRight:15}} size={20} color="white" /></TouchableOpacity>}
 					/>
 					<Route
-						name="categories"
-						component={CategoriesList}
-						title="Categories"
-						navRight={<TouchableOpacity onPress={this.handleCreateCategory.bind(this)}><Icon name="pencil-square-o" style={{marginRight:15}} size={22} color="white" /></TouchableOpacity>}
-					/>
-					<Route
-						name="tags"
-						component={TagsList}
-						title="Tags"
-						navRight={<TouchableOpacity onPress={this.handleCreateCategory.bind(this)}><Icon name="pencil-square-o" style={{marginRight:15}} size={22} color="white" /></TouchableOpacity>}
+						name="terms"
+						component={TermsList}
+						navBar={TermsListNavBar}
 					/>
 					<Route
 						name="posts-edit"
@@ -122,26 +141,17 @@ class App extends Component {
 						component={PostsCreate}
 						title="New Post"
 						navRightTitle="Save"
-						navRightHandler={this.handleCreatePost.bind(this)}
+						navRightHandler={this.handleUpdatePost.bind(this)}
 					/>
 					<Route
-						name="media-edit"
-						component={MediaEdit}
-						title="Edit Media"
-					/>
-					<Route
-						name="categories-edit"
-						component={CategoriesEdit}
-						title="Edit Category"
-					/>
-					<Route
-						name="tags-edit"
-						component={TagsEdit}
-						title="Edit Tag"
+						name="terms-edit"
+						component={TermsEdit}
+						title="Edit Term"
 					/>
 					<Route name="select-categories" component={SelectCategories} title="Select Categories" />
 					<Route name="select-date" component={SelectDate} title="Select Date" />
 					<Route name="select-featured-media" component={SelectFeaturedMedia} title="Select Featured Media" />
+					<Route name="select-format" component={SelectFormat} title="Select Post Format" />
 				</Router>
 			</View>
 		)
@@ -156,7 +166,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect((state) => {
-	site = state.sites[1].data
+	if ( state.activeSite.id ) {
+		site = state.sites[ state.activeSite.id ].data
+	} else {
+		site = {}
+	}
 	return {...site, ...state}
 }, mapDispatchToProps )(App)
 

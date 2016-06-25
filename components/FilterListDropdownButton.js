@@ -1,7 +1,7 @@
 import React, { Text, Component, View, StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-export default class TimeAgo extends Component {
+export default class FilterListDropdownButton extends Component {
 	propTypes: {
 		size: React.PropTypes.number.isRequired,
 		onPress: React.PropTypes.func.isRequired,

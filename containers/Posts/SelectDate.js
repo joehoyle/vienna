@@ -11,7 +11,7 @@ export default class SelectDate extends Component {
 	}
 
 	render() {
-		var post = this.props.posts[this.props.routerData.postId]
+		var post = this.props.types[ this.props.routerData.type ].posts[this.props.routerData.postId]
 		var date = new Date( post.date )
 		return (
 			<View style={{backgroundColor:'white',alignItems:'center',flexDirection:'column'}}>

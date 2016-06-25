@@ -1,7 +1,10 @@
-import api from '../mockApi'
+import httpapi from '../api'
 
 export default function trashPost( postId ) {
-	return dispatch => {
+	return ( dispatch, getStore ) => {
+		const store = getStore()
+		const api = new httpapi( store.sites[ store.activeSite.id ] )
+
 		dispatch({
 			type: 'POSTS_POST_TRASHING',
 		})
