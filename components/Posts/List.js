@@ -10,6 +10,7 @@ export default class List extends Component {
 		onEdit: React.PropTypes.func,
 		onView: React.PropTypes.func,
 		onTrash: React.PropTypes.func,
+		media: React.PropTypes.objectOf( PropTypes.Media ),
 	}
 	render() {
 		var posts = this.props.posts
@@ -25,10 +26,10 @@ export default class List extends Component {
 						<ListItem
 							key={post.id}
 							post={post}
+							featuredMedia={post.featured_media ? this.props.media[ post.featured_media ] : null}
 							onEdit={this.props.onEdit.bind(this,post)}
 							onView={this.props.onView.bind(this,post)}
 							onTrash={this.props.onTrash.bind(this,post)}
-							//featuredMedia={this.props.media[post.featured_image]}
 							/>
 					)
 				} ) }

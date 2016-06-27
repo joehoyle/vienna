@@ -19,7 +19,6 @@ export default class SelectFeaturedMedia extends Component {
 	}
 
 	render() {
-		console.log( this.props.types.attachment.posts )
 		return (
 			<MediaList
 				posts={values(this.props.types.attachment.posts)}

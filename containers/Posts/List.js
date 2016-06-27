@@ -68,6 +68,7 @@ export default class List extends Component {
 							titleColor: "#000000",
 					}}
 					posts={values( posts ).filter( this.filterPosts.bind( this ) )}
+					media={this.props.types.attachment.posts}
 					onEdit={post=>this.props.dispatch( editPost( post ) )}
 					onView={post=>this.props.dispatch( viewPost( post ) )}
 					onTrash={post=>this.props.dispatch( trashPost( post ) )}

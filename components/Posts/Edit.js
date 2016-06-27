@@ -20,8 +20,6 @@ export default class Edit extends Component {
 	}
 
 	render() {
-
-		console.log( this.props.media )
 		var post = this.props.post
 
 		return (
@@ -98,9 +96,9 @@ export default class Edit extends Component {
 					<Text style={styles.sectionTitle}>FEATURED IMAGE</Text>
 					<View style={styles.list}>
 						<TouchableOpacity style={[styles.listItem,{height:null}]} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'select-featured-media', data: {postId: post.id, type: this.props.routerData.type}}})}>
-							{this.props.media[post.featured_image] ?
+							{this.props.media[post.featured_media] ?
 								<Image
-									source={{uri:this.props.media[post.featured_image].media_details.sizes.thumbnail.source_url}}
+									source={{uri:this.props.media[post.featured_media].media_details.sizes.thumbnail.source_url}}
 									style={{width:150,height:150}}
 									/>
 							: null }

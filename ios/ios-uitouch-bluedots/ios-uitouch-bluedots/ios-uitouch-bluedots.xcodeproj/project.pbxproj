@@ -1,0 +1,321 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6612C5081A4A1AB800C51E45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6612C5071A4A1AB800C51E45 /* main.m */; };
+		6612C50B1A4A1AB800C51E45 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6612C50A1A4A1AB800C51E45 /* AppDelegate.m */; };
+		6612C50E1A4A1AB800C51E45 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6612C50D1A4A1AB800C51E45 /* ViewController.m */; };
+		6612C5111A4A1AB800C51E45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6612C50F1A4A1AB800C51E45 /* Main.storyboard */; };
+		6612C5131A4A1AB800C51E45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6612C5121A4A1AB800C51E45 /* Images.xcassets */; };
+		6612C5161A4A1AB800C51E45 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6612C5141A4A1AB800C51E45 /* LaunchScreen.xib */; };
+		6612C5311A4A209B00C51E45 /* MMTouchDotGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6612C52D1A4A209B00C51E45 /* MMTouchDotGestureRecognizer.m */; };
+		6612C5321A4A209B00C51E45 /* MMTouchDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6612C5301A4A209B00C51E45 /* MMTouchDotView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6612C5021A4A1AB800C51E45 /* ios-uitouch-bluedots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-uitouch-bluedots.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6612C5061A4A1AB800C51E45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6612C5071A4A1AB800C51E45 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6612C5091A4A1AB800C51E45 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6612C50A1A4A1AB800C51E45 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6612C50C1A4A1AB800C51E45 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6612C50D1A4A1AB800C51E45 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6612C5101A4A1AB800C51E45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6612C5121A4A1AB800C51E45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6612C5151A4A1AB800C51E45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		6612C52C1A4A209B00C51E45 /* MMTouchDotGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTouchDotGestureRecognizer.h; sourceTree = "<group>"; };
+		6612C52D1A4A209B00C51E45 /* MMTouchDotGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTouchDotGestureRecognizer.m; sourceTree = "<group>"; };
+		6612C52E1A4A209B00C51E45 /* MMTouchDotGestureRecognizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTouchDotGestureRecognizerDelegate.h; sourceTree = "<group>"; };
+		6612C52F1A4A209B00C51E45 /* MMTouchDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTouchDotView.h; sourceTree = "<group>"; };
+		6612C5301A4A209B00C51E45 /* MMTouchDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTouchDotView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6612C4FF1A4A1AB800C51E45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6612C4F91A4A1AB800C51E45 = {
+			isa = PBXGroup;
+			children = (
+				6612C5041A4A1AB800C51E45 /* ios-uitouch-bluedots */,
+				6612C5031A4A1AB800C51E45 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6612C5031A4A1AB800C51E45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6612C5021A4A1AB800C51E45 /* ios-uitouch-bluedots.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6612C5041A4A1AB800C51E45 /* ios-uitouch-bluedots */ = {
+			isa = PBXGroup;
+			children = (
+				6612C52B1A4A206200C51E45 /* blue-dots */,
+				6612C5091A4A1AB800C51E45 /* AppDelegate.h */,
+				6612C50A1A4A1AB800C51E45 /* AppDelegate.m */,
+				6612C50C1A4A1AB800C51E45 /* ViewController.h */,
+				6612C50D1A4A1AB800C51E45 /* ViewController.m */,
+				6612C50F1A4A1AB800C51E45 /* Main.storyboard */,
+				6612C5121A4A1AB800C51E45 /* Images.xcassets */,
+				6612C5141A4A1AB800C51E45 /* LaunchScreen.xib */,
+				6612C5051A4A1AB800C51E45 /* Supporting Files */,
+			);
+			path = "ios-uitouch-bluedots";
+			sourceTree = "<group>";
+		};
+		6612C5051A4A1AB800C51E45 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6612C5061A4A1AB800C51E45 /* Info.plist */,
+				6612C5071A4A1AB800C51E45 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6612C52B1A4A206200C51E45 /* blue-dots */ = {
+			isa = PBXGroup;
+			children = (
+				6612C52C1A4A209B00C51E45 /* MMTouchDotGestureRecognizer.h */,
+				6612C52D1A4A209B00C51E45 /* MMTouchDotGestureRecognizer.m */,
+				6612C52E1A4A209B00C51E45 /* MMTouchDotGestureRecognizerDelegate.h */,
+				6612C52F1A4A209B00C51E45 /* MMTouchDotView.h */,
+				6612C5301A4A209B00C51E45 /* MMTouchDotView.m */,
+			);
+			name = "blue-dots";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6612C5011A4A1AB800C51E45 /* ios-uitouch-bluedots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6612C5251A4A1AB900C51E45 /* Build configuration list for PBXNativeTarget "ios-uitouch-bluedots" */;
+			buildPhases = (
+				6612C4FE1A4A1AB800C51E45 /* Sources */,
+				6612C4FF1A4A1AB800C51E45 /* Frameworks */,
+				6612C5001A4A1AB800C51E45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ios-uitouch-bluedots";
+			productName = "ios-uitouch-bluedots";
+			productReference = 6612C5021A4A1AB800C51E45 /* ios-uitouch-bluedots.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6612C4FA1A4A1AB800C51E45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Milestone Made";
+				TargetAttributes = {
+					6612C5011A4A1AB800C51E45 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 6612C4FD1A4A1AB800C51E45 /* Build configuration list for PBXProject "ios-uitouch-bluedots" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6612C4F91A4A1AB800C51E45;
+			productRefGroup = 6612C5031A4A1AB800C51E45 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6612C5011A4A1AB800C51E45 /* ios-uitouch-bluedots */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6612C5001A4A1AB800C51E45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6612C5111A4A1AB800C51E45 /* Main.storyboard in Resources */,
+				6612C5161A4A1AB800C51E45 /* LaunchScreen.xib in Resources */,
+				6612C5131A4A1AB800C51E45 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6612C4FE1A4A1AB800C51E45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6612C5321A4A209B00C51E45 /* MMTouchDotView.m in Sources */,
+				6612C50E1A4A1AB800C51E45 /* ViewController.m in Sources */,
+				6612C50B1A4A1AB800C51E45 /* AppDelegate.m in Sources */,
+				6612C5081A4A1AB800C51E45 /* main.m in Sources */,
+				6612C5311A4A209B00C51E45 /* MMTouchDotGestureRecognizer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6612C50F1A4A1AB800C51E45 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6612C5101A4A1AB800C51E45 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6612C5141A4A1AB800C51E45 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6612C5151A4A1AB800C51E45 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6612C5231A4A1AB900C51E45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6612C5241A4A1AB900C51E45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6612C5261A4A1AB900C51E45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "ios-uitouch-bluedots/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6612C5271A4A1AB900C51E45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "ios-uitouch-bluedots/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6612C4FD1A4A1AB800C51E45 /* Build configuration list for PBXProject "ios-uitouch-bluedots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6612C5231A4A1AB900C51E45 /* Debug */,
+				6612C5241A4A1AB900C51E45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6612C5251A4A1AB900C51E45 /* Build configuration list for PBXNativeTarget "ios-uitouch-bluedots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6612C5261A4A1AB900C51E45 /* Debug */,
+				6612C5271A4A1AB900C51E45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6612C4FA1A4A1AB800C51E45 /* Project object */;
+}
