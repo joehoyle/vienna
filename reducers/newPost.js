@@ -13,7 +13,7 @@ const defaultData = {
 		raw: '',
 		rendered: '',
 	},
-	categores: [],
+	categories: [],
 	tags: [],
 	featured_image: 0,
 	date: null,
