@@ -1,4 +1,4 @@
-import React, { Component, View, Image, StyleSheet, ScrollView, TouchableOpacity, Text } from 'react-native'
+import React, { Component, View, Image, StyleSheet, ScrollView, TouchableOpacity, Text, RefreshControl } from 'react-native'
 import PropTypes from '../../PropTypes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -11,7 +11,9 @@ export default class List extends Component {
 
 	render() {
 		return (
-			<ScrollView>
+			<ScrollView
+				refreshControl={this.props.refreshControl}
+				>
 				<View style={styles.container}>
 					{this.props.posts.map( attachment => {
 						return (

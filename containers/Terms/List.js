@@ -1,4 +1,4 @@
-import React, { Component, ScrollView, Image } from 'react-native'
+import React, { Component, ScrollView, Image, RefreshControl } from 'react-native'
 import { values } from 'lodash'
 import { fetchTerms } from '../../actions'
 import PropTypes from '../../PropTypes'
@@ -23,11 +23,22 @@ export default class List extends Component {
 		})
 	}
 
+	onRefresh() {
+
+	}
+
 	render() {
 		var taxonomy = this.props.taxonomies[ this.props.routerData.taxonomy ]
 		var terms = taxonomy.terms
 		return (
-			<ScrollView>
+			<ScrollView
+				refreshControl={<RefreshControl
+						refreshing={taxonomy.list.loading}
+						onRefresh={this.onRefresh.bind(this)}
+						tintColor="#666666"
+						title={taxonomy.list.loading ? 'Loading ' + taxonomy.name + '...' : 'Pull to Refresh...'}
+						titleColor="#000000"
+					/>}>
 				{values(terms).map( term => {
 					return (
 						<ListItem

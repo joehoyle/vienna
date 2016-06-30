@@ -1,4 +1,4 @@
-import React, { Component, ScrollView, View } from 'react-native'
+import React, { Component, ScrollView, View, RefreshControl } from 'react-native'
 import { values, isEmpty } from 'lodash'
 import { editPost, trashPost, viewPost, fetchPosts } from '../../actions'
 import PropTypes from '../../PropTypes'
@@ -13,7 +13,7 @@ export default class List extends Component {
 			if ( isEmpty( posts ) ) {
 				this.props.dispatch( fetchPosts({type:this.props.routerData.type}) )
 			}
-		}, 1000 )
+		}, 100 )
 	}
 
 	onRefresh() {
@@ -60,13 +60,13 @@ export default class List extends Component {
 					/>
 				: null }
 				<ListComponent
-					refreshControl={{
-							refreshing:type.list.loading,
-							onRefresh: this.onRefresh.bind(this),
-							tintColor: "#666666",
-							title: type.list.loading ? 'Loading ' + type.name + '...' : 'Pull to Refresh...',
-							titleColor: "#000000",
-					}}
+					refreshControl={<RefreshControl
+							refreshing={type.list.loading}
+							onRefresh={this.onRefresh.bind(this)}
+							tintColor="#666666"
+							title={type.list.loading ? 'Loading ' + type.name + '...' : 'Pull to Refresh...'}
+							titleColor="#000000"
+						/>}
 					posts={values( posts ).filter( this.filterPosts.bind( this ) )}
 					media={this.props.types.attachment.posts}
 					onEdit={post=>this.props.dispatch( editPost( post ) )}
