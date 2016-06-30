@@ -69,6 +69,9 @@ function site( state = {}, action ) {
 			state.credentials.token.public = action.data.oauth_token
 			state.credentials.token.secret = action.data.oauth_token_secret
 			return {...state}
+		case 'REMOVE_LOCAL_DATA':
+			state.data = {}
+			return {...state}
 	}
 
 	state.data = siteReducers( state.data, action )
