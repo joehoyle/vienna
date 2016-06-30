@@ -33,3 +33,6 @@ to interact with your WordPress install.
 - Run the app in the iOS simulator.
 - Hit _CMD + D_ on the keyboard.
 - Select _Debug in Chrome_ to open a Chrome window ready for debugging.
+
+## Learning
+- Free [video course](https://learnredux.com) for learning Redux.
