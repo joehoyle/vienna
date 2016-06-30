@@ -1,5 +1,7 @@
 export default function newSite( state = { status: null, errorStatus: null }, action ) {
 	switch ( action.type ) {
+		case 'ADD_SITE_URL_ALREADY_EXISTING':
+			return {...state, status: null, errorStatus: 'Site already added.'}
 		case 'ADD_SITE_START':
 			return {...state, status: 'Adding site...', errorStatus: null}
 		case 'ADD_SITE_BROKER_CONNECTING':

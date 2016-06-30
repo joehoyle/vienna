@@ -7,6 +7,19 @@ import { values, trimEnd } from 'lodash'
 export default function addSite( url, args = {} ) {
 
 	return ( dispatch, getStore ) => {
+		/*
+		 * Don't add duplicate sites.
+		 */
+		var siteUrls = values( getStore().sites ).map( site => site.url );
+
+		if (siteUrls.indexOf( url ) > 0 ) {
+			dispatch({
+				type: 'ADD_SITE_URL_ALREADY_EXISTING'
+			})
+
+			return
+		}
+
 		dispatch({
 			type: 'ADD_SITE_START',
 			url: url,
