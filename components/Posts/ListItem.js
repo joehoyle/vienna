@@ -1,4 +1,4 @@
-import React, { Component, StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
+import React, { Component, StyleSheet, View, Text, TouchableOpacity, Image, WebView } from 'react-native'
 import PropTypes from '../../PropTypes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import TimeAgo from './../TimeAgo'
@@ -24,7 +24,8 @@ export default class ListItem extends Component {
 							source={{uri:this.props.featuredMedia.media_details.sizes.medium.source_url}}
 							/>
 					: null }
-					<Text style={styles.excerpt}>{this.props.post.excerpt.rendered}</Text>
+
+					<WebView scrollEnabled={false} style={styles.webView} source={{html:this.props.post.excerpt.rendered}} />
 					{this.props.post.date ?
 						<View style={styles.date}>
 							<TimeAgo date={new Date( this.props.post.date )} style={styles.dateText} />
@@ -117,5 +118,10 @@ const styles = StyleSheet.create({
 		height: 180,
 		flex: 1,
 		marginBottom: 5,
+	},
+	webView: {
+		height:220,
+		marginLeft: 10,
+		marginRight: 10,
 	}
 })
