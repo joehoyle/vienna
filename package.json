@@ -1,5 +1,5 @@
 {
-  "name": "WordPress",
+  "name": "Vienna",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,11 +10,8 @@
     "query-string": "^3.0.1",
     "react": "^0.14.8",
     "react-native": "^0.24.1",
-    "react-native-fbsdk": "^0.1.0",
     "react-native-hyperlink": "0.0.4",
     "react-native-image-picker": "^0.19.4",
-    "react-native-instagram-oauth": "0.0.6",
-    "react-native-mapbox-gl": "^4.1.1",
     "react-native-router-redux": "^0.2.2",
     "react-native-vector-icons": "^1.3.2",
     "react-redux": "^4.4.0",
