@@ -1,11 +1,8 @@
 
-export default function removeLocalData( siteId ) {
+export default function removeLocalData() {
 	return ( dispatch, getStore ) => {
 		dispatch({
-			type: 'REMOVE_LOCAL_DATA',
-			payload: {
-				siteId: siteId,
-			}
+			type: 'REMOVE_LOCAL_DATA'
 		})
 	}
 }

@@ -12,7 +12,7 @@ export default class _View extends Component {
 		}
 	}
 	onRemoveLocalData() {
-		this.props.dispatch( removeLocalData( this.props.activeSite.id ) )
+		this.props.dispatch( removeLocalData() )
 		this.props.dispatch( fetchTypes() )
 		this.props.dispatch( fetchTaxonomies() )
 	}
