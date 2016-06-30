@@ -13,6 +13,15 @@ export default class ListItem extends Component {
 		featuredMedia: PropTypes.Media,
 	}
 
+	constructor( props ) {
+		super( props )
+		this.state = { webViewHeight: 100 }
+	}
+
+	updateWebViewHeight(event) {
+		this.setState({webViewHeight: parseInt(event.jsEvaluationValue)})
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -27,8 +36,11 @@ export default class ListItem extends Component {
 
 					<WebView
 						scrollEnabled={false}
-						style={styles.webView}
+						injectedJavaScript="document.body.scrollHeight;"
+						style={[styles.webView,{height:this.state.webViewHeight}]}
 						source={{html:this.htmlExcerpt()}}
+						automaticallyAdjustContentInsets={true}
+						onNavigationStateChange={this.updateWebViewHeight.bind(this)}
 					/>
 					{this.props.post.date ?
 						<View style={styles.date}>
@@ -131,7 +143,6 @@ const styles = StyleSheet.create({
 		marginBottom: 5,
 	},
 	webView: {
-		height:220,
 		marginLeft: 10,
 		marginRight: 10,
 	}
