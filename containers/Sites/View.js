@@ -1,7 +1,7 @@
 import React, { Component, ScrollView, View, Text, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { values, isEmpty } from 'lodash'
-import { fetchTypes, fetchTaxonomies, removeSite } from '../../actions'
+import { removeLocalData, fetchTypes, fetchTaxonomies, removeSite } from '../../actions'
 
 export default class _View extends Component {
 
@@ -10,6 +10,11 @@ export default class _View extends Component {
 			this.props.dispatch( fetchTypes() )
 			this.props.dispatch( fetchTaxonomies() )
 		}
+	}
+	onRemoveLocalData() {
+		this.props.dispatch( removeLocalData( this.props.activeSite.id ) )
+		this.props.dispatch( fetchTypes() )
+		this.props.dispatch( fetchTaxonomies() )
 	}
 	onRefresh() {
 		this.props.dispatch( fetchTypes() )
@@ -100,6 +105,13 @@ export default class _View extends Component {
 				<View style={styles.list}>
 					<TouchableOpacity style={styles.listItem} onPress={this.onRemoveSite.bind(this)}>
 						<Text style={styles.listItemNameCentered}>Remove Site from App</Text>
+					</TouchableOpacity>
+				</View>
+
+				<Text style={styles.sectionTitle}></Text>
+				<View style={styles.list}>
+					<TouchableOpacity style={styles.listItem} onPress={this.onRemoveLocalData.bind(this)}>
+						<Text style={styles.listItemNameCentered}>Remove all local data</Text>
 					</TouchableOpacity>
 				</View>
 			</ScrollView>
