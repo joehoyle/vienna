@@ -25,7 +25,11 @@ export default class ListItem extends Component {
 							/>
 					: null }
 
-					<WebView scrollEnabled={false} style={styles.webView} source={{html:this.props.post.excerpt.rendered}} />
+					<WebView
+						scrollEnabled={false}
+						style={styles.webView}
+						source={{html:this.htmlExcerpt()}}
+					/>
 					{this.props.post.date ?
 						<View style={styles.date}>
 							<TimeAgo date={new Date( this.props.post.date )} style={styles.dateText} />
@@ -65,6 +69,21 @@ export default class ListItem extends Component {
 			</View>
 		)
 	}
+
+	htmlExcerpt() {
+		return `<style>
+			body {
+				font-size: 15px;
+				line-height: 20px;
+				color: #666;
+				font-family: Georgia;
+				margin: 0;
+			}
+
+		</style>
+		${this.props.post.excerpt.rendered}
+		`
+	}
 }
 
 const styles = StyleSheet.create({
@@ -78,14 +97,6 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		fontFamily: 'Georgia',
 		margin: 15,
-	},
-	excerpt: {
-		fontSize: 15,
-		lineHeight: 20,
-		color: '#666',
-		fontFamily: 'Georgia',
-		marginLeft: 15,
-		marginRight: 15,
 	},
 	dateText: {
 		fontSize: 12,
