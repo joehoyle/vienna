@@ -38,6 +38,9 @@ export default function sites( state = defaultState, action ) {
 			}
 			state[ newSite.id ] = newSite
 			return {...state}
+		case 'ADD_SITE_FAILED':
+			delete state[ action.siteId ]
+			return {...state}
 		case 'SITE_REMOVED':
 			delete state[ action.payload.siteId ]
 			return {...state}
