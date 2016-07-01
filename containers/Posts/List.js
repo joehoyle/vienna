@@ -1,4 +1,4 @@
-import React, { Component, ScrollView, View, RefreshControl } from 'react-native'
+import React, { Component, ScrollView, View, RefreshControl, ActivityIndicatorIOS, Text } from 'react-native'
 import { values, isEmpty } from 'lodash'
 import { editPost, trashPost, viewPost, fetchPosts } from '../../actions'
 import PropTypes from '../../PropTypes'
@@ -58,6 +58,12 @@ export default class List extends Component {
 						filter={type.list.filter}
 						onChange={this.onChangeFilter.bind(this)}
 					/>
+				: null }
+				{type.new.loading ?
+					<View>
+						<ActivityIndicatorIOS />
+						<Text>Creating {type.name}</Text>
+					</View>
 				: null }
 				<ListComponent
 					refreshControl={<RefreshControl
