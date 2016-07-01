@@ -4,7 +4,7 @@ export default function editTerm( term ) {
 	return {
 		type: routerActions.actionTypes.ROUTER_PUSH,
 		payload: {
-			name: 'term-edit',
+			name: 'terms-edit',
 			data: {
 				termId: term.id,
 				taxonomy: term.taxonomy,
