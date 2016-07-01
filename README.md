@@ -40,7 +40,8 @@ to interact with your WordPress install.
 
 In this case, you'll just need the [WP REST API OAuth 1 plugin](https://github.com/WP-API/OAuth1) on your site.
 
-- Add a new JSON Consumer in the WordPress Dashboard of your site
+- Add a new JSON Consumer in the WordPress Dashboard of your site by browsing to Users > Applications and clicking Add New
+- Enter `wordpress-react-native://site_callback` as the callback URL
 - Add a new site from the App
 - Enter the URL of your WordPress site
 - Press "OAuth 1.0"
