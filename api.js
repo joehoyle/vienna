@@ -1,5 +1,6 @@
 import querystring from 'query-string'
 import oauth from 'oauth-1.0a'
+import fetchBlob from 'react-native-fetch-blob'
 
 export default class {
 	constructor( config ) {
@@ -23,6 +24,45 @@ export default class {
 
 	_delete( url, data, callback ) {
 		return this.request( 'DELETE', url, data, callback )
+	}
+
+	upload( url, data, type, filename ) {
+
+		url = this.url + url
+
+		method = 'POST'
+
+		var oauthData = this.oauth.authorize( {
+			method: method,
+			url: url
+		}, this.credentials.token )
+
+		return fetchBlob.fetch( 'POST', url, {
+			Accept: 'application/json',
+			'Content-Type':  'application/octet-stream',
+			'Content-Disposition': 'attachment; filename="' + filename + '"',
+			...this.oauth.toHeader( oauthData )
+		}, data )
+		.then( response => {
+			var text = response.text()
+			try {
+				var json = JSON.parse( text )
+			} catch( e ) {
+				throw { message: text, code: response.status }
+			}
+
+			if ( response.status >= 300) {
+				throw json
+			} else {
+				return json
+			}
+		} )
+		.then( function( data ) {
+			return data
+		})
+		.catch( error => {
+			throw error
+		})
 	}
 
 	request( method, url, data, callback ) {

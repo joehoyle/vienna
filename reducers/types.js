@@ -11,8 +11,24 @@ export default function types( state = {}, action ) {
 					isShowingFilter: false,
 					loading: false,
 				}
+				type.new = {
+					data: {},
+					loading: false,
+					error: null,
+				}
 			} )
 			return action.data
+		case 'TYPE_POSTS_NEW_UPDATING':
+			state[ action.payload.type ].new.loading = true
+			return {...state}
+		case 'TYPE_POSTS_NEW_UPDATED':
+			state[ action.payload.type ].new = {
+				data: {},
+				loading: false,
+				error: null,
+			}
+			state[ action.payload.type ].posts[ action.payload.data.id ] = action.payload.data
+			return {...state}
 		case 'TYPE_POSTS_UPDATED':
 		case 'POSTS_LIST_FILTER_UPDATED':
 		case 'POSTS_LIST_TOGGLE_FILTER':

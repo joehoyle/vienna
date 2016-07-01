@@ -10,6 +10,7 @@
     "query-string": "^3.0.1",
     "react": "^0.14.8",
     "react-native": "^0.24.1",
+    "react-native-fetch-blob": "^0.5.8",
     "react-native-hyperlink": "0.0.4",
     "react-native-image-picker": "^0.19.4",
     "react-native-router-redux": "github:joehoyle/react-native-router-redux#vienna",
