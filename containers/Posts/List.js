@@ -1,4 +1,4 @@
-import React, { Component, ScrollView, View, RefreshControl } from 'react-native'
+import React, { StyleSheet, Component, ScrollView, View, RefreshControl, ActivityIndicatorIOS, Text } from 'react-native'
 import { values, isEmpty } from 'lodash'
 import { editPost, trashPost, viewPost, fetchPosts } from '../../actions'
 import PropTypes from '../../PropTypes'
@@ -13,7 +13,7 @@ export default class List extends Component {
 			if ( isEmpty( posts ) ) {
 				this.props.dispatch( fetchPosts({type:this.props.routerData.type}) )
 			}
-		}, 100 )
+		}, 400 )
 	}
 
 	onRefresh() {
@@ -59,6 +59,12 @@ export default class List extends Component {
 						onChange={this.onChangeFilter.bind(this)}
 					/>
 				: null }
+				{type.new.loading ?
+					<View style={styles.creating}>
+						<ActivityIndicatorIOS />
+						<Text style={styles.creatingText}>Creating {type.name}</Text>
+					</View>
+				: null }
 				<ListComponent
 					refreshControl={<RefreshControl
 							refreshing={type.list.loading}
@@ -77,3 +83,17 @@ export default class List extends Component {
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+	creating: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		paddingBottom: 5,
+		backgroundColor: '#2E73B0',
+	},
+	creatingText: {
+		marginLeft: 5,
+		lineHeight: 17,
+		color: 'rgba(255,255,255,.3)'
+	},
+})

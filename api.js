@@ -1,5 +1,6 @@
 import querystring from 'query-string'
 import oauth from 'oauth-1.0a'
+import fetchBlob from 'react-native-fetch-blob'
 
 export default class {
 	constructor( config ) {
@@ -25,6 +26,45 @@ export default class {
 		return this.request( 'DELETE', url, data, callback )
 	}
 
+	upload( url, data, type, filename ) {
+
+		url = this.url + url
+
+		method = 'POST'
+
+		var oauthData = this.oauth.authorize( {
+			method: method,
+			url: url
+		}, this.credentials.token )
+
+		return fetchBlob.fetch( 'POST', url, {
+			Accept: 'application/json',
+			'Content-Type':  'application/octet-stream',
+			'Content-Disposition': 'attachment; filename="' + filename + '"',
+			...this.oauth.toHeader( oauthData )
+		}, data )
+		.then( response => {
+			var text = response.text()
+			try {
+				var json = JSON.parse( text )
+			} catch( e ) {
+				throw { message: text, code: response.status }
+			}
+
+			if ( response.status >= 300) {
+				throw json
+			} else {
+				return json
+			}
+		} )
+		.then( function( data ) {
+			return data
+		})
+		.catch( error => {
+			throw error
+		})
+	}
+
 	request( method, url, data, callback ) {
 
 		if ( method === 'GET' && data ) {
@@ -41,6 +81,8 @@ export default class {
 			url: url,
 			data: data
 		}, this.credentials.token ? this.credentials.token : null )
+
+
 		return fetch( url, {
 			method: method,
 			headers: {
@@ -51,12 +93,14 @@ export default class {
 			body: querystring.stringify( data )
 		} )
 		.then( response => {
+
 			if ( response.headers.get( 'Content-Type' ).indexOf( 'x-www-form-urlencoded' ) > -1 ) {
 				return response.text().then( text => {
 					return querystring.parse( text )
 				})
 			}
 			return response.text().then( text => {
+
 				try {
 					var json = JSON.parse( text )
 				} catch( e ) {
@@ -73,13 +117,14 @@ export default class {
 		} )
 		.then( function( data ) {
 			if ( callback ) {
-				callback( data )
+				setTimeout( callback.bind( null, data ), 1 )
 			}
 			return data
 		})
 		.catch( error => {
+			console.warn( error.message )
 			if ( callback ) {
-				callback( null, error )
+				setTimeout( callback.bind( null, null, error ), 1 )
 			} else {
 				throw error
 			}

@@ -2,6 +2,7 @@ import React, { Component, View, Text, TouchableOpacity } from 'react-native'
 import NavigationBar from 'react-native-navbar'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import FilterListDropdownButton from '../../components/FilterListDropdownButton'
+import { uploadImage } from '../../actions'
 
 export default class ListNavBar extends Component {
 
@@ -14,6 +15,12 @@ export default class ListNavBar extends Component {
 		})
 	}
 	handleCreatePost() {
+
+		// todo: abstract this
+		if ( this.props.route.passProps.routerData.type === 'attachment' ) {
+			return this.props.dispatch( uploadImage() )
+		}
+
 		this.props.dispatch( {
 			type: 'ROUTER_PUSH',
 			payload: {
@@ -24,6 +31,12 @@ export default class ListNavBar extends Component {
 	}
 	render() {
 		var type = this.props.types[ this.props.route.passProps.routerData.type ]
+
+		var iconMap = {
+			attachment: 'upload'
+		}
+
+		var icon = iconMap[ type.slug ] || 'pencil-square-o'
 		return (
 			<NavigationBar
 				leftButton={{
@@ -31,7 +44,7 @@ export default class ListNavBar extends Component {
 					tintColor: '#ffffff',
 					handler: this.props.actions.pop,
 				}}
-				rightButton={<TouchableOpacity onPress={this.handleCreatePost.bind(this)}><Icon name="pencil-square-o" style={{marginRight:15}} size={22} color="white" /></TouchableOpacity>}
+				rightButton={<TouchableOpacity onPress={this.handleCreatePost.bind(this)}><Icon name={icon} style={{marginRight:15}} size={22} color="white" /></TouchableOpacity>}
 				statusBar={{
 					hidden: this.props.statusHidden || false,
 					style: this.props.statusStyle || 'default',
