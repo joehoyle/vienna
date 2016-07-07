@@ -13,7 +13,7 @@ export default function fetchPosts( args ) {
 
 		api.get( '/wp/v2/types', args, function( data, err ) {
 			if ( err ) {
-				return
+				return console.warn( err.message )
 			}
 			const site = store.sites[ store.activeSite.id ]
 

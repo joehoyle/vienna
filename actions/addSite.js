@@ -1,12 +1,26 @@
 import OAuth from 'oauth-1.0a'
 import querystring from 'query-string'
 import { Linking } from 'react-native'
+import SafariView from 'react-native-safari-view'
 import httpapi from '../api'
 import { values, trimEnd } from 'lodash'
 
 export default function addSite( url, args = {} ) {
 
 	return ( dispatch, getStore ) => {
+		/*
+		 * Don't add duplicate sites.
+		 */
+		var siteUrls = values( getStore().sites ).map( site => site.url );
+
+		if (siteUrls.indexOf( url ) > 0 ) {
+			dispatch({
+				type: 'ADD_SITE_URL_ALREADY_EXISTING'
+			})
+
+			return
+		}
+
 		dispatch({
 			type: 'ADD_SITE_START',
 			url: url,
@@ -37,11 +51,23 @@ export default function addSite( url, args = {} ) {
 			} ) )
 		})
 
-		promise.then( function( data ) {
+		promise
+			.then( function( data ) {
+
+				if ( data.status === 'error' ) {
+					throw { message: 'Broker Error: ' + data.type, code: data.type }
+				}
+
 				dispatch({
 					type: 'ADD_SITE_CLIENT_CREATED',
 					data: data
 				})
+			}, function( err ) {
+				if ( ! err.message ) {
+					err.message = 'Unknown broker error.'
+				}
+
+				throw err
 			})
 			.then( function() {
 				var store = getStore()
@@ -67,7 +93,12 @@ export default function addSite( url, args = {} ) {
 					type: 'ADD_SITE_REQUEST_TOKEN_UPDATED',
 					data: data,
 				})
-				Linking.openURL( url )
+
+				SafariView.show({
+					url: url,
+					tintColor: '#2E73B0',
+				})
+				Linking.addEventListener('url', listener )
 			} )
 			.catch( error => {
 				dispatch({
@@ -76,7 +107,18 @@ export default function addSite( url, args = {} ) {
 				})
 			})
 
-		Linking.addEventListener('url', function( event ) {
+		var showErrorOnDismiss = SafariView.addEventListener( 'onDismiss', () => {
+			Linking.removeEventListener( 'url', listener )
+			dispatch({
+				type: 'ADD_SITE_FAILED',
+				error: { message: 'Login modal dismissed.' },
+			})
+		} )
+
+		var listener = function( event ) {
+			showErrorOnDismiss.remove()
+			SafariView.dismiss()
+			Linking.removeEventListener( 'url', listener )
 			var args = querystring.parse( event.url.split('?')[1] )
 
 			dispatch({
@@ -112,6 +154,6 @@ export default function addSite( url, args = {} ) {
 					})
 				} )
 			} )
-		})
+		}
 	}
 }

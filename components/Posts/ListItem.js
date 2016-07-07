@@ -1,4 +1,4 @@
-import React, { Component, StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
+import React, { Component, StyleSheet, View, Text, TouchableOpacity, Image, WebView } from 'react-native'
 import PropTypes from '../../PropTypes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import TimeAgo from './../TimeAgo'
@@ -13,6 +13,15 @@ export default class ListItem extends Component {
 		featuredMedia: PropTypes.Media,
 	}
 
+	constructor( props ) {
+		super( props )
+		this.state = { webViewHeight: 100 }
+	}
+
+	updateWebViewHeight(event) {
+		this.setState({webViewHeight: parseInt(event.jsEvaluationValue)})
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -24,7 +33,15 @@ export default class ListItem extends Component {
 							source={{uri:this.props.featuredMedia.media_details.sizes.medium.source_url}}
 							/>
 					: null }
-					<Text style={styles.excerpt}>{this.props.post.excerpt.rendered}</Text>
+
+					<WebView
+						scrollEnabled={false}
+						injectedJavaScript="document.body.scrollHeight;"
+						style={[styles.webView,{height:this.state.webViewHeight}]}
+						source={{html:this.htmlExcerpt()}}
+						automaticallyAdjustContentInsets={true}
+						onNavigationStateChange={this.updateWebViewHeight.bind(this)}
+					/>
 					{this.props.post.date ?
 						<View style={styles.date}>
 							<TimeAgo date={new Date( this.props.post.date )} style={styles.dateText} />
@@ -64,6 +81,21 @@ export default class ListItem extends Component {
 			</View>
 		)
 	}
+
+	htmlExcerpt() {
+		return `<style>
+			body {
+				font-size: 15px;
+				line-height: 20px;
+				color: #666;
+				font-family: Georgia;
+				margin: 0;
+			}
+
+		</style>
+		${this.props.post.excerpt.rendered}
+		`
+	}
 }
 
 const styles = StyleSheet.create({
@@ -77,14 +109,6 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		fontFamily: 'Georgia',
 		margin: 15,
-	},
-	excerpt: {
-		fontSize: 15,
-		lineHeight: 20,
-		color: '#666',
-		fontFamily: 'Georgia',
-		marginLeft: 15,
-		marginRight: 15,
 	},
 	dateText: {
 		fontSize: 12,
@@ -117,5 +141,9 @@ const styles = StyleSheet.create({
 		height: 180,
 		flex: 1,
 		marginBottom: 5,
+	},
+	webView: {
+		marginLeft: 10,
+		marginRight: 10,
 	}
 })

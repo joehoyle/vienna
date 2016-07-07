@@ -1,4 +1,4 @@
-import React, { Component, ScrollView, View, RefreshControl } from 'react-native'
+import React, { Component, ScrollView, View } from 'react-native'
 import { values, isEmpty } from 'lodash'
 import PropTypes from '../../PropTypes'
 import ListItem from './ListItem'
@@ -16,11 +16,8 @@ export default class List extends Component {
 		var posts = this.props.posts
 		return (
 			<ScrollView
-				refreshControl={
-					<RefreshControl
-						{...this.props.refreshControl}
-					/>
-				}>
+				refreshControl={this.props.refreshControl}
+				>
 				{posts.map( post => {
 					return (
 						<ListItem

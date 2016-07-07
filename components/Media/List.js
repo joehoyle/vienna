@@ -1,6 +1,7 @@
-import React, { Component, View, Image, StyleSheet, ScrollView, TouchableOpacity, Text } from 'react-native'
+import React, { Component, View, Image, StyleSheet, ScrollView, TouchableOpacity, Text, RefreshControl } from 'react-native'
 import PropTypes from '../../PropTypes'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { isEmpty } from 'lodash'
 
 export default class List extends Component {
 
@@ -11,7 +12,9 @@ export default class List extends Component {
 
 	render() {
 		return (
-			<ScrollView>
+			<ScrollView
+				refreshControl={this.props.refreshControl}
+				>
 				<View style={styles.container}>
 					{this.props.posts.map( attachment => {
 						return (
@@ -20,10 +23,10 @@ export default class List extends Component {
 								onPress={this.props.onEdit.bind(null,attachment)}
 								style={styles.imageHighlight}
 								>
-								{attachment.media_details.sizes ?
+								{attachment.media_type === 'image' ?
 									<Image
 										style={styles.image}
-										source={{uri:attachment.media_details.sizes.thumbnail.source_url}}
+										source={{uri:attachment.media_details.sizes.thumbnail ? attachment.media_details.sizes.thumbnail.source_url : attachment.source_url}}
 										/>
 								:
 									<Icon name="file" style={{margin:19}} size={61} color="#9999" />
