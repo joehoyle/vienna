@@ -3,7 +3,13 @@ import { PropTypes }  from 'react'
 export default {
 	User: PropTypes.shape({
 		id: PropTypes.number.isRequired,
-		display_name: PropTypes.string.isRequired
+		name: PropTypes.string.isRequired,
+		description: PropTypes.string.isRequired,
+		avatar_urls: PropTypes.shape({
+			24: PropTypes.string.isRequired,
+			48: PropTypes.string.isRequired,
+			96: PropTypes.string.isRequired,
+		}),
 	}),
 	Post: PropTypes.shape({
 		id: PropTypes.number.isRequired,

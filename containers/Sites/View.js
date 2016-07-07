@@ -35,7 +35,6 @@ export default class _View extends Component {
 		this.props.dispatch( removeSite( this.props.activeSite.id ) )
 	}
 	render() {
-		//var site = this.sites[ this.props.activeSite.id ]
 		return (
 			<ScrollView
 				style={styles.container}
@@ -100,6 +99,16 @@ export default class _View extends Component {
 						)
 
 					})}
+				</View>
+				<Text style={styles.sectionTitle}></Text>
+				<View style={styles.list}>
+					<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'users'}})}>
+						<Icon style={styles.listItemIcon} name="users" size={16} color="#999999" />
+						<Text style={styles.listItemName}>Users</Text>
+						<View style={styles.listItemValue}>
+							<Icon name="chevron-right" size={20} color="#A3A3A8" />
+						</View>
+					</TouchableOpacity>
 				</View>
 				<Text style={styles.sectionTitle}></Text>
 				<View style={styles.list}>
