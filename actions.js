@@ -3,6 +3,7 @@ import fetchTaxonomies from './actions/fetchTaxonomies'
 import fetchTerms from './actions/fetchTerms'
 import fetchUsers from './actions/fetchUsers'
 import fetchPosts from './actions/fetchPosts'
+import fetchComments from './actions/fetchComments'
 import createPost from './actions/createPost'
 import removeLocalData from './actions/removeLocalData'
 import editPost from './actions/editPost'
@@ -28,4 +29,5 @@ export {
 	fetchTypes,
 	fetchTaxonomies,
 	fetchTerms,
+	fetchComments,
 }
