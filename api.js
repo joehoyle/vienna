@@ -81,6 +81,8 @@ export default class {
 			url: url,
 			data: data
 		}, this.credentials.token ? this.credentials.token : null )
+
+
 		return fetch( url, {
 			method: method,
 			headers: {
@@ -91,12 +93,14 @@ export default class {
 			body: querystring.stringify( data )
 		} )
 		.then( response => {
+
 			if ( response.headers.get( 'Content-Type' ).indexOf( 'x-www-form-urlencoded' ) > -1 ) {
 				return response.text().then( text => {
 					return querystring.parse( text )
 				})
 			}
 			return response.text().then( text => {
+
 				try {
 					var json = JSON.parse( text )
 				} catch( e ) {
@@ -113,13 +117,14 @@ export default class {
 		} )
 		.then( function( data ) {
 			if ( callback ) {
-				callback( data )
+				setTimeout( callback.bind( null, data ), 1 )
 			}
 			return data
 		})
 		.catch( error => {
+			console.warn( error.message )
 			if ( callback ) {
-				callback( null, error )
+				setTimeout( callback.bind( null, null, error ), 1 )
 			} else {
 				throw error
 			}

@@ -23,7 +23,7 @@ export default function uploadImage() {
 			if ( response.didCancel ) {
 				return
 			} else if ( response.error ) {
-				console.log('ImagePicker Error: ', response.error)
+				console.log( 'ImagePicker Error: ', response.error )
 				return
 			} else {
 

@@ -28,8 +28,10 @@
 		D835CCAF1D195E5C00056B7C /* app-icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = D835CCA91D195E5C00056B7C /* app-icon-60.png */; };
 		D835CCB01D195E5C00056B7C /* app-icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D835CCAA1D195E5C00056B7C /* app-icon-60@2x.png */; };
 		D835CCB11D195E5C00056B7C /* app-icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D835CCAB1D195E5C00056B7C /* app-icon-60@3x.png */; };
+		D837D9451D2E5387008F7566 /* libSafariViewManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D837D9441D2E5373008F7566 /* libSafariViewManager.a */; };
 		D842ADC31D198C5500C63467 /* MMTouchDotGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D842ADBF1D198C5500C63467 /* MMTouchDotGestureRecognizer.m */; };
 		D842ADC41D198C5500C63467 /* MMTouchDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D842ADC21D198C5500C63467 /* MMTouchDotView.m */; };
+		D84ABE651D267E9C00B46A39 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D84ABE631D267D8700B46A39 /* libRNFetchBlob.a */; };
 		D87E51341D19590700F090BA /* app-icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = D87E51311D19590700F090BA /* app-icon-29.png */; };
 		D87E51351D19590700F090BA /* app-icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87E51321D19590700F090BA /* app-icon-29@2x.png */; };
 		D87E51361D19590700F090BA /* app-icon-29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D87E51331D19590700F090BA /* app-icon-29@3x.png */; };
@@ -117,6 +119,20 @@
 			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
 			remoteInfo = RNImagePicker;
 		};
+		D837D9431D2E5373008F7566 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D837D93F1D2E5373008F7566 /* SafariViewManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = SafariViewManager;
+		};
+		D84ABE621D267D8700B46A39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D84ABE541D267D8700B46A39 /* RNFetchBlob.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A15C300E1CD25C330074CB35;
+			remoteInfo = RNFetchBlob;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -145,11 +161,13 @@
 		D835CCA91D195E5C00056B7C /* app-icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-60.png"; sourceTree = "<group>"; };
 		D835CCAA1D195E5C00056B7C /* app-icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-60@2x.png"; sourceTree = "<group>"; };
 		D835CCAB1D195E5C00056B7C /* app-icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-60@3x.png"; sourceTree = "<group>"; };
+		D837D93F1D2E5373008F7566 /* SafariViewManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SafariViewManager.xcodeproj; path = "../node_modules/react-native-safari-view/SafariViewManager.xcodeproj"; sourceTree = "<group>"; };
 		D842ADBE1D198C5500C63467 /* MMTouchDotGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTouchDotGestureRecognizer.h; sourceTree = "<group>"; };
 		D842ADBF1D198C5500C63467 /* MMTouchDotGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTouchDotGestureRecognizer.m; sourceTree = "<group>"; };
 		D842ADC01D198C5500C63467 /* MMTouchDotGestureRecognizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTouchDotGestureRecognizerDelegate.h; sourceTree = "<group>"; };
 		D842ADC11D198C5500C63467 /* MMTouchDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTouchDotView.h; sourceTree = "<group>"; };
 		D842ADC21D198C5500C63467 /* MMTouchDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTouchDotView.m; sourceTree = "<group>"; };
+		D84ABE541D267D8700B46A39 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		D87E51311D19590700F090BA /* app-icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-29.png"; sourceTree = "<group>"; };
 		D87E51321D19590700F090BA /* app-icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-29@2x.png"; sourceTree = "<group>"; };
 		D87E51331D19590700F090BA /* app-icon-29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon-29@3x.png"; sourceTree = "<group>"; };
@@ -168,6 +186,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D837D9451D2E5387008F7566 /* libSafariViewManager.a in Frameworks */,
+				D84ABE651D267E9C00B46A39 /* libRNFetchBlob.a in Frameworks */,
 				D814CC581D1603AB00CA66F8 /* libRNImagePicker.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -277,6 +297,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				D837D93F1D2E5373008F7566 /* SafariViewManager.xcodeproj */,
+				D84ABE541D267D8700B46A39 /* RNFetchBlob.xcodeproj */,
 				D814CC481D16037100CA66F8 /* RNImagePicker.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -327,6 +349,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D837D9401D2E5373008F7566 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D837D9441D2E5373008F7566 /* libSafariViewManager.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D842ADBD1D198C5500C63467 /* blue-dots */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +368,14 @@
 			);
 			name = "blue-dots";
 			path = "WordPress/blue-dots";
+			sourceTree = "<group>";
+		};
+		D84ABE551D267D8700B46A39 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D84ABE631D267D8700B46A39 /* libRNFetchBlob.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D87E51301D19590700F090BA /* images */ = {
@@ -462,8 +500,16 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = D84ABE551D267D8700B46A39 /* Products */;
+					ProjectRef = D84ABE541D267D8700B46A39 /* RNFetchBlob.xcodeproj */;
+				},
+				{
 					ProductGroup = D814CC491D16037100CA66F8 /* Products */;
 					ProjectRef = D814CC481D16037100CA66F8 /* RNImagePicker.xcodeproj */;
+				},
+				{
+					ProductGroup = D837D9401D2E5373008F7566 /* Products */;
+					ProjectRef = D837D93F1D2E5373008F7566 /* SafariViewManager.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -551,6 +597,20 @@
 			remoteRef = D814CC561D16037200CA66F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		D837D9441D2E5373008F7566 /* libSafariViewManager.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSafariViewManager.a;
+			remoteRef = D837D9431D2E5373008F7566 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D84ABE631D267D8700B46A39 /* libRNFetchBlob.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFetchBlob.a;
+			remoteRef = D84ABE621D267D8700B46A39 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -633,6 +693,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-safari-view",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS",
 					"$(SRCROOT)/ios-uitouch-bluedots/ios-uitouch-bluedots/ios-uitouch-bluedots",
 				);
@@ -640,7 +701,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.humanmade.vienna;
 				PRODUCT_NAME = Vienna;
 				PROVISIONING_PROFILE = "";
 			};
@@ -656,6 +717,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native-safari-view",
 					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS",
 					"$(SRCROOT)/ios-uitouch-bluedots/ios-uitouch-bluedots/ios-uitouch-bluedots",
 				);
@@ -663,7 +725,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.humanmade.vienna;
 				PRODUCT_NAME = Vienna;
 				PROVISIONING_PROFILE = "";
 			};
@@ -709,7 +771,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -733,7 +795,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Human Made Limited (ZLF8FFAD7U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Human Made Limited (ZLF8FFAD7U)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -749,7 +812,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

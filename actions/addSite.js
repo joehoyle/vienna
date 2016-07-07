@@ -1,6 +1,7 @@
 import OAuth from 'oauth-1.0a'
 import querystring from 'query-string'
 import { Linking } from 'react-native'
+import SafariView from 'react-native-safari-view'
 import httpapi from '../api'
 import { values, trimEnd } from 'lodash'
 
@@ -50,7 +51,19 @@ export default function addSite( url, args = {} ) {
 			} ) )
 		})
 
+		SafariView.addEventListener( 'onDismiss', () => {
+			dispatch({
+				type: 'ADD_SITE_FAILED',
+				error: { message: 'Login modal dismissed.' },
+			})
+		} )
+
 		promise.then( function( data ) {
+
+				if ( data.status === 'error' ) {
+					throw { message: 'Broker Error: ' + data.type, code: data.type }
+				}
+
 				dispatch({
 					type: 'ADD_SITE_CLIENT_CREATED',
 					data: data
@@ -80,7 +93,11 @@ export default function addSite( url, args = {} ) {
 					type: 'ADD_SITE_REQUEST_TOKEN_UPDATED',
 					data: data,
 				})
-				Linking.openURL( url )
+
+				SafariView.show({
+					url: url,
+					tintColor: '#2E73B0',
+				})
 			} )
 			.catch( error => {
 				dispatch({
@@ -89,7 +106,10 @@ export default function addSite( url, args = {} ) {
 				})
 			})
 
-		Linking.addEventListener('url', function( event ) {
+		var listener = function( event ) {
+
+			SafariView.dismiss()
+			Linking.removeEventListener( 'url', listener )
 			var args = querystring.parse( event.url.split('?')[1] )
 
 			dispatch({
@@ -125,6 +145,7 @@ export default function addSite( url, args = {} ) {
 					})
 				} )
 			} )
-		})
+		}
+		Linking.addEventListener('url', listener )
 	}
 }
