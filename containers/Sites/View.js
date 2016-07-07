@@ -102,6 +102,16 @@ export default class _View extends Component {
 				</View>
 				<Text style={styles.sectionTitle}></Text>
 				<View style={styles.list}>
+					<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'comments'}})}>
+						<Icon style={styles.listItemIcon} name="comments" size={16} color="#999999" />
+						<Text style={styles.listItemName}>Comments</Text>
+						<View style={styles.listItemValue}>
+							<Icon name="chevron-right" size={20} color="#A3A3A8" />
+						</View>
+					</TouchableOpacity>
+				</View>
+				<Text style={styles.sectionTitle}></Text>
+				<View style={styles.list}>
 					<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'users'}})}>
 						<Icon style={styles.listItemIcon} name="users" size={16} color="#999999" />
 						<Text style={styles.listItemName}>Users</Text>

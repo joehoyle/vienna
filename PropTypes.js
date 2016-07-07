@@ -38,4 +38,7 @@ export default {
 		id: PropTypes.number.isRequired,
 		media_details: PropTypes.object.isRequired,
 	}),
+	Comment: PropTypes.shape({
+		id: PropTypes.number.isRequired,
+	}),
 }
