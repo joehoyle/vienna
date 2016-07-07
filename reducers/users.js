@@ -1,10 +1,20 @@
-export default function users( state = {}, action ) {
+const defaultState = {
+	users: {},
+	list: {
+		loading: false,
+	},
+}
+export default function users( state = defaultState, action ) {
 	switch ( action.type ) {
+		case 'USERS_UPDATING':
+			state.list.loading = true
+			return {...state}
 		case 'USERS_UPDATED':
 			action.data.forEach( user => {
-				state[ user.id ] = user
+				state.users[ user.id ] = user
 			})
-			return state
+			state.list.loading = false
+			return {...state}
 	}
 	return state
 }

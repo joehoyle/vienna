@@ -5,6 +5,8 @@ export default function fetchUsers( args ) {
 		const store = getStore()
 		const api = new httpapi( store.sites[ store.activeSite.id ] )
 
+		args = { context: 'edit', ...args }
+
 		dispatch({
 			type: 'USERS_UPDATING',
 		})

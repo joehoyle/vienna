@@ -22,6 +22,8 @@ import PostsEdit from '../containers/Posts/Edit'
 import TermsEdit from '../containers/Terms/Edit'
 import TermsList from '../containers/Terms/List'
 import TermsListNavBar from '../containers/Terms/ListNavBar'
+import UsersList from '../containers/Users/List'
+import UsersListNavBar from '../containers/Users/ListNavBar'
 import PostsCreate from '../containers/Posts/Create'
 import SelectCategories from '../containers/Posts/SelectCategories'
 import SelectDate from '../containers/Posts/SelectDate'
@@ -129,6 +131,11 @@ class App extends Component {
 						component={TermsList}
 						navBar={TermsListNavBar}
 					/>
+					<Route
+						name="users"
+						component={UsersList}
+						navBar={UsersListNavBar}
+						/>
 					<Route
 						name="posts-edit"
 						component={PostsEdit}

@@ -2,17 +2,11 @@ import { combineReducers } from 'redux'
 import types from './types'
 import taxonomies from './taxonomies'
 import users from './users'
-import loadingUsers from './loadingUsers'
-import newPost from './newPost'
 import { reducer as router } from 'react-native-router-redux'
 import httpapi from '../api'
 
 siteReducers = combineReducers({
 	users,
-	postsList: ( state = {}) => { return state },
-	media: ( state = {}) => { return state },
-	loadingUsers,
-	newPost,
 	types,
 	taxonomies,
 })
