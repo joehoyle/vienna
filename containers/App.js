@@ -12,7 +12,7 @@ import React, {
 import { Linking } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchPosts, editPost, createPost, addSite, uploadImage } from '../actions'
+import { fetchPosts, editPost, createPost, addSite, uploadImage , createTerm } from '../actions'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import SitesList from '../containers/Sites/List'
 import SitesAdd from '../containers/Sites/Add'
@@ -27,6 +27,7 @@ import UsersListNavBar from '../containers/Users/ListNavBar'
 import CommentsList from '../containers/Comments/List'
 import CommentsListNavBar from '../containers/Comments/ListNavBar'
 import PostsCreate from '../containers/Posts/Create'
+import TermsCreate from '../containers/Terms/Create'
 import SelectCategories from '../containers/Posts/SelectCategories'
 import SelectDate from '../containers/Posts/SelectDate'
 import SelectFormat from '../containers/Posts/SelectFormat'
@@ -70,6 +71,12 @@ class App extends Component {
 		})
 	}
 
+	handleUpdateTerm() {
+		this.props.dispatch({
+			type: 'ROUTER_POP',
+		})
+	}
+
 	handleCreateSite() {
 		this.props.dispatch( {
 			type: 'ROUTER_PUSH',
@@ -79,8 +86,8 @@ class App extends Component {
 		} )
 	}
 
-	handleCreateCategory() {
-
+	handleCreateTerm() {
+		createTerm( 'category', this.props.taxonomies.category.new )
 	}
 
 	render() {
@@ -161,6 +168,15 @@ class App extends Component {
 						name="terms-edit"
 						component={TermsEdit}
 						title="Edit Term"
+						navRightTitle="Save"
+						navRightHandler={this.handleUpdateTerm.bind(this)}
+					/>
+					<Route
+						name="terms-create"
+						component={TermsCreate}
+						title="New Term"
+						navRightTitle="Save"
+						navRightHandler={this.handleCreateTerm.bind(this)}
 					/>
 					<Route name="select-categories" component={SelectCategories} title="Select Categories" />
 					<Route name="select-date" component={SelectDate} title="Select Date" />
