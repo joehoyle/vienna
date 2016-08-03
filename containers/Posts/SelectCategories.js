@@ -1,4 +1,5 @@
-import React, { Text, Component, StyleSheet, ScrollView } from 'react-native'
+import React, {Component} from 'react';
+import {Text, StyleSheet, ScrollView} from 'react-native';
 import CategoriesSelectableList from '../../components/Terms/SelectableList'
 import { values, isEmpty } from 'lodash'
 import { fetchTerms, updatePost } from '../../actions'

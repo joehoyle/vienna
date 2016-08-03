@@ -1,14 +1,5 @@
-import React, {
-	Component,
-	Text,
-	View,
-	StyleSheet,
-	TabBarIOS,
-	StatusBarIOS,
-	ScrollView,
-	TouchableOpacity,
-	LinkingIOS
-} from 'react-native'
+import React, {Component} from 'react';
+import {Text, View, StyleSheet, TabBarIOS, StatusBarIOS, ScrollView, TouchableOpacity, LinkingIOS} from 'react-native';
 import { Linking } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

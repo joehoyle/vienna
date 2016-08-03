@@ -1,4 +1,5 @@
-import React, { Component, ScrollView, View, RefreshControl } from 'react-native'
+import React, {Component} from 'react';
+import {ScrollView, View, RefreshControl} from 'react-native';
 import { values, isEmpty } from 'lodash'
 import { editPost, trashPost, viewPost, fetchPosts } from '../../actions'
 import PropTypes from '../../PropTypes'

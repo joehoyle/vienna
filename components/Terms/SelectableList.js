@@ -1,4 +1,5 @@
-import React, { Text, Component, StyleSheet, View, TouchableOpacity } from 'react-native'
+import React, {Component} from 'react'
+import {Text, StyleSheet, View, TouchableOpacity} from 'react-native'
 import PropTypes from '../../PropTypes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 

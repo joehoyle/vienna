@@ -1,14 +1,5 @@
-import React, {
-	View,
-	Component,
-	TouchableOpacity,
-	StyleSheet, Text,
-	TextInput,
-	ScrollView,
-	SegmentedControlIOS,
-	Picker,
-	Image
-} from 'react-native'
+import React, {Component} from 'react'
+import {View, TouchableOpacity, StyleSheet, Text, TextInput, ScrollView, SegmentedControlIOS, Picker, Image} from 'react-native'
 import PropTypes from '../../PropTypes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 

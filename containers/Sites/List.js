@@ -1,4 +1,5 @@
-import React, { Component, TouchableOpacity, ScrollView } from 'react-native'
+import React, {Component} from 'react';
+import {TouchableOpacity, ScrollView} from 'react-native';
 import { values } from 'lodash'
 import ListItem from '../../components/Sites/ListItem'
 

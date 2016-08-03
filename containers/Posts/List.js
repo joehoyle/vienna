@@ -1,4 +1,5 @@
-import React, { StyleSheet, Component, ScrollView, View, RefreshControl, ActivityIndicatorIOS, Text } from 'react-native'
+import React, {Component} from 'react';
+import {StyleSheet, ScrollView, View, RefreshControl, ActivityIndicator, Text} from 'react-native';
 import { values, isEmpty } from 'lodash'
 import { editPost, trashPost, viewPost, fetchPosts } from '../../actions'
 import PropTypes from '../../PropTypes'
@@ -61,7 +62,7 @@ export default class List extends Component {
 				: null }
 				{type.new.loading ?
 					<View style={styles.creating}>
-						<ActivityIndicatorIOS />
+						<ActivityIndicator />
 						<Text style={styles.creatingText}>Creating {type.name}</Text>
 					</View>
 				: null }

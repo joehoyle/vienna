@@ -1,4 +1,5 @@
-import React, { Component, View, Image, StyleSheet, ScrollView, TouchableOpacity, Text, RefreshControl } from 'react-native'
+import React, {Component} from 'react'
+import {View, Image, StyleSheet, ScrollView, TouchableOpacity, Text, RefreshControl} from 'react-native'
 import PropTypes from '../../PropTypes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { isEmpty } from 'lodash'

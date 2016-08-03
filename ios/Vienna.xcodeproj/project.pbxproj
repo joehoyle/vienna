@@ -698,9 +698,12 @@
 					"$(SRCROOT)/ios-uitouch-bluedots/ios-uitouch-bluedots/ios-uitouch-bluedots",
 				);
 				INFOPLIST_FILE = WordPress/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.humanmade.vienna;
 				PRODUCT_NAME = Vienna;
 				PROVISIONING_PROFILE = "";
@@ -722,9 +725,12 @@
 					"$(SRCROOT)/ios-uitouch-bluedots/ios-uitouch-bluedots/ios-uitouch-bluedots",
 				);
 				INFOPLIST_FILE = WordPress/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.humanmade.vienna;
 				PRODUCT_NAME = Vienna;
 				PROVISIONING_PROFILE = "";

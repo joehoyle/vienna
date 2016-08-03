@@ -1,4 +1,5 @@
-import React, { Component, ScrollView, View, Text, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native'
+import React, {Component} from 'react';
+import {ScrollView, View, Text, StyleSheet, TouchableOpacity, RefreshControl} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { values, isEmpty } from 'lodash'
 import { removeLocalData, fetchTypes, fetchTaxonomies, removeSite } from '../../actions'
@@ -40,6 +41,7 @@ export default class _View extends Component {
 				style={styles.container}
 				refreshControl={
 					<RefreshControl
+						refreshing={false}
 						onRefresh={this.onRefresh.bind(this)}
 						tintColor="#666666"
 						title="Pull to refresh..."

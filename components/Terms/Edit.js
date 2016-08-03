@@ -1,11 +1,5 @@
-import React, {
-	Component,
-	ScrollView,
-	TextInput,
-	View,
-	StyleSheet,
-	Text,
-} from 'react-native'
+import React, {Component} from 'react'
+import {ScrollView, TextInput, View, StyleSheet, Text} from 'react-native'
 import PropTypes from '../../PropTypes'
 
 export default class Edit extends Component {

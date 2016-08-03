@@ -1,4 +1,5 @@
-import React, { Component, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
+import React, {Component} from 'react'
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native'
 import PropTypes from '../../PropTypes'
 
 export default class ListItem extends Component {

@@ -1,4 +1,5 @@
-import React, { Component, StyleSheet, View, Text, TouchableOpacity, Image, WebView } from 'react-native'
+import React, {Component} from 'react'
+import {StyleSheet, View, Text, TouchableOpacity, Image, WebView} from 'react-native'
 import PropTypes from '../../PropTypes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import TimeAgo from './../TimeAgo'
@@ -19,6 +20,7 @@ export default class ListItem extends Component {
 	}
 
 	updateWebViewHeight(event) {
+		console.log(event.jsEvaluationValue)
 		this.setState({webViewHeight: parseInt(event.jsEvaluationValue)})
 	}
 

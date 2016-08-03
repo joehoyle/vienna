@@ -1,16 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, {
-	AppRegistry,
-	Component,
-	StyleSheet,
-	Text,
-	View
-} from 'react-native'
+import React, {Component} from 'react'
+import {AppRegistry, StyleSheet, Text, View} from 'react-native'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -35,16 +24,16 @@ const createStoreWithMiddleware = applyMiddleware( thunk, storageMiddleware, log
 const store = createStoreWithMiddleware( storage.reducer( reducers ) )
 const loadStorage = storage.createLoader(engine)
 
-loadStorage( store ).then( state => {
-	if ( isEmpty( state.sites ) ) {
-		store.dispatch({
-			type: 'ROUTER_PUSH',
-			payload: {
-				name: 'add-site',
-			},
-		})
-	}
-})
+// loadStorage( store ).then( state => {
+// 	if ( isEmpty( state.sites ) ) {
+// 		store.dispatch({
+// 			type: 'ROUTER_PUSH',
+// 			payload: {
+// 				name: 'add-site',
+// 			},
+// 		})
+// 	}
+// })
 
 export default class Root extends Component {
 	render() {

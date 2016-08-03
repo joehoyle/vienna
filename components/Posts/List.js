@@ -1,4 +1,5 @@
-import React, { Component, ScrollView, View } from 'react-native'
+import React, {Component} from 'react'
+import {ScrollView, View} from 'react-native'
 import { values, isEmpty } from 'lodash'
 import PropTypes from '../../PropTypes'
 import ListItem from './ListItem'

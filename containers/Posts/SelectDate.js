@@ -1,4 +1,5 @@
-import React, { Text, Component, StyleSheet, View, DatePickerIOS } from 'react-native'
+import React, {Component} from 'react';
+import {Text, StyleSheet, View, DatePickerIOS} from 'react-native';
 import { values } from 'lodash'
 import { updatePost } from '../../actions'
 

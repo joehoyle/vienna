@@ -1,6 +1,4 @@
-import React, {
-	Component,
-} from 'react-native'
+import React, {Component} from 'react';
 import PropTypes from '../../PropTypes'
 import EditTerm from '../../components/Terms/Edit'
 

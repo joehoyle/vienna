@@ -1,4 +1,5 @@
-import React, { Component, View, Text, TouchableOpacity } from 'react-native'
+import React, {Component} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
 import NavigationBar from 'react-native-navbar'
 import FilterListDropdownButton from '../../components/FilterListDropdownButton'
 

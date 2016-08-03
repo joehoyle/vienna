@@ -1,4 +1,5 @@
-import React, { Text, Component } from 'react-native'
+import React, {Component} from 'react'
+import {Text} from 'react-native'
 import timeago from 'time-ago'
 
 export default class TimeAgo extends Component {

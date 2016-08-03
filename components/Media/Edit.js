@@ -1,9 +1,5 @@
-import React, {
-	View,
-	Component,
-	StyleSheet,
-	Image
-} from 'react-native'
+import React, {Component} from 'react'
+import {View, StyleSheet, Image} from 'react-native'
 import PropTypes from '../../PropTypes'
 
 export default class Edit extends Component {

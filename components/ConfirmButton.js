@@ -1,9 +1,5 @@
-import React, {
-	Component,
-	StyleSheet,
-	TouchableOpacity,
-	Text,
-} from 'react-native'
+import React, {Component} from 'react'
+import {StyleSheet, TouchableOpacity, Text} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class ConfirmButton extends Component {

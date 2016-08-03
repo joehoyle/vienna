@@ -1,4 +1,5 @@
-import React, { StyleSheet, Component, TouchableOpacity, View, TextInput, Text, ActivityIndicatorIOS, Image } from 'react-native'
+import React, {Component} from 'react';
+import {StyleSheet, TouchableOpacity, View, TextInput, Text, ActivityIndicator, Image} from 'react-native';
 import { values, trim } from 'lodash'
 import { addSite } from '../../actions'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -92,7 +93,7 @@ export default class List extends Component {
 					</View>
 				:
 					<View style={styles.input}>
-						<ActivityIndicatorIOS size="small" color="#666666" style={{marginRight: 5,marginLeft: 5}} />
+						<ActivityIndicator size="small" color="#666666" style={{marginRight: 5,marginLeft: 5}} />
 						<Text style={styles.inputText}>{this.props.newSite.status}</Text>
 					</View>
 				}
