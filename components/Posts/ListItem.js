@@ -20,6 +20,9 @@ export default class ListItem extends Component {
 	}
 
 	updateWebViewHeight(event) {
+		if ( ! event.jsEvaluationValue ) {
+			return
+		}
 		this.setState({webViewHeight: parseInt(event.jsEvaluationValue)})
 	}
 
@@ -35,14 +38,16 @@ export default class ListItem extends Component {
 							/>
 					: null }
 
-					<WebView
-						scrollEnabled={false}
-						injectedJavaScript="document.body.scrollHeight;"
-						style={[styles.webView,{height:this.state.webViewHeight}]}
-						source={{html:this.htmlExcerpt()}}
-						automaticallyAdjustContentInsets={true}
-						onNavigationStateChange={this.updateWebViewHeight.bind(this)}
-					/>
+					<View style={styles.webView}>
+						<WebView
+							scrollEnabled={false}
+							injectedJavaScript="document.getElementById('text').scrollHeight;"
+							style={[{height:this.state.webViewHeight}]}
+							source={{html:this.htmlExcerpt()}}
+							automaticallyAdjustContentInsets={true}
+							onNavigationStateChange={this.updateWebViewHeight.bind(this)}
+						/>
+					</View>
 					{this.props.post.date ?
 						<View style={styles.date}>
 							<TimeAgo date={new Date( this.props.post.date )} style={styles.dateText} />
@@ -94,7 +99,7 @@ export default class ListItem extends Component {
 			}
 
 		</style>
-		${this.props.post.excerpt.rendered}
+		<div id="text">${this.props.post.excerpt.rendered}</div>
 		`
 	}
 }
@@ -118,6 +123,7 @@ const styles = StyleSheet.create({
 	date: {
 		marginLeft: 15,
 		marginRight: 15,
+		marginTop: 5,
 	},
 	actions: {
 		backgroundColor: '#F0F4F6',
