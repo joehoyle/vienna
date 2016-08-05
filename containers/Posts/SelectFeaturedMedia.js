@@ -10,8 +10,8 @@ export default class SelectFeaturedMedia extends Component {
 	}
 
 	handleSelectImage( attachment ) {
-		this.props.dispatch( updatePost( this.props.routerData.postId, 'attachment', {
-			featured_image: attachment.id,
+		this.props.dispatch( updatePost( this.props.routerData.postId, 'post', {
+			featured_media: attachment.id,
 		}))
 		this.props.dispatch( {
 			type: 'ROUTER_POP',

@@ -10,10 +10,15 @@ export default class Edit extends Component {
 		const componentMap = {
 			attachment: EditMedia,
 		}
-
 		var PostComponent = componentMap[this.props.routerData.type] ? componentMap[this.props.routerData.type] : EditPost
+
 		return (
-			<PostComponent post={post} routerData={this.props.routerData} dispatch={this.props.dispatch} media={this.props.types.attachment.posts} />
+			<PostComponent
+				post={post}
+				routerData={this.props.routerData}
+				dispatch={this.props.dispatch}
+				media={this.props.types.attachment.posts}
+			/>
 		)
 	}
 }
