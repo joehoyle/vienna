@@ -24,6 +24,7 @@ import SelectFormat from '../containers/Posts/SelectFormat'
 import SelectFeaturedMedia from '../containers/Posts/SelectFeaturedMedia'
 import FilterListDropdownButton from '../components/FilterListDropdownButton'
 import SiteView from '../containers/Sites/View'
+import SiteViewNavBar from '../containers/Sites/ViewNavBar'
 
 import {
 	actions as routerActions,
@@ -104,8 +105,7 @@ class App extends Component {
 					<Route
 						name="site"
 						component={SiteView}
-						title="Content"
-						navLeftTitle="Switch Site"
+						navBar={SiteViewNavBar}
 					/>
 					<Route
 						name="type-posts"
