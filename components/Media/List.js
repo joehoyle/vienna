@@ -44,14 +44,18 @@ export default class List extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
+		justifyContent: 'flex-start',
 		flex: 1,
+		alignItems: 'flex-start',
 		flexWrap: 'wrap',
 	},
 	imageHighlight: {
 		margin: 1,
+		backgroundColor: 'red',
+
 	},
 	image: {
-		height: 91,
 		width: 91,
+		height: 91,
 	},
 })
