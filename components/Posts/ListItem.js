@@ -20,7 +20,6 @@ export default class ListItem extends Component {
 	}
 
 	updateWebViewHeight(event) {
-		console.log(event.jsEvaluationValue)
 		this.setState({webViewHeight: parseInt(event.jsEvaluationValue)})
 	}
 

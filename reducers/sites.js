@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import types from './types'
 import taxonomies from './taxonomies'
+import comments from './comments'
 import users from './users'
 import { reducer as router } from 'react-native-router-redux'
 import httpapi from '../api'
@@ -9,6 +10,7 @@ siteReducers = combineReducers({
 	users,
 	types,
 	taxonomies,
+	comments,
 })
 
 const defaultState = {}
