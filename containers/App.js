@@ -61,6 +61,12 @@ class App extends Component {
 		})
 	}
 
+	handleUpdateTerm() {
+		this.props.dispatch({
+			type: 'ROUTER_POP',
+		})
+	}
+
 	handleCreateSite() {
 		this.props.dispatch( {
 			type: 'ROUTER_PUSH',
@@ -152,6 +158,8 @@ class App extends Component {
 						name="terms-edit"
 						component={TermsEdit}
 						title="Edit Term"
+						navRightTitle="Save"
+						navRightHandler={this.handleUpdateTerm.bind(this)}
 					/>
 					<Route name="select-categories" component={SelectCategories} title="Select Categories" />
 					<Route name="select-date" component={SelectDate} title="Select Date" />

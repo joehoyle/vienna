@@ -4,7 +4,7 @@ import { values } from 'lodash'
 import { fetchTerms } from '../../actions'
 import PropTypes from '../../PropTypes'
 import ListItem from '../../components/Terms/ListItem'
-
+import { editTerm } from '../../actions'
 export default class List extends Component {
 
 	componentWillMount() {
@@ -15,7 +15,7 @@ export default class List extends Component {
 		this.props.dispatch({
 			type: 'ROUTER_PUSH',
 			payload: {
-				name: 'term-edit',
+				name: 'terms-edit',
 				data: {
 					termId: term.id,
 					taxonomy: this.props.routerData.taxonomy
