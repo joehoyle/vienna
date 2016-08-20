@@ -3,6 +3,7 @@ import {StyleSheet, TouchableOpacity, View, TextInput, Text, ActivityIndicator, 
 import { values, trim } from 'lodash'
 import { addSite } from '../../actions'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import AddSiteInstructions from '../../components/Sites/AddSiteInstructions'
 
 export default class List extends Component {
 
@@ -43,6 +44,9 @@ export default class List extends Component {
 		return (
 			<View style={styles.container}>
 				<Image source={require('../../images/app-icon-60.png')} style={styles.icon} />
+				<AddSiteInstructions
+					requiresAuthBrokerPlugin={!this.state.addOAuth}
+				/>
 
 				{!this.props.newSite.status ?
 					<View>
