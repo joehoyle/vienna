@@ -11,8 +11,6 @@
 
 #import "RCTRootView.h"
 #import "RCTLinkingManager.h"
-#import "./blue-dots/MMTouchDotView.h"
-
 
 @implementation AppDelegate
 
@@ -58,8 +56,6 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
 
-  MMTouchDotView* blueDots = [[MMTouchDotView alloc] initWithFrame:self.window.bounds];
-  [self.window addSubview:blueDots];
   return YES;
 }
 
