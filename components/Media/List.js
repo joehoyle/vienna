@@ -24,7 +24,7 @@ export default class List extends Component {
 								onPress={this.props.onEdit.bind(null,attachment)}
 								style={styles.imageHighlight}
 								>
-								{attachment.media_type === 'image' ?
+								{attachment.media_type === 'image' && attachment.media_details.sizes && attachment.media_details.sizes.thumbnail ?
 									<Image
 										style={styles.image}
 										source={{uri:attachment.media_details.sizes.thumbnail ? attachment.media_details.sizes.thumbnail.source_url : attachment.source_url}}
@@ -51,8 +51,6 @@ const styles = StyleSheet.create({
 	},
 	imageHighlight: {
 		margin: 1,
-		backgroundColor: 'red',
-
 	},
 	image: {
 		width: 91,
