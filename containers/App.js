@@ -47,6 +47,9 @@ class App extends Component {
 				type: 'ROUTER_PUSH',
 				payload: {
 					name: 'site',
+					data: {
+						siteId: this.props.activeSite.id
+					}
 				},
 			} )
 		}
