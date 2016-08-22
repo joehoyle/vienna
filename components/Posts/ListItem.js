@@ -30,7 +30,11 @@ export default class ListItem extends Component {
 		return (
 			<View style={styles.container}>
 				<TouchableOpacity onPress={this.props.onEdit}>
-					<Text style={styles.title}>{this.props.post.title.rendered}</Text>
+					<WebView
+						scrollEnabled={false}
+						style={styles.title}
+						source={{html:this.htmlTitle()}}
+					/>
 					{this.props.featuredMedia ?
 						<Image
 							style={styles.featuredMedia}
@@ -44,7 +48,6 @@ export default class ListItem extends Component {
 							injectedJavaScript="document.getElementById('text').scrollHeight;"
 							style={[{height:this.state.webViewHeight}]}
 							source={{html:this.htmlExcerpt()}}
-							automaticallyAdjustContentInsets={true}
 							onNavigationStateChange={this.updateWebViewHeight.bind(this)}
 						/>
 					</View>
@@ -88,6 +91,28 @@ export default class ListItem extends Component {
 		)
 	}
 
+	htmlTitle() {
+		return `<style>
+			body {
+				font-size: 22px;
+				line-height: 20px;
+				font-family: Georgia;
+				margin: 0;
+				padding: 0;
+			}
+
+			#text {
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				line-height: 25px;
+			}
+
+		</style>
+		<div id="text">${this.props.post.title.rendered}</div>
+		`
+	}
+
 	htmlExcerpt() {
 		return `<style>
 			body {
@@ -112,9 +137,8 @@ const styles = StyleSheet.create({
 		borderColor: '#C4D0D9',
 	},
 	title: {
-		fontSize: 20,
-		fontFamily: 'Georgia',
 		margin: 15,
+		height: 25,
 	},
 	dateText: {
 		fontSize: 12,
