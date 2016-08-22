@@ -111,9 +111,7 @@ export default class _View extends Component {
 							<Icon name="chevron-right" size={20} color="#A3A3A8" />
 						</View>
 					</TouchableOpacity>
-				</View>
-				<Text style={styles.sectionTitle}></Text>
-				<View style={styles.list}>
+					<View style={styles.listItemDivider} />
 					<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'users'}})}>
 						<Icon style={styles.listItemIcon} name="users" size={16} color="#999999" />
 						<Text style={styles.listItemName}>Users</Text>
@@ -127,10 +125,7 @@ export default class _View extends Component {
 					<TouchableOpacity style={styles.listItem} onPress={this.onRemoveSite.bind(this)}>
 						<Text style={styles.listItemNameCentered}>Remove Site from App</Text>
 					</TouchableOpacity>
-				</View>
-
-				<Text style={styles.sectionTitle}></Text>
-				<View style={styles.list}>
+					<View style={styles.listItemDivider} />
 					<TouchableOpacity style={styles.listItem} onPress={this.onRemoveLocalData.bind(this)}>
 						<Text style={styles.listItemNameCentered}>Remove all local data</Text>
 					</TouchableOpacity>
