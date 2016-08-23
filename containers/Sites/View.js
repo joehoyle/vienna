@@ -39,14 +39,14 @@ export default class _View extends Component {
 		return (
 			<ScrollView
 				style={styles.container}
-				refreshControl={
-					<RefreshControl
-						refreshing={false}
-						onRefresh={this.onRefresh.bind(this)}
-						tintColor="#666666"
-						title="Pull to refresh..."
-						titleColor="#000000"
-						/>
+				refreshControl={<RefreshControl
+					refreshing={false}
+					style={{backgroundColor: 'transparent'}}
+					onRefresh={this.onRefresh.bind(this)}
+					tintColor="#666666"
+					title="Pull to refresh..."
+					titleColor="#000000"
+					/>
 				}>
 				<Text style={styles.sectionTitle}>TYPES</Text>
 				<View style={styles.list}>

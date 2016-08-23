@@ -34,12 +34,14 @@ export default class List extends Component {
 		return (
 			<ScrollView
 				refreshControl={<RefreshControl
-						refreshing={taxonomy.list.loading}
-						onRefresh={this.onRefresh.bind(this)}
-						tintColor="#666666"
-						title={taxonomy.list.loading ? 'Loading ' + taxonomy.name + '...' : 'Pull to Refresh...'}
-						titleColor="#000000"
-					/>}>
+					refreshing={taxonomy.list.loading}
+					style={{backgroundColor: 'transparent'}}
+					onRefresh={this.onRefresh.bind(this)}
+					tintColor="#666666"
+					title={taxonomy.list.loading ? 'Loading ' + taxonomy.name + '...' : 'Pull to Refresh...'}
+					titleColor="#000000"
+				/>}
+				>
 				{values(terms).map( term => {
 					return (
 						<ListItem

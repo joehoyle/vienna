@@ -70,12 +70,14 @@ export default class List extends Component {
 				: null }
 				<ScrollView
 					refreshControl={<RefreshControl
-							refreshing={this.props.comments.list.loading}
-							onRefresh={this.onRefresh.bind(this)}
-							tintColor="#666666"
-							title={this.props.comments.list.loading ? 'Loading Comments...' : 'Pull to Refresh...'}
-							titleColor="#000000"
-						/>}>
+						refreshing={this.props.comments.list.loading}
+						style={{backgroundColor: 'transparent'}}
+						onRefresh={this.onRefresh.bind(this)}
+						tintColor="#666666"
+						title={this.props.comments.list.loading ? 'Loading Comments...' : 'Pull to Refresh...'}
+						titleColor="#000000"
+					/>}
+					>
 					{values(this.props.comments.comments).filter( this.filterComments.bind(this) ).map( comment => {
 						return (
 							<ListItem

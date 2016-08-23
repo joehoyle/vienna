@@ -68,12 +68,13 @@ export default class List extends Component {
 				: null }
 				<ListComponent
 					refreshControl={<RefreshControl
-							refreshing={type.list.loading}
-							onRefresh={this.onRefresh.bind(this)}
-							tintColor="#666666"
-							title={type.list.loading ? 'Loading ' + type.name + '...' : 'Pull to Refresh...'}
-							titleColor="#000000"
-						/>}
+						refreshing={type.list.loading}
+						style={{backgroundColor: 'transparent'}}
+						onRefresh={this.onRefresh.bind(this)}
+						tintColor="#666666"
+						title={type.list.loading ? 'Loading ' + type.name + '...' : 'Pull to Refresh...'}
+						titleColor="#000000"
+					/>}
 					posts={values( posts ).filter( this.filterPosts.bind( this ) )}
 					media={this.props.types.attachment.posts}
 					onEdit={post=>this.props.dispatch( editPost( post ) )}

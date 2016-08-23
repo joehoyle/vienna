@@ -33,12 +33,14 @@ export default class List extends Component {
 		return (
 			<ScrollView
 				refreshControl={<RefreshControl
-						refreshing={this.props.users.list.loading}
-						onRefresh={this.onRefresh.bind(this)}
-						tintColor="#666666"
-						title={this.props.users.list.loading ? 'Loading Users...' : 'Pull to Refresh...'}
-						titleColor="#000000"
-					/>}>
+					refreshing={this.props.users.list.loading}
+					style={{backgroundColor: 'transparent'}}
+					onRefresh={this.onRefresh.bind(this)}
+					tintColor="#666666"
+					title={this.props.users.list.loading ? 'Loading Users...' : 'Pull to Refresh...'}
+					titleColor="#000000"
+				/>}
+				>
 				{values(this.props.users.users).map( user => {
 					return (
 						<ListItem
