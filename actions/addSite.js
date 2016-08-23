@@ -21,10 +21,12 @@ export default function addSite( url, args = {} ) {
 			return
 		}
 
+		var siteId = Math.max.apply( null, values( getStore().sites ).map( s => s.id ).concat( [0] ) ) + 1
+
 		dispatch({
 			type: 'ADD_SITE_START',
 			url: url,
-			id: Math.max( values( getStore().sites ).map( s => s.id ) ) + 1
+			id: siteId,
 		})
 
 		var promise = new Promise( ( resolve, reject ) => {
