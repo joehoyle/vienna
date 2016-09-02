@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native'
 import PropTypes from '../../PropTypes'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class ListItem extends Component {
 	static propTypes = {
@@ -10,42 +11,50 @@ export default class ListItem extends Component {
 
 	render() {
 		return (
-			<TouchableOpacity style={styles.container} onPress={this.props.onEdit}>
-				<Image style={styles.image} source={{uri:this.props.user.avatar_urls['96']}} />
-				<View style={styles.right}>
-					<Text style={styles.name}>{this.props.user.name}</Text>
+			<View style={styles.container}>
+				<View style={styles.left}>
+					<Image style={styles.image} source={{uri:this.props.user.avatar_urls['96']}} />
+					<View style={styles.text}>
+						<Text style={styles.title}>{this.props.user.name}</Text>
+						<Text style={styles.roleText}>{this.props.user.roles[0]}</Text>
+					</View>
 				</View>
-			</TouchableOpacity>
+				<Icon name="chevron-right" style={styles.chevron} size={22} color="#BBBBBB" />
+			</View>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
-		margin: 10,
-		marginBottom: 0,
-		marginTop: 5,
-		backgroundColor: 'white',
-		borderWidth: 1,
-		borderColor: '#C4D0D9',
-		padding: 10,
 		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		height: 44,
+		padding: 10,
 	},
-	image: {
-		marginRight: 10,
-		width: 48,
-		height: 48,
+	left: {
+		flexDirection: 'row',
+		alignItems: 'center',
 	},
-	name: {
-		fontSize: 20,
-		fontFamily: 'Georgia',
-	},
-	right: {
+	text: {
 
 	},
-	featuredMedia: {
-		height: 180,
-		flex: 1,
-		marginBottom: 5,
-	}
+	title: {
+		fontSize: 16,
+		lineHeight: 16,
+	},
+	roleText: {
+		color: '#999999',
+		fontSize: 12,
+		lineHeight: 12,
+	},
+	image: {
+		marginRight: 15,
+		marginLeft: 5,
+		width: 30,
+		height: 30,
+		borderRadius: 15,
+		backgroundColor: '#EEEEEE',
+	},
 })

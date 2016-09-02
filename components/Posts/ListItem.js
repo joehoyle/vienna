@@ -131,10 +131,6 @@ export default class ListItem extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		margin: 10,
-		backgroundColor: 'white',
-		borderWidth: 1,
-		borderColor: '#C4D0D9',
 	},
 	title: {
 		margin: 15,

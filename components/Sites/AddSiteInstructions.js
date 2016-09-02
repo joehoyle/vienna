@@ -52,13 +52,8 @@ const styles = StyleSheet.create({
 	container: {
 
 	},
-	title: {
-		textAlign: 'center',
-		color: '#ffffff',
-		fontWeight: 'bold',
-	},
 	description: {
-		color: 'rgba(255, 255, 255, 0.5)',
+		color: '#cccccc',
 		marginTop: 15,
 		marginBottom: 15,
 		textAlign: 'center',
@@ -69,7 +64,6 @@ const styles = StyleSheet.create({
 	steps: {
 		marginBottom: 15,
 		borderRadius: 2,
-		backgroundColor: '#ffffff',
 	},
 	stepItem: {
 		flexDirection: 'row',

@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
 		flexWrap: 'wrap',
 	},
 	imageHighlight: {
-		margin: 1,
+
 	},
 	image: {
-		width: 91,
-		height: 91,
+		width: 93,
+		height: 93,
 	},
 })

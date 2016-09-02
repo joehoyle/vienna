@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, Image, RefreshControl} from 'react-native';
+import {ScrollView, Image, RefreshControl, TouchableOpacity} from 'react-native';
 import { values, isEmpty } from 'lodash'
 import { fetchUsers } from '../../actions'
 import PropTypes from '../../PropTypes'
@@ -43,12 +43,13 @@ export default class List extends Component {
 				>
 				{values(this.props.users.users).map( user => {
 					return (
-						<ListItem
-							key={user.id}
-							user={user}
-							onEdit={this.onSelectUser.bind(this,user)}
-							onTrash={()=>{}}
-						/>
+						<TouchableOpacity key={user.id} onPress={this.onSelectUser.bind(this, user)}>
+							<ListItem
+								user={user}
+								onEdit={this.onSelectUser.bind(this,user)}
+								onTrash={()=>{}}
+							/>
+						</TouchableOpacity>
 					)
 				})}
 			</ScrollView>

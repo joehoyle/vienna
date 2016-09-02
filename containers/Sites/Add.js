@@ -43,7 +43,7 @@ export default class List extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Image source={require('../../images/app-icon-60.png')} style={styles.icon} />
+				<Image source={require('../../images/logo-black-40.png')} style={styles.icon} />
 				<AddSiteInstructions
 					requiresAuthBrokerPlugin={!this.state.addOAuth}
 				/>
@@ -122,7 +122,7 @@ export default class List extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#2E73B0',
+		backgroundColor: '#FFFFFF',
 		padding: 20,
 		paddingBottom: 100,
 		flex: 1,
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	input: {
-		backgroundColor: '#ffffff',
+		backgroundColor: '#f1f1f1',
 		height: 40,
 		padding: 3,
 		flexDirection: 'row',
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
 		color: '#FFFFFF'
 	},
 	errorMessage: {
-		color: 'white',
+		color: 'red',
 		textAlign: 'center',
 		fontSize: 15,
 		marginTop: 10,
@@ -174,5 +174,5 @@ const styles = StyleSheet.create({
 		color: '#ffffff',
 		textAlign: 'center',
 		margin: 10,
-	}
+	},
 })

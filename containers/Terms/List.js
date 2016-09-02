@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, Image, RefreshControl} from 'react-native';
+import {ScrollView, Image, RefreshControl, TouchableOpacity} from 'react-native';
 import { values } from 'lodash'
 import { fetchTerms } from '../../actions'
 import PropTypes from '../../PropTypes'
@@ -44,12 +44,13 @@ export default class List extends Component {
 				>
 				{values(terms).map( term => {
 					return (
-						<ListItem
-							key={term.id}
-							term={term}
-							onEdit={this.onSelectTerm.bind(this,term)}
-							onTrash={()=>{}}
-						/>
+						<TouchableOpacity key={term.id} onPress={this.props.onEdit}>
+							<ListItem
+								term={term}
+								onEdit={this.onSelectTerm.bind(this,term)}
+								onTrash={()=>{}}
+							/>
+						</TouchableOpacity>
 					)
 				})}
 			</ScrollView>

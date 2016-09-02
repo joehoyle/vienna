@@ -36,6 +36,9 @@ export default class _View extends Component {
 		this.props.dispatch( removeSite( this.props.activeSite.id ) )
 	}
 	render() {
+
+		var chevron = <Icon name="chevron-right" size={20} color="#BBBBBB" />
+
 		return (
 			<ScrollView
 				style={styles.container}
@@ -65,7 +68,7 @@ export default class _View extends Component {
 									<Icon style={styles.listItemIcon} name={iconName} size={16} color="#999999" />
 									<Text style={styles.listItemName}>{type.name}</Text>
 									<View style={styles.listItemValue}>
-										<Icon name="chevron-right" size={20} color="#A3A3A8" />
+										{chevron}
 									</View>
 								</TouchableOpacity>
 								{i < arr.length - 1 ?
@@ -91,7 +94,7 @@ export default class _View extends Component {
 									<Icon style={styles.listItemIcon} name={iconName} size={16} color="#999999" />
 									<Text style={styles.listItemName}>{taxonomy.name}</Text>
 									<View style={styles.listItemValue}>
-										<Icon name="chevron-right" size={20} color="#A3A3A8" />
+										{chevron}
 									</View>
 								</TouchableOpacity>
 								{i < arr.length - 1 ?
@@ -107,17 +110,13 @@ export default class _View extends Component {
 					<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'comments'}})}>
 						<Icon style={styles.listItemIcon} name="comments" size={16} color="#999999" />
 						<Text style={styles.listItemName}>Comments</Text>
-						<View style={styles.listItemValue}>
-							<Icon name="chevron-right" size={20} color="#A3A3A8" />
-						</View>
+						<View style={styles.listItemValue}>{chevron}</View>
 					</TouchableOpacity>
 					<View style={styles.listItemDivider} />
 					<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'users'}})}>
 						<Icon style={styles.listItemIcon} name="users" size={16} color="#999999" />
 						<Text style={styles.listItemName}>Users</Text>
-						<View style={styles.listItemValue}>
-							<Icon name="chevron-right" size={20} color="#A3A3A8" />
-						</View>
+						<View style={styles.listItemValue}>{chevron}</View>
 					</TouchableOpacity>
 				</View>
 				<Text style={styles.sectionTitle}></Text>
@@ -146,29 +145,25 @@ const styles = StyleSheet.create({
 		margin: 20,
 	},
 	sectionTitle: {
-		color: '#3D5D76',
-		fontSize: 14,
+		color: '#999999',
+		fontSize: 11,
 		marginTop: 15,
-		marginLeft: 15,
-		marginBottom: 5,
+		marginLeft: 60,
 	},
 	list: {
-		backgroundColor: 'white',
-		borderColor: '#CBD8E2',
-		borderTopWidth: 1,
-		borderBottomWidth: 1,
+
 	},
 	listItem: {
 		flexDirection: 'row',
 		alignItems: 'center',
 		padding: 10,
-		height: 44,
+		height: 40,
 		paddingLeft: 0,
 	},
 	listItemDivider: {
-		borderBottomColor: '#C5D3DE',
-		borderBottomWidth: 1,
+		borderBottomColor: '#f1f1f1',
 		marginLeft: 60,
+		marginRight: 30,
 	},
 	listItemName: {
 		fontSize: 16,

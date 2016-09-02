@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, TabBarIOS, StatusBarIOS, ScrollView, TouchableOpacity, LinkingIOS} from 'react-native';
+import {Text, View, StyleSheet, ScrollView, TouchableOpacity, LinkingIOS} from 'react-native';
 import { Linking } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -25,6 +25,7 @@ import SelectFeaturedMedia from '../containers/Posts/SelectFeaturedMedia'
 import FilterListDropdownButton from '../components/FilterListDropdownButton'
 import SiteView from '../containers/Sites/View'
 import SiteViewNavBar from '../containers/Sites/ViewNavBar'
+import SitesListNavBar from '../containers/Sites/ListNavBar'
 
 import {
 	actions as routerActions,
@@ -33,7 +34,6 @@ import {
 	Router,
 	Schema,
 	TabRoute,
-	TabBar,
 	Animations,
 } from 'react-native-router-redux'
 
@@ -65,15 +65,6 @@ class App extends Component {
 		})
 	}
 
-	handleCreateSite() {
-		this.props.dispatch( {
-			type: 'ROUTER_PUSH',
-			payload: {
-				name: 'add-site',
-			},
-		} )
-	}
-
 	handleCreateCategory() {
 
 	}
@@ -85,19 +76,16 @@ class App extends Component {
 					<Schema
 						name="default"
 						navBar={NavBar}
-						navTint="#2E73B0"
-						statusStyle="light-content"
-						navTitleColor="white"
-						navLeftColor="white"
-						navRightColor="white"
-						tabBar={TabBar}
+						navTint="#FFFFFF"
+						statusStyle="default"
+						navTitleColor="black"
+						navLeftColor="black"
+						navRightColor="black"
 					/>
 					<Route
 						name="sites"
 						component={SitesList}
-						title="Sites"
-						navRight={<TouchableOpacity onPress={this.handleCreateSite.bind(this)}><Icon name="plus" style={{marginRight:15}} size={22} color="white" /></TouchableOpacity>}
-						tabItem={{title:'Sites'}}
+						navBar={SitesListNavBar}
 					/>
 					<Route
 						name="add-site"
@@ -184,11 +172,7 @@ export default connect((state) => {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#D9E3EB',
+		backgroundColor: '#FFFFFF',
 		flex: 1,
-	},
-	topBar: {
-		backgroundColor: '#2E73B0',
-		height: 20,
 	},
 })

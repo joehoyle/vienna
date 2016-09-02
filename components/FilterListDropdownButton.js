@@ -12,7 +12,7 @@ export default class FilterListDropdownButton extends Component {
 		return (
 			<TouchableOpacity style={styles.container} onPress={this.props.onPress}>
 				<Text style={styles.text}>{this.props.children}</Text>
-				<Icon name="sort-desc" color="white" size={20} style={styles.icon} />
+				<Icon name="sort-desc" color="#333333" size={18} style={styles.icon} />
 			</TouchableOpacity>
 		)
 	}
@@ -21,16 +21,13 @@ export default class FilterListDropdownButton extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
-		margin: -10,
-		padding: 10,
 	},
 	text: {
-		color: '#fff',
-		fontWeight: 'bold',
-		fontSize: 16,
+		color: '#333333',
+		fontSize: 15,
 	},
 	icon: {
-		marginTop: -5,
-		marginLeft: 5
+		marginTop: -4,
+		marginLeft: 8
 	},
 })
