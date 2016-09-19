@@ -14,6 +14,7 @@ import { isEmpty } from 'lodash'
 const logger = createLogger({
 	collapsed: true,
 	predicate: ( getState, action ) => {
+		return false;
 		return [ 'REDUX_STORAGE_SAVE', 'REDUX_STORAGE_LOAD', 'ROUTER_POP', 'ROUTER_PUSH', 'ROUTER_RESET', 'ROUTER_INIT' ].indexOf( action.type ) === -1
 	}
 })
@@ -44,4 +45,4 @@ export default class Root extends Component {
 		);
 	}
 }
-AppRegistry.registerComponent('Project', () => Root)
+AppRegistry.registerComponent('Vienna', () => Root)

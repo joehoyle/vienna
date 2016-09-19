@@ -3,14 +3,18 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-react-native"
   },
   "dependencies": {
     "oauth-1.0a": "^1.0.1",
     "query-string": "^3.0.1",
     "react": "^15.3.0",
-    "react-native": "^0.30.0",
-    "react-native-fetch-blob": "^0.5.8",
+    "react-native": "^0.33.0",
+    "react-native-fetch-blob": "^0.9.4",
     "react-native-hyperlink": "0.0.4",
     "react-native-image-picker": "^0.19.4",
     "react-native-router-redux": "github:joehoyle/react-native-router-redux#vienna",
@@ -25,5 +29,12 @@
     "redux-thunk": "^2.0.1",
     "superagent": "^2.0.0",
     "time-ago": "^0.1.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^15.0.0",
+    "babel-preset-react-native": "^1.9.0",
+    "jest": "^15.1.1",
+    "jest-react-native": "^15.0.0",
+    "react-test-renderer": "^15.3.2"
   }
 }
