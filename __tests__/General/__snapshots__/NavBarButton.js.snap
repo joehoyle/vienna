@@ -1,0 +1,129 @@
+exports[`test renders correctly 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hitSlop={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function bound touchableHandleResponderGrant]}
+  onResponderMove={[Function bound touchableHandleResponderMove]}
+  onResponderRelease={[Function bound touchableHandleResponderRelease]}
+  onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
+  onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
+  onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+  style={
+    Object {
+      "opacity": 1
+    }
+  }
+  testID={undefined}>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "paddingLeft": 10
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "#333333",
+            "fontFamily": "FontAwesome",
+            "fontSize": 22,
+            "fontStyle": "normal",
+            "fontWeight": "normal"
+          },
+          undefined
+        ]
+      }>
+      
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={1}
+      style={
+        Array [
+          Object {
+            "color": "#333333",
+            "lineHeight": 18,
+            "marginLeft": 5,
+            "width": 80
+          }
+        ]
+      } />
+  </View>
+</View>
+`;
+
+exports[`test renders correctly 2`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hitSlop={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function bound touchableHandleResponderGrant]}
+  onResponderMove={[Function bound touchableHandleResponderMove]}
+  onResponderRelease={[Function bound touchableHandleResponderRelease]}
+  onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
+  onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
+  onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+  style={
+    Object {
+      "opacity": 1
+    }
+  }
+  testID={undefined}>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "paddingLeft": 10
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "#333333",
+            "fontFamily": "FontAwesome",
+            "fontSize": 22,
+            "fontStyle": "normal",
+            "fontWeight": "normal"
+          },
+          undefined
+        ]
+      }>
+      
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={1}
+      style={
+        Array [
+          Object {
+            "color": "#333333",
+            "lineHeight": 18,
+            "marginLeft": 5,
+            "width": 80
+          }
+        ]
+      }>
+      Back
+    </Text>
+  </View>
+</View>
+`;
