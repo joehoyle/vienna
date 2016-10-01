@@ -1,30 +1,18 @@
-import React, {Component} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import NavigationBar from 'react-native-navbar'
-import FilterListDropdownButton from '../../components/FilterListDropdownButton'
+import React, { Component } from 'react'
+import NavBar from '../../components/General/NavBar'
 
-export default class ListNavBar extends Component {
-
-	onPressTitle() {
-		this.props.dispatch({
-			type:'COMMENTS_LIST_TOGGLE_FILTER'
-		})
+export default class ViewNavBar extends Component {
+	onBack() {
+		this.props.dispatch( {
+			type: 'ROUTER_POP',
+		} )
 	}
 	render() {
-		return (
-			<NavigationBar
-				leftButton={{
-					title: 'Back',
-					tintColor: '#ffffff',
-					handler: this.props.actions.pop,
-				}}
-				statusBar={{
-					hidden: this.props.statusHidden || false,
-					style: this.props.statusStyle || 'default',
-				}}
-				tintColor={this.props.navTint}
-				title={<FilterListDropdownButton onPress={this.onPressTitle.bind(this)}>Comments</FilterListDropdownButton>}
-			/>
-		)
+		var site = this.props.sites[ this.props.activeSite.id ]
+		return <NavBar
+			title="Comments"
+			backText={site.name}
+			onBack={() => this.onBack()}
+		/>
 	}
 }

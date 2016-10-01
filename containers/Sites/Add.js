@@ -4,6 +4,7 @@ import { values, trim } from 'lodash'
 import { addSite } from '../../actions'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import AddSiteInstructions from '../../components/Sites/AddSiteInstructions'
+import TextInputWithIcon from '../../components/General/TextInputWithIcon'
 
 export default class List extends Component {
 
@@ -21,10 +22,12 @@ export default class List extends Component {
 	onSubmit() {
 		var url = this.state.url
 
+		// prepend http:// to the url if it wasn't set already.
 		if ( url.indexOf( 'http' ) !== 0 ) {
 			url = 'http://' + url
 		}
 
+		// make sure the URL has a trailing slash
 		url = trim( url, '/' ) + '/'
 
 		this.setState({url:url})
@@ -50,48 +53,33 @@ export default class List extends Component {
 
 				{!this.props.newSite.status ?
 					<View>
-						<View style={styles.input}>
-							<Icon style={styles.inputIcon} name="globe" size={20} color="#666666" />
-							<TextInput
-								keyboardType="url"
-								autoCapitalize="none"
-								autoCorrect={false}
-								style={styles.inputText}
-								placeholder="Site URL..."
-								value={this.state.url}
-								onChangeText={text=>this.setState({url:text})}
-								onSubmitEditing={this.onSubmit.bind(this)}
-								returnKeyType="go"
-							/>
-						</View>
+						<TextInputWithIcon
+							icon="globe"
+							keyboardType="url"
+							placeholder="Site URL..."
+							value={this.state.url}
+							returnKeyType="go"
+							onChangeText={text=>this.setState({url:text})}
+							onSubmitEditing={this.onSubmit.bind(this)}
+						/>
 						{this.state.addOAuth ?
 							<View>
-								<View style={styles.input}>
-									<Icon style={styles.inputIcon} name="key" size={18} color="#666666" />
-									<TextInput
-										autoCapitalize="none"
-										autoCorrect={false}
-										style={styles.inputText}
-										placeholder="OAuth Client Key..."
-										value={this.state.key}
-										onChangeText={text=>this.setState({key:text})}
-										onSubmitEditing={this.onSubmit.bind(this)}
-										returnKeyType="next"
-									/>
-								</View>
-								<View style={styles.input}>
-									<Icon style={styles.inputIcon} name="lock" size={20} color="#666666" />
-									<TextInput
-										autoCapitalize="none"
-										autoCorrect={false}
-										style={styles.inputText}
-										placeholder="OAuth Client Secret..."
-										value={this.state.secret}
-										onChangeText={text=>this.setState({secret:text})}
-										onSubmitEditing={this.onSubmit.bind(this)}
-										returnKeyType="go"
-									/>
-								</View>
+								<TextInputWithIcon
+									icon="key"
+									placeholder="OAuth Client Key..."
+									returnKeyType="next"
+									value={this.state.key}
+									onChangeText={text=>this.setState({key:text})}
+									onSubmitEditing={this.onSubmit.bind(this)}
+								/>
+								<TextInputWithIcon
+									icon="lock"
+									placeholder="OAuth Client Secret..."
+									returnKeyType="go"
+									value={this.state.secret}
+									onChangeText={text=>this.setState({secret:text})}
+									onSubmitEditing={this.onSubmit.bind(this)}
+								/>
 							</View>
 						: null }
 					</View>
@@ -142,12 +130,6 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 1,
 		borderBottomColor: '#eeeeee'
 	},
-	inputIcon: {
-		marginLeft: 4,
-		marginRight: 6,
-		width: 20,
-		textAlign: 'center',
-	},
 	inputText: {
 		flex: 1,
 		fontSize: 16,
@@ -171,7 +153,7 @@ const styles = StyleSheet.create({
 		marginBottom: 5,
 	},
 	addOAuthText: {
-		color: '#ffffff',
+		color: '#333333',
 		textAlign: 'center',
 		margin: 10,
 	},

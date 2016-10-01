@@ -1,22 +1,17 @@
-import React, {Component} from 'react'
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
-import NavigationBar from 'react-native-navbar'
-import NavBarButton from '../../components/General/NavBarButton'
+import React, { Component } from 'react'
+import NavBar from '../../components/General/NavBar'
 
 export default class ViewNavBar extends Component {
+	onBack() {
+		this.props.dispatch( {
+			type: 'ROUTER_POP',
+		} )
+	}
 	render() {
-		return (
-			<NavigationBar
-				leftButton={<NavBarButton onPress={()=>this.props.actions.pop()}>Sites</NavBarButton>}
-				tintColor="rgba(255,255,255,.05)"
-				title={<Text style={[{color: this.props.navTitleColor},styles.text]}>{this.props.sites[ this.props.activeSite.id ].name}</Text>}
-			/>
-		)
+		return <NavBar
+			title={this.props.sites[ this.props.activeSite.id ].name}
+			backText="Sites"
+			onBack={() => this.onBack()}
+		/>
 	}
 }
-
-const styles = StyleSheet.create({
-	text: {
-		fontSize: 15,
-	},
-})

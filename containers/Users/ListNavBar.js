@@ -1,40 +1,19 @@
-import React, {Component} from 'react'
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
-import NavigationBar from 'react-native-navbar'
-import NavBarButton from '../../components/General/NavBarButton'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import FilterListDropdownButton from '../../components/FilterListDropdownButton'
+import React, { Component } from 'react'
+import NavBar from '../../components/General/NavBar'
 
-export default class ListNavBar extends Component {
-	onPressTitle() {
-		this.props.dispatch({
-			type:'USERS_LIST_TOGGLE_FILTER'
-		})
+export default class ViewNavBar extends Component {
+	onBack() {
+		this.props.dispatch( {
+			type: 'ROUTER_POP',
+		} )
 	}
-
-	onCreateUser() {
-	}
-
 	render() {
 		var site = this.props.sites[ this.props.activeSite.id ]
-		return (
-			<NavigationBar
-				leftButton={<NavBarButton onPress={()=>this.props.actions.pop()}>{site.name}</NavBarButton>}
-				rightButton={<TouchableOpacity onPress={this.onCreateUser.bind(this)}><Icon name="user-plus" style={{marginRight:10}} size={20} color="#333333" /></TouchableOpacity>}
-				title={<FilterListDropdownButton onPress={this.onPressTitle.bind(this)}>Users</FilterListDropdownButton>}
-			/>
-		)
+		return <NavBar
+			title="Users"
+			backText={site.name}
+			onBack={() => this.onBack()}
+			onRightPress={() => this.onCreate()}
+		/>
 	}
 }
-
-const styles = StyleSheet.create({
-	text: {
-		fontSize: 15,
-		color: '#333333',
-	},
-	rightButton: {
-		fontSize: 30,
-		lineHeight: 26,
-		marginRight: 10,
-	}
-})

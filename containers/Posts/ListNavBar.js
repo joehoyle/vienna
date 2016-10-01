@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
-import NavigationBar from 'react-native-navbar'
-import NavBarButton from '../../components/General/NavBarButton'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import FilterListDropdownButton from '../../components/FilterListDropdownButton'
-import { uploadImage } from '../../actions'
+import React, { Component } from 'react'
+import NavBar from '../../components/General/NavBar'
 
-export default class ListNavBar extends Component {
+export default class ViewNavBar extends Component {
+	onBack() {
+		this.props.dispatch( {
+			type: 'ROUTER_POP',
+		} )
+	}
 	onPressTitle() {
 		this.props.dispatch({
 			type:'POSTS_LIST_TOGGLE_FILTER',
@@ -15,14 +15,11 @@ export default class ListNavBar extends Component {
 			}
 		})
 	}
-
 	onCreatePost() {
-
 		// todo: abstract this
 		if ( this.props.route.passProps.routerData.type === 'attachment' ) {
 			return this.props.dispatch( uploadImage() )
 		}
-
 		this.props.dispatch( {
 			type: 'ROUTER_PUSH',
 			payload: {
@@ -31,34 +28,19 @@ export default class ListNavBar extends Component {
 			},
 		} )
 	}
-
 	render() {
 		var type = this.props.types[ this.props.route.passProps.routerData.type ]
-
 		var iconMap = {
 			attachment: 'upload'
 		}
-
 		var icon = iconMap[ type.slug ] || 'pencil-square-o'
 		var site = this.props.sites[ this.props.activeSite.id ]
-		return (
-			<NavigationBar
-				leftButton={<NavBarButton onPress={()=>this.props.actions.pop()}>{site.name}</NavBarButton>}
-				rightButton={<TouchableOpacity onPress={this.onCreatePost.bind(this)}><Icon name={icon} style={{marginRight:10}} size={20} color="#333333" /></TouchableOpacity>}
-				title={<Text style={[{color: this.props.navTitleColor},styles.text]}>{type.name}</Text>}
-			/>
-		)
+
+		return <NavBar
+			title={type.name}
+			backText={site.name}
+			onBack={() => this.onBack()}
+			rightIcon={icon}
+		/>
 	}
 }
-
-const styles = StyleSheet.create({
-	text: {
-		fontSize: 15,
-		color: '#333333',
-	},
-	rightButton: {
-		fontSize: 30,
-		lineHeight: 26,
-		marginRight: 10,
-	}
-})

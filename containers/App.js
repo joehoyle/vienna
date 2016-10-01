@@ -7,6 +7,7 @@ import { fetchPosts, editPost, createPost, addSite, uploadImage } from '../actio
 import Icon from 'react-native-vector-icons/FontAwesome'
 import SitesList from '../containers/Sites/List'
 import SitesAdd from '../containers/Sites/Add'
+import SitesAddNavBar from '../containers/Sites/AddNavBar'
 import PostsList from '../containers/Posts/List'
 import PostsListNavBar from '../containers/Posts/ListNavBar'
 import PostsEdit from '../containers/Posts/Edit'
@@ -90,7 +91,7 @@ class App extends Component {
 					<Route
 						name="add-site"
 						component={SitesAdd}
-						title="Add New Site"
+						navBar={SitesAddNavBar}
 						sceneConfig={Animations.FlatFloatFromBottom}
 					/>
 					<Route
