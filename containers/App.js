@@ -27,6 +27,8 @@ import FilterListDropdownButton from '../components/FilterListDropdownButton'
 import SiteView from '../containers/Sites/View'
 import SiteViewNavBar from '../containers/Sites/ViewNavBar'
 import SitesListNavBar from '../containers/Sites/ListNavBar'
+import SettingsList from '../containers/Settings/List'
+import SettingsListNavBar from '../containers/Settings/ListNavBar'
 
 import {
 	actions as routerActions,
@@ -120,6 +122,11 @@ class App extends Component {
 						name="users"
 						component={UsersList}
 						navBar={UsersListNavBar}
+						/>
+					<Route
+						name="settings"
+						component={SettingsList}
+						navBar={SettingsListNavBar}
 						/>
 					<Route
 						name="comments"

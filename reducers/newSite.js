@@ -12,9 +12,9 @@ export default function newSite( state = { status: null, errorStatus: null }, ac
 			return {...state, status: 'Sending user to site...'}
 		case 'ADD_SITE_ACCESS_TOKEN_UPDATING':
 			return {...state, status: 'Getting an access token...'}
-		case 'ADD_SITE_DATA_UPDATING':
+		case 'SITE_DATA_UPDATING':
 			return {...state, status: 'Getting data about site...'}
-		case 'ADD_SITE_DATA_UPDATED':
+		case 'SITE_DATA_UPDATED':
 			return {...state, status: null}
 		case 'ADD_SITE_FAILED':
 			return {...state, status: null, errorStatus: action.error.message }

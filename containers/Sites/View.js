@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {ScrollView, View, Text, StyleSheet, TouchableOpacity, RefreshControl} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { values, isEmpty } from 'lodash'
-import { removeLocalData, fetchTypes, fetchTaxonomies, removeSite } from '../../actions'
+import { removeLocalData, fetchTypes, fetchTaxonomies, removeSite, fetchSiteData } from '../../actions'
 
 export default class _View extends Component {
 
@@ -16,6 +16,7 @@ export default class _View extends Component {
 		this.props.dispatch( removeLocalData() )
 		this.props.dispatch( fetchTypes() )
 		this.props.dispatch( fetchTaxonomies() )
+		this.props.dispatch( fetchSiteData() )
 	}
 	onRefresh() {
 		this.props.dispatch( fetchTypes() )
@@ -118,6 +119,13 @@ export default class _View extends Component {
 						<Text style={styles.listItemName}>Users</Text>
 						<View style={styles.listItemValue}>{chevron}</View>
 					</TouchableOpacity>
+					{this.props.settings.available ?
+						<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'settings'}})}>
+							<Icon style={styles.listItemIcon} name="gear" size={20} color="#999999" />
+							<Text style={styles.listItemName}>Settings</Text>
+							<View style={styles.listItemValue}>{chevron}</View>
+						</TouchableOpacity>
+					: null }
 				</View>
 				<Text style={styles.sectionTitle}></Text>
 				<View style={styles.list}>
@@ -126,7 +134,7 @@ export default class _View extends Component {
 					</TouchableOpacity>
 					<View style={styles.listItemDivider} />
 					<TouchableOpacity style={styles.listItem} onPress={this.onRemoveLocalData.bind(this)}>
-						<Text style={styles.listItemNameCentered}>Remove all local data</Text>
+						<Text style={styles.listItemNameCentered}>Remove Local Data</Text>
 					</TouchableOpacity>
 				</View>
 			</ScrollView>

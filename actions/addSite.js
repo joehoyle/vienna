@@ -4,6 +4,7 @@ import { Linking } from 'react-native'
 import SafariView from 'react-native-safari-view'
 import httpapi from '../api'
 import { values, trimEnd } from 'lodash'
+import fetchSiteData from './fetchSiteData'
 
 export default function addSite( url, args = {} ) {
 
@@ -138,23 +139,7 @@ export default function addSite( url, args = {} ) {
 					type: 'ADD_SITE_ACCESS_TOKEN_UPDATED',
 					data: data,
 				})
-				dispatch({
-					type: 'ADD_SITE_DATA_UPDATING',
-				})
-				var store = getStore()
-				var api = new httpapi( store.sites[ store.activeSite.id ] )
-				api.get( '/', { context: 'help' }, function( data ) {
-					dispatch({
-						type: 'ADD_SITE_DATA_UPDATED',
-						data: data
-					})
-					dispatch({
-						type: 'ROUTER_RESET',
-						payload: {
-							name: 'sites',
-						},
-					})
-				} )
+				dipatch( fetchSiteData() )
 			} )
 		}
 	}

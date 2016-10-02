@@ -15,6 +15,10 @@ import viewPost from './actions/viewPost'
 import addSite from './actions/addSite'
 import removeSite from './actions/removeSite'
 import uploadImage from './actions/uploadImage'
+import fetchSiteData from './actions/fetchSiteData'
+import fetchSettings from './actions/fetchSettings'
+import updateSettings from './actions/updateSettings'
+import changeSetting from './actions/changeSetting'
 
 export {
 	removeLocalData,
@@ -34,4 +38,8 @@ export {
 	fetchTaxonomies,
 	fetchTerms,
 	fetchComments,
+	fetchSiteData,
+	fetchSettings,
+	changeSetting,
+	updateSettings,
 }

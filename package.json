@@ -14,6 +14,7 @@
     "query-string": "^3.0.1",
     "react": "^15.3.0",
     "react-native": "^0.33.0",
+    "react-native-custom-action-sheet": "0.0.11",
     "react-native-fetch-blob": "^0.9.4",
     "react-native-hyperlink": "0.0.4",
     "react-native-image-picker": "^0.19.4",
