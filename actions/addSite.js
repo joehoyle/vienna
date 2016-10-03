@@ -5,6 +5,7 @@ import SafariView from 'react-native-safari-view'
 import httpapi from '../api'
 import { values, trimEnd } from 'lodash'
 import fetchSiteData from './fetchSiteData'
+import { Navigation } from 'react-native-navigation'
 
 export default function addSite( url, args = {} ) {
 
@@ -97,11 +98,16 @@ export default function addSite( url, args = {} ) {
 					data: data,
 				})
 
-				SafariView.show({
-					url: url,
-					tintColor: '#2E73B0',
-				})
-				Linking.addEventListener('url', listener )
+				Navigation.dismissAllModals()
+
+				setTimeout( () => {
+					SafariView.show({
+						url: url,
+						tintColor: '#2E73B0',
+					})
+					Linking.addEventListener('url', listener )
+				}, 1000 )
+
 			} )
 			.catch( error => {
 				dispatch({
@@ -139,7 +145,7 @@ export default function addSite( url, args = {} ) {
 					type: 'ADD_SITE_ACCESS_TOKEN_UPDATED',
 					data: data,
 				})
-				dipatch( fetchSiteData() )
+				dispatch( fetchSiteData() )
 			} )
 		}
 	}

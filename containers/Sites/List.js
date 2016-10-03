@@ -4,15 +4,32 @@ import { values } from 'lodash'
 import ListItem from '../../components/Sites/ListItem'
 
 export default class List extends Component {
+	static navigatorButtons = {
+		rightButtons: [ {
+			title: 'Add',
+			id: 'add',
+		}]
+	}
+	static navigatorStyle = {
+		navBarNoBorder: true,
+	}
+	constructor(props) {
+		super(props)
+		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+	}
+	onNavigatorEvent( event ) {
+		if (event.type == 'NavBarButtonPress') {
+			if (event.id == 'add') {
+				this.props.navigator.showModal({
+					screen: 'SitesAdd',
+				})
+			}
+		}
+	}
 	onSelectSite( site ) {
-		this.props.dispatch({
-			type: 'ROUTER_PUSH',
-			payload: {
-				name: 'site',
-				data: {
-					siteId: site.id,
-				},
-			},
+		this.props.navigator.push({
+			screen: 'SitesView',
+			title: site.name,
 		})
 	}
 	render() {

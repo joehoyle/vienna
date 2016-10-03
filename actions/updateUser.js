@@ -1,23 +1,26 @@
 import httpapi from '../api'
 
-export default function fetchUsers( args ) {
+export default function updateUser( user ) {
 	return ( dispatch, getStore ) => {
 		const store = getStore()
 		const api = new httpapi( store.sites[ store.activeSite.id ] )
 
-		args = { context: 'edit', ...args }
-
 		dispatch({
-			type: 'USERS_UPDATING',
+			type: 'USERS_USER_UPDATING',
+			payload: {
+				user: user
+			}
 		})
-		api.get( '/wp/v2/users', args, function( data, err ) {
+		api.post( '/wp/v2/users/' + user.id, user, function( data, err ) {
 			if ( err ) {
 				console.warn( err )
 				return
 			}
 			dispatch({
-				type: 'USERS_UPDATED',
-				data: data
+				type: 'USERS_USER_UPDATED',
+				payload: {
+					user: data
+				}
 			})
 		})
 	}

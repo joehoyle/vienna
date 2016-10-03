@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { ScrollView, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { values, isEmpty } from 'lodash'
 import PropTypes from '../../PropTypes'
-import { updateTerm } from '../../actions'
+import { updateUser } from '../../actions'
 import SchemaFormField from '../../components/General/SchemaFormField'
 
 export default class Edit extends Component {
@@ -17,7 +17,7 @@ export default class Edit extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			term: {...props.taxonomies[ this.props.taxonomy ].terms[ this.props.term ] }
+			user: {...props.users.users[ this.props.user ]}
 		}
 		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
@@ -25,24 +25,29 @@ export default class Edit extends Component {
 		this.onSave()
 	}
 	onChangePropertyValue( property, value ) {
-		var term = this.state.term
-		term[ property ] = value
-		this.setState({term})
+		var user = this.state.user
+		user[ property ] = value
+		this.setState({user: user})
 	}
 	onSave() {
-		this.props.dispatch( updateTerm( this.state.term ) )
+		this.props.dispatch( updateUser( this.state.user ) )
 		this.props.navigator.pop()
 	}
 	render() {
-		const taxonomy = this.props.taxonomies[ this.props.taxonomy ]
-		const slug = taxonomy._links['wp:items'][0].href.split( '/' ).slice(-1)[0]
-		var schema = this.props.sites[ this.props.activeSite.id ].routes[ '/wp/v2/' + slug ].schema
-		var object = this.state.term
+		var schema = this.props.users.schema
+		var object = this.state.user
 
 		var namesMap = {
+			username: 'Username',
 			name: 'Name',
-			slug: 'Slug',
-			description: 'Description',
+			first_name: 'First Name',
+			last_name: 'Last Name',
+			email: 'Email Address',
+			url: 'Website',
+			description: 'Bio',
+			nickname: 'Nickname',
+			slug: 'Name in URL',
+			roles: 'Roles',
 		}
 
 		return (

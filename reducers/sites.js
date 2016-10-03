@@ -7,7 +7,7 @@ const defaultState = {}
 export default function sites( state = defaultState, action ) {
 
 	if ( action.type === 'ADD_SITE_START' ) {
-		state[ action.id ] = site( {}, action )
+		state[ action.id ] = site( undefined, action )
 		state = {...state}
 	}
 	if ( action.siteId ) {

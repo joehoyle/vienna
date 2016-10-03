@@ -9,11 +9,10 @@ const defaultState = {
 export default function settings( state = defaultState, action ) {
 	switch ( action.type ) {
 		case 'SITE_DATA_UPDATED':
-			debugger
 			return {
 				...state,
 				available: action.data.routes['/wp/v2/settings'] ? true : false,
-				schema: action.data.routes['/wp/v2/settings'].schema
+				schema: action.data.routes['/wp/v2/settings'] ? action.data.routes['/wp/v2/settings'].schema : null,
 			}
 		case 'SETTINGS_CHANGED': {
 			state.settings[ action.payload.setting ] = action.payload.value

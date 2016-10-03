@@ -7,9 +7,19 @@ import AddSiteInstructions from '../../components/Sites/AddSiteInstructions'
 import TextInputWithIcon from '../../components/General/TextInputWithIcon'
 
 export default class List extends Component {
-
-	constructor() {
-		super()
+	static navigatorButtons = {
+		leftButtons: [
+			{
+				title: 'Back',
+				id: 'close'
+			}
+		]
+	}
+	static navigatorStyle = {
+		navBarNoBorder: true,
+	}
+	constructor(props) {
+		super(props)
 		this.state = {
 			url: '',
 			//key: 'RGZ9uqScRvNI',
@@ -17,6 +27,14 @@ export default class List extends Component {
 			key: '',
 			secret: '',
 			addOAuth: false,
+		}
+		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+	}
+	onNavigatorEvent( event ) {
+		if (event.type == 'NavBarButtonPress') {
+			if (event.id == 'close') {
+				this.props.navigator.dismissModal()
+			}
 		}
 	}
 	onSubmit() {

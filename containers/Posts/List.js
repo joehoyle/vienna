@@ -10,15 +10,15 @@ import Filter from '../../components/Posts/Filter'
 export default class List extends Component {
 	componentDidMount() {
 		setTimeout( () => {
-			var posts = this.props.types[ this.props.routerData.type ].posts
+			var posts = this.props.types[ this.props.type ].posts
 			if ( isEmpty( posts ) ) {
-				this.props.dispatch( fetchPosts({type:this.props.routerData.type}) )
+				this.props.dispatch( fetchPosts({type:this.props.type}) )
 			}
 		}, 400 )
 	}
 
 	onRefresh() {
-		this.props.dispatch( fetchPosts({type:this.props.routerData.type}) )
+		this.props.dispatch( fetchPosts({type:this.props.type}) )
 	}
 
 	onChangeFilter( filter ) {
@@ -26,14 +26,14 @@ export default class List extends Component {
 			type: 'POSTS_LIST_FILTER_UPDATED',
 			payload: {
 				filter: filter,
-				type: this.props.routerData.type,
+				type: this.props.type,
 			},
 		})
 	}
 
 	filterPosts( post ) {
 
-		var type = this.props.types[ this.props.routerData.type ]
+		var type = this.props.types[ this.props.type ]
 		if ( type.list.filter.status === 'all' ) {
 			return true
 		}
@@ -42,15 +42,14 @@ export default class List extends Component {
 	}
 
 	render() {
-
-		var type = this.props.types[ this.props.routerData.type ]
+		var type = this.props.types[ this.props.type ]
 		var posts = type.posts
 
 		const componentMap = {
 			attachment: MediaList,
 		}
 
-		var ListComponent = componentMap[this.props.routerData.type] ? componentMap[this.props.routerData.type] : PostsList
+		var ListComponent = componentMap[this.props.type] ? componentMap[this.props.type] : PostsList
 
 		return (
 			<View style={{flex: 1}}>

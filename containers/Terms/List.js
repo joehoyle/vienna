@@ -1,35 +1,31 @@
 import React, {Component} from 'react';
 import {ScrollView, Image, RefreshControl, TouchableOpacity} from 'react-native';
-import { values } from 'lodash'
+import { values, isEmpty } from 'lodash'
 import { fetchTerms } from '../../actions'
 import PropTypes from '../../PropTypes'
 import ListItem from '../../components/Terms/ListItem'
 
 export default class List extends Component {
-
-	componentWillMount() {
-		this.props.dispatch( fetchTerms( {taxonomy:this.props.routerData.taxonomy}) )
+	componentDidMount() {
+		if ( isEmpty( this.props.taxonomies[ this.props.taxonomy ].terms ) ) {
+			this.props.dispatch( fetchTerms( {taxonomy:this.props.taxonomy} ) )
+		}
 	}
-
 	onSelectTerm( term ) {
-		this.props.dispatch({
-			type: 'ROUTER_PUSH',
-			payload: {
-				name: 'term-edit',
-				data: {
-					termId: term.id,
-					taxonomy: this.props.routerData.taxonomy
-				},
+		this.props.navigator.push({
+			screen: 'TermsEdit',
+			passProps: {
+				taxonomy: this.props.taxonomy,
+				term: term.id,
 			},
+			title: term.name,
 		})
 	}
-
 	onRefresh() {
-
+		this.props.dispatch( fetchTerms( {taxonomy:this.props.taxonomy}) )
 	}
-
 	render() {
-		var taxonomy = this.props.taxonomies[ this.props.routerData.taxonomy ]
+		var taxonomy = this.props.taxonomies[ this.props.taxonomy ]
 		var terms = taxonomy.terms
 		return (
 			<ScrollView
@@ -44,11 +40,9 @@ export default class List extends Component {
 				>
 				{values(terms).map( term => {
 					return (
-						<TouchableOpacity key={term.id} onPress={this.props.onEdit}>
+						<TouchableOpacity key={term.id} onPress={this.onSelectTerm.bind(this,term)}>
 							<ListItem
 								term={term}
-								onEdit={this.onSelectTerm.bind(this,term)}
-								onTrash={()=>{}}
 							/>
 						</TouchableOpacity>
 					)

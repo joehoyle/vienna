@@ -14,15 +14,12 @@ export default class List extends Component {
 		}
 	}
 	onRefresh() {
-		console.log( 'onRefresh' )
 		this.props.dispatch( fetchSettings() )
 	}
 	onChangeSettingValue( setting, value ) {
-		console.log( 'onChangeSeetingsValue' )
 		this.props.dispatch( changeSetting( setting, value ) )
 	}
 	onUpdateSettings() {
-		console.log( 'onupdateSettings' )
 		this.props.dispatch( updateSettings( this.props.settings.settings ) )
 	}
 	render() {

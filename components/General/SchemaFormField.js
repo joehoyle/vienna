@@ -18,7 +18,7 @@ export default class SchemaFormField extends Component {
 
 	render() {
 
-		var Field = TextField
+		var Field = null
 		if ( this.props.schema.enum ) {
 			Field = EnumField
 		} else {
@@ -44,7 +44,7 @@ export default class SchemaFormField extends Component {
 			}
 		}
 
-		if ( ! Field.displayName ) {
+		if ( ! Field ) {
 			console.log( 'no field found for schema', this.props.schema )
 			return null
 		}

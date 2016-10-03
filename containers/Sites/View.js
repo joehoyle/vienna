@@ -5,7 +5,6 @@ import { values, isEmpty } from 'lodash'
 import { removeLocalData, fetchTypes, fetchTaxonomies, removeSite, fetchSiteData } from '../../actions'
 
 export default class _View extends Component {
-
 	componentDidMount() {
 		if ( isEmpty( this.props.types ) ) {
 			this.props.dispatch( fetchTypes() )
@@ -23,18 +22,56 @@ export default class _View extends Component {
 		this.props.dispatch( fetchTaxonomies() )
 	}
 	onSelectType( type ) {
-		this.props.dispatch({
-			type:'ROUTER_PUSH',
-			payload:{
-				name:'type-posts',
-				data:{
-					type:type.slug
-				}
-			}
+		this.props.navigator.push({
+			screen: 'PostsList',
+			passProps: {
+				type: type.slug
+			},
+			title: type.name,
+			backButtonTitle: this.getTruncatedTitle(),
+		})
+	}
+	onSelectTaxonomy( taxonomy ) {
+		this.props.navigator.push({
+			screen: 'TermsList',
+			passProps: {
+				taxonomy: taxonomy.slug,
+			},
+			title: taxonomy.name,
+			backButtonTitle: this.getTruncatedTitle(),
+		})
+	}
+	onSelectUsers() {
+		this.props.navigator.push({
+			screen: 'UsersList',
+			title: 'Users',
+			backButtonTitle: this.getTruncatedTitle(),
+		})
+	}
+	onSelectComments() {
+		this.props.navigator.push({
+			screen: 'CommentsList',
+			title: 'Comments',
+			backButtonTitle: this.getTruncatedTitle(),
+		})
+	}
+	onSelectSettings() {
+		this.props.navigator.push({
+			screen: 'SettingsList',
+			title: 'Settings',
+			backButtonTitle: this.getTruncatedTitle(),
 		})
 	}
 	onRemoveSite() {
 		this.props.dispatch( removeSite( this.props.activeSite.id ) )
+	}
+	getTruncatedTitle() {
+		var length = 10;
+		var site = this.props.sites[ this.props.activeSite.id ]
+		var trimmedString = site.name.length > length ?
+			site.name.substring(0, length - 3) + "..." :
+			site.name
+		return trimmedString
 	}
 	render() {
 
@@ -91,7 +128,7 @@ export default class _View extends Component {
 
 						return (
 							<View key={taxonomy.slug}>
-								<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'terms',data:{taxonomy:taxonomy.slug}}})}>
+								<TouchableOpacity style={styles.listItem} onPress={ () => this.onSelectTaxonomy( taxonomy ) }>
 									<Icon style={styles.listItemIcon} name={iconName} size={16} color="#999999" />
 									<Text style={styles.listItemName}>{taxonomy.name}</Text>
 									<View style={styles.listItemValue}>
@@ -108,19 +145,19 @@ export default class _View extends Component {
 				</View>
 				<Text style={styles.sectionTitle}></Text>
 				<View style={styles.list}>
-					<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'comments'}})}>
+					<TouchableOpacity style={styles.listItem} onPress={ () => this.onSelectComments() }>
 						<Icon style={styles.listItemIcon} name="comments" size={16} color="#999999" />
 						<Text style={styles.listItemName}>Comments</Text>
 						<View style={styles.listItemValue}>{chevron}</View>
 					</TouchableOpacity>
 					<View style={styles.listItemDivider} />
-					<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'users'}})}>
+					<TouchableOpacity style={styles.listItem} onPress={ ()=> this.onSelectUsers() }>
 						<Icon style={styles.listItemIcon} name="users" size={16} color="#999999" />
 						<Text style={styles.listItemName}>Users</Text>
 						<View style={styles.listItemValue}>{chevron}</View>
 					</TouchableOpacity>
 					{this.props.settings.available ?
-						<TouchableOpacity style={styles.listItem} onPress={()=>this.props.dispatch({type:'ROUTER_PUSH',payload:{name:'settings'}})}>
+						<TouchableOpacity style={styles.listItem} onPress={ () => this.onSelectSettings() }>
 							<Icon style={styles.listItemIcon} name="gear" size={20} color="#999999" />
 							<Text style={styles.listItemName}>Settings</Text>
 							<View style={styles.listItemValue}>{chevron}</View>

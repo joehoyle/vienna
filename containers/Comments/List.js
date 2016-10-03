@@ -7,7 +7,6 @@ import ListItem from '../../components/Comments/ListItem'
 import Filter from '../../components/Comments/Filter'
 
 export default class List extends Component {
-
 	componentWillMount() {
 		if ( isEmpty( this.props.comments.comments ) ) {
 			this.props.dispatch( fetchComments() )

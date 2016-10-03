@@ -21,6 +21,9 @@ export default function types( state = {}, action ) {
 				state[ action.payload.taxonomy ].list.loading = false
 			})
 			return {...state}
+		case 'TAXONOMY_TERMS_TERM_UPDATED':
+			state[ action.payload.taxonomy ].terms[ action.payload.term.id ] = action.payload.term
+			return {...state}
 	}
 	return state
 }
