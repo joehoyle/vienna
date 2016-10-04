@@ -1,16 +1,18 @@
 import React, { Component, PropTypes } from 'react'
-import { TextInput, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
 
 export default class Text extends Component {
 	static propTypes = {
-		value: PropTypes.string,
-		schema: PropTypes.object.isRequired,
-		name: PropTypes.string.isRequired,
+		value: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired,
 		onSave: PropTypes.func.isRequired,
+		autoFocus: PropTypes.bool
 	}
 	render() {
-		return <TextInput
+		return <AutoGrowingTextInput
+			autoFocus={this.props.autoFocus}
+			placeholder={'Enter Content...'}
 			value={this.props.value}
 			style={styles.container}
 			onChangeText={this.props.onChange}
@@ -22,9 +24,7 @@ export default class Text extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		height: 32,
-		textAlign: 'right',
-		color: '#666666'
+		color: '#666666',
+		fontSize: 16,
 	}
 })

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {ScrollView, View, Text, StyleSheet, TouchableOpacity, RefreshControl} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { values, isEmpty } from 'lodash'
-import { removeLocalData, fetchTypes, fetchTaxonomies, removeSite, fetchSiteData } from '../../actions'
+import { removeLocalData, fetchTypes, fetchTaxonomies, removeSite, fetchSiteData, authorizeSite } from '../../actions'
 
 export default class _View extends Component {
 	componentDidMount() {
@@ -63,15 +63,20 @@ export default class _View extends Component {
 		})
 	}
 	onRemoveSite() {
+		this.props.navigator.pop()
 		this.props.dispatch( removeSite( this.props.activeSite.id ) )
 	}
 	getTruncatedTitle() {
-		var length = 10;
-		var site = this.props.sites[ this.props.activeSite.id ]
+		const length = 10;
+		const site = this.props.sites[ this.props.activeSite.id ]
 		var trimmedString = site.name.length > length ?
 			site.name.substring(0, length - 3) + "..." :
 			site.name
 		return trimmedString
+	}
+	onReauthorize() {
+		const site = this.props.sites[ this.props.activeSite.id ]
+		this.props.dispatch( authorizeSite( site ) )
 	}
 	render() {
 
@@ -172,6 +177,9 @@ export default class _View extends Component {
 					<View style={styles.listItemDivider} />
 					<TouchableOpacity style={styles.listItem} onPress={this.onRemoveLocalData.bind(this)}>
 						<Text style={styles.listItemNameCentered}>Remove Local Data</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.listItem} onPress={this.onReauthorize.bind(this)}>
+						<Text style={styles.listItemNameCentered}>Reauthorize</Text>
 					</TouchableOpacity>
 				</View>
 			</ScrollView>

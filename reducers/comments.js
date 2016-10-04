@@ -2,8 +2,10 @@ const defaultState = {
 	comments: {},
 	list: {
 		loading: false,
+		schema: null,
 		isShowingFilter: false,
 		filter: { status: 'all' },
+		lastError: null,
 	},
 	new: {
 		data: {},
@@ -11,8 +13,13 @@ const defaultState = {
 		error: null,
 	},
 }
-export default function users( state = defaultState, action ) {
+export default function comments( state = defaultState, action ) {
 	switch ( action.type ) {
+		case 'SITE_DATA_UPDATED':
+			return {
+				...state,
+				schema: action.data.routes['/wp/v2/comments'].schema
+			}
 		case 'COMMENTS_UPDATING':
 			state.list.loading = true
 			return {...state}
@@ -37,6 +44,12 @@ export default function users( state = defaultState, action ) {
 			return {...state}
 		case 'COMMENTS_LIST_FILTER_UPDATED':
 			state.list.filter = action.payload.filter
+			return {...state}
+		case 'COMMENTS_COMMENT_UPDATED':
+			state.comments[ action.payload.object.id ] = action.payload.object
+			return {...state}
+		case 'COMMENTS_COMMENT_UPDATE_ERRORED':
+			state.list.lastError = action.payload.error
 			return {...state}
 	}
 	return state

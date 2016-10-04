@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {StyleSheet, ScrollView, View, RefreshControl, ActivityIndicator, Text} from 'react-native';
 import { values, isEmpty } from 'lodash'
-import { editPost, trashPost, viewPost, fetchPosts } from '../../actions'
+import { trashPost, fetchPosts } from '../../actions'
 import PropTypes from '../../PropTypes'
 import PostsList from '../../components/Posts/List'
 import MediaList from '../../components/Media/List'
 import Filter from '../../components/Posts/Filter'
+import ListError from '../../components/General/ListError'
 
 export default class List extends Component {
 	componentDidMount() {
@@ -20,15 +21,17 @@ export default class List extends Component {
 	onRefresh() {
 		this.props.dispatch( fetchPosts({type:this.props.type}) )
 	}
-
-	onChangeFilter( filter ) {
-		this.props.dispatch({
-			type: 'POSTS_LIST_FILTER_UPDATED',
-			payload: {
-				filter: filter,
+	onSelectPost( post ) {
+		this.props.navigator.push({
+			screen: 'PostsEdit',
+			passProps: {
+				post: post.id,
 				type: this.props.type,
 			},
+			title: 'Edit Post',
 		})
+	}
+	onChangeFilter( filter ) {
 	}
 
 	filterPosts( post ) {
@@ -65,6 +68,9 @@ export default class List extends Component {
 						<Text style={styles.creatingText}>Creating {type.name}</Text>
 					</View>
 				: null }
+				{type.list.lastError ?
+					<ListError error={type.list.lastError} />
+				: null}
 				<ListComponent
 					refreshControl={<RefreshControl
 						refreshing={type.list.loading}
@@ -75,9 +81,10 @@ export default class List extends Component {
 						titleColor="#000000"
 					/>}
 					posts={values( posts ).filter( this.filterPosts.bind( this ) )}
+					users={this.props.users.users}
 					media={this.props.types.attachment.posts}
-					onEdit={post=>this.props.dispatch( editPost( post ) )}
-					onView={post=>this.props.dispatch( viewPost( post ) )}
+					onEdit={post => this.onSelectPost( post )}
+					onView={post => this.onSelectPost( post )}
 					onTrash={post=>this.props.dispatch( trashPost( post ) )}
 				/>
 			</View>

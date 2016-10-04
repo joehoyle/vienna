@@ -1,5 +1,3 @@
-import editPost from './editPost'
-
 export default function createPost( type ) {
 	return ( dispatch ) => {
 		dispatch({

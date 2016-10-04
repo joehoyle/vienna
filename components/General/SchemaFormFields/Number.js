@@ -3,7 +3,7 @@ import { TextInput, StyleSheet } from 'react-native'
 
 export default class Number extends Component {
 	static propTypes = {
-		value: PropTypes.number.isRequired,
+		value: PropTypes.number,
 		schema: PropTypes.object.isRequired,
 		name: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired,

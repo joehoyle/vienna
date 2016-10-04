@@ -9,6 +9,7 @@ export default function types( state = {}, action ) {
 					filter: { status: 'all' },
 					isShowingFilter: false,
 					loading: false,
+					lastError: null,
 				}
 			} )
 			return action.data
@@ -22,7 +23,7 @@ export default function types( state = {}, action ) {
 			})
 			return {...state}
 		case 'TAXONOMY_TERMS_TERM_UPDATED':
-			state[ action.payload.taxonomy ].terms[ action.payload.term.id ] = action.payload.term
+			state[ action.payload.object.taxonomy ].terms[ action.payload.object.id ] = action.payload.object
 			return {...state}
 	}
 	return state

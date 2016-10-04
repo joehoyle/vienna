@@ -3,7 +3,7 @@ import { Switch } from 'react-native'
 
 export default class Boolean extends Component {
 	static propTypes = {
-		value: PropTypes.bool.isRequired,
+		value: PropTypes.bool,
 		onChange: PropTypes.func.isRequired,
 		schema: PropTypes.object.isRequired,
 		name: PropTypes.string.isRequired,

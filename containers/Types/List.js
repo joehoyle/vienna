@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ScrollView, View, RefreshControl} from 'react-native';
 import { values, isEmpty } from 'lodash'
-import { editPost, trashPost, viewPost, fetchPosts } from '../../actions'
+import { trashPost, fetchPosts } from '../../actions'
 import PropTypes from '../../PropTypes'
 import ListItem from '../../components/Posts/ListItem'
 import Filter from '../../components/Posts/Filter'

@@ -3,7 +3,7 @@ import { TextInput, StyleSheet } from 'react-native'
 
 export default class Url extends Component {
 	static propTypes = {
-		value: PropTypes.string.isRequired,
+		value: PropTypes.string,
 		schema: PropTypes.object.isRequired,
 		name: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired,

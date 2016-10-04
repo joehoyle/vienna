@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Picker } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, DatePickerIOS } from 'react-native'
 import CustomActionSheet from 'react-native-custom-action-sheet'
 
-export default class Enum extends Component {
+export default class DateField extends Component {
 	static propTypes = {
-		value: PropTypes.any,
+		value: PropTypes.any.isRequired,
 		schema: PropTypes.object.isRequired,
 		name: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired,
@@ -31,15 +31,11 @@ export default class Enum extends Component {
 					backgroundColor="transparent"
 					buttonText="Done"
 				>
-					<Picker
-						selectedValue={this.props.value}
-						onValueChange={this.props.onChange}
+					<DatePickerIOS
+						date={new Date( this.props.value )}
+						onDateChange={date => this.props.onChange( date.toISOString() )}
 						style={styles.picker}
-					>
-						{this.props.schema.enum.map( value => {
-							return <Picker.Item key={value} label={String(value)} value={value} />
-						})}
-					</Picker>
+					/>
 				</CustomActionSheet>
 			: null}
 		</View>

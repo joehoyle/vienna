@@ -6,10 +6,11 @@ import NumberField from './SchemaFormFields/Number'
 import TextField from './SchemaFormFields/Text'
 import UrlField from './SchemaFormFields/Url'
 import EnumField from './SchemaFormFields/Enum'
+import DateField from './SchemaFormFields/Date'
 
 export default class SchemaFormField extends Component {
 	static propTypes = {
-		value: PropTypes.any.isRequired,
+		value: PropTypes.any,
 		schema: PropTypes.object.isRequired,
 		name: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired,
@@ -34,11 +35,14 @@ export default class SchemaFormField extends Component {
 						case 'uri':
 							Field = UrlField
 							break
+						case 'date-time':
+							Field = DateField
+							break
 						default:
 							Field = TextField
 					}
 					break
-				case 'number':
+				case 'integer':
 					Field = NumberField
 					break
 			}

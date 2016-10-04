@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {ScrollView, Image, View, RefreshControl} from 'react-native';
+import { ScrollView, Image, View, RefreshControl, StyleSheet } from 'react-native';
 import { values, isEmpty } from 'lodash'
 import { fetchComments, createComment, trashComment } from '../../actions'
 import PropTypes from '../../PropTypes'
 import ListItem from '../../components/Comments/ListItem'
 import Filter from '../../components/Comments/Filter'
+import ListError from '../../components/General/ListError'
 
 export default class List extends Component {
 	componentWillMount() {
@@ -14,14 +15,12 @@ export default class List extends Component {
 	}
 
 	onSelectComment( comment ) {
-		this.props.dispatch({
-			type: 'ROUTER_PUSH',
-			payload: {
-				name: 'comment-edit',
-				data: {
-					commentId: comment.id
-				},
+		this.props.navigator.push({
+			screen: 'CommentsEdit',
+			passProps: {
+				comment: comment.id,
 			},
+			title: 'Edit Comment',
 		})
 	}
 
@@ -60,13 +59,16 @@ export default class List extends Component {
 
 	render() {
 		return (
-			<View>
+			<View style={{flex: 1}}>
 				{this.props.comments.list.isShowingFilter ?
 					<Filter
 						filter={this.props.comments.list.filter}
 						onChange={this.onChangeFilter.bind(this)}
 					/>
 				: null }
+				{this.props.comments.list.lastError ?
+					<ListError error={this.props.comments.list.lastError} />
+				: null}
 				<ScrollView
 					refreshControl={<RefreshControl
 						refreshing={this.props.comments.list.loading}
@@ -79,14 +81,15 @@ export default class List extends Component {
 					>
 					{values(this.props.comments.comments).filter( this.filterComments.bind(this) ).map( comment => {
 						return (
-							<ListItem
-								key={comment.id}
-								comment={comment}
-								post={comment.post && this.props.types.post.posts[comment.post] ? this.props.types.post.posts[comment.post] : null}
-								onEdit={this.onSelectComment.bind(this,comment)}
-								onTrash={this.onTrashComment.bind(this,comment)}
-								onReply={this.onReplyToComment.bind(this)}
-							/>
+							<View style={styles.listItem} key={comment.id}>
+								<ListItem
+									comment={comment}
+									post={comment.post && this.props.types.post.posts[comment.post] ? this.props.types.post.posts[comment.post] : null}
+									onEdit={this.onSelectComment.bind(this,comment)}
+									onTrash={this.onTrashComment.bind(this,comment)}
+									onReply={this.onReplyToComment.bind(this)}
+								/>
+							</View>
 						)
 					})}
 				</ScrollView>
@@ -94,3 +97,11 @@ export default class List extends Component {
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+	listItem: {
+		padding: 15,
+		borderBottomColor: '#F7F7F7',
+		borderBottomWidth: 1,
+	}
+})

@@ -10,6 +10,7 @@ export default function types( state = {}, action ) {
 					filter: { status: 'all' },
 					isShowingFilter: false,
 					loading: false,
+					lastError: null,
 				}
 				type.new = {
 					data: {},
@@ -33,11 +34,21 @@ export default function types( state = {}, action ) {
 		case 'POSTS_LIST_FILTER_UPDATED':
 		case 'POSTS_LIST_TOGGLE_FILTER':
 		case 'TYPE_POSTS_UPDATING':
-		case 'POSTS_POST_UPDATED':
-			var newState = type( state[ action.payload.type ], action )
-			if ( newState !== state[ action.payload.type ] ) {
-				state[ action.payload.type ] = newState
-				return {...state}
+		case 'TYPES_POSTS_POST_UPDATED':
+		case 'TYPES_POSTS_POST_UPDATE_ERRORED':
+
+			if ( action.payload.type ) {
+				var newState = type( state[ action.payload.type ], action )
+				if ( newState !== state[ action.payload.type ] ) {
+					state[ action.payload.type ] = newState
+					return {...state}
+				}
+			} else if ( action.payload.object.type ) {
+				var newState = type( state[ action.payload.object.type ], action )
+				if ( newState !== state[ action.payload.object.type ] ) {
+					state[ action.payload.object.type ] = newState
+					return {...state}
+				}
 			}
 			break
 	}

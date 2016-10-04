@@ -17,10 +17,13 @@ export default function type( state = {}, action ) {
 		case 'TYPE_POSTS_UPDATING':
 			state.list.loading = true
 			return {...state}
-		case 'POSTS_POST_UPDATED':
-			post = state.posts[ action.payload.postId ]
-			post = {...post, ...action.payload.data}
-			state.posts[ action.payload.postId ] = post
+		case 'TYPES_POSTS_POST_UPDATED':
+			post = state.posts[ action.payload.object.id ]
+			post = {...post, ...action.payload.object}
+			state.posts[ action.payload.object.id ] = post
+			return {...state}
+		case 'TYPES_POSTS_POST_UPDATE_ERRORED':
+			state.list.lastError = action.payload.error
 			return {...state}
 	}
 	return state

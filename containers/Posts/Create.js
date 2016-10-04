@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from '../../PropTypes'
-import EditPost from '../../components/Posts/Edit'
 
 export default class Create extends Component {
 	render() {

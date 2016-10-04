@@ -3,8 +3,10 @@ const defaultState = {
 	schema: null,
 	list: {
 		loading: false,
+		lastError: null,
 	},
-	settings: {}
+	settings: {},
+	lastError: null,
 }
 export default function settings( state = defaultState, action ) {
 	switch ( action.type ) {

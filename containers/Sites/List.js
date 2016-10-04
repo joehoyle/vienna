@@ -27,6 +27,12 @@ export default class List extends Component {
 		}
 	}
 	onSelectSite( site ) {
+		this.props.dispatch({
+			type: 'ACTIVE_SITE_UPDATED',
+			payload: {
+				site: site,
+			}
+		})
 		this.props.navigator.push({
 			screen: 'SitesView',
 			title: site.name,

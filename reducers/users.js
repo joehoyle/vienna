@@ -4,6 +4,7 @@ const defaultState = {
 	available: true,
 	list: {
 		loading: false,
+		lastError: null,
 	},
 }
 export default function users( state = defaultState, action ) {
@@ -23,7 +24,10 @@ export default function users( state = defaultState, action ) {
 			state.list.loading = false
 			return {...state}
 		case 'USERS_USER_UPDATED':
-			state.users[ action.payload.user.id ] = action.payload.user
+			state.users[ action.payload.object.id ] = action.payload.object
+			return {...state}
+		case 'USERS_UPDATE_ERRORED':
+			state.list.lastError = action.payload.error
 			return {...state}
 	}
 	return state

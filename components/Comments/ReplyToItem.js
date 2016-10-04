@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native'
 import PropTypes from '../../PropTypes'
+import MultilineTextFormField from '../General/FormFields/MultilineText'
 
 export default class ReplyToItem extends Component {
 	static propTypes = {
@@ -19,14 +20,10 @@ export default class ReplyToItem extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text style={styles.title}>Reply to {this.props.comment.author_name}</Text>
-				<TextInput
-					style={styles.text}
-					multiline={true}
-					placeholder="Enter reply..."
-					returnKeyType="done"
+				<MultilineTextFormField
 					autoFocus={true}
-					onChangeText={replyText => this.setState({replyText})}
+					value={this.state.replyText}
+					onChange={replyText => this.setState({replyText})}
 				/>
 				<View style={styles.actions}>
 					<TouchableOpacity onPress={this.props.onCancel}>
@@ -45,23 +42,15 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'column',
 	},
-	title: {
-		color: '#32619A',
-	},
 	text: {
 		height: 80,
-		padding: 10,
 		flex: 1,
 		fontSize: 14,
 		marginTop: 10,
 		backgroundColor: '#FFFFFF',
 	},
 	actions: {
-		backgroundColor: '#F0F4F6',
-		padding: 5,
 		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'stretch',
 	},
 	actionsButton: {
 		flex: 1,
@@ -71,7 +60,7 @@ const styles = StyleSheet.create({
 	},
 	actionsButtonText: {
 		textAlign: 'center',
-		padding: 5,
 		color: '#2E74B1',
+		marginRight: 10,
 	},
 })

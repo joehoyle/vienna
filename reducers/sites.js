@@ -9,8 +9,7 @@ export default function sites( state = defaultState, action ) {
 	if ( action.type === 'ADD_SITE_START' ) {
 		state[ action.id ] = site( undefined, action )
 		state = {...state}
-	}
-	if ( action.siteId ) {
+	} else if ( action.siteId ) {
 		state[ action.siteId ] = site( state[ action.siteId ], action )
 		state = {...state}
 	}

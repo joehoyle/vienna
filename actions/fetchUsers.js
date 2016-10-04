@@ -12,8 +12,10 @@ export default function fetchUsers( args ) {
 		})
 		api.get( '/wp/v2/users', args, function( data, err ) {
 			if ( err ) {
-				console.warn( err )
-				return
+				return dispatch({
+					type: 'USERS_UPDATE_ERRORED',
+					error: err
+				})
 			}
 			dispatch({
 				type: 'USERS_UPDATED',

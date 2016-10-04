@@ -23,14 +23,14 @@ export default class ConfirmButton extends Component {
 		return ! this.state.requiresConfirm ?
 			<TouchableOpacity style={[styles.container,this.props.style]} onPress={this.onPress.bind(this)}>
 				{this.props.icon ?
-					<Icon name={this.props.icon} size={15} color="#2E74B1" />
+					<Icon name={this.props.icon} size={14} color="#888888" />
 				: null }
 				<Text style={[styles.text, this.props.textStyle]}>{this.props.text}</Text>
 			</TouchableOpacity>
 		:
 			<TouchableOpacity style={[styles.container,this.props.style]} onPress={this.onPress.bind(this)}>
 				{this.props.icon ?
-					<Icon name={this.props.confirmIcon} size={15} color="#2E74B1" />
+					<Icon name={this.props.confirmIcon} size={14} color="#888888" />
 				: null }
 				<Text style={[styles.text, this.props.textStyle]}>{this.props.confirmText}</Text>
 			</TouchableOpacity>
