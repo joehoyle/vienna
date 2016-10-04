@@ -1,4 +1,4 @@
-![](https://github.com/joehoyle/vienna/raw/master/images/screenshot.png)
+![](https://raw.githubusercontent.com/joehoyle/vienna/35a39bb6366cb3f1fdc7a35b72357dd8bc0d56ae/images/screenshot.png)
 
 # Vienna
 
