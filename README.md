@@ -1,3 +1,5 @@
+![](https://github.com/joehoyle/vienna/raw/master/images/screenshot.png)
+
 # Vienna
 
 Vienna is an open-source native iOS app for interacting with your WordPress
