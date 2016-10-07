@@ -4,7 +4,7 @@ import CustomActionSheet from 'react-native-custom-action-sheet'
 
 export default class DateField extends Component {
 	static propTypes = {
-		value: PropTypes.any.isRequired,
+		value: PropTypes.any,
 		schema: PropTypes.object.isRequired,
 		name: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired,
@@ -22,7 +22,7 @@ export default class DateField extends Component {
 	render() {
 		return <View>
 			<TouchableOpacity onPress={() => this.onPressValue()}>
-				<Text style={styles.container}>{this.props.value}</Text>
+				<Text style={styles.container}>{this.props.value ? this.props.value : 'Select Date'}</Text>
 			</TouchableOpacity>
 			{this.state.showingPicker ?
 				<CustomActionSheet
@@ -57,11 +57,6 @@ const styles = StyleSheet.create({
 		height: 100,
 	},
 	picker: {
-		// position: 'absolute',
 		backgroundColor: 'white',
-		// bottom: 0,
-		// left: 0,
-		// right: 0,
-		// top: 0,
 	}
 })

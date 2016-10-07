@@ -26,7 +26,7 @@ export default class AddSiteInstructions extends Component {
 				<View style={styles.stepItem}>
 					<Text>The</Text>
 					<TouchableOpacity
-						onPress={this.openURL.bind(this, 'https://github.com/WP-API/OAuth1/' )}
+						onPress={this.openURL.bind(this, 'https://wordpress.org/plugins/rest-api-oauth1/' )}
 						>
 						<Text style={styles.link}> OAuth 1.0 </Text>
 					</TouchableOpacity>
@@ -36,9 +36,9 @@ export default class AddSiteInstructions extends Component {
 					<View style={styles.stepItem}>
 						<Text>The</Text>
 						<TouchableOpacity
-							onPress={this.openURL.bind(this, 'https://github.com/wp-api/broker-client' )}
+							onPress={this.openURL.bind(this, 'https://wordpress.org/plugins/rest-api-broker/' )}
 							>
-							<Text style={styles.link}> Authentication Broker Client </Text>
+							<Text style={styles.link}> Authentication Broker </Text>
 						</TouchableOpacity>
 						<Text>plugin.</Text>
 					</View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 
 	},
 	description: {
-		color: '#cccccc',
+		color: '#666666',
 		marginTop: 15,
 		marginBottom: 15,
 		textAlign: 'center',

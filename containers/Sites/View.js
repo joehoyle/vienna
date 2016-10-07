@@ -75,8 +75,7 @@ export default class _View extends Component {
 		return trimmedString
 	}
 	onReauthorize() {
-		const site = this.props.sites[ this.props.activeSite.id ]
-		this.props.dispatch( authorizeSite( site ) )
+		this.props.dispatch( authorizeSite( this.props.activeSite.id ) )
 	}
 	render() {
 
@@ -161,7 +160,7 @@ export default class _View extends Component {
 						<Text style={styles.listItemName}>Users</Text>
 						<View style={styles.listItemValue}>{chevron}</View>
 					</TouchableOpacity>
-					{this.props.settings.available ?
+					{this.props.settings && this.props.settings.available ?
 						<TouchableOpacity style={styles.listItem} onPress={ () => this.onSelectSettings() }>
 							<Icon style={styles.listItemIcon} name="gear" size={20} color="#999999" />
 							<Text style={styles.listItemName}>Settings</Text>

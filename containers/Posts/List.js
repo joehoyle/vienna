@@ -9,6 +9,24 @@ import Filter from '../../components/Posts/Filter'
 import ListError from '../../components/General/ListError'
 
 export default class List extends Component {
+	static navigatorButtons = {
+		rightButtons: [{
+			title: 'Add',
+			id: 'add'
+		}]
+	}
+	constructor(props) {
+		super(props)
+		props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+	}
+	onNavigatorEvent( event ) {
+		this.props.navigator.push({
+			screen: 'PostsAdd',
+			passProps: {
+				type: this.props.type,
+			}
+		})
+	}
 	componentDidMount() {
 		setTimeout( () => {
 			var posts = this.props.types[ this.props.type ].posts
@@ -17,7 +35,6 @@ export default class List extends Component {
 			}
 		}, 400 )
 	}
-
 	onRefresh() {
 		this.props.dispatch( fetchPosts({type:this.props.type}) )
 	}

@@ -10,17 +10,21 @@ export default function fetchSiteData() {
 		const site = store.sites[ store.activeSite.id ]
 		const api = new httpapi( site )
 
-		api.get( '/', { context: 'help' }, function( data ) {
+		api.get( '/', { context: 'help' } ).then( data => {
 			dispatch({
 				type: 'SITE_DATA_UPDATED',
-				data: data
-			})
-			dispatch({
-				type: 'ROUTER_RESET',
 				payload: {
-					name: 'sites',
-				},
+					site: data
+				}
 			})
 		} )
+		.catch( error => {
+			dispatch({
+				type: 'SITE_DATA_UPDATE_ERRORED',
+				payload: {
+					error
+				}
+			})
+		})
 	}
 }

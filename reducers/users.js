@@ -10,9 +10,10 @@ const defaultState = {
 export default function users( state = defaultState, action ) {
 	switch ( action.type ) {
 		case 'SITE_DATA_UPDATED':
+		case 'SITE_CREATED':
 			return {
 				...state,
-				schema: action.data.routes['/wp/v2/users'].schema
+				schema: action.payload.site.routes['/wp/v2/users'].schema
 			}
 		case 'USERS_UPDATING':
 			state.list.loading = true

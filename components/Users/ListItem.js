@@ -6,7 +6,12 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 export default class ListItem extends Component {
 	static propTypes = {
 		user: PropTypes.User,
-		onEdit: React.PropTypes.func
+		onEdit: React.PropTypes.func,
+		icon: React.PropTypes.string
+	}
+
+	static defaultProps = {
+		icon: 'chevron-right'
 	}
 
 	render() {
@@ -19,7 +24,9 @@ export default class ListItem extends Component {
 						<Text style={styles.roleText}>{this.props.user.roles[0]}</Text>
 					</View>
 				</View>
-				<Icon name="chevron-right" style={styles.chevron} size={22} color="#BBBBBB" />
+				{this.props.icon ?
+					<Icon name={this.props.icon} style={styles.chevron} size={22} color="#BBBBBB" />
+				: null }
 			</View>
 		)
 	}

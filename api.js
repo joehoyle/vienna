@@ -4,7 +4,8 @@ import fetchBlob from 'react-native-fetch-blob'
 
 export default class {
 	constructor( config ) {
-		this.url = config.url + 'wp-json'
+		this.url = config.rest_url ? config.rest_url : ( config.url + 'wp-json' )
+		this.url = this.url.replace( /\/$/, '' )
 		this.credentials = config.credentials
 		this.oauth = new oauth({
 			consumer: config.credentials.client,
@@ -82,7 +83,7 @@ export default class {
 			data: data
 		}, this.credentials.token ? this.credentials.token : null )
 
-
+		console.log( url, method, this.oauth.toHeader( oauthData ), data )
 		return fetch( url, {
 			method: method,
 			headers: {

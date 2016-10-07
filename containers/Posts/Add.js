@@ -1,37 +1,31 @@
 import React, { Component } from 'react'
-import { updatePost } from '../../actions'
+import { createPost } from '../../actions'
 import Form from '../../components/Posts/Form'
 
-export default class Edit extends Component {
+export default class Add extends Component {
 	static navigatorButtons = {
-		rightButtons: [
-			{
-				title: 'Save',
-				id: 'save'
-			}
-		]
+		rightButtons: [{
+			title: 'Save',
+			id: 'save'
+		}]
 	}
 	constructor(props) {
 		super(props)
 		this.state = {
-			post: {...props.types[ props.type ].posts[ props.post ] }
+			post: {}
 		}
-		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+		props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent() {
 		this.onSave()
 	}
 	onChangePropertyValue( property, value ) {
 		var post = this.state.post
-		if ( property === 'content' || property === 'title' ) {
-			post[ property ].raw = value
-		} else {
-			post[ property ] = value
-		}
+		post[ property ] = value
 		this.setState({post})
 	}
 	onSave() {
-		this.props.dispatch( updatePost( this.state.post ) )
+		this.props.dispatch( createPost( this.state.post, this.props.type ) )
 		this.props.navigator.pop()
 	}
 	render() {

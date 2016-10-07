@@ -10,11 +10,16 @@ export default class Email extends Component {
 		onSave: PropTypes.func.isRequired,
 	}
 	render() {
+		var placeholder = this.props.schema.required ? 'Required' : ''
+		placeholder = this.props.schema.default ? this.props.schema.default : placeholder
 		return <TextInput
 			value={this.props.value}
 			style={styles.container}
 			keyboardType="email-address"
-			onTextChange={this.props.onChange}
+			autoCapitalize={"none"}
+			autoCorrect={false}
+			placeholder={placeholder}
+			onChangeText={this.props.onChange}
 			onSubmitEditing={this.props.onSave}
 		/>
 	}

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { ScrollView, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import { updateTerm } from '../../actions'
+import { createTerm } from '../../actions'
 import Form from '../../components/Terms/Form'
 
-export default class Edit extends Component {
+export default class Add extends Component {
 	static navigatorButtons = {
 		rightButtons: [{
 			title: 'Save',
@@ -13,9 +13,9 @@ export default class Edit extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			term: {...props.taxonomies[ this.props.taxonomy ].terms[ this.props.term ] }
+			term: {}
 		}
-		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+		props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent() {
 		this.onSave()
@@ -26,7 +26,7 @@ export default class Edit extends Component {
 		this.setState({term})
 	}
 	onSave() {
-		this.props.dispatch( updateTerm( this.state.term ) )
+		this.props.dispatch( createTerm( this.state.term, this.props.taxonomy ) )
 		this.props.navigator.pop()
 	}
 	render() {

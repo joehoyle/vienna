@@ -15,9 +15,6 @@ export default class List extends Component {
 			}
 		]
 	}
-	static navigatorStyle = {
-		navBarNoBorder: true,
-	}
 	constructor(props) {
 		super(props)
 		this.state = {

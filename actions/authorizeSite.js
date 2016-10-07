@@ -7,10 +7,27 @@ import { values, trimEnd } from 'lodash'
 import fetchSiteData from './fetchSiteData'
 import { Navigation } from 'react-native-navigation'
 
+/**
+ * Authorize a site to get / renew oauth credentials for that site. This will handle
+ * sending the user through the auth flow using a Safar inline view.
+ *
+ * As a workaround to not being able to show a safar view controller when a modal
+ * is showing, we call `Navigation.dismissAllModals()` before showing the safari view,
+ * which is a less than ideal UX.
+ *
+ * @param  int site
+ */
 export default function authorizeSite( site ) {
 	return ( dispatch, getStore ) => {
+		const store = getStore()
+		site = store.sites[ site ]
 		var url = site.url
 		var promise = new Promise( ( resolve, reject ) => {
+
+			if ( site.credentials.client ) {
+				return resolve()
+			}
+
 			const brokerApi = new httpapi({
 				url: 'https://apps.wp-api.org',
 				credentials: {
@@ -25,14 +42,9 @@ export default function authorizeSite( site ) {
 				type: 'AUTHORIZE_SITE_BROKER_CONNECTING',
 			})
 
-			resolve( brokerApi.post( 'https://apps.wp-api.org/broker/connect', {
+			return brokerApi.post( 'https://apps.wp-api.org/broker/connect', {
 				server_url: url,
-			} ) )
-		})
-
-		promise
-			.then( function( data ) {
-
+			} ).then( data => {
 				if ( data.status === 'error' ) {
 					throw { message: 'Broker Error: ' + data.type, code: data.type }
 				}
@@ -41,14 +53,14 @@ export default function authorizeSite( site ) {
 					type: 'AUTHORIZE_SITE_CLIENT_CREATED',
 					data: data
 				})
-			}, function( err ) {
-				if ( ! err.message ) {
-					err.message = 'Unknown broker error.'
-				}
 
-				throw err
+				resolve()
+			}).catch( error => {
+				reject( error )
 			})
-			.then( function() {
+		})
+
+		promise.then( function() {
 				var store = getStore()
 				var api = new httpapi( store.sites[ store.activeSite.id ] )
 
@@ -57,14 +69,14 @@ export default function authorizeSite( site ) {
 				})
 				const someURL = url
 
-				return api.post( url + 'oauth1/request', {
+				return api.post( site.authentication.oauth1.request, {
 					callback_url: 'wordpress-react-native://site_callback',
 				} )
 			})
 			.then( data => {
 				var store = getStore()
 				var url = store.sites[ store.activeSite.id ].url
-				url = url + 'oauth1/authorize?' + querystring.stringify({
+				url = site.authentication.oauth1.authorize + '?' + querystring.stringify({
 					oauth_token: data.oauth_token,
 					oauth_callback: 'wordpress-react-native://site_callback'
 				})
@@ -113,14 +125,13 @@ export default function authorizeSite( site ) {
 			var store = getStore()
 			var api = new httpapi( store.sites[ store.activeSite.id ] )
 
-			api.post( url + 'oauth1/access', {
+			api.post( site.authentication.oauth1.access, {
 				oauth_verifier: args.oauth_verifier,
 			}, function( data ) {
 				dispatch({
 					type: 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATED',
 					data: data,
 				})
-				dispatch( fetchSiteData() )
 			} )
 		}
 	}

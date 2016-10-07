@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { ScrollView, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import { updateUser } from '../../actions'
+import { createUser } from '../../actions'
 import Form from '../../components/Users/Form'
 
-export default class Edit extends Component {
+export default class Add extends Component {
 	static navigatorButtons = {
 		rightButtons: [{
 			title: 'Save',
@@ -13,9 +13,9 @@ export default class Edit extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			user: {...props.users.users[ this.props.user ]}
+			user: {}
 		}
-		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+		props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent() {
 		this.onSave()
@@ -23,10 +23,10 @@ export default class Edit extends Component {
 	onChangePropertyValue( property, value ) {
 		var user = this.state.user
 		user[ property ] = value
-		this.setState({user: user})
+		this.setState({user})
 	}
 	onSave() {
-		this.props.dispatch( updateUser( this.state.user ) )
+		this.props.dispatch( createUser( this.state.user ) )
 		this.props.navigator.pop()
 	}
 	render() {

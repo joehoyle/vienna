@@ -10,11 +10,13 @@ export default class Number extends Component {
 		onSave: PropTypes.func.isRequired,
 	}
 	render() {
+		var placeholder = this.props.schema.required ? 'Required' : ''
+		placeholder = this.props.schema.default ? String(this.props.schema.default) : placeholder
 		return <TextInput
 			value={String(this.props.value)}
 			style={styles.container}
 			keyboardType="numeric"
-			placeholder={String(this.props.schema.default)}
+			placeholder={placeholder}
 			onChangeText={value => { this.props.onChange( value ? parseFloat( value ) : 0 ) } }
 			onSubmitEditing={this.props.onSave}
 		/>

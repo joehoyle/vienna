@@ -4,7 +4,7 @@ import { AutoGrowingTextInput } from 'react-native-autogrow-textinput'
 
 export default class Text extends Component {
 	static propTypes = {
-		value: PropTypes.string.isRequired,
+		value: PropTypes.string,
 		onChange: PropTypes.func.isRequired,
 		onSave: PropTypes.func.isRequired,
 		autoFocus: PropTypes.bool

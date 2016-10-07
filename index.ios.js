@@ -13,12 +13,15 @@ import SitesList from './containers/Sites/List'
 import SitesAdd from './containers/Sites/Add'
 import PostsList from './containers/Posts/List'
 import PostsEdit from './containers/Posts/Edit'
+import PostsAdd from './containers/Posts/Add'
 import TermsEdit from './containers/Terms/Edit'
+import TermsAdd from './containers/Terms/Add'
 import TermsList from './containers/Terms/List'
 import UsersList from './containers/Users/List'
 import UsersEdit from './containers/Users/Edit'
+import UsersAdd from './containers/Users/Add'
+import UsersSelect from './containers/Users/Select'
 import CommentsList from './containers/Comments/List'
-import PostsCreate from './containers/Posts/Create'
 import SitesView from './containers/Sites/View'
 import SettingsList from './containers/Settings/List'
 import CommentsEdit from './containers/Comments/Edit'
@@ -38,7 +41,9 @@ const store = createStoreWithMiddleware( storage.reducer( reducers ) )
 const loadStorage = storage.createLoader(engine)
 
 loadStorage( store ).then( state => {
-	//console.log( state )
+	// Object.entries( state.sites ).each( entry => {
+	//
+	// })
 })
 
 var mapStateToProps = ((state) => {
@@ -55,18 +60,24 @@ Navigation.registerComponent('SitesAdd', () => connect( mapStateToProps )( Sites
 Navigation.registerComponent('SitesView', () => connect( mapStateToProps )( SitesView ), store, Provider)
 Navigation.registerComponent('PostsList', () => connect( mapStateToProps )( PostsList ), store, Provider)
 Navigation.registerComponent('PostsEdit', () => connect( mapStateToProps )( PostsEdit ), store, Provider)
+Navigation.registerComponent('PostsAdd', () => connect( mapStateToProps )( PostsAdd ), store, Provider)
 Navigation.registerComponent('TermsEdit', () => connect( mapStateToProps )( TermsEdit ), store, Provider)
+Navigation.registerComponent('TermsAdd', () => connect( mapStateToProps )( TermsAdd ), store, Provider)
 Navigation.registerComponent('TermsList', () => connect( mapStateToProps )( TermsList ), store, Provider)
 Navigation.registerComponent('UsersList', () => connect( mapStateToProps )( UsersList ), store, Provider)
 Navigation.registerComponent('UsersEdit', () => connect( mapStateToProps )( UsersEdit ), store, Provider)
+Navigation.registerComponent('UsersAdd', () => connect( mapStateToProps )( UsersAdd ), store, Provider)
+Navigation.registerComponent('UsersSelect', () => connect( mapStateToProps )( UsersSelect ), store, Provider)
 Navigation.registerComponent('CommentsList', () => connect( mapStateToProps )( CommentsList ), store, Provider)
 Navigation.registerComponent('CommentsEdit', () => connect( mapStateToProps )( CommentsEdit ), store, Provider)
-Navigation.registerComponent('PostsCreate', () => connect( mapStateToProps )( PostsCreate ), store, Provider)
 Navigation.registerComponent('SettingsList', () => connect( mapStateToProps )( SettingsList ), store, Provider)
 
 Navigation.startSingleScreenApp({
 	screen: {
 		screen: 'SitesList',
 		title: 'Sites',
+		navigatorStyle: {
+			navBarNoBorder: true,
+		}
 	},
 })

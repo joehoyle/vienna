@@ -6,8 +6,8 @@ const defaultState = {}
 
 export default function sites( state = defaultState, action ) {
 
-	if ( action.type === 'ADD_SITE_START' ) {
-		state[ action.id ] = site( undefined, action )
+	if ( action.type === 'SITE_CREATED' ) {
+		state[ action.payload.id ] = site( undefined, action )
 		state = {...state}
 	} else if ( action.siteId ) {
 		state[ action.siteId ] = site( state[ action.siteId ], action )
@@ -15,7 +15,7 @@ export default function sites( state = defaultState, action ) {
 	}
 
 	switch ( action.type ) {
-		case 'ADD_SITE_FAILED':
+		case 'SITE_CREATE_ERRORED':
 			delete state[ action.siteId ]
 			return {...state}
 		case 'SITE_REMOVED':

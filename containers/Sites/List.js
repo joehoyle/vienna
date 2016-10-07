@@ -27,28 +27,26 @@ export default class List extends Component {
 		}
 	}
 	onSelectSite( site ) {
-		this.props.dispatch({
-			type: 'ACTIVE_SITE_UPDATED',
-			payload: {
-				site: site,
-			}
-		})
+		// this.props.dispatch({
+		// 	type: 'ACTIVE_SITE_UPDATED',
+		// 	payload: {
+		// 		site,
+		// 	},
+		// })
 		this.props.navigator.push({
 			screen: 'SitesView',
 			title: site.name,
 		})
 	}
 	render() {
-		return (
-			<ScrollView>
-				{values(this.props.sites).map( site => {
-					return (
-						<TouchableOpacity key={site.id} onPress={this.onSelectSite.bind(this,site)}>
-							<ListItem site={site} />
-						</TouchableOpacity>
-					)
-				})}
-			</ScrollView>
-		)
+		return <ScrollView>
+			{values(this.props.sites).map( site => {
+				return (
+					<TouchableOpacity key={site.id} onPress={() => this.onSelectSite(site)}>
+						<ListItem site={site} />
+					</TouchableOpacity>
+				)
+			})}
+		</ScrollView>
 	}
 }

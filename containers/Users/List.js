@@ -8,11 +8,26 @@ import EditItem from './Edit'
 import ListError from '../../components/General/ListError'
 
 export default class List extends Component {
-	constructor() {
-		super()
+	static navigatorButtons = {
+		rightButtons: [ {
+			title: 'Add',
+			id: 'add',
+		}]
+	}
+	constructor(props) {
+		super(props)
 		this.state = {
 			editingUser: null,
 		}
+		props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+	}
+	onNavigatorEvent( event ) {
+		this.props.navigator.push({
+			screen: 'UsersAdd',
+			passProps: {
+				taxonomy: this.props.taxonomy,
+			}
+		})
 	}
 	componentWillMount() {
 		if ( isEmpty( this.props.users.users ) ) {
@@ -33,11 +48,12 @@ export default class List extends Component {
 	}
 	render() {
 		return (
-			<View>
+			<View style={{flex:1}}>
 				{this.props.users.list.lastError ?
 					<ListError error={this.props.users.list.lastError} />
 				: null}
 				<ScrollView
+
 					refreshControl={<RefreshControl
 						refreshing={this.props.users.list.loading}
 						style={{backgroundColor: 'transparent'}}

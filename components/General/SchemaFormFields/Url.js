@@ -10,10 +10,13 @@ export default class Url extends Component {
 		onSave: PropTypes.func.isRequired,
 	}
 	render() {
+		var placeholder = this.props.schema.required ? 'Required' : ''
+		placeholder = this.props.schema.default ? this.props.schema.default : placeholder
 		return <TextInput
 			value={this.props.value}
 			style={styles.container}
 			keyboardType="url"
+			placeholder={placeholder}
 			onChangeText={this.props.onChange}
 			onSubmitEditing={this.props.onSave}
 		/>

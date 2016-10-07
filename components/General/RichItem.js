@@ -20,7 +20,6 @@ export default class RichItem extends Component {
 		if ( ! event.jsEvaluationValue ) {
 			return;
 		}
-		console.log( event.jsEvaluationValue )
 		this.setState({webViewHeight: parseInt(event.jsEvaluationValue)})
 	}
 	render() {

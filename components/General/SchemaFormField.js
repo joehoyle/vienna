@@ -7,6 +7,7 @@ import TextField from './SchemaFormFields/Text'
 import UrlField from './SchemaFormFields/Url'
 import EnumField from './SchemaFormFields/Enum'
 import DateField from './SchemaFormFields/Date'
+import ArrayEnumField from './SchemaFormFields/ArrayEnum'
 
 export default class SchemaFormField extends Component {
 	static propTypes = {
@@ -42,6 +43,15 @@ export default class SchemaFormField extends Component {
 							Field = TextField
 					}
 					break
+				case 'array':
+					if ( ! this.props.schema.items ) {
+						console.log( 'schema for type array foes not have an items prop', this.props.schema )
+					} else {
+						if ( this.props.schema.items.enum ) {
+							Field = ArrayEnumField
+						}
+					}
+					break;
 				case 'integer':
 					Field = NumberField
 					break

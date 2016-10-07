@@ -16,9 +16,10 @@ const defaultState = {
 export default function comments( state = defaultState, action ) {
 	switch ( action.type ) {
 		case 'SITE_DATA_UPDATED':
+		case 'SITE_CREATED':
 			return {
 				...state,
-				schema: action.data.routes['/wp/v2/comments'].schema
+				schema: action.payload.sites.routes['/wp/v2/comments'].schema
 			}
 		case 'COMMENTS_UPDATING':
 			state.list.loading = true

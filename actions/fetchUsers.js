@@ -14,7 +14,9 @@ export default function fetchUsers( args ) {
 			if ( err ) {
 				return dispatch({
 					type: 'USERS_UPDATE_ERRORED',
-					error: err
+					payload: {
+						error: err
+					}
 				})
 			}
 			dispatch({

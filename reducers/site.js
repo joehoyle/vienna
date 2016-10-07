@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { unescape } from 'lodash'
 import types from './types'
 import taxonomies from './taxonomies'
 import settings from './settings'
@@ -25,16 +26,25 @@ const siteReducers = combineReducers({
 
 export default function site( state = defaultState, action ) {
 	switch ( action.type ) {
-		case 'ADD_SITE_START':
-			state.id = action.id
-			state.name = action.name
-			state.url = action.url
+		case 'SITE_CREATED':
+			state.id = action.payload.id
+			state.name = unescape( action.payload.site.name )
+			state.rest_url = action.payload.rest_url
+			state.description = action.payload.site.description
+			state.routes = action.payload.site.routes
+			state.url = action.payload.site.home
+			state.authentication = action.payload.site.authentication
+			if ( action.payload.args.credentials ) {
+				state.credentials = { client: {} }
+				state.credentials.client.public = action.payload.args.credentials.client_token
+				state.credentials.client.secret = action.payload.args.credentials.client_secret
+			}
 			return {...state}
 		case 'SITE_DATA_UPDATED':
-			state.name = action.data.name
-			state.description = action.data.description
-			state.namespaces = action.data.namespaces
-			state.routes = action.data.routes
+			state.name = unescape( action.payload.site.name )
+			state.description = action.payload.site.description
+			state.namespaces = action.payload.site.namespaces
+			state.routes = action.payload.site.routes
 			state = {...state}
 			break
 		case 'AUTHORIZE_SITE_CLIENT_CREATED':

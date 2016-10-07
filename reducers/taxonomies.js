@@ -22,9 +22,13 @@ export default function types( state = {}, action ) {
 				state[ action.payload.taxonomy ].list.loading = false
 			})
 			return {...state}
-		case 'TAXONOMY_TERMS_TERM_UPDATED':
+		case 'TAXONOMY_TERM_UPDATED':
+		case 'TAXONOMY_TERM_CREATED':
 			state[ action.payload.object.taxonomy ].terms[ action.payload.object.id ] = action.payload.object
 			return {...state}
+		case 'TAXONOMY_TERM_CREATE_ERRORED':
+		case 'TAXONOMY_TERM_UPDATE_ERRORED':
+			state[ action.payload.object.taxonomy ].list.lastError = action.payload.error
 	}
 	return state
 }
