@@ -39,5 +39,11 @@
     return YES;
 }
 
+RCT_EXPORT_MODULE();
+RCT_EXPORT_METHOD(getBundleVersion:(RCTResponseSenderBlock)callback){
+  NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+  NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+  callback(@[version, build]);
+}
 
 @end

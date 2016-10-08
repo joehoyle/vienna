@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { NativeModules } from 'react-native'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider, connect } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -8,6 +9,8 @@ import createEngine from 'redux-storage-engine-reactnativeasyncstorage'
 import createLogger from 'redux-logger'
 import storageFilter from 'redux-storage-decorator-filter'
 import { Navigation } from 'react-native-navigation'
+import Raven from 'raven-js'
+import ReactRaven from 'raven-js/plugins/react-native'
 
 import SitesList from './containers/Sites/List'
 import SitesAdd from './containers/Sites/Add'
@@ -25,6 +28,14 @@ import CommentsList from './containers/Comments/List'
 import SitesView from './containers/Sites/View'
 import SettingsList from './containers/Settings/List'
 import CommentsEdit from './containers/Comments/Edit'
+
+// // Error tracing
+NativeModules.AppDelegate.getBundleVersion( function( version, build ) {
+	ReactRaven( Raven )
+	Raven
+		.config('https://1da89ea4f2a948f881160b9ebb3c71d8@sentry.io/104708', { release: version + '-' + build })
+		.install()
+})
 
 const logger = createLogger({
 	collapsed: true,
