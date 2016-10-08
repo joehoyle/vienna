@@ -29,8 +29,11 @@ import SitesView from './containers/Sites/View'
 import SettingsList from './containers/Settings/List'
 import CommentsEdit from './containers/Comments/Edit'
 
-// // Error tracing
+// Error tracing
 NativeModules.AppDelegate.getBundleVersion( function( version, build ) {
+	if ( __DEV__ ) {
+		return false
+	}
 	ReactRaven( Raven )
 	Raven
 		.config('https://1da89ea4f2a948f881160b9ebb3c71d8@sentry.io/104708', { release: version + '-' + build })
