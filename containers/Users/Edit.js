@@ -30,9 +30,10 @@ export default class Edit extends Component {
 		this.props.navigator.pop()
 	}
 	render() {
+		var schema = this.props.sites[ this.props.activeSite.id ].routes[ '/wp/v2/users' ].schema;
 		return <Form
 			user={this.state.user}
-			schema={this.props.users.schema}
+			schema={schema}
 			onChangePropertyValue={(p, v) => this.onChangePropertyValue( p, v )}
 		/>
 	}
