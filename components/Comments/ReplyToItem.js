@@ -24,6 +24,7 @@ export default class ReplyToItem extends Component {
 					autoFocus={true}
 					value={this.state.replyText}
 					onChange={replyText => this.setState({replyText})}
+					onSave={() => this.props.onReply(this.state.replyText)}
 				/>
 				<View style={styles.actions}>
 					<TouchableOpacity onPress={this.props.onCancel}>
