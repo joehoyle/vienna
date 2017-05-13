@@ -16,8 +16,7 @@ to interact with your WordPress install.
 - Node 4.x.
 
 ### WordPress site
-- WordPress 4.4 or higher.
-- [WP REST API v2](https://wordpress.org/plugins/rest-api/)
+- WordPress 4.7 or higher.
 - [WP REST API OAuth 1 plugin](https://github.com/WP-API/OAuth1)
 - [WP REST API Broker Auth Client](https://github.com/WP-API/broker-client)
 
