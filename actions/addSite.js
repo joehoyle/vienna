@@ -30,7 +30,7 @@ export default function addSite( url, args = {} ) {
 				}
 
 				var restUrl = linkHeaders[0].match( '<(.+)>; rel="https://api.w.org/"' )[1]
-				return fetch( restUrl )
+				return fetch( `${restUrl}?context=help` )
 					.then( response => response.json() )
 					.then( data => {
 						if ( data.namespaces.indexOf( 'wp/v2' ) === -1 ) {
