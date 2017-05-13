@@ -17,15 +17,6 @@ export default class AddSiteInstructions extends Component {
 				<View style={styles.stepItem}>
 					<Text>The</Text>
 					<TouchableOpacity
-						onPress={this.openURL.bind(this, 'https://wordpress.org/plugins/rest-api/' )}
-						>
-						<Text style={styles.link}> WP REST API v2 </Text>
-					</TouchableOpacity>
-					<Text>plugin.</Text>
-				</View>
-				<View style={styles.stepItem}>
-					<Text>The</Text>
-					<TouchableOpacity
 						onPress={this.openURL.bind(this, 'https://wordpress.org/plugins/rest-api-oauth1/' )}
 						>
 						<Text style={styles.link}> OAuth 1.0 </Text>
