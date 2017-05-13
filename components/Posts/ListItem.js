@@ -24,7 +24,7 @@ export default class ListItem extends Component {
 			<View style={styles.container}>
 				<RichItem
 					title={this.props.post.title.rendered}
-					content={this.props.post.content.rendered}
+					content={this.props.post.excerpt.rendered}
 					avatarUrl={this.props.author ? this.props.author.avatar_urls['96'] : null}
 					imageUrl={this.props.featuredMedia ? this.props.featuredMedia.media_details.sizes.medium.source_url : null}
 				/>
