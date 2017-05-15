@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { ScrollView, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import Editor from '../General/Editor'
 import SchemaFormField from '../General/SchemaFormField'
 import MultilineTextFormField from '../../components/General/FormFields/MultilineText'
 import UserSelectFormField from '../../components/General/FormFields/UserSelect'
