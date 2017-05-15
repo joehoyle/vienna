@@ -21,6 +21,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		D0E1751F1EC97879007F44CC /* VIEEditorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E1751E1EC97879007F44CC /* VIEEditorManager.m */; };
 		D8BCC0F81DA1C06D00D876D4 /* libReactNativeControllers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8BCC0F71DA1C04F00D876D4 /* libReactNativeControllers.a */; };
 		D8DA33351D90815E0069791F /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DA33341D90813A0069791F /* libRNFetchBlob.a */; };
 		D8DA33371D9082480069791F /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8DA33361D9082480069791F /* FontAwesome.ttf */; };
@@ -184,6 +185,8 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		D0E1751D1EC97879007F44CC /* VIEEditorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIEEditorManager.h; path = Vienna/VIEEditorManager.h; sourceTree = "<group>"; };
+		D0E1751E1EC97879007F44CC /* VIEEditorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIEEditorManager.m; path = Vienna/VIEEditorManager.m; sourceTree = "<group>"; };
 		D0E175301EC9A3D5007F44CC /* Aztec.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Aztec.xcodeproj; path = ../Libraries/AztecEditor/Aztec.xcodeproj; sourceTree = "<group>"; };
 		D0E175391EC9A3DF007F44CC /* Gridicons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Gridicons.xcodeproj; path = ../Libraries/Gridicons/Gridicons/Gridicons.xcodeproj; sourceTree = "<group>"; };
 		D8BCC0F21DA1C04E00D876D4 /* ReactNativeControllers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeControllers.xcodeproj; path = "../node_modules/react-native-controllers/ios/ReactNativeControllers.xcodeproj"; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				D0E1751D1EC97879007F44CC /* VIEEditorManager.h */,
+				D0E1751E1EC97879007F44CC /* VIEEditorManager.m */,
 			);
 			name = Vienna;
 			sourceTree = "<group>";
@@ -475,6 +480,12 @@
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = ZLF8FFAD7U;
+						LastSwiftMigration = 0830;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -731,6 +742,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0E1751F1EC97879007F44CC /* VIEEditorManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -755,6 +767,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = ZLF8FFAD7U;
 				HEADER_SEARCH_PATHS = (
@@ -765,6 +778,7 @@
 					"$(SRCROOT)/../node_modules/react-native-controllers/ios/**",
 				);
 				INFOPLIST_FILE = Vienna/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -773,6 +787,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.humanmade.vienna;
 				PRODUCT_NAME = Vienna;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -780,6 +797,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = ZLF8FFAD7U;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -789,6 +807,7 @@
 					"$(SRCROOT)/../node_modules/react-native-controllers/ios/**",
 				);
 				INFOPLIST_FILE = Vienna/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -797,6 +816,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.humanmade.vienna;
 				PRODUCT_NAME = Vienna;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
