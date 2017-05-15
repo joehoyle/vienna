@@ -23,6 +23,7 @@ export default class Form extends Component {
 			slug: 'Name in URL',
 			roles: 'Roles',
 			password: 'Password',
+			locale: 'Locale',
 		}
 		return (
 			<ScrollView>

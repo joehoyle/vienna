@@ -1,47 +1,51 @@
-import React, { Component } from 'react'
-import { ScrollView, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import { values, isEmpty } from 'lodash'
-import PropTypes from '../../PropTypes'
-import { updateComment } from '../../actions'
-import SchemaFormField from '../../components/General/SchemaFormField'
-import MultilineTextFormField from '../../components/General/FormFields/MultilineText'
+import React, { Component } from 'react';
+import {
+	ScrollView,
+	View,
+	TouchableOpacity,
+	Text,
+	StyleSheet,
+} from 'react-native';
+import { values, isEmpty } from 'lodash';
+import PropTypes from '../../PropTypes';
+import { updateComment } from '../../actions';
+import SchemaFormField from '../../components/General/SchemaFormField';
+import MultilineTextFormField
+	from '../../components/General/FormFields/MultilineText';
+import { connect } from 'react-redux';
+import NavigationButton from '../../components/Navigation/Button';
 
-export default class Edit extends Component {
-	static navigatorButtons = {
-		rightButtons: [
-			{
-				title: 'Save',
-				id: 'save'
-			}
-		]
-	}
+class Edit extends Component {
+	static navigationOptions = ({ navigationOptions, navigation }) => ({
+		title: 'Edit Comment',
+		headerRight: (
+			<NavigationButton onPress={() => _this.onSave()}>Save</NavigationButton>
+		),
+	});
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
-			comment: {...props.comments.comments[ this.props.comment ]}
-		}
-		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+			comment: { ...this.props.navigation.state.params.comment },
+		};
+		_this = this; // Big hack, see https://github.com/react-community/react-navigation/issues/145
 	}
-	onNavigatorEvent() {
-		this.onSave()
-	}
-	onChangePropertyValue( property, value ) {
-		var comment = this.state.comment
+	onChangePropertyValue(property, value) {
+		var comment = this.state.comment;
 
-		if ( property === 'content' ) {
-			comment[ property ].raw = value
+		if (property === 'content') {
+			comment[property].raw = value;
 		} else {
-			comment[ property ] = value
+			comment[property] = value;
 		}
-		this.setState({comment})
+		this.setState({ comment });
 	}
 	onSave() {
-		this.props.dispatch( updateComment( this.state.comment ) )
-		this.props.navigator.pop()
+		this.props.dispatch(updateComment(this.state.comment));
+		this.props.navigation.goBack();
 	}
 	render() {
-		var schema = this.props.comments.schema
-		var object = this.state.comment
+		var schema = this.props.sites[ this.props.activeSite.id ].routes[ '/wp/v2/comments' ].schema;
+		var object = this.state.comment;
 
 		var namesMap = {
 			author_email: 'Author Email',
@@ -51,48 +55,57 @@ export default class Edit extends Component {
 			date: 'Date',
 			karma: 'Karma',
 			status: 'Status',
-		}
+		};
 
 		return (
 			<ScrollView>
 				<View style={styles.contentField}>
 					<MultilineTextFormField
 						value={object.content.raw}
-						onChange={ value => this.onChangePropertyValue( 'content', value ) }
-						onSave={()=>{}}
+						onChange={value => this.onChangePropertyValue('content', value)}
+						onSave={() => {}}
 					/>
 				</View>
 				<View style={styles.list}>
-					{Object.entries( schema.properties )
-						.filter( properties => [ 'author', 'date_gmt', 'parent', 'post', 'type' ].indexOf( properties[0] ) == -1 )
-						.map( properties => {
-							const propertySchema = properties[1]
-							const property = properties[0]
-							const value = object[ property ]
+					{Object.entries(schema.properties)
+						.filter(
+							properties =>
+								['author', 'date_gmt', 'parent', 'post', 'type'].indexOf(
+									properties[0]
+								) == -1
+						)
+						.map(properties => {
+							const propertySchema = properties[1];
+							const property = properties[0];
+							const value = object[property];
 
-							if ( typeof value === 'undefined' ) {
-								console.log( 'Can not find schema property ' + property + ' in object.' )
-								return null
-							}
-
-							if ( propertySchema.readonly ) {
+							if (typeof value === 'undefined') {
+								console.log(
+									'Can not find schema property ' + property + ' in object.'
+								);
 								return null;
 							}
 
-							return <View style={styles.listItem} key={property}>
-								<SchemaFormField
-									name={namesMap[ property ] ? namesMap[ property ] : property}
-									schema={propertySchema}
-									value={value}
-									onChange={ value => this.onChangePropertyValue( property, value ) }
-									onSave={()=>{}}
-								/>
-							</View>
-						})
-					}
+							if (propertySchema.readonly) {
+								return null;
+							}
+
+							return (
+								<View style={styles.listItem} key={property}>
+									<SchemaFormField
+										name={namesMap[property] ? namesMap[property] : property}
+										schema={propertySchema}
+										value={value}
+										onChange={value =>
+											this.onChangePropertyValue(property, value)}
+										onSave={() => {}}
+									/>
+								</View>
+							);
+						})}
 				</View>
 			</ScrollView>
-		)
+		);
 	}
 }
 
@@ -103,4 +116,9 @@ const styles = StyleSheet.create({
 	contentField: {
 		margin: 10,
 	},
-})
+});
+
+export default connect(state => ({
+	...state,
+	...(state.activeSite.id ? state.sites[state.activeSite.id].data : null),
+}))(Edit);

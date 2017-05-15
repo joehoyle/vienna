@@ -1,5 +1,4 @@
 import site from './site'
-import { reducer as router } from 'react-native-router-redux'
 import httpapi from '../api'
 
 const defaultState = {}
