@@ -114,6 +114,34 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		D0E175351EC9A3D5007F44CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0E175301EC9A3D5007F44CC /* Aztec.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5951CB8E1D8BC93600E1866F;
+			remoteInfo = Aztec;
+		};
+		D0E175371EC9A3D5007F44CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0E175301EC9A3D5007F44CC /* Aztec.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5951CB971D8BC93600E1866F;
+			remoteInfo = AztecTests;
+		};
+		D0E1753E1EC9A3DF007F44CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0E175391EC9A3DF007F44CC /* Gridicons.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1704C1F81CAF08EF00F991DE;
+			remoteInfo = Gridicons;
+		};
+		D0E175401EC9A3DF007F44CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0E175391EC9A3DF007F44CC /* Gridicons.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17A824B61CB27802004771DB;
+			remoteInfo = GridiconsTests;
+		};
 		D8BCC0F61DA1C04F00D876D4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D8BCC0F21DA1C04E00D876D4 /* ReactNativeControllers.xcodeproj */;
@@ -156,6 +184,8 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		D0E175301EC9A3D5007F44CC /* Aztec.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Aztec.xcodeproj; path = ../Libraries/AztecEditor/Aztec.xcodeproj; sourceTree = "<group>"; };
+		D0E175391EC9A3DF007F44CC /* Gridicons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Gridicons.xcodeproj; path = ../Libraries/Gridicons/Gridicons/Gridicons.xcodeproj; sourceTree = "<group>"; };
 		D8BCC0F21DA1C04E00D876D4 /* ReactNativeControllers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeControllers.xcodeproj; path = "../node_modules/react-native-controllers/ios/ReactNativeControllers.xcodeproj"; sourceTree = "<group>"; };
 		D8DA33251D90813A0069791F /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		D8DA33361D9082480069791F /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -291,6 +321,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				D0E175301EC9A3D5007F44CC /* Aztec.xcodeproj */,
+				D0E175391EC9A3DF007F44CC /* Gridicons.xcodeproj */,
 				D8BCC0F21DA1C04E00D876D4 /* ReactNativeControllers.xcodeproj */,
 				D8DA335B1D9087090069791F /* SafariViewManager.xcodeproj */,
 				D8DA33251D90813A0069791F /* RNFetchBlob.xcodeproj */,
@@ -324,6 +356,7 @@
 				13B07FAE1A68108700A75B9A /* Vienna */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				D0E175241EC98C45007F44CC /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -333,6 +366,31 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* Vienna.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0E175241EC98C45007F44CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0E175311EC9A3D5007F44CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0E175361EC9A3D5007F44CC /* Aztec.framework */,
+				D0E175381EC9A3D5007F44CC /* AztecTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0E1753A1EC9A3DF007F44CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0E1753F1EC9A3DF007F44CC /* Gridicons.framework */,
+				D0E175411EC9A3DF007F44CC /* GridiconsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -432,6 +490,14 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = D0E175311EC9A3D5007F44CC /* Products */;
+					ProjectRef = D0E175301EC9A3D5007F44CC /* Aztec.xcodeproj */;
+				},
+				{
+					ProductGroup = D0E1753A1EC9A3DF007F44CC /* Products */;
+					ProjectRef = D0E175391EC9A3DF007F44CC /* Gridicons.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -561,6 +627,34 @@
 			fileType = archive.ar;
 			path = libRCTText.a;
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D0E175361EC9A3D5007F44CC /* Aztec.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Aztec.framework;
+			remoteRef = D0E175351EC9A3D5007F44CC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D0E175381EC9A3D5007F44CC /* AztecTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AztecTests.xctest;
+			remoteRef = D0E175371EC9A3D5007F44CC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D0E1753F1EC9A3DF007F44CC /* Gridicons.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Gridicons.framework;
+			remoteRef = D0E1753E1EC9A3DF007F44CC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D0E175411EC9A3DF007F44CC /* GridiconsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GridiconsTests.xctest;
+			remoteRef = D0E175401EC9A3DF007F44CC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		D8BCC0F71DA1C04F00D876D4 /* libReactNativeControllers.a */ = {

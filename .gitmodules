@@ -1,0 +1,6 @@
+[submodule "Libraries/AztecEditor"]
+	path = Libraries/AztecEditor
+	url = https://github.com/wordpress-mobile/AztecEditor-iOS.git
+[submodule "Libraries/Gridicons"]
+	path = Libraries/Gridicons
+	url = https://github.com/Automattic/Gridicons-iOS.git
