@@ -26,6 +26,8 @@
 		D866C8C31EC99BE500ABD8EB /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D866C8C21EC99BE000ABD8EB /* libRNFetchBlob.a */; };
 		D866C8C51EC99C1D00ABD8EB /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D866C8C41EC99C1D00ABD8EB /* FontAwesome.ttf */; };
 		D866C8CC1EC99C3800ABD8EB /* libSafariViewManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D866C8CB1EC99C3400ABD8EB /* libSafariViewManager.a */; };
+		D866C9061EC9EC3D00ABD8EB /* app-icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D866C9051EC9EC3D00ABD8EB /* app-icon-60@2x.png */; };
+		D866C9081EC9EC4500ABD8EB /* app-icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D866C9071EC9EC4500ABD8EB /* app-icon-60@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,6 +260,8 @@
 		D866C8BD1EC99BE000ABD8EB /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		D866C8C41EC99C1D00ABD8EB /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		D866C8C61EC99C3300ABD8EB /* SafariViewManager.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SafariViewManager.xcodeproj; path = "../node_modules/react-native-safari-view/SafariViewManager.xcodeproj"; sourceTree = "<group>"; };
+		D866C9051EC9EC3D00ABD8EB /* app-icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-60@2x.png"; path = "../images/app-icon-60@2x.png"; sourceTree = "<group>"; };
+		D866C9071EC9EC4500ABD8EB /* app-icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-60@3x.png"; path = "../images/app-icon-60@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +429,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				D866C9071EC9EC4500ABD8EB /* app-icon-60@3x.png */,
+				D866C9051EC9EC3D00ABD8EB /* app-icon-60@2x.png */,
 				D866C8C41EC99C1D00ABD8EB /* FontAwesome.ttf */,
 				13B07FAE1A68108700A75B9A /* Vienna */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -789,6 +795,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D866C9061EC9EC3D00ABD8EB /* app-icon-60@2x.png in Resources */,
+				D866C9081EC9EC4500ABD8EB /* app-icon-60@3x.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				D866C8C51EC99C1D00ABD8EB /* FontAwesome.ttf in Resources */,
@@ -843,6 +851,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = ZLF8FFAD7U;
@@ -864,6 +873,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZLF8FFAD7U;
 				HEADER_SEARCH_PATHS = "";
