@@ -14,7 +14,7 @@ export default class Add extends Component {
 		this.state = {
 			post: {}
 		}
-		props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+		//props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent() {
 		this.onSave()

@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, View, TextInput, Text, ActivityIndicator, Image} from 'react-native';
+import { connect } from 'react-redux'
 import { values, trim } from 'lodash'
 import { addSite } from '../../actions'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import AddSiteInstructions from '../../components/Sites/AddSiteInstructions'
 import TextInputWithIcon from '../../components/General/TextInputWithIcon'
 
-export default class List extends Component {
+class Add extends Component {
 	static navigatorButtons = {
 		leftButtons: [
 			{
@@ -25,7 +26,7 @@ export default class List extends Component {
 			secret: '',
 			addOAuth: false,
 		}
-		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+		//this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent( event ) {
 		if (event.type == 'NavBarButtonPress') {
@@ -173,3 +174,5 @@ const styles = StyleSheet.create({
 		margin: 10,
 	},
 })
+
+export default connect(s=>s)(Add);

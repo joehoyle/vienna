@@ -19,7 +19,7 @@ export default class List extends Component {
 		this.state = {
 			editingUser: null,
 		}
-		props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+	//	props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
 	}
 	onNavigatorEvent( event ) {
 		this.props.navigator.push({

@@ -16,7 +16,7 @@ export default class Edit extends Component {
 		this.state = {
 			post: {...props.types[ props.type ].posts[ props.post ] }
 		}
-		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+		//this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent() {
 		this.onSave()

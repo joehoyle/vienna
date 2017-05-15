@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, ScrollView} from 'react-native';
+import {TouchableOpacity, ScrollView, Text} from 'react-native';
+import { connect } from 'react-redux'
 import { values } from 'lodash'
 import ListItem from '../../components/Sites/ListItem'
 
-export default class List extends Component {
+class List extends Component {
 	static navigatorButtons = {
 		rightButtons: [ {
 			title: 'Add',
@@ -13,9 +14,15 @@ export default class List extends Component {
 	static navigatorStyle = {
 		navBarNoBorder: true,
 	}
+	static navigationOptions = ({navigationOptions, navigation}) => ({
+		title: 'Sites',
+		headerRight: <TouchableOpacity onPress={() => navigation.navigate('SitesAdd')}>
+			<Text>Add site</Text>
+		</TouchableOpacity>
+	});
 	constructor(props) {
 		super(props)
-		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+		//this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
 	}
 	onNavigatorEvent( event ) {
 		if (event.type == 'NavBarButtonPress') {
@@ -50,3 +57,5 @@ export default class List extends Component {
 		</ScrollView>
 	}
 }
+
+export default connect(s=>s)(List);

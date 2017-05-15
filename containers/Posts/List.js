@@ -17,7 +17,7 @@ export default class List extends Component {
 	}
 	constructor(props) {
 		super(props)
-		props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+		//props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent( event ) {
 		this.props.navigator.push({

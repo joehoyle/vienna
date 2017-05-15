@@ -15,7 +15,7 @@ export default class Add extends Component {
 		this.state = {
 			term: {}
 		}
-		props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+		//props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent() {
 		this.onSave()

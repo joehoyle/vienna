@@ -15,7 +15,7 @@ export default class List extends Component {
 	}
 	constructor(props) {
 		super(props)
-		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+		//this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
 	}
 	componentDidMount() {
 		if ( isEmpty( this.props.taxonomies[ this.props.taxonomy ].terms ) ) {

@@ -15,7 +15,7 @@ export default class Edit extends Component {
 		this.state = {
 			term: {...props.taxonomies[ this.props.taxonomy ].terms[ this.props.term ] }
 		}
-		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+		//this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent() {
 		this.onSave()

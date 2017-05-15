@@ -5,15 +5,10 @@ import SafariView from 'react-native-safari-view'
 import httpapi from '../api'
 import { values, trimEnd } from 'lodash'
 import fetchSiteData from './fetchSiteData'
-import { Navigation } from 'react-native-navigation'
 
 /**
  * Authorize a site to get / renew oauth credentials for that site. This will handle
  * sending the user through the auth flow using a Safar inline view.
- *
- * As a workaround to not being able to show a safar view controller when a modal
- * is showing, we call `Navigation.dismissAllModals()` before showing the safari view,
- * which is a less than ideal UX.
  *
  * @param  int site
  */
@@ -84,8 +79,6 @@ export default function authorizeSite( site ) {
 					type: 'AUTHORIZE_SITE_REQUEST_TOKEN_UPDATED',
 					data: data,
 				})
-
-				Navigation.dismissAllModals()
 
 				setTimeout( () => {
 					SafariView.show({
