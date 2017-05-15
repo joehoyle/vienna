@@ -11,31 +11,45 @@ import { fetchTerms } from '../../actions';
 import PropTypes from '../../PropTypes';
 import ListItem from '../../components/Terms/ListItem';
 import ListError from '../../components/General/ListError';
+import NavigationButton from '../../components/Navigation/Button';
 
 class List extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
 		title: navigation.state.params.taxonomy.name,
+		headerRight: (
+			<NavigationButton
+				onPress={() => {
+					navigation.navigate('TermsAdd', {
+						taxonomy: navigation.state.params.taxonomy,
+					});
+				}}
+			>
+				Add New
+			</NavigationButton>
+		),
 	});
 	constructor(props) {
 		super(props);
 	}
 	componentDidMount() {
 		if (isEmpty(this.props.navigation.state.params.taxonomy.terms)) {
-			this.props.dispatch(fetchTerms({ taxonomy: this.props.navigation.state.params.taxonomy.slug }));
+			this.props.dispatch(
+				fetchTerms({
+					taxonomy: this.props.navigation.state.params.taxonomy.slug,
+				})
+			);
 		}
 	}
 	onSelectTerm(term) {
-		this.props.navigator.push({
-			screen: 'TermsEdit',
-			passProps: {
-				taxonomy: this.props.taxonomy,
-				term: term.id,
-			},
-			title: term.name,
+		this.props.navigation.navigate('TermsEdit', {
+			taxonomy: this.props.navigation.state.params.taxonomy,
+			term,
 		});
 	}
 	onRefresh() {
-		this.props.dispatch(fetchTerms({ taxonomy: this.props.navigation.state.params.taxonomy.slug }));
+		this.props.dispatch(
+			fetchTerms({ taxonomy: this.props.navigation.state.params.taxonomy.slug })
+		);
 	}
 	render() {
 		var taxonomy = this.props.navigation.state.params.taxonomy;

@@ -25,13 +25,7 @@ class List extends Component {
 	}
 
 	onSelectComment(comment) {
-		this.props.navigator.push({
-			screen: 'CommentsEdit',
-			passProps: {
-				comment: comment.id,
-			},
-			title: 'Edit Comment',
-		});
+		this.props.navigation.navigate('CommentsEdit', { comment });
 	}
 
 	onReplyToComment(comment, text) {

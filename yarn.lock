@@ -4105,9 +4105,9 @@ window-size@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
 
-wordpress-rest-api-oauth-1@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/wordpress-rest-api-oauth-1/-/wordpress-rest-api-oauth-1-1.1.6.tgz#e8983a9109ad208844c7ba48273660058d982ae2"
+wordpress-rest-api-oauth-1@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/wordpress-rest-api-oauth-1/-/wordpress-rest-api-oauth-1-1.1.7.tgz#6510e52cdd7fdb7fcdbca9f7a1343f688de82e21"
   dependencies:
     oauth-1.0a "^1.0.1"
     qs "^6.2.0"

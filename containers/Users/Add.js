@@ -1,39 +1,54 @@
-import React, { Component } from 'react'
-import { ScrollView, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import { createUser } from '../../actions'
-import Form from '../../components/Users/Form'
+import React, { Component } from 'react';
+import {
+	ScrollView,
+	View,
+	TouchableOpacity,
+	Text,
+	StyleSheet,
+} from 'react-native';
+import { createUser } from '../../actions';
+import { connect } from 'react-redux';
+import Form from '../../components/Users/Form';
+import NavigationButton from '../../components/Navigation/Button';
 
-export default class Add extends Component {
-	static navigatorButtons = {
-		rightButtons: [{
-			title: 'Save',
-			id: 'save'
-		}]
-	}
+class Add extends Component {
+	static navigationOptions = ({ navigationOptions, navigation }) => ({
+		title: 'Add User',
+		headerRight: (
+			<NavigationButton onPress={() => _this.onSave()}>Save</NavigationButton>
+		),
+	});
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
-			user: {}
-		}
-		//props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+			user: {},
+		};
+		_this = this; // Big hack, see https://github.com/react-community/react-navigation/issues/145
 	}
-	onNavigatorEvent() {
-		this.onSave()
-	}
-	onChangePropertyValue( property, value ) {
-		var user = this.state.user
-		user[ property ] = value
-		this.setState({user})
+	onChangePropertyValue(property, value) {
+		var user = this.state.user;
+		user[property] = value;
+		this.setState({ user });
 	}
 	onSave() {
-		this.props.dispatch( createUser( this.state.user ) )
-		this.props.navigator.pop()
+		this.props.dispatch(createUser(this.state.user));
+		this.props.navigation.toBack();
 	}
 	render() {
-		return <Form
-			user={this.state.user}
-			schema={this.props.users.schema}
-			onChangePropertyValue={(p, v) => this.onChangePropertyValue( p, v )}
-		/>
+		return (
+			<Form
+				user={this.state.user}
+				schema={
+					this.props.sites[this.props.activeSite.id].routes['/wp/v2/users']
+						.schema
+				}
+				onChangePropertyValue={(p, v) => this.onChangePropertyValue(p, v)}
+			/>
+		);
 	}
 }
+
+export default connect(state => ({
+	...state,
+	...(state.activeSite.id ? state.sites[state.activeSite.id].data : null),
+}))(Add);

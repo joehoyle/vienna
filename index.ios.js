@@ -84,6 +84,7 @@ const Routes = StackNavigator(
 		TermsAdd: { screen: TermsAdd },
 		TermsList: { screen: TermsList },
 		UsersList: { screen: UsersList },
+		UsersAdd: { screen: UsersAdd },
 		UsersEdit: { screen: UsersEdit },
 		UsersSelect: { screen: UsersSelect },
 		CommentsList: { screen: CommentsList },

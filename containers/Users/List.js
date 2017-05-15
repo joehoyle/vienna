@@ -15,10 +15,20 @@ import PropTypes from '../../PropTypes';
 import ListItem from '../../components/Users/ListItem';
 import EditItem from './Edit';
 import ListError from '../../components/General/ListError';
+import NavigationButton from '../../components/Navigation/Button';
 
 class List extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
 		title: 'Users',
+		headerRight: (
+			<NavigationButton
+				onPress={() => {
+					navigation.navigate('UsersAdd');
+				}}
+			>
+				Add New
+			</NavigationButton>
+		),
 	});
 	constructor(props) {
 		super(props);

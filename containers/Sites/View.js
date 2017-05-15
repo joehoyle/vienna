@@ -38,6 +38,7 @@ class _View extends Component {
 	onRefresh() {
 		this.props.dispatch(fetchTypes());
 		this.props.dispatch(fetchTaxonomies());
+		this.props.dispatch(fetchSiteData());
 	}
 	onSelectType(type) {
 		this.props.navigation.navigate('PostsList', {
