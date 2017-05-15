@@ -1,21 +1,23 @@
-import React, { Component } from 'react'
-import { StyleSheet, TouchableOpacity, Text } from 'react-native'
+import React, { Component } from 'react';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import NavigationButton from '../../components/Navigation/Button';
 
-export default Button ListError extends Component {
+export default class Button extends Component {
 	static propTypes = {
-		error: React.PropTypes.object.isRequired,
-	}
+		onPress: React.PropTypes.func.isRequired,
+	};
 	render() {
-		return <View style={styles.container}>
-			{props.children}
-		</View>
+		return (
+			<TouchableOpacity onPress={this.props.onPress} style={styles.container}>
+				<Text>{this.props.children}</Text>
+			</TouchableOpacity>
+		);
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
-		padding: 10,
-		backgroundColor: 'red',
+		paddingRight: 10,
 	},
 	text: {
 		lineHeight: 16,
@@ -23,4 +25,4 @@ const styles = StyleSheet.create({
 		flex: 1,
 		textAlign: 'center',
 	},
-})
+});

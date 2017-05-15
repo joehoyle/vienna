@@ -15,10 +15,12 @@ import PostsList from '../../components/Posts/List';
 import MediaList from '../../components/Media/List';
 import Filter from '../../components/Posts/Filter';
 import ListError from '../../components/General/ListError';
+import NavigationButton from '../../components/Navigation/Button';
 
 class List extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
 		title: navigation.state.params.type.name,
+		headerRight: <NavigationButton onPress={() => { navigation.navigate('PostsAdd', { type: navigation.state.params.type }) }}>Add New</NavigationButton>
 	});
 	constructor(props) {
 		super(props);
@@ -36,8 +38,8 @@ class List extends Component {
 	}
 	onSelectPost(post) {
 		this.props.navigation.navigate('PostsEdit', {
-			post: post.id,
-			type: this.props.type,
+			post: post,
+			type: this.props.navigation.state.params.type,
 		});
 	}
 	onChangeFilter(filter) {}
