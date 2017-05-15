@@ -32,7 +32,8 @@
     "redux-storage-engine-reactnativeasyncstorage": "^1.0.1",
     "redux-thunk": "^2.0.1",
     "superagent": "^3.5.2",
-    "time-ago": "^0.1.0"
+    "time-ago": "^0.1.0",
+    "wordpress-rest-api-oauth-1": "^1.1.6"
   },
   "devDependencies": {
     "babel-jest": "^20.0.1",

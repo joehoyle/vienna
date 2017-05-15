@@ -1,4 +1,3 @@
-import OAuth from 'oauth-1.0a'
 import querystring from 'query-string'
 import { Linking } from 'react-native'
 import SafariView from 'react-native-safari-view'
@@ -24,7 +23,7 @@ export default function authorizeSite( site ) {
 			}
 
 			const brokerApi = new httpapi({
-				url: 'https://apps.wp-api.org',
+				url: 'https://apps.wp-api.org/',
 				credentials: {
 					client: {
 						public: 'PWZ3haBUxfS9',
@@ -120,7 +119,7 @@ export default function authorizeSite( site ) {
 
 			api.post( site.authentication.oauth1.access, {
 				oauth_verifier: args.oauth_verifier,
-			}, function( data ) {
+			} ).then( function( data ) {
 				dispatch({
 					type: 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATED',
 					data: data,

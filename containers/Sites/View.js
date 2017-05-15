@@ -1,191 +1,239 @@
-import React, {Component} from 'react';
-import {ScrollView, View, Text, StyleSheet, TouchableOpacity, RefreshControl} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { values, isEmpty } from 'lodash'
-import { removeLocalData, fetchTypes, fetchTaxonomies, removeSite, fetchSiteData, authorizeSite } from '../../actions'
+import React, { Component } from 'react';
+import {
+	ScrollView,
+	View,
+	Text,
+	StyleSheet,
+	TouchableOpacity,
+	RefreshControl,
+} from 'react-native';
+import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { values, isEmpty } from 'lodash';
+import {
+	removeLocalData,
+	fetchTypes,
+	fetchTaxonomies,
+	removeSite,
+	fetchSiteData,
+	authorizeSite,
+} from '../../actions';
 
-export default class _View extends Component {
+class _View extends Component {
+	static navigationOptions = ({ navigationOptions, navigation }) => ({
+		title: navigation.state.params.site.name,
+	});
 	componentDidMount() {
-		if ( isEmpty( this.props.types ) ) {
-			this.props.dispatch( fetchTypes() )
-			this.props.dispatch( fetchTaxonomies() )
+		if (isEmpty(this.props.types)) {
+			this.props.dispatch(fetchTypes());
+			this.props.dispatch(fetchTaxonomies());
 		}
 	}
 	onRemoveLocalData() {
-		this.props.dispatch( removeLocalData() )
-		this.props.dispatch( fetchTypes() )
-		this.props.dispatch( fetchTaxonomies() )
-		this.props.dispatch( fetchSiteData() )
+		this.props.dispatch(removeLocalData());
+		this.props.dispatch(fetchTypes());
+		this.props.dispatch(fetchTaxonomies());
+		this.props.dispatch(fetchSiteData());
 	}
 	onRefresh() {
-		this.props.dispatch( fetchTypes() )
-		this.props.dispatch( fetchTaxonomies() )
+		this.props.dispatch(fetchTypes());
+		this.props.dispatch(fetchTaxonomies());
 	}
-	onSelectType( type ) {
-		this.props.navigator.push({
-			screen: 'PostsList',
-			passProps: {
-				type: type.slug
-			},
-			title: type.name,
-			backButtonTitle: this.getTruncatedTitle(),
-		})
+	onSelectType(type) {
+		this.props.navigation.navigate('PostsList', {
+			type,
+		});
 	}
-	onSelectTaxonomy( taxonomy ) {
-		this.props.navigator.push({
-			screen: 'TermsList',
-			passProps: {
-				taxonomy: taxonomy.slug,
-			},
-			title: taxonomy.name,
-			backButtonTitle: this.getTruncatedTitle(),
-		})
+	onSelectTaxonomy(taxonomy) {
+		this.props.navigation.navigate('TermsList', {
+			taxonomy,
+		});
 	}
 	onSelectUsers() {
-		this.props.navigator.push({
-			screen: 'UsersList',
-			title: 'Users',
-			backButtonTitle: this.getTruncatedTitle(),
-		})
+		this.props.navigation.navigate('UsersList');
 	}
 	onSelectComments() {
-		this.props.navigator.push({
-			screen: 'CommentsList',
-			title: 'Comments',
-			backButtonTitle: this.getTruncatedTitle(),
-		})
+		this.props.navigation.navigate('CommentsList');
 	}
 	onSelectSettings() {
-		this.props.navigator.push({
-			screen: 'SettingsList',
-			title: 'Settings',
-			backButtonTitle: this.getTruncatedTitle(),
-		})
+		this.props.navigation.navigate('SettingsList');
 	}
 	onRemoveSite() {
-		this.props.navigator.pop()
-		this.props.dispatch( removeSite( this.props.activeSite.id ) )
+		this.props.navigation.goBack();
+		this.props.dispatch(removeSite(this.props.activeSite.id));
 	}
 	getTruncatedTitle() {
 		const length = 10;
-		const site = this.props.sites[ this.props.activeSite.id ]
-		var trimmedString = site.name.length > length ?
-			site.name.substring(0, length - 3) + "..." :
-			site.name
-		return trimmedString
+		const site = this.props.sites[this.props.activeSite.id];
+		var trimmedString = site.name.length > length
+			? site.name.substring(0, length - 3) + '...'
+			: site.name;
+		return trimmedString;
 	}
 	onReauthorize() {
-		this.props.dispatch( authorizeSite( this.props.activeSite.id ) )
+		this.props.dispatch(authorizeSite(this.props.activeSite.id));
 	}
 	render() {
-
-		var chevron = <Icon name="chevron-right" size={20} color="#BBBBBB" />
+		var chevron = <Icon name="chevron-right" size={20} color="#BBBBBB" />;
 
 		return (
 			<ScrollView
 				style={styles.container}
-				refreshControl={<RefreshControl
-					refreshing={false}
-					style={{backgroundColor: 'transparent'}}
-					onRefresh={this.onRefresh.bind(this)}
-					tintColor="#666666"
-					title="Pull to refresh..."
-					titleColor="#000000"
+				refreshControl={
+					<RefreshControl
+						refreshing={false}
+						style={{ backgroundColor: 'transparent' }}
+						onRefresh={this.onRefresh.bind(this)}
+						tintColor="#666666"
+						title="Pull to refresh..."
+						titleColor="#000000"
 					/>
-				}>
+				}
+			>
 				<Text style={styles.sectionTitle}>TYPES</Text>
 				<View style={styles.list}>
-					{values(this.props.types).map( ( type, i, arr ) => {
+					{values(this.props.types).map((type, i, arr) => {
 						var iconsMap = {
 							attachment: 'picture-o',
 							page: 'file-powerpoint-o',
 							attachment: 'picture-o',
-						}
+						};
 
-						var iconName = iconsMap[ type.slug ] ? iconsMap[ type.slug ] : 'pencil'
+						var iconName = iconsMap[type.slug] ? iconsMap[type.slug] : 'pencil';
 
 						return (
 							<View key={type.slug}>
-								<TouchableOpacity style={styles.listItem} onPress={this.onSelectType.bind(this,type)}>
-									<Icon style={styles.listItemIcon} name={iconName} size={16} color="#999999" />
+								<TouchableOpacity
+									style={styles.listItem}
+									onPress={this.onSelectType.bind(this, type)}
+								>
+									<Icon
+										style={styles.listItemIcon}
+										name={iconName}
+										size={16}
+										color="#999999"
+									/>
 									<Text style={styles.listItemName}>{type.name}</Text>
 									<View style={styles.listItemValue}>
 										{chevron}
 									</View>
 								</TouchableOpacity>
-								{i < arr.length - 1 ?
-									<View style={styles.listItemDivider} />
-								: null }
+								{i < arr.length - 1
+									? <View style={styles.listItemDivider} />
+									: null}
 							</View>
-						)
+						);
 					})}
 				</View>
 
 				<Text style={styles.sectionTitle}>TAXONOMIES</Text>
 				<View style={styles.list}>
-					{values(this.props.taxonomies).map( ( taxonomy, i, arr ) => {
+					{values(this.props.taxonomies).map((taxonomy, i, arr) => {
 						var iconsMap = {
 							category: 'list',
-						}
+						};
 
-						var iconName = iconsMap[ taxonomy.slug ] ? iconsMap[ taxonomy.slug ] : 'tags'
+						var iconName = iconsMap[taxonomy.slug]
+							? iconsMap[taxonomy.slug]
+							: 'tags';
 
 						return (
 							<View key={taxonomy.slug}>
-								<TouchableOpacity style={styles.listItem} onPress={ () => this.onSelectTaxonomy( taxonomy ) }>
-									<Icon style={styles.listItemIcon} name={iconName} size={16} color="#999999" />
+								<TouchableOpacity
+									style={styles.listItem}
+									onPress={() => this.onSelectTaxonomy(taxonomy)}
+								>
+									<Icon
+										style={styles.listItemIcon}
+										name={iconName}
+										size={16}
+										color="#999999"
+									/>
 									<Text style={styles.listItemName}>{taxonomy.name}</Text>
 									<View style={styles.listItemValue}>
 										{chevron}
 									</View>
 								</TouchableOpacity>
-								{i < arr.length - 1 ?
-									<View style={styles.listItemDivider} />
-								: null }
+								{i < arr.length - 1
+									? <View style={styles.listItemDivider} />
+									: null}
 							</View>
-						)
-
+						);
 					})}
 				</View>
-				<Text style={styles.sectionTitle}></Text>
+				<Text style={styles.sectionTitle} />
 				<View style={styles.list}>
-					<TouchableOpacity style={styles.listItem} onPress={ () => this.onSelectComments() }>
-						<Icon style={styles.listItemIcon} name="comments" size={16} color="#999999" />
+					<TouchableOpacity
+						style={styles.listItem}
+						onPress={() => this.onSelectComments()}
+					>
+						<Icon
+							style={styles.listItemIcon}
+							name="comments"
+							size={16}
+							color="#999999"
+						/>
 						<Text style={styles.listItemName}>Comments</Text>
 						<View style={styles.listItemValue}>{chevron}</View>
 					</TouchableOpacity>
 					<View style={styles.listItemDivider} />
-					<TouchableOpacity style={styles.listItem} onPress={ ()=> this.onSelectUsers() }>
-						<Icon style={styles.listItemIcon} name="users" size={16} color="#999999" />
+					<TouchableOpacity
+						style={styles.listItem}
+						onPress={() => this.onSelectUsers()}
+					>
+						<Icon
+							style={styles.listItemIcon}
+							name="users"
+							size={16}
+							color="#999999"
+						/>
 						<Text style={styles.listItemName}>Users</Text>
 						<View style={styles.listItemValue}>{chevron}</View>
 					</TouchableOpacity>
-					{this.props.settings && this.props.settings.available ?
-						<TouchableOpacity style={styles.listItem} onPress={ () => this.onSelectSettings() }>
-							<Icon style={styles.listItemIcon} name="gear" size={20} color="#999999" />
-							<Text style={styles.listItemName}>Settings</Text>
-							<View style={styles.listItemValue}>{chevron}</View>
-						</TouchableOpacity>
-					: null }
+					{this.props.settings && this.props.settings.available
+						? <TouchableOpacity
+								style={styles.listItem}
+								onPress={() => this.onSelectSettings()}
+							>
+								<Icon
+									style={styles.listItemIcon}
+									name="gear"
+									size={20}
+									color="#999999"
+								/>
+								<Text style={styles.listItemName}>Settings</Text>
+								<View style={styles.listItemValue}>{chevron}</View>
+							</TouchableOpacity>
+						: null}
 				</View>
-				<Text style={styles.sectionTitle}></Text>
+				<Text style={styles.sectionTitle} />
 				<View style={styles.list}>
-					<TouchableOpacity style={styles.listItem} onPress={this.onRemoveSite.bind(this)}>
-						<Text style={styles.listItemNameCentered}>Remove Site from App</Text>
+					<TouchableOpacity
+						style={styles.listItem}
+						onPress={this.onRemoveSite.bind(this)}
+					>
+						<Text style={styles.listItemNameCentered}>
+							Remove Site from App
+						</Text>
 					</TouchableOpacity>
 					<View style={styles.listItemDivider} />
-					<TouchableOpacity style={styles.listItem} onPress={this.onRemoveLocalData.bind(this)}>
+					<TouchableOpacity
+						style={styles.listItem}
+						onPress={this.onRemoveLocalData.bind(this)}
+					>
 						<Text style={styles.listItemNameCentered}>Remove Local Data</Text>
 					</TouchableOpacity>
-					<TouchableOpacity style={styles.listItem} onPress={this.onReauthorize.bind(this)}>
+					<TouchableOpacity
+						style={styles.listItem}
+						onPress={this.onReauthorize.bind(this)}
+					>
 						<Text style={styles.listItemNameCentered}>Reauthorize</Text>
 					</TouchableOpacity>
 				</View>
 			</ScrollView>
-		)
+		);
 	}
 }
-
 
 const styles = StyleSheet.create({
 	container: {
@@ -202,9 +250,7 @@ const styles = StyleSheet.create({
 		marginTop: 15,
 		marginLeft: 60,
 	},
-	list: {
-
-	},
+	list: {},
 	listItem: {
 		flexDirection: 'row',
 		alignItems: 'center',
@@ -233,4 +279,9 @@ const styles = StyleSheet.create({
 	listItemValue: {
 		flexDirection: 'row',
 	},
-})
+});
+
+export default connect(state => ({
+	...state,
+	...(state.activeSite.id ? state.sites[state.activeSite.id].data : null),
+}))(_View);
