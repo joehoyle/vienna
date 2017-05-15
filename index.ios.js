@@ -95,11 +95,21 @@ const Routes = StackNavigator(
 			headerStyle: {
 				backgroundColor: 'white',
 				borderBottomWidth: 0,
+				shadowColor: 'transparent',
+				shadowRadius: 0,
+				shadowOffset: {
+					height: 0,
+				},
 			},
 		},
 		cardStyle: {
 			backgroundColor: 'white',
 			borderTopWidth: 0,
+			shadowRadius: 0,
+			shadowOffset: {
+				height: 0,
+			},
+			shadowColor: 'transparent',
 		},
 	}
 );

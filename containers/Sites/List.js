@@ -3,14 +3,15 @@ import { TouchableOpacity, ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
 import ListItem from '../../components/Sites/ListItem';
+import NavigationButton from '../../components/Navigation/Button';
 
 class List extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
 		title: 'Sites',
 		headerRight: (
-			<TouchableOpacity onPress={() => navigation.navigate('SitesAdd')}>
-				<Text>Add site</Text>
-			</TouchableOpacity>
+			<NavigationButton onPress={() => navigation.navigate('SitesAdd')}>
+				Add site
+			</NavigationButton>
 		),
 	});
 	constructor(props) {
