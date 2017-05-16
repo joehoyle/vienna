@@ -1,17 +1,18 @@
 import React from 'react'
 import { View, TouchableHighlight, Text, requireNativeComponent, NativeModules } from 'react-native'
 
-// From VNEditorManager.m
-const VNEditorManager = NativeModules.VNEditorManager;
-const VNEditor = requireNativeComponent( 'VNEditor', null )
+// From EditorManagerBridge.m for EditorManager.swift
+const EditorManager = NativeModules.EditorManager;
+const EditorComponent = requireNativeComponent( 'Editor', null )
 
 class Editor extends React.Component {
 	render() {
 		return <View>
-			<TouchableHighlight onPress={() => { VNEditorManager.test() }}>
+			<TouchableHighlight onPress={() => { EditorManager.test() }}>
 				<Text>Test it!</Text>
 			</TouchableHighlight>
-			<VNEditor ref={ref => this.editor = ref} {...this.props} />
+
+			<EditorComponent ref={ref => this.editor = ref} {...this.props} />
 		</View>
 	}
 }

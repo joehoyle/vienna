@@ -32,4 +32,8 @@
 	RCT_CUSTOM_VIEW_PROPERTY(content, NSString, TextView) {
 		[self setContentWithJson:json view:view defaultView:defaultView];
 	}
+
+	RCT_EXPORT_METHOD(test) {
+		NSLog(@"Called test!");
+	}
 @end
