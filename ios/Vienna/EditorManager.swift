@@ -18,7 +18,7 @@ class EditorManager: RCTViewManager {
 		let missingImage = Gridicon.iconOfType(.image)
 		let textView = Editor(defaultFont: font, defaultMissingImage: missingImage)
 
-		//textView.delegate = self
+		textView.delegate = self
 		textView.textAttachmentDelegate = self
 
 		attachProviders(textView)
@@ -46,7 +46,18 @@ class EditorManager: RCTViewManager {
 }
 
 extension EditorManager: UITextViewDelegate {
-
+	/**
+	 * Handle text change event.
+	 *
+	 * Pass-through to RN onChange prop, if available.
+	 */
+	func textViewDidChange(_ textView: Editor) {
+		if textView.onChange != nil {
+			textView.onChange!([
+				"content": textView.getHTML(),
+			])
+		}
+	}
 }
 
 extension EditorManager: TextViewAttachmentDelegate {
