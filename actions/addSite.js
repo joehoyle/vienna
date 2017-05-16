@@ -6,7 +6,6 @@ import httpapi from '../api'
 import { values, trimEnd } from 'lodash'
 import fetchSiteData from './fetchSiteData'
 import authorizeSite from './authorizeSite'
-import { Navigation } from 'react-native-navigation'
 
 export default function addSite( url, args = {} ) {
 

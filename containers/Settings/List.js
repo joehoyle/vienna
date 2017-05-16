@@ -5,12 +5,16 @@ import { fetchSettings, changeSetting, updateSettings } from '../../actions'
 import PropTypes from '../../PropTypes'
 import ListItem from '../../components/Users/ListItem'
 import SchemaFormField from '../../components/General/SchemaFormField'
+import { connect } from 'react-redux';
+import NavigationButton from '../../components/Navigation/Button';
 
-export default class List extends Component {
-
+class List extends Component {
+	static navigationOptions = ({ navigationOptions, navigation }) => ({
+		title: 'Settings',
+	});
 	componentWillMount() {
 		if ( isEmpty( this.props.settings.settings ) ) {
-			//this.props.dispatch( fetchSettings() )
+			this.props.dispatch( fetchSettings() )
 		}
 	}
 	onRefresh() {
@@ -39,16 +43,18 @@ export default class List extends Component {
 			default_category: 'Default Category',
 			default_post_format: 'Default Post Format',
 			posts_per_page: 'Posts Per Page',
+			default_ping_status: 'Default Ping Status',
+			default_comment_status: 'Default Comment Status',
 		}
 
 		return (
 			<ScrollView
 				refreshControl={<RefreshControl
-					refreshing={this.props.users.list.loading}
+					refreshing={this.props.settings.list.loading}
 					style={{backgroundColor: 'transparent'}}
 					onRefresh={this.onRefresh.bind(this)}
 					tintColor="#666666"
-					title={this.props.users.list.loading ? 'Loading Settings...' : 'Pull to Refresh...'}
+					title={this.props.settings.list.loading ? 'Loading Settings...' : 'Pull to Refresh...'}
 					titleColor="#000000"
 				/>}
 				>
@@ -78,3 +84,8 @@ const styles = StyleSheet.create({
 		paddingTop: 15,
 	}
 })
+
+export default connect(state => ({
+	...state,
+	...(state.activeSite.id ? state.sites[state.activeSite.id].data : null),
+}))(List);

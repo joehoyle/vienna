@@ -15,7 +15,7 @@ export default class Edit extends Component {
 		this.state = {
 			user: {...props.users.users[ this.props.user ]}
 		}
-		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+		//this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent() {
 		this.onSave()

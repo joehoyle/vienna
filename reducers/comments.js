@@ -19,7 +19,7 @@ export default function comments( state = defaultState, action ) {
 		case 'SITE_CREATED':
 			return {
 				...state,
-				schema: action.payload.sites.routes['/wp/v2/comments'].schema
+				schema: action.payload.site.routes['/wp/v2/comments'].schema
 			}
 		case 'COMMENTS_UPDATING':
 			state.list.loading = true
