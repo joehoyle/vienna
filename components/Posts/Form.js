@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { ScrollView, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import Editor from '../General/Editor'
 import SchemaFormField from '../General/SchemaFormField'
 import MultilineTextFormField from '../../components/General/FormFields/MultilineText'
 import UserSelectFormField from '../../components/General/FormFields/UserSelect'
@@ -41,10 +42,10 @@ export default class Form extends Component {
 						onChange={ value => this.props.onChangePropertyValue( 'title', value ) }
 						onSave={()=>{}}
 					/>
-					<MultilineTextFormField
-						value={object.content ? object.content.raw : null}
+					<Editor
+						content={object.content ? object.content.raw : ""}
 						onChange={ value => this.props.onChangePropertyValue( 'content', value ) }
-						onSave={()=>{}}
+						style={{ height: 300, width: 300 }}
 					/>
 				</View>
 				<View style={styles.authorField}>
