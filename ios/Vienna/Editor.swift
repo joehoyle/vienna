@@ -16,4 +16,5 @@ import Foundation
 */
 class Editor: Aztec.TextView {
 	var onChange: RCTBubblingEventBlock?
+	var _isUpdatingFromReact: Bool = false
 }

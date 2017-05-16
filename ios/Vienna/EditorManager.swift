@@ -39,7 +39,7 @@ class EditorManager: RCTViewManager {
 		}
 	}
 
-	@objc func setContent(json: NSString, view: Aztec.TextView, defaultView: Aztec.TextView) {
+	@objc func setContent(json: NSString, view: Editor, defaultView: Editor) {
 		let content = RCTConvert.nsString(json)
 		view.setHTML(content!)
 	}

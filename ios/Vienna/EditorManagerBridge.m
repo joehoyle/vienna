@@ -29,7 +29,7 @@
 	RCT_EXPORT_MODULE(js_name)
 
 @interface VNN_EXTERN_MODULE(EditorManager)
-	RCT_CUSTOM_VIEW_PROPERTY(content, NSString, TextView) {
+	RCT_CUSTOM_VIEW_PROPERTY(content, NSString, Editor) {
 		[self setContentWithJson:json view:view defaultView:defaultView];
 	}
 
