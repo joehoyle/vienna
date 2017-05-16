@@ -46,7 +46,9 @@ class EditorManager: RCTViewManager {
 		// the change.
 		let current = view.getHTML()
 		if current != content {
+			view._isUpdatingFromReact = true
 			view.setHTML(content!)
+			view._isUpdatingFromReact = false
 		}
 	}
 }
@@ -59,6 +61,10 @@ extension EditorManager: UITextViewDelegate {
 	 */
 	func textViewDidChange(_ textView: UITextView) {
 		let editor = textView as! Editor
+		if editor._isUpdatingFromReact == true {
+			return
+		}
+
 		if editor.onChange != nil {
 			editor.onChange!([
 				"content": editor.getHTML(),
