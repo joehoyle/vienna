@@ -42,10 +42,10 @@ export default class Form extends Component {
 						onChange={ value => this.props.onChangePropertyValue( 'title', value ) }
 						onSave={()=>{}}
 					/>
-					<MultilineTextFormField
-						value={object.content ? object.content.raw : null}
+					<Editor
+						content={object.content ? object.content.raw : ""}
 						onChange={ value => this.props.onChangePropertyValue( 'content', value ) }
-						onSave={()=>{}}
+						style={{ height: 300, width: 300 }}
 					/>
 				</View>
 				<View style={styles.authorField}>
