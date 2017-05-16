@@ -28,6 +28,7 @@
 		D066313B1ECAB61D008748CC /* Gridicons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06630F91ECA946B008748CC /* Gridicons.framework */; };
 		D066313D1ECAD706008748CC /* HTMLAttachmentRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D066313C1ECAD706008748CC /* HTMLAttachmentRenderer.swift */; };
 		D066313F1ECADDF8008748CC /* CommentAttachmentRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D066313E1ECADDF8008748CC /* CommentAttachmentRenderer.swift */; };
+		D06631411ECAE87D008748CC /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06631401ECAE87D008748CC /* Editor.swift */; };
 		D866C8BC1EC99BB400ABD8EB /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D866C8B81EC99AFB00ABD8EB /* libRCTLinking.a */; };
 		D866C8C31EC99BE500ABD8EB /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D866C8C21EC99BE000ABD8EB /* libRNFetchBlob.a */; };
 		D866C8C51EC99C1D00ABD8EB /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D866C8C41EC99C1D00ABD8EB /* FontAwesome.ttf */; };
@@ -295,6 +296,7 @@
 		D06631381ECAAFD9008748CC /* EditorManagerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditorManagerBridge.m; path = Vienna/EditorManagerBridge.m; sourceTree = "<group>"; };
 		D066313C1ECAD706008748CC /* HTMLAttachmentRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTMLAttachmentRenderer.swift; path = Vienna/HTMLAttachmentRenderer.swift; sourceTree = "<group>"; };
 		D066313E1ECADDF8008748CC /* CommentAttachmentRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentAttachmentRenderer.swift; path = Vienna/CommentAttachmentRenderer.swift; sourceTree = "<group>"; };
+		D06631401ECAE87D008748CC /* Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Editor.swift; path = Vienna/Editor.swift; sourceTree = "<group>"; };
 		D866C8B21EC99AFB00ABD8EB /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		D866C8BD1EC99BE000ABD8EB /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		D866C8C41EC99C1D00ABD8EB /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				D066313E1ECADDF8008748CC /* CommentAttachmentRenderer.swift */,
 				D06631361ECAAF78008748CC /* EditorManager.swift */,
+				D06631401ECAE87D008748CC /* Editor.swift */,
 				D06631381ECAAFD9008748CC /* EditorManagerBridge.m */,
 				D066313C1ECAD706008748CC /* HTMLAttachmentRenderer.swift */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -924,6 +927,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D06631411ECAE87D008748CC /* Editor.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				D066313F1ECADDF8008748CC /* CommentAttachmentRenderer.swift in Sources */,
 				D06631371ECAAF78008748CC /* EditorManager.swift in Sources */,

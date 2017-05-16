@@ -16,7 +16,7 @@ class EditorManager: RCTViewManager {
 	override func view() -> UIView {
 		let font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
 		let missingImage = Gridicon.iconOfType(.image)
-		let textView = Aztec.TextView(defaultFont: font, defaultMissingImage: missingImage)
+		let textView = Editor(defaultFont: font, defaultMissingImage: missingImage)
 
 		//textView.delegate = self
 		textView.textAttachmentDelegate = self

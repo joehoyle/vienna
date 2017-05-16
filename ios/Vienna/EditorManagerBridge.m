@@ -33,6 +33,8 @@
 		[self setContentWithJson:json view:view defaultView:defaultView];
 	}
 
+	RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
+
 	RCT_EXPORT_METHOD(test) {
 		NSLog(@"Called test!");
 	}
