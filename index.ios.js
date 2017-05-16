@@ -40,37 +40,25 @@ NativeModules.AppDelegate.getBundleVersion(function(version, build) {
 	}).install();
 });
 
-const logger = createLogger({
-	collapsed: true,
-});
 const engine = storageFilter(createEngine('my-save-keydd'), [
 	'activeSite',
 	'sites',
 ]);
 
 const storageMiddleware = storage.createMiddleware(engine);
-const createStoreWithMiddleware = applyMiddleware(
-	thunk,
-	storageMiddleware,
-	logger
-)(createStore);
+const middleware = [thunk, storageMiddleware];
+
+if (__DEV__) {
+	const logger = createLogger({
+		collapsed: true,
+	});
+	middleware.push(logger);
+}
+const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
 const store = createStoreWithMiddleware(storage.reducer(reducers));
 const loadStorage = storage.createLoader(engine);
 
-loadStorage(store).then(state => {
-	// Object.entries( state.sites ).each( entry => {
-	//
-	// })
-});
-
-var mapStateToProps = state => {
-	if (state.activeSite.id) {
-		site = state.sites[state.activeSite.id].data;
-	} else {
-		site = {};
-	}
-	return { ...site, ...state };
-};
+loadStorage(store).then(state => {});
 
 const Routes = StackNavigator(
 	{
@@ -126,30 +114,3 @@ class App extends Component {
 }
 
 AppRegistry.registerComponent('Vienna', () => App);
-
-// Navigation.registerComponent('SitesList', () => connect( mapStateToProps )( SitesList ), store, Provider)
-// Navigation.registerComponent('SitesAdd', () => connect( mapStateToProps )( SitesAdd ), store, Provider)
-// Navigation.registerComponent('SitesView', () => connect( mapStateToProps )( SitesView ), store, Provider)
-// Navigation.registerComponent('PostsList', () => connect( mapStateToProps )( PostsList ), store, Provider)
-// Navigation.registerComponent('PostsEdit', () => connect( mapStateToProps )( PostsEdit ), store, Provider)
-// Navigation.registerComponent('PostsAdd', () => connect( mapStateToProps )( PostsAdd ), store, Provider)
-// Navigation.registerComponent('TermsEdit', () => connect( mapStateToProps )( TermsEdit ), store, Provider)
-// Navigation.registerComponent('TermsAdd', () => connect( mapStateToProps )( TermsAdd ), store, Provider)
-// Navigation.registerComponent('TermsList', () => connect( mapStateToProps )( TermsList ), store, Provider)
-// Navigation.registerComponent('UsersList', () => connect( mapStateToProps )( UsersList ), store, Provider)
-// Navigation.registerComponent('UsersEdit', () => connect( mapStateToProps )( UsersEdit ), store, Provider)
-// Navigation.registerComponent('UsersAdd', () => connect( mapStateToProps )( UsersAdd ), store, Provider)
-// Navigation.registerComponent('UsersSelect', () => connect( mapStateToProps )( UsersSelect ), store, Provider)
-// Navigation.registerComponent('CommentsList', () => connect( mapStateToProps )( CommentsList ), store, Provider)
-// Navigation.registerComponent('CommentsEdit', () => connect( mapStateToProps )( CommentsEdit ), store, Provider)
-// Navigation.registerComponent('SettingsList', () => connect( mapStateToProps )( SettingsList ), store, Provider)
-
-// Navigation.startSingleScreenApp({
-// 	screen: {
-// 		screen: 'SitesList',
-// 		title: 'Sites',
-// 		navigatorStyle: {
-// 			navBarNoBorder: true,
-// 		}
-// 	},
-// })
