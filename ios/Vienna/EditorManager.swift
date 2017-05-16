@@ -51,10 +51,11 @@ extension EditorManager: UITextViewDelegate {
 	 *
 	 * Pass-through to RN onChange prop, if available.
 	 */
-	func textViewDidChange(_ textView: Editor) {
-		if textView.onChange != nil {
-			textView.onChange!([
-				"content": textView.getHTML(),
+	func textViewDidChange(_ textView: UITextView) {
+		let editor = textView as! Editor
+		if editor.onChange != nil {
+			editor.onChange!([
+				"content": editor.getHTML(),
 			])
 		}
 	}
