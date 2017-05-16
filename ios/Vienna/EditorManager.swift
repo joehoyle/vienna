@@ -41,7 +41,13 @@ class EditorManager: RCTViewManager {
 
 	@objc func setContent(json: NSString, view: Editor, defaultView: Editor) {
 		let content = RCTConvert.nsString(json)
-		view.setHTML(content!)
+
+		// If React is just feeding us back the content we just changed, ignore
+		// the change.
+		let current = view.getHTML()
+		if current != content {
+			view.setHTML(content!)
+		}
 	}
 }
 
