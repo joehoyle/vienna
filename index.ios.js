@@ -10,24 +10,8 @@ import { createLogger } from 'redux-logger';
 import storageFilter from 'redux-storage-decorator-filter';
 import Raven from 'raven-js';
 import ReactRaven from 'raven-js/plugins/react-native';
-import { StackNavigator } from 'react-navigation';
-
-import SitesList from './containers/Sites/List';
-import SitesAdd from './containers/Sites/Add';
-import PostsList from './containers/Posts/List';
-import PostsEdit from './containers/Posts/Edit';
-import PostsAdd from './containers/Posts/Add';
-import TermsEdit from './containers/Terms/Edit';
-import TermsAdd from './containers/Terms/Add';
-import TermsList from './containers/Terms/List';
-import UsersList from './containers/Users/List';
-import UsersEdit from './containers/Users/Edit';
-import UsersAdd from './containers/Users/Add';
-import UsersSelect from './containers/Users/Select';
-import CommentsList from './containers/Comments/List';
-import SitesView from './containers/Sites/View';
-import SettingsList from './containers/Settings/List';
-import CommentsEdit from './containers/Comments/Edit';
+import { StackNavigator, addNavigationHelpers } from 'react-navigation';
+import Routes from './Routes';
 
 // Error tracing
 NativeModules.AppDelegate.getBundleVersion(function(version, build) {
@@ -51,6 +35,8 @@ const middleware = [thunk, storageMiddleware];
 if (__DEV__) {
 	const logger = createLogger({
 		collapsed: true,
+		predicate: (getState, action) =>
+			['REDUX_STORAGE_SAVE'].indexOf(action.type) === -1,
 	});
 	middleware.push(logger);
 }
@@ -58,56 +44,28 @@ const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
 const store = createStoreWithMiddleware(storage.reducer(reducers));
 const loadStorage = storage.createLoader(engine);
 
-loadStorage(store).then(state => {});
+loadStorage(store).then(state => {
 
-const Routes = StackNavigator(
-	{
-		SitesList: { screen: SitesList },
-		SitesAdd: { screen: SitesAdd },
-		SitesView: { screen: SitesView },
-		PostsList: { screen: PostsList },
-		PostsEdit: { screen: PostsEdit },
-		PostsAdd: { screen: PostsAdd },
-		TermsEdit: { screen: TermsEdit },
-		TermsAdd: { screen: TermsAdd },
-		TermsList: { screen: TermsList },
-		UsersList: { screen: UsersList },
-		UsersAdd: { screen: UsersAdd },
-		UsersEdit: { screen: UsersEdit },
-		UsersSelect: { screen: UsersSelect },
-		CommentsList: { screen: CommentsList },
-		CommentsEdit: { screen: CommentsEdit },
-		SettingsList: { screen: SettingsList },
-	},
-	{
-		navigationOptions: {
-			headerStyle: {
-				backgroundColor: 'white',
-				borderBottomWidth: 0,
-				shadowColor: 'transparent',
-				shadowRadius: 0,
-				shadowOffset: {
-					height: 0,
-				},
-			},
-		},
-		cardStyle: {
-			backgroundColor: 'white',
-			borderTopWidth: 0,
-			shadowRadius: 0,
-			shadowOffset: {
-				height: 0,
-			},
-			shadowColor: 'transparent',
-		},
-	}
+});
+
+
+
+const Router = props => (
+	<Routes
+		navigation={addNavigationHelpers({
+			dispatch: props.dispatch,
+			state: props.navigator,
+		})}
+	/>
 );
+
+const RouterWithState = connect(s=>s)(Router)
 
 class App extends Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<Routes />
+				<RouterWithState />
 			</Provider>
 		);
 	}
