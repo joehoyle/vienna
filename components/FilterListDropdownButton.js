@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, { Component } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class FilterListDropdownButton extends Component {
 	propTypes: {
 		size: React.PropTypes.number.isRequired,
 		onPress: React.PropTypes.func.isRequired,
-	}
+	};
 
 	render() {
 		return (
@@ -14,7 +14,7 @@ export default class FilterListDropdownButton extends Component {
 				<Text style={styles.text}>{this.props.children}</Text>
 				<Icon name="sort-desc" color="#333333" size={18} style={styles.icon} />
 			</TouchableOpacity>
-		)
+		);
 	}
 }
 
@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
 	},
 	icon: {
 		marginTop: -4,
-		marginLeft: 8
+		marginLeft: 8,
 	},
-})
+});

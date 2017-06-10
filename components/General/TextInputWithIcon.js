@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react'
-import { View, TextInput, StyleSheet } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, { Component, PropTypes } from 'react';
+import { View, TextInput, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class TextInputWithIcon extends Component {
 	static propTypes = {
@@ -9,23 +9,30 @@ export default class TextInputWithIcon extends Component {
 		placeholder: PropTypes.string,
 		onChangeText: PropTypes.func.isRequired,
 		onSubmitEditing: PropTypes.func,
-		returnKeyType: PropTypes.string
-	}
+		returnKeyType: PropTypes.string,
+	};
 
 	render() {
-		return <View style={styles.container}>
-			<Icon style={styles.inputIcon} name={this.props.icon} size={20} color="#666666" />
-			<TextInput
-				autoCapitalize="none"
-				autoCorrect={false}
-				style={styles.inputText}
-				placeholder={this.props.placeholder}
-				value={this.props.value}
-				onChangeText={this.props.onChangeText}
-				onSubmitEditing={this.props.onSubmitEditing}
-				returnKeyType={this.props.returnKeyType}
-			/>
-		</View>
+		return (
+			<View style={styles.container}>
+				<Icon
+					style={styles.inputIcon}
+					name={this.props.icon}
+					size={20}
+					color="#666666"
+				/>
+				<TextInput
+					autoCapitalize="none"
+					autoCorrect={false}
+					style={styles.inputText}
+					placeholder={this.props.placeholder}
+					value={this.props.value}
+					onChangeText={this.props.onChangeText}
+					onSubmitEditing={this.props.onSubmitEditing}
+					returnKeyType={this.props.returnKeyType}
+				/>
+			</View>
+		);
 	}
 }
 
@@ -37,7 +44,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		borderBottomWidth: 1,
-		borderBottomColor: '#eeeeee'
+		borderBottomColor: '#eeeeee',
 	},
 	icon: {
 		alignSelf: 'center',
@@ -52,6 +59,6 @@ const styles = StyleSheet.create({
 	inputText: {
 		flex: 1,
 		fontSize: 16,
-		lineHeight: 16
+		lineHeight: 16,
 	},
-})
+});

@@ -44,7 +44,9 @@ class Edit extends Component {
 		this.props.navigation.goBack();
 	}
 	render() {
-		var schema = this.props.sites[ this.props.activeSite.id ].routes[ '/wp/v2/comments' ].schema;
+		var schema = this.props.sites[this.props.activeSite.id].routes[
+			'/wp/v2/comments'
+		].schema;
 		var object = this.state.comment;
 
 		var namesMap = {

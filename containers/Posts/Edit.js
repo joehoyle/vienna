@@ -9,7 +9,7 @@ class Edit extends Component {
 		title: `Edit ${navigation.state.params.type.labels.singular_name}`,
 		headerRight: (
 			<NavigationButton onPress={() => _this.onSave()}>Save</NavigationButton>
-		)
+		),
 	});
 	constructor(props) {
 		super(props);

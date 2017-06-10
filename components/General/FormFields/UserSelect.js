@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import React, { Component, PropTypes } from 'react';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export default class UserSelect extends Component {
 	static propTypes = {
 		value: PropTypes.number,
 		onChange: PropTypes.func.isRequired,
-	}
+	};
 	onPressValue() {
 		// Navigation.showModal({
 		// 	screen: 'UsersSelect',
@@ -17,16 +17,17 @@ export default class UserSelect extends Component {
 		// })
 	}
 	render() {
-		return <TouchableOpacity onPress={() => this.onPressValue()}>
-			<Text>{this.props.value}</Text>
-		</TouchableOpacity>
+		return (
+			<TouchableOpacity onPress={() => this.onPressValue()}>
+				<Text>{this.props.value}</Text>
+			</TouchableOpacity>
+		);
 	}
 }
-
 
 const styles = StyleSheet.create({
 	container: {
 		color: '#666666',
 		fontSize: 16,
-	}
-})
+	},
+});

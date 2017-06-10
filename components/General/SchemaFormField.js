@@ -1,13 +1,13 @@
-import React, { Component, PropTypes } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import BooleanField from './SchemaFormFields/Boolean'
-import EmailField from './SchemaFormFields/Email'
-import NumberField from './SchemaFormFields/Number'
-import TextField from './SchemaFormFields/Text'
-import UrlField from './SchemaFormFields/Url'
-import EnumField from './SchemaFormFields/Enum'
-import DateField from './SchemaFormFields/Date'
-import ArrayEnumField from './SchemaFormFields/ArrayEnum'
+import React, { Component, PropTypes } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import BooleanField from './SchemaFormFields/Boolean';
+import EmailField from './SchemaFormFields/Email';
+import NumberField from './SchemaFormFields/Number';
+import TextField from './SchemaFormFields/Text';
+import UrlField from './SchemaFormFields/Url';
+import EnumField from './SchemaFormFields/Enum';
+import DateField from './SchemaFormFields/Date';
+import ArrayEnumField from './SchemaFormFields/ArrayEnum';
 
 export default class SchemaFormField extends Component {
 	static propTypes = {
@@ -16,68 +16,72 @@ export default class SchemaFormField extends Component {
 		name: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired,
 		onSave: PropTypes.func.isRequired,
-	}
+	};
 
 	render() {
-
-		var Field = null
-		if ( this.props.schema.enum ) {
-			Field = EnumField
+		var Field = null;
+		if (this.props.schema.enum) {
+			Field = EnumField;
 		} else {
-			switch ( this.props.schema.type ) {
+			switch (this.props.schema.type) {
 				case 'boolean':
-					Field = BooleanField
-					break
+					Field = BooleanField;
+					break;
 				case 'string':
-					switch ( this.props.schema.format ) {
+					switch (this.props.schema.format) {
 						case 'email':
-							Field = EmailField
-							break
+							Field = EmailField;
+							break;
 						case 'uri':
-							Field = UrlField
-							break
+							Field = UrlField;
+							break;
 						case 'date-time':
-							Field = DateField
-							break
+							Field = DateField;
+							break;
 						default:
-							Field = TextField
+							Field = TextField;
 					}
-					break
+					break;
 				case 'array':
-					if ( ! this.props.schema.items ) {
-						console.log( 'schema for type array foes not have an items prop', this.props.schema )
+					if (!this.props.schema.items) {
+						console.log(
+							'schema for type array foes not have an items prop',
+							this.props.schema
+						);
 					} else {
-						if ( this.props.schema.items.enum ) {
-							Field = ArrayEnumField
+						if (this.props.schema.items.enum) {
+							Field = ArrayEnumField;
 						}
 					}
 					break;
 				case 'integer':
-					Field = NumberField
-					break
+					Field = NumberField;
+					break;
 			}
 		}
 
-		if ( ! Field ) {
-			console.log( 'no field found for schema', this.props.schema )
-			return null
+		if (!Field) {
+			console.log('no field found for schema', this.props.schema);
+			return null;
 		}
-		return <View>
-			<View style={styles.field}>
-				<View style={styles.label}>
-					<Text style={styles.labelText}>{this.props.name}</Text>
+		return (
+			<View>
+				<View style={styles.field}>
+					<View style={styles.label}>
+						<Text style={styles.labelText}>{this.props.name}</Text>
+					</View>
+					<View style={styles.inputField}>
+						<Field
+							value={this.props.value}
+							schema={this.props.schema}
+							name={this.props.name}
+							onChange={this.props.onChange}
+							onSave={this.props.onSave}
+						/>
+					</View>
 				</View>
-				<View style={styles.inputField}>
-					<Field
-						value={this.props.value}
-						schema={this.props.schema}
-						name={this.props.name}
-						onChange={this.props.onChange}
-						onSave={this.props.onSave}
-					/>
-				</View>
-		</View>
-		</View>
+			</View>
+		);
 	}
 }
 
@@ -109,5 +113,5 @@ const styles = StyleSheet.create({
 		color: '#999999',
 		margin: 8,
 		marginBottom: 15,
-	}
-})
+	},
+});

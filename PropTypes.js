@@ -1,4 +1,4 @@
-import { PropTypes }  from 'react'
+import { PropTypes } from 'react';
 
 export default {
 	User: PropTypes.shape({
@@ -41,4 +41,4 @@ export default {
 	Comment: PropTypes.shape({
 		id: PropTypes.number.isRequired,
 	}),
-}
+};

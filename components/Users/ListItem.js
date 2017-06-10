@@ -1,34 +1,42 @@
-import React, {Component} from 'react'
-import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native'
-import PropTypes from '../../PropTypes'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import PropTypes from '../../PropTypes';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class ListItem extends Component {
 	static propTypes = {
 		user: PropTypes.User,
 		onEdit: React.PropTypes.func,
-		icon: React.PropTypes.string
-	}
+		icon: React.PropTypes.string,
+	};
 
 	static defaultProps = {
-		icon: 'chevron-right'
-	}
+		icon: 'chevron-right',
+	};
 
 	render() {
 		return (
 			<View style={styles.container}>
 				<View style={styles.left}>
-					<Image style={styles.image} source={{uri:this.props.user.avatar_urls['96']}} />
+					<Image
+						style={styles.image}
+						source={{ uri: this.props.user.avatar_urls['96'] }}
+					/>
 					<View style={styles.text}>
 						<Text style={styles.title}>{this.props.user.name}</Text>
 						<Text style={styles.roleText}>{this.props.user.roles[0]}</Text>
 					</View>
 				</View>
-				{this.props.icon ?
-					<Icon name={this.props.icon} style={styles.chevron} size={22} color="#BBBBBB" />
-				: null }
+				{this.props.icon
+					? <Icon
+							name={this.props.icon}
+							style={styles.chevron}
+							size={22}
+							color="#BBBBBB"
+						/>
+					: null}
 			</View>
-		)
+		);
 	}
 }
 
@@ -44,9 +52,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 	},
-	text: {
-
-	},
+	text: {},
 	title: {
 		fontSize: 16,
 		lineHeight: 16,
@@ -64,4 +70,4 @@ const styles = StyleSheet.create({
 		borderRadius: 15,
 		backgroundColor: '#EEEEEE',
 	},
-})
+});

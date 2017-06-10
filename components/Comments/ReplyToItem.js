@@ -1,20 +1,26 @@
-import React, {Component} from 'react'
-import {StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native'
-import PropTypes from '../../PropTypes'
-import MultilineTextFormField from '../General/FormFields/MultilineText'
+import React, { Component } from 'react';
+import {
+	StyleSheet,
+	View,
+	Text,
+	TextInput,
+	TouchableOpacity,
+} from 'react-native';
+import PropTypes from '../../PropTypes';
+import MultilineTextFormField from '../General/FormFields/MultilineText';
 
 export default class ReplyToItem extends Component {
 	static propTypes = {
 		comment: PropTypes.Comment,
 		onReply: React.PropTypes.func,
 		onCancel: React.PropTypes.func,
-	}
+	};
 
 	constructor() {
-		super()
+		super();
 		this.state = {
 			replyText: '',
-		}
+		};
 	}
 
 	render() {
@@ -23,19 +29,21 @@ export default class ReplyToItem extends Component {
 				<MultilineTextFormField
 					autoFocus={true}
 					value={this.state.replyText}
-					onChange={replyText => this.setState({replyText})}
+					onChange={replyText => this.setState({ replyText })}
 					onSave={() => this.props.onReply(this.state.replyText)}
 				/>
 				<View style={styles.actions}>
 					<TouchableOpacity onPress={this.props.onCancel}>
 						<Text style={styles.actionsButtonText}>Cancel</Text>
 					</TouchableOpacity>
-					<TouchableOpacity onPress={() => this.props.onReply(this.state.replyText)}>
+					<TouchableOpacity
+						onPress={() => this.props.onReply(this.state.replyText)}
+					>
 						<Text style={styles.actionsButtonText}>Reply</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
-		)
+		);
 	}
 }
 
@@ -64,4 +72,4 @@ const styles = StyleSheet.create({
 		color: '#2E74B1',
 		marginRight: 10,
 	},
-})
+});

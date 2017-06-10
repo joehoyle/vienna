@@ -1,54 +1,61 @@
-import React, {Component} from 'react'
-import {StyleSheet, View, Text, TouchableOpacity, SegmentedControlIOS, LayoutAnimation} from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, { Component } from 'react';
+import {
+	StyleSheet,
+	View,
+	Text,
+	TouchableOpacity,
+	SegmentedControlIOS,
+	LayoutAnimation,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class ListItem extends Component {
 	static propTypes = {
 		filter: React.PropTypes.shape({
-			status: React.PropTypes.string
-		})
-	}
+			status: React.PropTypes.string,
+		}),
+	};
 
-	constructor( props ) {
-		super(props)
-		this.state = { h: 0 }
+	constructor(props) {
+		super(props);
+		this.state = { h: 0 };
 	}
 
 	componentWillMount() {
 		// Animate creation
-		LayoutAnimation.configureNext( LayoutAnimation.create(
-			100, 'linear', 'opacity'
-		))
+		LayoutAnimation.configureNext(
+			LayoutAnimation.create(100, 'linear', 'opacity')
+		);
 	}
 
 	componentDidMount() {
-		this.setState({h:60})
+		this.setState({ h: 60 });
 	}
 
 	componentWillUnmount() {
-		this.setState({h:0})
+		this.setState({ h: 0 });
 	}
 
-	onChange( event ) {
-		var statuses = [ 'all', 'approved', 'hold', 'spam', 'trash' ]
-		this.props.onChange( {
+	onChange(event) {
+		var statuses = ['all', 'approved', 'hold', 'spam', 'trash'];
+		this.props.onChange({
 			...this.props.filter,
-			status: statuses[ event.nativeEvent.selectedSegmentIndex ],
-		} )
+			status: statuses[event.nativeEvent.selectedSegmentIndex],
+		});
 	}
 
 	render() {
 		return (
-			<View style={[styles.container, {height: this.state.h}]}>
+			<View style={[styles.container, { height: this.state.h }]}>
 				<Text style={styles.label}>STATUS</Text>
 				<SegmentedControlIOS
 					values={['All', 'Approved', 'Hold', 'Spam', 'Trash']}
 					selectedIndex={0}
-					tintColor='white'
+					tintColor="white"
 					onChange={this.onChange.bind(this)}
 				/>
 			</View>
-		)
+		);
 	}
 }
 
@@ -62,5 +69,5 @@ const styles = StyleSheet.create({
 		fontSize: 11,
 		color: 'white',
 		marginBottom: 5,
-	}
-})
+	},
+});

@@ -1,5 +1,5 @@
-import updateObject from './updateObject'
+import updateObject from './updateObject';
 
-export default function updateUser( user  ) {
-	return updateObject( user, 'USERS_USER' )
+export default function updateUser(user) {
+	return updateObject(user, 'USERS_USER');
 }

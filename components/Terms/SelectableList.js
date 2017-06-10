@@ -1,41 +1,44 @@
-import React, {Component} from 'react'
-import {Text, StyleSheet, View, TouchableOpacity} from 'react-native'
-import PropTypes from '../../PropTypes'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import PropTypes from '../../PropTypes';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class SelectableList extends Component {
-
 	static propTypes = {
-		terms: React.PropTypes.arrayOf( PropTypes.Term ).isRequired,
-		selectedTerms: React.PropTypes.arrayOf( React.PropTypes.number ).isRequired,
+		terms: React.PropTypes.arrayOf(PropTypes.Term).isRequired,
+		selectedTerms: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
 		onChange: React.PropTypes.func.isRequired,
-	}
+	};
 
-	onChange( term ) {
-		var terms = this.props.selectedTerms.slice()
-		if ( terms.indexOf( term.id ) > -1 ) {
-			terms.splice( terms.indexOf( term.id ), 1 )
+	onChange(term) {
+		var terms = this.props.selectedTerms.slice();
+		if (terms.indexOf(term.id) > -1) {
+			terms.splice(terms.indexOf(term.id), 1);
 		} else {
-			terms.push( term.id )
+			terms.push(term.id);
 		}
-		this.props.onChange( terms )
+		this.props.onChange(terms);
 	}
 
 	render() {
 		return (
 			<View style={styles.list}>
-				{this.props.terms.map( category => {
+				{this.props.terms.map(category => {
 					return (
-						<TouchableOpacity key={category.id} style={styles.listItem} onPress={this.onChange.bind(this,category)}>
+						<TouchableOpacity
+							key={category.id}
+							style={styles.listItem}
+							onPress={this.onChange.bind(this, category)}
+						>
 							<Text style={styles.listItemName}>{category.name}</Text>
-							{this.props.selectedTerms.indexOf( category.id ) > -1 ?
-								<Icon name="check" size={20} color="#A3A3A8" />
-							: null }
+							{this.props.selectedTerms.indexOf(category.id) > -1
+								? <Icon name="check" size={20} color="#A3A3A8" />
+								: null}
 						</TouchableOpacity>
-					)
+					);
 				})}
 			</View>
-		)
+		);
 	}
 }
 
@@ -57,4 +60,4 @@ const styles = StyleSheet.create({
 	listItemName: {
 		fontSize: 16,
 	},
-})
+});

@@ -1,35 +1,43 @@
-import React, {Component } from 'react'
-import {StyleSheet, View, Text, Image, TouchableOpacity, WebView } from 'react-native'
-import PropTypes from '../../PropTypes'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import ConfirmButton from '../ConfirmButton'
+import React, { Component } from 'react';
+import {
+	StyleSheet,
+	View,
+	Text,
+	Image,
+	TouchableOpacity,
+	WebView,
+} from 'react-native';
+import PropTypes from '../../PropTypes';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import ConfirmButton from '../ConfirmButton';
 
 export default class RichItem extends Component {
 	static propTypes = {
 		avatarUrl: React.PropTypes.string,
 		title: React.PropTypes.string.isRequired,
 		content: React.PropTypes.string.isRequired,
-	}
+	};
 	constructor() {
-		super()
+		super();
 		this.state = {
 			webViewHeight: 0,
-		}
+		};
 	}
 	updateWebViewHeight(event) {
-		if ( ! event.jsEvaluationValue ) {
+		if (!event.jsEvaluationValue) {
 			return;
 		}
-		this.setState({webViewHeight: parseInt(event.jsEvaluationValue)})
+		this.setState({ webViewHeight: parseInt(event.jsEvaluationValue) });
 	}
 	render() {
 		return (
 			<View style={styles.container}>
-				{this.props.avatarUrl ?
-					<Image style={styles.authorImage} source={{uri:this.props.avatarUrl}} />
-				:
-					<View style={styles.authorImage} />
-				}
+				{this.props.avatarUrl
+					? <Image
+							style={styles.authorImage}
+							source={{ uri: this.props.avatarUrl }}
+						/>
+					: <View style={styles.authorImage} />}
 				<View style={styles.contentRight}>
 					<View style={styles.authorText}>
 						<Text style={styles.authorName}>{this.props.title}</Text>
@@ -38,15 +46,15 @@ export default class RichItem extends Component {
 						<WebView
 							scrollEnabled={false}
 							injectedJavaScript="document.getElementById('text').scrollHeight;"
-							style={[styles.webView, {height:this.state.webViewHeight}]}
-							source={{html:this.htmlExcerpt()}}
+							style={[styles.webView, { height: this.state.webViewHeight }]}
+							source={{ html: this.htmlExcerpt() }}
 							automaticallyAdjustContentInsets={true}
 							onNavigationStateChange={this.updateWebViewHeight.bind(this)}
 						/>
 					</View>
 				</View>
 			</View>
-		)
+		);
 	}
 
 	htmlExcerpt() {
@@ -65,7 +73,7 @@ export default class RichItem extends Component {
 
 		</style>
 		<div id="text">${this.props.content}</div>
-		`
+		`;
 	}
 }
 
@@ -96,4 +104,4 @@ const styles = StyleSheet.create({
 		borderRadius: 15,
 		backgroundColor: '#EEEEEE',
 	},
-})
+});

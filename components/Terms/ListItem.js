@@ -1,20 +1,25 @@
-import React, {Component} from 'react'
-import {StyleSheet, View, Text} from 'react-native'
-import PropTypes from '../../PropTypes'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, { Component } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import PropTypes from '../../PropTypes';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class ListItem extends Component {
 	static propTypes = {
 		term: PropTypes.Term.isRequired,
-	}
+	};
 
 	render() {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.title}>{this.props.term.name}</Text>
-				<Icon name="chevron-right" style={styles.chevron} size={22} color="#BBBBBB" />
+				<Icon
+					name="chevron-right"
+					style={styles.chevron}
+					size={22}
+					color="#BBBBBB"
+				/>
 			</View>
-		)
+		);
 	}
 }
 
@@ -30,4 +35,4 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		marginLeft: 5,
 	},
-})
+});

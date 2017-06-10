@@ -1,10 +1,17 @@
-import React, {Component} from 'react'
-import {StyleSheet, View, Text, TouchableOpacity, Image, WebView} from 'react-native'
-import PropTypes from '../../PropTypes'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import TimeAgo from './../TimeAgo'
-import ConfirmButton from '../ConfirmButton'
-import RichItem from '../General/RichItem'
+import React, { Component } from 'react';
+import {
+	StyleSheet,
+	View,
+	Text,
+	TouchableOpacity,
+	Image,
+	WebView,
+} from 'react-native';
+import PropTypes from '../../PropTypes';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import TimeAgo from './../TimeAgo';
+import ConfirmButton from '../ConfirmButton';
+import RichItem from '../General/RichItem';
 
 export default class ListItem extends Component {
 	static propTypes = {
@@ -14,10 +21,10 @@ export default class ListItem extends Component {
 		onTrash: React.PropTypes.func,
 		featuredMedia: PropTypes.Media,
 		author: PropTypes.User,
-	}
-	constructor( props ) {
-		super( props )
-		this.state = { webViewHeight: 100 }
+	};
+	constructor(props) {
+		super(props);
+		this.state = { webViewHeight: 100 };
 	}
 	render() {
 		return (
@@ -25,47 +32,58 @@ export default class ListItem extends Component {
 				<RichItem
 					title={this.props.post.title.rendered}
 					content={this.props.post.excerpt.rendered}
-					avatarUrl={this.props.author ? this.props.author.avatar_urls['96'] : null}
-					imageUrl={this.props.featuredMedia ? this.props.featuredMedia.media_details.sizes.medium.source_url : null}
+					avatarUrl={
+						this.props.author ? this.props.author.avatar_urls['96'] : null
+					}
+					imageUrl={
+						this.props.featuredMedia
+							? this.props.featuredMedia.media_details.sizes.medium.source_url
+							: null
+					}
 				/>
 				<View style={styles.actions}>
-					{this.props.onEdit ?
-						<TouchableOpacity style={styles.actionsButton} onPress={this.props.onEdit}>
-							<View style={styles.actionsButton}>
-								<Icon name="pencil" size={14} color="#888888" />
-								<Text style={styles.actionsButtonText}>Edit</Text>
-							</View>
-						</TouchableOpacity>
-					: null }
-					{this.props.onView ?
-						<TouchableOpacity style={styles.actionsButton} onPress={this.props.onView}>
-							<View style={styles.actionsButton}>
-								<Icon name="external-link" size={14} color="#888888" />
-								<Text style={styles.actionsButtonText}>View</Text>
-							</View>
-						</TouchableOpacity>
-					: null }
-					{this.props.onTrash ?
-						<ConfirmButton
-							style={styles.actionsButton}
-							onPress={this.props.onTrash}
-							text="Trash"
-							textStyle={styles.actionsButtonText}
-							confirmText="Confirm"
-							confirmTextStyle={styles.actionsButtonText}
-							icon="trash"
-							confirmIcon="check"
-						/>
-					: null }
+					{this.props.onEdit
+						? <TouchableOpacity
+								style={styles.actionsButton}
+								onPress={this.props.onEdit}
+							>
+								<View style={styles.actionsButton}>
+									<Icon name="pencil" size={14} color="#888888" />
+									<Text style={styles.actionsButtonText}>Edit</Text>
+								</View>
+							</TouchableOpacity>
+						: null}
+					{this.props.onView
+						? <TouchableOpacity
+								style={styles.actionsButton}
+								onPress={this.props.onView}
+							>
+								<View style={styles.actionsButton}>
+									<Icon name="external-link" size={14} color="#888888" />
+									<Text style={styles.actionsButtonText}>View</Text>
+								</View>
+							</TouchableOpacity>
+						: null}
+					{this.props.onTrash
+						? <ConfirmButton
+								style={styles.actionsButton}
+								onPress={this.props.onTrash}
+								text="Trash"
+								textStyle={styles.actionsButtonText}
+								confirmText="Confirm"
+								confirmTextStyle={styles.actionsButtonText}
+								icon="trash"
+								confirmIcon="check"
+							/>
+						: null}
 				</View>
 			</View>
-		)
+		);
 	}
 }
 
 const styles = StyleSheet.create({
-	container: {
-	},
+	container: {},
 	title: {
 		margin: 15,
 		height: 25,
@@ -103,5 +121,5 @@ const styles = StyleSheet.create({
 	webView: {
 		marginLeft: 10,
 		marginRight: 10,
-	}
-})
+	},
+});

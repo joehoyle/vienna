@@ -20,21 +20,36 @@ import NavigationButton from '../../components/Navigation/Button';
 class List extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
 		title: navigation.state.params.type.name,
-		headerRight: <NavigationButton onPress={() => { navigation.navigate('PostsAdd', { type: navigation.state.params.type }) }}>Add New</NavigationButton>
+		headerRight: (
+			<NavigationButton
+				onPress={() => {
+					navigation.navigate('PostsAdd', {
+						type: navigation.state.params.type,
+					});
+				}}
+			>
+				Add New
+			</NavigationButton>
+		),
 	});
 	constructor(props) {
 		super(props);
 	}
 	componentDidMount() {
 		setTimeout(() => {
-			var posts = this.props.types[this.props.navigation.state.params.type.slug].posts;
+			var posts = this.props.types[this.props.navigation.state.params.type.slug]
+				.posts;
 			if (isEmpty(posts)) {
-				this.props.dispatch(fetchPosts({ type: this.props.navigation.state.params.type.slug }));
+				this.props.dispatch(
+					fetchPosts({ type: this.props.navigation.state.params.type.slug })
+				);
 			}
 		}, 400);
 	}
 	onRefresh() {
-		this.props.dispatch(fetchPosts({ type: this.props.navigation.state.params.type.slug }));
+		this.props.dispatch(
+			fetchPosts({ type: this.props.navigation.state.params.type.slug })
+		);
 	}
 	onSelectPost(post) {
 		this.props.navigation.navigate('PostsEdit', {
@@ -61,7 +76,9 @@ class List extends Component {
 			attachment: MediaList,
 		};
 
-		var ListComponent = componentMap[this.props.navigation.state.params.type.slug]
+		var ListComponent = componentMap[
+			this.props.navigation.state.params.type.slug
+		]
 			? componentMap[this.props.navigation.state.params.type.slug]
 			: PostsList;
 

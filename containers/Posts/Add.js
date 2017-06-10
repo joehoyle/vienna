@@ -9,7 +9,7 @@ class Add extends Component {
 		title: `Add ${navigation.state.params.type.labels.singular_name}`,
 		headerRight: (
 			<NavigationButton onPress={() => _this.onSave()}>Save</NavigationButton>
-		)
+		),
 	});
 	constructor(props) {
 		super(props);
@@ -24,7 +24,9 @@ class Add extends Component {
 		this.setState({ post });
 	}
 	onSave() {
-		this.props.dispatch(createPost(this.state.post, this.props.navigation.state.params.type.slug));
+		this.props.dispatch(
+			createPost(this.state.post, this.props.navigation.state.params.type.slug)
+		);
 		this.props.navigation.toBack();
 	}
 	render() {

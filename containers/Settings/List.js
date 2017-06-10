@@ -1,10 +1,18 @@
-import React, { Component } from 'react'
-import { ScrollView, View, Image, RefreshControl, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import { values, isEmpty } from 'lodash'
-import { fetchSettings, changeSetting, updateSettings } from '../../actions'
-import PropTypes from '../../PropTypes'
-import ListItem from '../../components/Users/ListItem'
-import SchemaFormField from '../../components/General/SchemaFormField'
+import React, { Component } from 'react';
+import {
+	ScrollView,
+	View,
+	Image,
+	RefreshControl,
+	TouchableOpacity,
+	Text,
+	StyleSheet,
+} from 'react-native';
+import { values, isEmpty } from 'lodash';
+import { fetchSettings, changeSetting, updateSettings } from '../../actions';
+import PropTypes from '../../PropTypes';
+import ListItem from '../../components/Users/ListItem';
+import SchemaFormField from '../../components/General/SchemaFormField';
 import { connect } from 'react-redux';
 import NavigationButton from '../../components/Navigation/Button';
 
@@ -13,21 +21,21 @@ class List extends Component {
 		title: 'Settings',
 	});
 	componentWillMount() {
-		if ( isEmpty( this.props.settings.settings ) ) {
-			this.props.dispatch( fetchSettings() )
+		if (isEmpty(this.props.settings.settings)) {
+			this.props.dispatch(fetchSettings());
 		}
 	}
 	onRefresh() {
-		this.props.dispatch( fetchSettings() )
+		this.props.dispatch(fetchSettings());
 	}
-	onChangeSettingValue( setting, value ) {
-		this.props.dispatch( changeSetting( setting, value ) )
+	onChangeSettingValue(setting, value) {
+		this.props.dispatch(changeSetting(setting, value));
 	}
 	onUpdateSettings() {
-		this.props.dispatch( updateSettings( this.props.settings.settings ) )
+		this.props.dispatch(updateSettings(this.props.settings.settings));
 	}
 	render() {
-		var settings = this.props.settings.settings
+		var settings = this.props.settings.settings;
 
 		var settingsNamesMap = {
 			title: 'Site Title',
@@ -45,45 +53,57 @@ class List extends Component {
 			posts_per_page: 'Posts Per Page',
 			default_ping_status: 'Default Ping Status',
 			default_comment_status: 'Default Comment Status',
-		}
+		};
 
 		return (
 			<ScrollView
-				refreshControl={<RefreshControl
-					refreshing={this.props.settings.list.loading}
-					style={{backgroundColor: 'transparent'}}
-					onRefresh={this.onRefresh.bind(this)}
-					tintColor="#666666"
-					title={this.props.settings.list.loading ? 'Loading Settings...' : 'Pull to Refresh...'}
-					titleColor="#000000"
-				/>}
-				>
+				refreshControl={
+					<RefreshControl
+						refreshing={this.props.settings.list.loading}
+						style={{ backgroundColor: 'transparent' }}
+						onRefresh={this.onRefresh.bind(this)}
+						tintColor="#666666"
+						title={
+							this.props.settings.list.loading
+								? 'Loading Settings...'
+								: 'Pull to Refresh...'
+						}
+						titleColor="#000000"
+					/>
+				}
+			>
 				<View style={styles.list}>
-					{Object.entries( settings ).map( properties => {
-						const value = properties[1]
-						const setting = properties[0]
-						const schema = this.props.settings.schema.properties[ setting ]
-						return <View style={styles.listItem} key={setting}>
-							<SchemaFormField
-								name={settingsNamesMap[ setting ] ? settingsNamesMap[ setting ] : setting}
-								schema={schema}
-								value={value}
-								onChange={value => this.onChangeSettingValue( setting, value )}
-								onSave={() => this.onUpdateSettings()}
-							/>
-						</View>
+					{Object.entries(settings).map(properties => {
+						const value = properties[1];
+						const setting = properties[0];
+						const schema = this.props.settings.schema.properties[setting];
+						return (
+							<View style={styles.listItem} key={setting}>
+								<SchemaFormField
+									name={
+										settingsNamesMap[setting]
+											? settingsNamesMap[setting]
+											: setting
+									}
+									schema={schema}
+									value={value}
+									onChange={value => this.onChangeSettingValue(setting, value)}
+									onSave={() => this.onUpdateSettings()}
+								/>
+							</View>
+						);
 					})}
 				</View>
 			</ScrollView>
-		)
+		);
 	}
 }
 
 const styles = StyleSheet.create({
 	list: {
 		paddingTop: 15,
-	}
-})
+	},
+});
 
 export default connect(state => ({
 	...state,

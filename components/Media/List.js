@@ -1,43 +1,57 @@
-import React, {Component} from 'react'
-import {View, Image, StyleSheet, ScrollView, TouchableOpacity, Text, RefreshControl} from 'react-native'
-import PropTypes from '../../PropTypes'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { isEmpty } from 'lodash'
+import React, { Component } from 'react';
+import {
+	View,
+	Image,
+	StyleSheet,
+	ScrollView,
+	TouchableOpacity,
+	Text,
+	RefreshControl,
+} from 'react-native';
+import PropTypes from '../../PropTypes';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { isEmpty } from 'lodash';
 
 export default class List extends Component {
-
 	static propTypes = {
-		posts: React.PropTypes.arrayOf( PropTypes.Media ).isRequired,
+		posts: React.PropTypes.arrayOf(PropTypes.Media).isRequired,
 		onEdit: React.PropTypes.func.isRequired,
-	}
+	};
 
 	render() {
 		return (
-			<ScrollView
-				refreshControl={this.props.refreshControl}
-				>
+			<ScrollView refreshControl={this.props.refreshControl}>
 				<View style={styles.container}>
-					{this.props.posts.map( attachment => {
+					{this.props.posts.map(attachment => {
 						return (
 							<TouchableOpacity
 								key={attachment.id}
-								onPress={this.props.onEdit.bind(null,attachment)}
+								onPress={this.props.onEdit.bind(null, attachment)}
 								style={styles.imageHighlight}
-								>
-								{attachment.media_type === 'image' && attachment.media_details.sizes && attachment.media_details.sizes.thumbnail ?
-									<Image
-										style={styles.image}
-										source={{uri:attachment.media_details.sizes.thumbnail ? attachment.media_details.sizes.thumbnail.source_url : attachment.source_url}}
+							>
+								{attachment.media_type === 'image' &&
+									attachment.media_details.sizes &&
+									attachment.media_details.sizes.thumbnail
+									? <Image
+											style={styles.image}
+											source={{
+												uri: attachment.media_details.sizes.thumbnail
+													? attachment.media_details.sizes.thumbnail.source_url
+													: attachment.source_url,
+											}}
 										/>
-								:
-									<Icon name="file" style={{margin:19}} size={61} color="#9999" />
-								}
+									: <Icon
+											name="file"
+											style={{ margin: 19 }}
+											size={61}
+											color="#9999"
+										/>}
 							</TouchableOpacity>
-						)
-					} ) }
+						);
+					})}
 				</View>
 			</ScrollView>
-		)
+		);
 	}
 }
 
@@ -49,11 +63,9 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-start',
 		flexWrap: 'wrap',
 	},
-	imageHighlight: {
-
-	},
+	imageHighlight: {},
 	image: {
 		width: 93,
 		height: 93,
 	},
-})
+});

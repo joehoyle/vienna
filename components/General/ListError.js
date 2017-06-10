@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import React, { Component } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 
 export default class ListError extends Component {
 	static propTypes = {
 		error: React.PropTypes.object.isRequired,
-	}
+	};
 	render() {
-		return <View style={styles.container}>
-			<Text style={styles.text}>{this.props.error.message}</Text>
-		</View>
+		return (
+			<View style={styles.container}>
+				<Text style={styles.text}>{this.props.error.message}</Text>
+			</View>
+		);
 	}
 }
 
@@ -23,4 +25,4 @@ const styles = StyleSheet.create({
 		flex: 1,
 		textAlign: 'center',
 	},
-})
+});
