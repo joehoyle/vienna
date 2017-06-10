@@ -100,7 +100,11 @@ export default function authorizeSite(site) {
 				});
 			});
 
+		var dismissed = true;
 		var showErrorOnDismiss = SafariView.addEventListener('onDismiss', () => {
+			if (!dismissed) {
+				return;
+			}
 			Linking.removeEventListener('url', listener);
 			dispatch({
 				type: 'AUTHORIZE_SITE_FAILED',
@@ -110,6 +114,7 @@ export default function authorizeSite(site) {
 
 		var listener = function(event) {
 			showErrorOnDismiss.remove();
+			dismissed = false;
 			SafariView.dismiss();
 			Linking.removeEventListener('url', listener);
 			var args = querystring.parse(event.url.split('?')[1]);
