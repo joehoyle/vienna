@@ -24,7 +24,10 @@ class _View extends Component {
 		title: navigation.state.params.site.name,
 	});
 	componentDidMount() {
-		if (isEmpty(this.props.types)) {
+		if (
+			isEmpty(this.props.types) &&
+			!isEmpty(this.props.sites[this.props.activeSite.id].credentials)
+		) {
 			this.props.dispatch(fetchTypes());
 			this.props.dispatch(fetchTaxonomies());
 		}
