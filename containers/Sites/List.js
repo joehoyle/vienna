@@ -16,6 +16,25 @@ class List extends Component {
 	});
 	constructor(props) {
 		super(props);
+		this.state = {
+			shownAddSiteOnLoad: false,
+		};
+	}
+	componentWillReceiveProps(newProps) {
+		if (
+			newProps.loaded &&
+			Object.values(newProps.sites).length === 0 &&
+			!this.state.shownAddSiteOnLoad
+		) {
+			this.setState(
+				{
+					shownAddSiteOnLoad: true,
+				},
+				() => {
+					this.props.navigation.navigate('SitesAdd');
+				}
+			);
+		}
 	}
 	onSelectSite(site) {
 		this.props.dispatch({
