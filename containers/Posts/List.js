@@ -6,6 +6,7 @@ import {
 	RefreshControl,
 	ActivityIndicator,
 	Text,
+	Linking,
 } from 'react-native';
 import { values, isEmpty } from 'lodash';
 import { connect } from 'react-redux';
@@ -56,6 +57,11 @@ class List extends Component {
 			post: post,
 			type: this.props.navigation.state.params.type,
 		});
+	}
+	onViewPost(post) {
+		Linking.openURL(post.link).catch(err =>
+			console.error('An error occurred', err)
+		);
 	}
 	onChangeFilter(filter) {}
 
@@ -116,7 +122,7 @@ class List extends Component {
 					users={this.props.users.users}
 					media={this.props.types.attachment.posts}
 					onEdit={post => this.onSelectPost(post)}
-					onView={post => this.onSelectPost(post)}
+					onView={post => this.onViewPost(post)}
 					onTrash={post => this.props.dispatch(trashPost(post))}
 				/>
 			</View>
