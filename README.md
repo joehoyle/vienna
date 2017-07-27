@@ -26,8 +26,9 @@ to interact with your WordPress install.
 - Clone the repository.
 - In Terminal, change to the project folder, and run `npm install`.
 
-### Building the app
+### Building and running the app
 - Open Xcode, and open the `ios/Vienna.xcodeproj` project.
+- Run `npm start`.
 - Select _Product > Run_.
 
 ### Connecting to your WordPress site
@@ -37,7 +38,7 @@ to interact with your WordPress install.
 - Add a new site from the App
 - Enter the URL of your WordPress site
 
-#### Using  site without the Authentication Broker
+#### Using site without the Authentication Broker
 
 In this case, you'll just need the [WP REST API OAuth 1 plugin](https://github.com/WP-API/OAuth1) on your site.
 
