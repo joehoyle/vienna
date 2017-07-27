@@ -4,6 +4,7 @@ import { Linking } from 'react-native';
 import SafariView from 'react-native-safari-view';
 import httpapi from '../api';
 import { values, trimEnd } from 'lodash';
+import URI from 'urijs'
 import fetchSiteData from './fetchSiteData';
 import authorizeSite from './authorizeSite';
 
@@ -33,10 +34,9 @@ export default function addSite(url, args = {}) {
 					throw new Error('Unable to find REST API Link header on the site.');
 				}
 
-				var restUrl = linkHeaders[0].match('<(.+)>; rel="https://api.w.org/"')[
-					1
-				];
-				return fetch(`${restUrl}?context=help`)
+				var restUrl = new URI(linkHeaders[0].match('<(.+)>; rel="https://api.w.org/"')[1]);
+				restUrl.addQuery('context', 'help')
+				return fetch(`${restUrl}`)
 					.then(response => response.json())
 					.then(data => {
 						if (data.namespaces.indexOf('wp/v2') === -1) {
