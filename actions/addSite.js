@@ -1,7 +1,6 @@
 import OAuth from 'oauth-1.0a';
 import querystring from 'query-string';
 import { Linking } from 'react-native';
-import SafariView from 'react-native-safari-view';
 import httpapi from '../api';
 import { values, trimEnd } from 'lodash';
 import URI from 'urijs'
@@ -58,7 +57,7 @@ export default function addSite(url, args = {}) {
 							type: 'SITE_CREATED',
 							payload: {
 								site: data,
-								rest_url: restUrl,
+								rest_url: '' + restUrl,
 								id: siteId,
 								args: args,
 							},
