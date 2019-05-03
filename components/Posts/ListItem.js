@@ -21,7 +21,7 @@ export default class ListItem extends Component {
 		onView: PropTypes.func,
 		onTrash: PropTypes.func,
 		featuredMedia: ViennaPropTypes.Media,
-		author: PropTypes.User,
+		author: ViennaPropTypes.User,
 	};
 	constructor(props) {
 		super(props);
