@@ -1,15 +1,26 @@
-import imagepicker from 'react-native-image-picker';
+import { ActionSheetIOS } from 'react-native';
+import { ImagePicker, Permissions } from 'expo';
 import { createPost } from '../actions';
 import httpapi from '../api';
 
-const options = {
-	title: 'Select Photo for Upload', // specify null or empty string to remove the title
-	cancelButtonTitle: 'Cancel',
-	takePhotoButtonTitle: 'Take Photo...', // specify null or empty string to remove this button
-	chooseFromLibraryButtonTitle: 'Choose from Library...', // specify null or empty string to remove this button
-	cameraType: 'back', // 'front' or 'back'
-	mediaType: 'photo', // 'photo' or 'video'
-	noData: false, // photos only - disables the base64 `data` field from being generated (greatly improves performance on large photos)
+const selectOptions = {
+	title: 'Select Photo for Upload',
+	options: [
+		'Take Photo...',
+		'Choose from Library...',
+		'Cancel',
+	],
+	destructiveButtonIndex: 2,
+};
+
+const libraryOptions = {
+	mediaTypes: 'Images',
+	base64: true,
+};
+
+const cameraOptions = {
+	exif: false,
+	base64: true,
 };
 
 export default function uploadImage() {
@@ -17,31 +28,53 @@ export default function uploadImage() {
 		const store = getStore();
 		const api = new httpapi(store.sites[store.activeSite.id]);
 
-		imagepicker.showImagePicker(options, response => {
-			if (response.didCancel) {
+		// Work out which they want.
+		ActionSheetIOS.showActionSheetWithOptions( selectOptions, async option => {
+			if ( option === selectOptions.destructiveButtonIndex ) {
+				// Cancelled.
 				return;
-			} else if (response.error) {
-				console.log('ImagePicker Error: ', response.error);
-				return;
-			} else {
-				// You can display the image using either data:
-				dispatch(createPost('attachment'));
-
-				api
-					.upload('/wp/v2/media', response.data, 'image/png', 'test.png')
-					.then(data => {
-						dispatch({
-							type: 'TYPE_POSTS_NEW_UPDATED',
-							payload: {
-								type: 'attachment',
-								data: data,
-							},
-						});
-					})
-					.catch(err => {
-						console.error(err);
-					});
 			}
+
+			const takePhoto = option === 0;
+			const permission = takePhoto ? Permissions.CAMERA : Permissions.CAMERA_ROLL;
+
+			// Do we have permission?
+			let permissions = await Permissions.getAsync( permission );
+			if ( permissions.status !== 'granted' ) {
+				// Asking for permission...
+				permissions = await Permissions.askAsync( permission );
+				if ( permissions.status !== 'granted' ) {
+					// No permission :(
+					console.log( 'fuk' );
+					return;
+				}
+			}
+
+			const response = await (
+				takePhoto ? ImagePicker.launchCameraAsync( cameraOptions ) : ImagePicker.launchImageLibraryAsync( libraryOptions )
+			);
+
+			if ( response.cancelled ) {
+				return;
+			}
+
+			// You can display the image using either data:
+			// dispatch(createPost('attachment'));
+
+			// api
+			// 	.upload('/wp/v2/media', response.data, 'image/png', 'test.png')
+			// 	.then(data => {
+			// 		dispatch({
+			// 			type: 'TYPE_POSTS_NEW_UPDATED',
+			// 			payload: {
+			// 				type: 'attachment',
+			// 				data: data,
+			// 			},
+			// 		});
+			// 	})
+			// 	.catch(err => {
+			// 		console.error(err);
+			// 	});
 		});
 	};
 }
