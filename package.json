@@ -20,7 +20,7 @@
     "raven-js": "^3.7.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-    "react-native-autogrow-textinput": "^3.0.2",
+    "react-native-autogrow-textinput": "^5.2.0",
     "react-native-custom-action-sheet": "0.0.11",
     "react-native-fetch-blob": "^0.10.5",
     "react-native-hyperlink": "0.0.9",
