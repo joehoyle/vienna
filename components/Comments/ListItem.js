@@ -4,9 +4,7 @@ import {
 	StyleSheet,
 	View,
 	Text,
-	Image,
 	TouchableOpacity,
-	WebView,
 } from 'react-native';
 import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';

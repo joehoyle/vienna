@@ -3,7 +3,6 @@ import {
 	StyleSheet,
 	TouchableOpacity,
 	View,
-	TextInput,
 	Text,
 	ActivityIndicator,
 	Image,

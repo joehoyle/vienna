@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
-import { values, isEmpty } from 'lodash';
 import ViennaPropTypes from '../../PropTypes';
 import ListItem from './ListItem';
 

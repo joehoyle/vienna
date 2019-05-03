@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import NavigationButton from '../../components/Navigation/Button';
 
 export default class Button extends Component {
 	static propTypes = {

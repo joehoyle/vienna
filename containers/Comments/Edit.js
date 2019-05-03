@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import {
 	ScrollView,
 	View,
-	TouchableOpacity,
-	Text,
 	StyleSheet,
 } from 'react-native';
-import { values, isEmpty } from 'lodash';
-import PropTypes from '../../PropTypes';
 import { updateComment } from '../../actions';
 import SchemaFormField from '../../components/General/SchemaFormField';
 import MultilineTextFormField

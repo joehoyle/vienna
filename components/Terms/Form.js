@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import {
 	ScrollView,
 	View,
-	TouchableOpacity,
-	Text,
 	StyleSheet,
 } from 'react-native';
 import SchemaFormField from '../General/SchemaFormField';

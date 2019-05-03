@@ -4,7 +4,6 @@ import {
 	StyleSheet,
 	View,
 	Text,
-	TouchableOpacity,
 	SegmentedControlIOS,
 	LayoutAnimation,
 } from 'react-native';

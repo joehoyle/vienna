@@ -5,10 +5,8 @@ import {
 	View,
 	Text,
 	Image,
-	TouchableOpacity,
 	WebView,
 } from 'react-native';
-import ConfirmButton from '../ConfirmButton';
 
 export default class RichItem extends Component {
 	static propTypes = {

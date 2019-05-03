@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import {
 	ScrollView,
-	Image,
 	RefreshControl,
 	TouchableOpacity,
-	Modal,
 	View,
-	Text,
 } from 'react-native';
 import { values, isEmpty } from 'lodash';
 import { fetchUsers } from '../../actions';
-import PropTypes from '../../PropTypes';
 import ListItem from '../../components/Users/ListItem';
-import EditItem from './Edit';
 import ListError from '../../components/General/ListError';
 
 export default class List extends Component {

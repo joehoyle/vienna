@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
 	ScrollView,
-	Image,
 	View,
 	RefreshControl,
 	StyleSheet,
@@ -9,7 +8,6 @@ import {
 import { connect } from 'react-redux';
 import { values, isEmpty } from 'lodash';
 import { fetchComments, createComment, trashComment } from '../../actions';
-import PropTypes from '../../PropTypes';
 import ListItem from '../../components/Comments/ListItem';
 import Filter from '../../components/Comments/Filter';
 import ListError from '../../components/General/ListError';

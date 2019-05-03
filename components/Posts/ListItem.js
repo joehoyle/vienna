@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
-import TimeAgo from './../TimeAgo';
 import ConfirmButton from '../ConfirmButton';
 import RichItem from '../General/RichItem';
 

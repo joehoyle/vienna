@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
-import ConfirmButton from '../ConfirmButton';
 
 export default class ListItem extends Component {
 	static propTypes = {
