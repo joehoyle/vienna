@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { NativeModules, AppRegistry } from 'react-native';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider, connect } from 'react-redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
-import { createLogger } from 'redux-logger';
 import storageFilter from 'redux-storage-decorator-filter';
 // import Raven from 'raven-js';
 // import ReactRaven from 'raven-js/plugins/react-native';
@@ -32,16 +31,9 @@ const engine = storageFilter(createEngine('my-save-keydd'), [
 const storageMiddleware = storage.createMiddleware(engine);
 const middleware = [thunk, storageMiddleware];
 
-if (__DEV__) {
-	const logger = createLogger({
-		collapsed: true,
-		predicate: (getState, action) =>
-			['REDUX_STORAGE_SAVE'].indexOf(action.type) === -1,
-	});
-	middleware.push(logger);
-}
-const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
-const store = createStoreWithMiddleware(storage.reducer(reducers));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancer = composeEnhancers( applyMiddleware( ...middleware ) );
+const store = createStore(storage.reducer(reducers), enhancer);
 const loadStorage = storage.createLoader(engine);
 
 loadStorage(store).then(state => {
