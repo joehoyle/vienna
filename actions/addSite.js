@@ -27,7 +27,7 @@ export default function addSite(url, args = {}) {
 		fetch(url, { redirect: 'follow' })
 			.then(response => {
 				var linkHeaders = response.headers
-					.getAll('Link')
+					.get('Link').split(',')
 					.filter(link => link.match('rel="https://api.w.org/"'));
 
 				if (linkHeaders.length === 0) {
