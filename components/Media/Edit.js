@@ -3,7 +3,7 @@ import { View, StyleSheet, Image } from 'react-native';
 import PropTypes from '../../PropTypes';
 
 export default class Edit extends Component {
-	static propTypes: {
+	static propTypes = {
 		post: PropTypes.Media,
 	};
 

@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
 export default class FilterListDropdownButton extends Component {
-	propTypes: {
-		size: React.PropTypes.number.isRequired,
-		onPress: React.PropTypes.func.isRequired,
+	static propTypes = {
+		size: PropTypes.number.isRequired,
+		onPress: PropTypes.func.isRequired,
 	};
 
 	render() {
