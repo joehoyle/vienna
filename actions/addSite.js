@@ -34,8 +34,9 @@ export default function addSite(url, args = {}) {
 				}
 
 				var restUrl = new URI(linkHeaders[0].match('<(.+)>; rel="https://api.w.org/"')[1]);
-				restUrl.addQuery('context', 'help')
-				return fetch(`${restUrl}`)
+				var helpUrl = restUrl.clone();
+				helpUrl.addQuery('context', 'help')
+				return fetch( '' + helpUrl )
 					.then(response => response.json())
 					.then(data => {
 						if (data.namespaces.indexOf('wp/v2') === -1) {
