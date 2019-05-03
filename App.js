@@ -8,21 +8,21 @@ import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
 import { createLogger } from 'redux-logger';
 import storageFilter from 'redux-storage-decorator-filter';
-import Raven from 'raven-js';
-import ReactRaven from 'raven-js/plugins/react-native';
+// import Raven from 'raven-js';
+// import ReactRaven from 'raven-js/plugins/react-native';
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 import Routes from './Routes';
 
 // Error tracing
-NativeModules.AppDelegate.getBundleVersion(function(version, build) {
-	if (__DEV__) {
-		return false;
-	}
-	ReactRaven(Raven);
-	Raven.config('https://1da89ea4f2a948f881160b9ebb3c71d8@sentry.io/104708', {
-		release: version + '-' + build,
-	}).install();
-});
+// NativeModules.AppDelegate.getBundleVersion(function(version, build) {
+// 	if (__DEV__) {
+// 		return false;
+// 	}
+// 	ReactRaven(Raven);
+// 	Raven.config('https://1da89ea4f2a948f881160b9ebb3c71d8@sentry.io/104708', {
+// 		release: version + '-' + build,
+// 	}).install();
+// });
 
 const engine = storageFilter(createEngine('my-save-keydd'), [
 	'activeSite',
@@ -61,7 +61,7 @@ const Router = props => (
 
 const RouterWithState = connect(s=>s)(Router)
 
-class App extends Component {
+export default class App extends Component {
 	render() {
 		return (
 			<Provider store={store}>
@@ -70,5 +70,3 @@ class App extends Component {
 		);
 	}
 }
-
-AppRegistry.registerComponent('Vienna', () => App);
