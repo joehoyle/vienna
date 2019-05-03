@@ -1,14 +1,12 @@
+import { WebBrowser } from 'expo';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import SafariView from 'react-native-safari-view';
 
 export default class AddSiteInstructions extends Component {
 	openURL(url) {
-		SafariView.show({
-			url: url,
-			tintColor: '#2E73B0',
-		});
+		WebBrowser.openBrowserAsync( url );
 	}
+
 	render() {
 		return (
 			<View style={styles.container}>

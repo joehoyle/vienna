@@ -26,7 +26,6 @@
     "react-native-fetch-blob": "^0.10.5",
     "react-native-hyperlink": "0.0.9",
     "react-native-image-picker": "^0.26.3",
-    "react-native-safari-view": "^2.0.0",
     "react-native-vector-icons": "^4.1.1",
     "react-navigation": "^1.0.0-beta.9",
     "react-redux": "^5.0.4",
