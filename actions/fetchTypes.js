@@ -22,6 +22,10 @@ export default function fetchPosts(args) {
 					site.routes['/']._links.self,
 					''
 				);
+				if ( ! site.routes['/' + route] ) {
+					return;
+				}
+
 				type.schema = site.routes['/' + route].schema;
 			});
 
