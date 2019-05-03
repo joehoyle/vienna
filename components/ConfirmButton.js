@@ -9,9 +9,11 @@ export default class ConfirmButton extends Component {
 		confirmIcon: React.PropTypes.string,
 		confirmText: React.PropTypes.string,
 	};
-	componentWillMount() {
-		this.state = { requiresConfirm: false };
-	}
+
+	state = {
+		requiresConfirm: false,
+	};
+
 	onPress() {
 		if (this.state.requiresConfirm) {
 			this.props.onPress();
