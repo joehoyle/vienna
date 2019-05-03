@@ -7,12 +7,11 @@ import reducers from './reducers';
 import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
 import storageFilter from 'redux-storage-decorator-filter';
-// import Raven from 'raven-js';
-// import ReactRaven from 'raven-js/plugins/react-native';
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 import Routes from './Routes';
 
 // Error tracing
+// TODO: replace with sentry-expo: https://docs.sentry.io/clients/react-native/expo/
 // NativeModules.AppDelegate.getBundleVersion(function(version, build) {
 // 	if (__DEV__) {
 // 		return false;
