@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
 	StyleSheet,
@@ -10,8 +11,8 @@ import {
 
 export default class ListItem extends Component {
 	static propTypes = {
-		filter: React.PropTypes.shape({
-			status: React.PropTypes.string,
+		filter: PropTypes.shape({
+			status: PropTypes.string,
 		}),
 	};
 

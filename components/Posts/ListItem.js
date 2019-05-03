@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
 	StyleSheet,
@@ -7,7 +8,7 @@ import {
 	Image,
 	WebView,
 } from 'react-native';
-import PropTypes from '../../PropTypes';
+import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import TimeAgo from './../TimeAgo';
 import ConfirmButton from '../ConfirmButton';
@@ -15,11 +16,11 @@ import RichItem from '../General/RichItem';
 
 export default class ListItem extends Component {
 	static propTypes = {
-		post: PropTypes.Post.isRequired,
-		onEdit: React.PropTypes.func,
-		onView: React.PropTypes.func,
-		onTrash: React.PropTypes.func,
-		featuredMedia: PropTypes.Media,
+		post: ViennaPropTypes.Post.isRequired,
+		onEdit: PropTypes.func,
+		onView: PropTypes.func,
+		onTrash: PropTypes.func,
+		featuredMedia: ViennaPropTypes.Media,
 		author: PropTypes.User,
 	};
 	constructor(props) {

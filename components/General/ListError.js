@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 export default class ListError extends Component {
 	static propTypes = {
-		error: React.PropTypes.object.isRequired,
+		error: PropTypes.object.isRequired,
 	};
 	render() {
 		return (

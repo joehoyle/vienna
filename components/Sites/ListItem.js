@@ -1,12 +1,12 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
-import PropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import ConfirmButton from '../ConfirmButton';
 
 export default class ListItem extends Component {
 	static propTypes = {
-		site: React.PropTypes.object.isRequired,
+		site: PropTypes.object.isRequired,
 	};
 
 	render() {

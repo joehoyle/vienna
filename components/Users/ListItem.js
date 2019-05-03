@@ -1,13 +1,14 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import PropTypes from '../../PropTypes';
+import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
 export default class ListItem extends Component {
 	static propTypes = {
-		user: PropTypes.User,
-		onEdit: React.PropTypes.func,
-		icon: React.PropTypes.string,
+		user: ViennaPropTypes.User,
+		onEdit: PropTypes.func,
+		icon: PropTypes.string,
 	};
 
 	static defaultProps = {

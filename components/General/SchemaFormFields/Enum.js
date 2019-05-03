@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Picker } from 'react-native';
 import CustomActionSheet from 'react-native-custom-action-sheet';
 

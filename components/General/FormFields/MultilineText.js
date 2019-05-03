@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 

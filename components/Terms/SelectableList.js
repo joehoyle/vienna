@@ -1,13 +1,14 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
-import PropTypes from '../../PropTypes';
+import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
 export default class SelectableList extends Component {
 	static propTypes = {
-		terms: React.PropTypes.arrayOf(PropTypes.Term).isRequired,
-		selectedTerms: React.PropTypes.arrayOf(React.PropTypes.number).isRequired,
-		onChange: React.PropTypes.func.isRequired,
+		terms: PropTypes.arrayOf(ViennaPropTypes.Term).isRequired,
+		selectedTerms: PropTypes.arrayOf(PropTypes.number).isRequired,
+		onChange: PropTypes.func.isRequired,
 	};
 
 	onChange(term) {

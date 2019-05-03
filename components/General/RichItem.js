@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
 	StyleSheet,
@@ -7,14 +8,13 @@ import {
 	TouchableOpacity,
 	WebView,
 } from 'react-native';
-import PropTypes from '../../PropTypes';
 import ConfirmButton from '../ConfirmButton';
 
 export default class RichItem extends Component {
 	static propTypes = {
-		avatarUrl: React.PropTypes.string,
-		title: React.PropTypes.string.isRequired,
-		content: React.PropTypes.string.isRequired,
+		avatarUrl: PropTypes.string,
+		title: PropTypes.string.isRequired,
+		content: PropTypes.string.isRequired,
 	};
 	constructor() {
 		super();

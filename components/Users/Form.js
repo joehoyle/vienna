@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
 	ScrollView,
@@ -10,9 +11,9 @@ import SchemaFormField from '../General/SchemaFormField';
 
 export default class Form extends Component {
 	static propTypes = {
-		user: React.PropTypes.object.isRequired,
-		schema: React.PropTypes.object.isRequired,
-		onChangePropertyValue: React.PropTypes.func.isRequired,
+		user: PropTypes.object.isRequired,
+		schema: PropTypes.object.isRequired,
+		onChangePropertyValue: PropTypes.func.isRequired,
 	};
 	render() {
 		const schema = this.props.schema;

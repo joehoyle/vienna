@@ -16,6 +16,7 @@
   "dependencies": {
     "expo": "^32.0.0",
     "oauth-1.0a": "^2.1.1",
+    "prop-types": "^15.7.2",
     "query-string": "^4.3.4",
     "raven-js": "^3.7.0",
     "react": "16.5.0",

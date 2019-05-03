@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
 	StyleSheet,
@@ -6,14 +7,14 @@ import {
 	TextInput,
 	TouchableOpacity,
 } from 'react-native';
-import PropTypes from '../../PropTypes';
+import ViennaPropTypes from '../../PropTypes';
 import MultilineTextFormField from '../General/FormFields/MultilineText';
 
 export default class ReplyToItem extends Component {
 	static propTypes = {
-		comment: PropTypes.Comment,
-		onReply: React.PropTypes.func,
-		onCancel: React.PropTypes.func,
+		comment: ViennaPropTypes.Comment,
+		onReply: PropTypes.func,
+		onCancel: PropTypes.func,
 	};
 
 	constructor() {

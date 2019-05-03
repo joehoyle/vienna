@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
 export default class Text extends Component {

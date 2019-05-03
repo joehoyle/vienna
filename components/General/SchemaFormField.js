@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import BooleanField from './SchemaFormFields/Boolean';
 import EmailField from './SchemaFormFields/Email';

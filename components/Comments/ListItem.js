@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
 	StyleSheet,
@@ -7,7 +8,7 @@ import {
 	TouchableOpacity,
 	WebView,
 } from 'react-native';
-import PropTypes from '../../PropTypes';
+import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import ConfirmButton from '../ConfirmButton';
 import ReplyToItem from './ReplyToItem';
@@ -15,9 +16,9 @@ import RichItem from '../General/RichItem';
 
 export default class ListItem extends Component {
 	static propTypes = {
-		comment: PropTypes.Comment,
-		onEdit: React.PropTypes.func,
-		onReply: React.PropTypes.func,
+		comment: ViennaPropTypes.Comment,
+		onEdit: PropTypes.func,
+		onReply: PropTypes.func,
 	};
 
 	constructor() {

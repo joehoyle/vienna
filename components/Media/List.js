@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
 	View,
@@ -8,14 +9,14 @@ import {
 	Text,
 	RefreshControl,
 } from 'react-native';
-import PropTypes from '../../PropTypes';
+import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import { isEmpty } from 'lodash';
 
 export default class List extends Component {
 	static propTypes = {
-		posts: React.PropTypes.arrayOf(PropTypes.Media).isRequired,
-		onEdit: React.PropTypes.func.isRequired,
+		posts: PropTypes.arrayOf(ViennaPropTypes.Media).isRequired,
+		onEdit: PropTypes.func.isRequired,
 	};
 
 	render() {
