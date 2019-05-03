@@ -1,6 +1,5 @@
-import { AuthSession, Constants, WebBrowser } from 'expo';
+import { AuthSession } from 'expo';
 import querystring from 'query-string';
-import { Linking } from 'react-native';
 import httpapi from '../api';
 import { values, trimEnd } from 'lodash';
 import fetchSiteData from './fetchSiteData';
