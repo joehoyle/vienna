@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Picker } from 'react-native';
-import CustomActionSheet from 'react-native-custom-action-sheet';
+// import CustomActionSheet from 'react-native-custom-action-sheet';
+const CustomActionSheet = props => null;
 
 export default class Enum extends Component {
 	static propTypes = {

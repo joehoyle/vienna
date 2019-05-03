@@ -7,7 +7,8 @@ import {
 	TouchableOpacity,
 	DatePickerIOS,
 } from 'react-native';
-import CustomActionSheet from 'react-native-custom-action-sheet';
+// import CustomActionSheet from 'react-native-custom-action-sheet';
+const CustomActionSheet = props => null;
 
 export default class DateField extends Component {
 	static propTypes = {
