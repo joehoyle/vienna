@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome as Icon } from '@expo/vector-icons';
 
 export default class TextInputWithIcon extends Component {
 	static propTypes = {

@@ -8,7 +8,7 @@ import {
 	RefreshControl,
 } from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome as Icon } from '@expo/vector-icons';
 import { values, isEmpty } from 'lodash';
 import {
 	removeLocalData,

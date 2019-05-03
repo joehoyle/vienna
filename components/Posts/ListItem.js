@@ -8,7 +8,7 @@ import {
 	WebView,
 } from 'react-native';
 import PropTypes from '../../PropTypes';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome as Icon } from '@expo/vector-icons';
 import TimeAgo from './../TimeAgo';
 import ConfirmButton from '../ConfirmButton';
 import RichItem from '../General/RichItem';

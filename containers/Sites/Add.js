@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { values, trim } from 'lodash';
 import { addSite } from '../../actions';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome as Icon } from '@expo/vector-icons';
 import AddSiteInstructions from '../../components/Sites/AddSiteInstructions';
 import TextInputWithIcon from '../../components/General/TextInputWithIcon';
 

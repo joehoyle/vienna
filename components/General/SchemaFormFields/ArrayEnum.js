@@ -7,8 +7,7 @@ import {
 	Modal,
 	ScrollView,
 } from 'react-native';
-import CustomActionSheet from 'react-native-custom-action-sheet';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome as Icon } from '@expo/vector-icons';
 
 export default class ArrayEnum extends Component {
 	static propTypes = {

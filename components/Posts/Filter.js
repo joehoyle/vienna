@@ -7,7 +7,6 @@ import {
 	SegmentedControlIOS,
 	LayoutAnimation,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class ListItem extends Component {
 	static propTypes = {

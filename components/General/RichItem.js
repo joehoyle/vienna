@@ -8,7 +8,6 @@ import {
 	WebView,
 } from 'react-native';
 import PropTypes from '../../PropTypes';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import ConfirmButton from '../ConfirmButton';
 
 export default class RichItem extends Component {
