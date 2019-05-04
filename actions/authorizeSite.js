@@ -55,6 +55,27 @@ export default function authorizeSite(site) {
 				});
 		});
 
+		var handler = ( args ) => {
+			dispatch({
+				type: 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATING',
+				data: args,
+			});
+
+			var store = getStore();
+			var api = new httpapi(store.sites[store.activeSite.id]);
+
+			api
+				.post(site.authentication.oauth1.access, {
+					oauth_verifier: args.oauth_verifier,
+				})
+				.then(function(data) {
+					dispatch({
+						type: 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATED',
+						data: data,
+					});
+				});
+		};
+
 		promise
 			.then(function() {
 				var store = getStore();
@@ -131,26 +152,5 @@ export default function authorizeSite(site) {
 					error: error,
 				});
 			});
-
-		var handler = ( args ) => {
-			dispatch({
-				type: 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATING',
-				data: args,
-			});
-
-			var store = getStore();
-			var api = new httpapi(store.sites[store.activeSite.id]);
-
-			api
-				.post(site.authentication.oauth1.access, {
-					oauth_verifier: args.oauth_verifier,
-				})
-				.then(function(data) {
-					dispatch({
-						type: 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATED',
-						data: data,
-					});
-				});
-		};
 	};
 }
