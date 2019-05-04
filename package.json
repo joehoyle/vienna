@@ -34,10 +34,10 @@
     "wordpress-rest-api-oauth-1": "^1.1.7"
   },
   "devDependencies": {
-    "babel-jest": "^20.0.1",
+    "babel-jest": "24",
     "babel-preset-expo": "^5.0.0",
-    "jest": "^20.0.1",
+    "jest": "24",
     "jest-react-native": "^18.0.0",
-    "react-test-renderer": "^15.3.2"
+    "react-test-renderer": "16.5"
   }
 }
