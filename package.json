@@ -22,7 +22,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-autogrow-textinput": "^5.2.0",
     "react-native-custom-action-sheet": "0.0.11",
-    "react-navigation": "^1.0.0-beta.9",
+    "react-navigation": "3",
     "react-redux": "6",
     "react-router-native": "5",
     "redux": "4",
