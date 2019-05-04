@@ -71,6 +71,7 @@ export default function authorizeSite(site) {
 			})
 			.then(data => {
 				const redirectUrl = AuthSession.getRedirectUrl();
+				console.log( `Redirect URL is: ${ redirectUrl }` );
 				var store = getStore();
 				var url = store.sites[store.activeSite.id].url;
 				url =
