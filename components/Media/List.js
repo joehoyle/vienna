@@ -6,12 +6,9 @@ import {
 	StyleSheet,
 	ScrollView,
 	TouchableOpacity,
-	Text,
-	RefreshControl,
 } from 'react-native';
 import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
-import { isEmpty } from 'lodash';
 
 export default class List extends Component {
 	static propTypes = {

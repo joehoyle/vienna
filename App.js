@@ -6,7 +6,7 @@ import reducers from './reducers';
 import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
 import storageFilter from 'redux-storage-decorator-filter';
-import { StackNavigator, addNavigationHelpers } from 'react-navigation';
+import { addNavigationHelpers } from 'react-navigation';
 import Routes from './Routes';
 
 // Error tracing

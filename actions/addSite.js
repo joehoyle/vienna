@@ -1,18 +1,8 @@
-import OAuth from 'oauth-1.0a';
-import querystring from 'query-string';
-import { Linking } from 'react-native';
-import httpapi from '../api';
-import { trimEnd } from 'lodash';
 import URI from 'urijs'
-import fetchSiteData from './fetchSiteData';
 import authorizeSite from './authorizeSite';
 
 export default function addSite(url, args = {}) {
 	return (dispatch, getStore) => {
-		/*
-		 * Don't add duplicate sites.
-		 */
-		var siteUrls = Object.values(getStore().sites).map(site => site.url);
 		dispatch({
 			type: 'SITE_CREATING',
 		});

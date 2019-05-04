@@ -1,8 +1,6 @@
 import { AuthSession } from 'expo';
 import querystring from 'query-string';
 import httpapi from '../api';
-import { trimEnd } from 'lodash';
-import fetchSiteData from './fetchSiteData';
 
 /**
  * Authorize a site to get / renew oauth credentials for that site. This will handle
@@ -63,7 +61,6 @@ export default function authorizeSite(site) {
 				dispatch({
 					type: 'AUTHORIZE_SITE_REQUEST_TOKEN_UPDATING',
 				});
-				const someURL = url;
 
 				return api.post(site.authentication.oauth1.request, {
 					callback_url: 'wordpress-react-native://site_callback',

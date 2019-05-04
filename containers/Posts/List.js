@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
 	StyleSheet,
-	ScrollView,
 	View,
 	RefreshControl,
 	ActivityIndicator,
@@ -11,7 +10,6 @@ import {
 import { isEmpty } from 'lodash';
 import { connect } from 'react-redux';
 import { trashPost, fetchPosts } from '../../actions';
-import PropTypes from '../../PropTypes';
 import PostsList from '../../components/Posts/List';
 import MediaList from '../../components/Media/List';
 import Filter from '../../components/Posts/Filter';

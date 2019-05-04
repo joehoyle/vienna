@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, ScrollView, Text } from 'react-native';
+import { TouchableOpacity, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import ListItem from '../../components/Sites/ListItem';
 import NavigationButton from '../../components/Navigation/Button';
