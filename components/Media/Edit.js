@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import PropTypes from '../../PropTypes';
 
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
+});
+
 export default class Edit extends Component {
 	static propTypes = {
 		post: PropTypes.Media,
@@ -21,9 +27,3 @@ export default class Edit extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-});

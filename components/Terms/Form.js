@@ -7,6 +7,12 @@ import {
 } from 'react-native';
 import SchemaFormField from '../General/SchemaFormField';
 
+const styles = StyleSheet.create({
+	list: {
+		paddingTop: 15,
+	},
+});
+
 export default class Form extends Component {
 	static propTypes = {
 		term: PropTypes.object.isRequired,
@@ -51,9 +57,3 @@ export default class Form extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	list: {
-		paddingTop: 15,
-	},
-});

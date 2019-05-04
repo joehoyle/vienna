@@ -10,6 +10,12 @@ import { fetchSettings, changeSetting, updateSettings } from '../../actions';
 import SchemaFormField from '../../components/General/SchemaFormField';
 import { connect } from 'react-redux';
 
+const styles = StyleSheet.create({
+	list: {
+		paddingTop: 15,
+	},
+});
+
 class List extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
 		title: 'Settings',
@@ -92,12 +98,6 @@ class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	list: {
-		paddingTop: 15,
-	},
-});
 
 export default connect(state => ({
 	...state,

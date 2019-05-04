@@ -3,6 +3,27 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		height: 44,
+		padding: 10,
+	},
+	text: {
+		marginLeft: 5,
+	},
+	title: {
+		fontSize: 16,
+	},
+	url: {
+		color: '#999999',
+		fontSize: 12,
+		lineHeight: 12,
+	},
+});
+
 export default class ListItem extends Component {
 	static propTypes = {
 		site: PropTypes.object.isRequired,
@@ -25,24 +46,3 @@ export default class ListItem extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		height: 44,
-		padding: 10,
-	},
-	text: {
-		marginLeft: 5,
-	},
-	title: {
-		fontSize: 16,
-	},
-	url: {
-		color: '#999999',
-		fontSize: 12,
-		lineHeight: 12,
-	},
-});

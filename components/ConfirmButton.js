@@ -3,6 +3,14 @@ import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+	},
+	icon: {},
+	text: {},
+});
+
 export default class ConfirmButton extends Component {
 	static propTypes = {
 		icon: PropTypes.string,
@@ -48,11 +56,3 @@ export default class ConfirmButton extends Component {
 				</TouchableOpacity>;
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-	},
-	icon: {},
-	text: {},
-});

@@ -12,6 +12,33 @@ import ConfirmButton from '../ConfirmButton';
 import ReplyToItem from './ReplyToItem';
 import RichItem from '../General/RichItem';
 
+const styles = StyleSheet.create({
+	container: {
+		marginBottom: 0,
+		marginTop: 5,
+		flexDirection: 'column',
+	},
+	belowRighItem: {
+		marginLeft: 45,
+	},
+	actions: {
+		flexDirection: 'row',
+	},
+	actionsButton: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginRight: 10,
+	},
+	actionsButtonText: {
+		textAlign: 'center',
+		padding: 5,
+		fontSize: 14,
+		color: '#666666',
+	},
+	replyToItem: {},
+});
+
 export default class ListItem extends Component {
 	static propTypes = {
 		comment: ViennaPropTypes.Comment,
@@ -113,30 +140,3 @@ export default class ListItem extends Component {
 		`;
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		marginBottom: 0,
-		marginTop: 5,
-		flexDirection: 'column',
-	},
-	belowRighItem: {
-		marginLeft: 45,
-	},
-	actions: {
-		flexDirection: 'row',
-	},
-	actionsButton: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		marginRight: 10,
-	},
-	actionsButtonText: {
-		textAlign: 'center',
-		padding: 5,
-		fontSize: 14,
-		color: '#666666',
-	},
-	replyToItem: {},
-});

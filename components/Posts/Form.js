@@ -12,6 +12,21 @@ import MultilineTextFormField
 import UserSelectFormField
 	from '../../components/General/FormFields/UserSelect';
 
+const styles = StyleSheet.create({
+	list: {
+		paddingTop: 15,
+	},
+	contentField: {
+		margin: 10,
+	},
+	authorField: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		paddingLeft: 10,
+		paddingRight: 10,
+	},
+});
+
 export default class Form extends Component {
 	static propTypes = {
 		post: PropTypes.object.isRequired,
@@ -95,18 +110,3 @@ export default class Form extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	list: {
-		paddingTop: 15,
-	},
-	contentField: {
-		margin: 10,
-	},
-	authorField: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		paddingLeft: 10,
-		paddingRight: 10,
-	},
-});

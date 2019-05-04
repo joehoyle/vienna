@@ -4,6 +4,14 @@ import { ScrollView, View, StyleSheet } from 'react-native';
 import ViennaPropTypes from '../../PropTypes';
 import ListItem from './ListItem';
 
+const styles = StyleSheet.create({
+	listItem: {
+		padding: 15,
+		borderBottomColor: '#F7F7F7',
+		borderBottomWidth: 1,
+	},
+});
+
 export default class List extends Component {
 	static propTypes = {
 		posts: PropTypes.arrayOf(ViennaPropTypes.Post).isRequired,
@@ -39,11 +47,3 @@ export default class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	listItem: {
-		padding: 15,
-		borderBottomColor: '#F7F7F7',
-		borderBottomWidth: 1,
-	},
-});

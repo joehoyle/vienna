@@ -16,6 +16,20 @@ import Filter from '../../components/Posts/Filter';
 import ListError from '../../components/General/ListError';
 import NavigationButton from '../../components/Navigation/Button';
 
+const styles = StyleSheet.create({
+	creating: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		paddingBottom: 5,
+		backgroundColor: '#2E73B0',
+	},
+	creatingText: {
+		marginLeft: 5,
+		lineHeight: 17,
+		color: 'rgba(255,255,255,.3)',
+	},
+});
+
 class List extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
 		title: navigation.state.params.type.name,
@@ -127,20 +141,6 @@ class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	creating: {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		paddingBottom: 5,
-		backgroundColor: '#2E73B0',
-	},
-	creatingText: {
-		marginLeft: 5,
-		lineHeight: 17,
-		color: 'rgba(255,255,255,.3)',
-	},
-});
 
 export default connect(state => ({
 	...state,

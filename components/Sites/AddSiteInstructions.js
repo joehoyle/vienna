@@ -2,6 +2,27 @@ import { WebBrowser } from 'expo';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
+const styles = StyleSheet.create({
+	container: {},
+	description: {
+		color: '#666666',
+		marginTop: 15,
+		marginBottom: 15,
+		textAlign: 'center',
+	},
+	link: {
+		color: '#2E73B0',
+	},
+	steps: {
+		marginBottom: 15,
+		borderRadius: 2,
+	},
+	stepItem: {
+		flexDirection: 'row',
+		padding: 10,
+	},
+});
+
 export default class AddSiteInstructions extends Component {
 	openURL(url) {
 		WebBrowser.openBrowserAsync( url );
@@ -45,24 +66,3 @@ export default class AddSiteInstructions extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {},
-	description: {
-		color: '#666666',
-		marginTop: 15,
-		marginBottom: 15,
-		textAlign: 'center',
-	},
-	link: {
-		color: '#2E73B0',
-	},
-	steps: {
-		marginBottom: 15,
-		borderRadius: 2,
-	},
-	stepItem: {
-		flexDirection: 'row',
-		padding: 10,
-	},
-});

@@ -11,6 +11,15 @@ import MultilineTextFormField
 import { connect } from 'react-redux';
 import NavigationButton from '../../components/Navigation/Button';
 
+const styles = StyleSheet.create({
+	list: {
+		paddingTop: 15,
+	},
+	contentField: {
+		margin: 10,
+	},
+});
+
 class Edit extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
 		title: 'Edit Comment',
@@ -106,15 +115,6 @@ class Edit extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	list: {
-		paddingTop: 15,
-	},
-	contentField: {
-		margin: 10,
-	},
-});
 
 export default connect(state => ({
 	...state,

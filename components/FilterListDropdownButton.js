@@ -3,6 +3,20 @@ import React, { Component } from 'react';
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+	},
+	text: {
+		color: '#333333',
+		fontSize: 15,
+	},
+	icon: {
+		marginTop: -4,
+		marginLeft: 8,
+	},
+});
+
 export default class FilterListDropdownButton extends Component {
 	static propTypes = {
 		size: PropTypes.number.isRequired,
@@ -18,17 +32,3 @@ export default class FilterListDropdownButton extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-	},
-	text: {
-		color: '#333333',
-		fontSize: 15,
-	},
-	icon: {
-		marginTop: -4,
-		marginLeft: 8,
-	},
-});

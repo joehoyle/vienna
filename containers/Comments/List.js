@@ -12,6 +12,14 @@ import ListItem from '../../components/Comments/ListItem';
 import Filter from '../../components/Comments/Filter';
 import ListError from '../../components/General/ListError';
 
+const styles = StyleSheet.create({
+	listItem: {
+		padding: 15,
+		borderBottomColor: '#F7F7F7',
+		borderBottomWidth: 1,
+	},
+});
+
 class List extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
 		title: 'Comments',
@@ -113,14 +121,6 @@ class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	listItem: {
-		padding: 15,
-		borderBottomColor: '#F7F7F7',
-		borderBottomWidth: 1,
-	},
-});
 
 export default connect(state => ({
 	...state,

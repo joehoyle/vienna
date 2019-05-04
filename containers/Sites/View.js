@@ -19,6 +19,52 @@ import {
 	authorizeSite,
 } from '../../actions';
 
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
+	divider: {
+		borderBottomColor: '#F0F4F7',
+		borderBottomWidth: 1,
+		margin: 20,
+	},
+	sectionTitle: {
+		color: '#999999',
+		fontSize: 11,
+		marginTop: 15,
+		marginLeft: 60,
+	},
+	list: {},
+	listItem: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		padding: 10,
+		height: 40,
+		paddingLeft: 0,
+	},
+	listItemDivider: {
+		borderBottomColor: '#f1f1f1',
+		marginLeft: 60,
+		marginRight: 30,
+	},
+	listItemName: {
+		fontSize: 16,
+		flex: 1,
+	},
+	listItemNameCentered: {
+		textAlign: 'center',
+		color: 'red',
+		flex: 1,
+	},
+	listItemIcon: {
+		width: 38,
+		marginLeft: 22,
+	},
+	listItemValue: {
+		flexDirection: 'row',
+	},
+});
+
 class _View extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
 		title: navigation.state.params.site.name,
@@ -239,52 +285,6 @@ class _View extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-	divider: {
-		borderBottomColor: '#F0F4F7',
-		borderBottomWidth: 1,
-		margin: 20,
-	},
-	sectionTitle: {
-		color: '#999999',
-		fontSize: 11,
-		marginTop: 15,
-		marginLeft: 60,
-	},
-	list: {},
-	listItem: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		padding: 10,
-		height: 40,
-		paddingLeft: 0,
-	},
-	listItemDivider: {
-		borderBottomColor: '#f1f1f1',
-		marginLeft: 60,
-		marginRight: 30,
-	},
-	listItemName: {
-		fontSize: 16,
-		flex: 1,
-	},
-	listItemNameCentered: {
-		textAlign: 'center',
-		color: 'red',
-		flex: 1,
-	},
-	listItemIcon: {
-		width: 38,
-		marginLeft: 22,
-	},
-	listItemValue: {
-		flexDirection: 'row',
-	},
-});
 
 export default connect(state => ({
 	...state,

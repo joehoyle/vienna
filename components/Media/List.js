@@ -10,6 +10,21 @@ import {
 import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		flex: 1,
+		alignItems: 'flex-start',
+		flexWrap: 'wrap',
+	},
+	imageHighlight: {},
+	image: {
+		width: 93,
+		height: 93,
+	},
+});
+
 export default class List extends Component {
 	static propTypes = {
 		posts: PropTypes.arrayOf(ViennaPropTypes.Media).isRequired,
@@ -52,18 +67,3 @@ export default class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		flex: 1,
-		alignItems: 'flex-start',
-		flexWrap: 'wrap',
-	},
-	imageHighlight: {},
-	image: {
-		width: 93,
-		height: 93,
-	},
-});
