@@ -6,7 +6,6 @@ import reducers from './reducers';
 import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
 import storageFilter from 'redux-storage-decorator-filter';
-import { addNavigationHelpers } from 'react-navigation';
 import Routes from './Routes';
 
 // Error tracing
@@ -38,24 +37,11 @@ loadStorage(store).then(state => {
 
 });
 
-
-
-const Router = props => (
-	<Routes
-		navigation={addNavigationHelpers({
-			dispatch: props.dispatch,
-			state: props.navigator,
-		})}
-	/>
-);
-
-const RouterWithState = connect(s=>s)(Router)
-
 export default class App extends Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<RouterWithState />
+				<Routes />
 			</Provider>
 		);
 	}
