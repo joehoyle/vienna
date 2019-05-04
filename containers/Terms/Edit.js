@@ -36,7 +36,6 @@ class Edit extends Component {
 		var schema = this.props.sites[this.props.activeSite.id].routes[
 			'/wp/v2/' + slug
 		].schema;
-		var object = this.state.term;
 
 		return (
 			<Form
