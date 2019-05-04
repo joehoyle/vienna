@@ -16,7 +16,7 @@ import SitesView from './containers/Sites/View';
 import SettingsList from './containers/Settings/List';
 import CommentsEdit from './containers/Comments/Edit';
 
-export default Routes = StackNavigator(
+export default StackNavigator(
 	{
 		SitesList: { screen: SitesList },
 		SitesAdd: { screen: SitesAdd },
