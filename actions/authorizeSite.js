@@ -38,7 +38,9 @@ export default function authorizeSite(site) {
 				})
 				.then(data => {
 					if (data.status === 'error') {
-						throw { message: 'Broker Error: ' + data.type, code: data.type };
+						const err = new Error( 'Broker Error: ' + data.type );
+						err.code = data.type;
+						throw err;
 					}
 
 					dispatch({
