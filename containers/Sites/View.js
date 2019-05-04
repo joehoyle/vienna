@@ -26,6 +26,7 @@ class _View extends Component {
 	componentDidMount() {
 		if (
 			isEmpty(this.props.types) &&
+			!isEmpty(this.props.sites[this.props.activeSite.id]) &&
 			!isEmpty(this.props.sites[this.props.activeSite.id].credentials)
 		) {
 			this.props.dispatch(fetchTypes());
