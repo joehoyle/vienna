@@ -89,6 +89,10 @@ export default class SchemaFormField extends Component {
 				case 'integer':
 					Field = NumberField;
 					break;
+
+				default:
+					// No-op, detected below.
+					break;
 			}
 		}
 

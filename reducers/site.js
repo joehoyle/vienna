@@ -45,8 +45,7 @@ export default function site( state = defaultState, action ) {
 			state.description = action.payload.site.description
 			state.namespaces = action.payload.site.namespaces
 			state.routes = action.payload.site.routes
-			state = {...state}
-			break
+			return {...state}
 		case 'AUTHORIZE_SITE_CLIENT_CREATED':
 			state.credentials = { client: {} }
 			state.credentials.client.public = action.data.client_token
@@ -65,9 +64,8 @@ export default function site( state = defaultState, action ) {
 		case 'REMOVE_LOCAL_DATA':
 			state.data = {}
 			return {...state}
+		default:
+			state.data = siteReducers( state.data, action )
+			return state
 	}
-
-	state.data = siteReducers( state.data, action )
-
-	return state
 }

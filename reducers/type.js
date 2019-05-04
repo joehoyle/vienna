@@ -25,6 +25,7 @@ export default function type( state = {}, action ) {
 		case 'TYPES_POSTS_POST_UPDATE_ERRORED':
 			state.list.lastError = action.payload.error
 			return {...state}
+		default:
+			return state;
 	}
-	return state
 }

@@ -22,6 +22,7 @@ export default function newSite( state = { status: null, errorStatus: null }, ac
 			return {...state, status: null}
 		case 'AUTHORIZE_SITE_FAILED':
 			return {...state, status: null, errorStatus: action.error.message }
+		default:
+			return state;
 	}
-	return state
 }

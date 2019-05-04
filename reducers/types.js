@@ -50,7 +50,8 @@ export default function types( state = {}, action ) {
 					return {...state}
 				}
 			}
-			break
+			return state
+		default:
+			return state
 	}
-	return state
 }

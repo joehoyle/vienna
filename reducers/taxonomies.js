@@ -29,6 +29,8 @@ export default function types( state = {}, action ) {
 		case 'TAXONOMY_TERM_CREATE_ERRORED':
 		case 'TAXONOMY_TERM_UPDATE_ERRORED':
 			state[ action.payload.object.taxonomy ].list.lastError = action.payload.error
+			return {...state}
+		default:
+			return state;
 	}
-	return state
 }

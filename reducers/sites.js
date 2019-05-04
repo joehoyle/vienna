@@ -20,6 +20,7 @@ export default function sites( state = defaultState, action ) {
 		case 'SITE_REMOVED':
 			delete state[ action.payload.siteId ]
 			return {...state}
+		default:
+			return state;
 	}
-	return state
 }
