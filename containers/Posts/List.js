@@ -8,7 +8,7 @@ import {
 	Text,
 	Linking,
 } from 'react-native';
-import { values, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import { connect } from 'react-redux';
 import { trashPost, fetchPosts } from '../../actions';
 import PropTypes from '../../PropTypes';
@@ -118,7 +118,7 @@ class List extends Component {
 							titleColor="#000000"
 						/>
 					}
-					posts={values(posts).filter(this.filterPosts.bind(this))}
+					posts={Object.values(posts).filter(this.filterPosts.bind(this))}
 					users={this.props.users.users}
 					media={this.props.types.attachment.posts}
 					onEdit={post => this.onSelectPost(post)}

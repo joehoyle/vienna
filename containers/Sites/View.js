@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { FontAwesome as Icon } from '@expo/vector-icons';
-import { values, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import {
 	removeLocalData,
 	fetchTypes,
@@ -97,7 +97,7 @@ class _View extends Component {
 			>
 				<Text style={styles.sectionTitle}>TYPES</Text>
 				<View style={styles.list}>
-					{values(this.props.types).map((type, i, arr) => {
+					{Object.values(this.props.types).map((type, i, arr) => {
 						var iconsMap = {
 							attachment: 'picture-o',
 							page: 'file-powerpoint-o',
@@ -133,7 +133,7 @@ class _View extends Component {
 
 				<Text style={styles.sectionTitle}>TAXONOMIES</Text>
 				<View style={styles.list}>
-					{values(this.props.taxonomies).map((taxonomy, i, arr) => {
+					{Object.values(this.props.taxonomies).map((taxonomy, i, arr) => {
 						var iconsMap = {
 							category: 'list',
 						};

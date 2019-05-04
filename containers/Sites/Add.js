@@ -8,7 +8,7 @@ import {
 	Image,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { values, trim } from 'lodash';
+import { trim } from 'lodash';
 import { addSite } from '../../actions';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import AddSiteInstructions from '../../components/Sites/AddSiteInstructions';

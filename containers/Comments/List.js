@@ -6,7 +6,7 @@ import {
 	StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { values, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import { fetchComments, createComment, trashComment } from '../../actions';
 import ListItem from '../../components/Comments/ListItem';
 import Filter from '../../components/Comments/Filter';
@@ -89,7 +89,7 @@ class List extends Component {
 						/>
 					}
 				>
-					{values(this.props.comments.comments)
+					{Object.values(this.props.comments.comments)
 						.filter(this.filterComments.bind(this))
 						.map(comment => {
 							return (

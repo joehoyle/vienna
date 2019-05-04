@@ -5,7 +5,7 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
-import { values, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import { fetchUsers } from '../../actions';
 import ListItem from '../../components/Users/ListItem';
 import ListError from '../../components/General/ListError';
@@ -49,7 +49,7 @@ export default class List extends Component {
 						/>
 					}
 				>
-					{values(this.props.users.users).map(user => {
+					{Object.values(this.props.users.users).map(user => {
 						return (
 							<TouchableOpacity
 								key={user.id}

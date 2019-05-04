@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, View, RefreshControl } from 'react-native';
-import { values, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import { trashPost, fetchPosts } from '../../actions';
 import PropTypes from '../../PropTypes';
 import ListItem from '../../components/Posts/ListItem';
@@ -61,7 +61,7 @@ export default class List extends Component {
 						/>
 					}
 				>
-					{values(this.props.posts)
+					{Object.values(this.props.posts)
 						.filter(this.filterPosts.bind(this))
 						.map(post => {
 							return (

@@ -5,7 +5,7 @@ import {
 	TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { values, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import { fetchTerms } from '../../actions';
 import ListItem from '../../components/Terms/ListItem';
 import ListError from '../../components/General/ListError';
@@ -72,7 +72,7 @@ class List extends Component {
 				{taxonomy.list.lastError
 					? <ListError error={taxonomy.list.lastError} />
 					: null}
-				{values(terms).map(term => {
+				{Object.values(terms).map(term => {
 					return (
 						<TouchableOpacity
 							key={term.id}

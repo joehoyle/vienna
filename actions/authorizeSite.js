@@ -1,7 +1,7 @@
 import { AuthSession } from 'expo';
 import querystring from 'query-string';
 import httpapi from '../api';
-import { values, trimEnd } from 'lodash';
+import { trimEnd } from 'lodash';
 import fetchSiteData from './fetchSiteData';
 
 /**
