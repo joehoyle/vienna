@@ -1,7 +1,7 @@
 import { ActionSheetIOS } from 'react-native';
 import { ImagePicker, Permissions } from 'expo';
-import createPost from '../actions/createPost';
-import httpapi from '../api';
+// import createPost from '../actions/createPost';
+// import httpapi from '../api';
 
 const selectOptions = {
 	title: 'Select Photo for Upload',
@@ -25,8 +25,8 @@ const cameraOptions = {
 
 export default function uploadImage() {
 	return (dispatch, getStore) => {
-		const store = getStore();
-		const api = new httpapi(store.sites[store.activeSite.id]);
+		// const store = getStore();
+		// const api = new httpapi(store.sites[store.activeSite.id]);
 
 		// Work out which they want.
 		ActionSheetIOS.showActionSheetWithOptions( selectOptions, async option => {

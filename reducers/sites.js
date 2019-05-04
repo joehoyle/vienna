@@ -1,5 +1,4 @@
 import site from './site'
-import httpapi from '../api'
 
 const defaultState = {}
 
