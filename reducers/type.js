@@ -18,9 +18,10 @@ export default function type( state = {}, action ) {
 			state.list.loading = true
 			return {...state}
 		case 'TYPES_POSTS_POST_UPDATED':
-			const post = state.posts[ action.payload.object.id ]
-			post = {...post, ...action.payload.object}
-			state.posts[ action.payload.object.id ] = post
+			state.posts[ action.payload.object.id ] = {
+				...state.posts[ action.payload.object.id ],
+				...action.payload.object
+			}
 			return {...state}
 		case 'TYPES_POSTS_POST_UPDATE_ERRORED':
 			state.list.lastError = action.payload.error
