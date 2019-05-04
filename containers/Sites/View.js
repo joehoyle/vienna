@@ -147,7 +147,6 @@ class _View extends Component {
 						var iconsMap = {
 							attachment: 'picture-o',
 							page: 'file-powerpoint-o',
-							attachment: 'picture-o',
 						};
 
 						var iconName = iconsMap[type.slug] ? iconsMap[type.slug] : 'pencil';
