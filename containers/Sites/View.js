@@ -127,6 +127,10 @@ class _View extends Component {
 	render() {
 		var chevron = <Icon name="chevron-right" size={20} color="#BBBBBB" />;
 
+		if (!this.props.types) {
+			return null;
+		}
+
 		return (
 			<ScrollView
 				style={styles.container}
