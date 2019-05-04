@@ -79,7 +79,7 @@ class Edit extends Component {
 							properties =>
 								['author', 'date_gmt', 'parent', 'post', 'type'].indexOf(
 									properties[0]
-								) == -1
+								) === -1
 						)
 						.map(properties => {
 							const propertySchema = properties[1];

@@ -87,8 +87,8 @@ class Add extends Component {
 		//this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent(event) {
-		if (event.type == 'NavBarButtonPress') {
-			if (event.id == 'close') {
+		if (event.type === 'NavBarButtonPress') {
+			if (event.id === 'close') {
 				this.props.navigator.dismissModal();
 			}
 		}
