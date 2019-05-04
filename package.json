@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "expo": "^32.0.0",
-    "oauth-1.0a": "^2.1.1",
+    "oauth-1.0a": "^2.2.5",
     "prop-types": "^15.7.2",
     "query-string": "6.5",
     "react": "16.5.0",
