@@ -53,7 +53,7 @@ export default class RichItem extends Component {
 		if (!event.jsEvaluationValue) {
 			return;
 		}
-		this.setState({ webViewHeight: parseInt(event.jsEvaluationValue) });
+		this.setState({ webViewHeight: parseInt(event.jsEvaluationValue, 10) });
 	}
 	render() {
 		return (

@@ -59,7 +59,7 @@ export default class ListItem extends Component {
 			return;
 		}
 		console.log(event.jsEvaluationValue);
-		this.setState({ webViewHeight: parseInt(event.jsEvaluationValue) });
+		this.setState({ webViewHeight: parseInt(event.jsEvaluationValue, 10) });
 	}
 
 	onReply(text) {
