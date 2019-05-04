@@ -1,6 +1,6 @@
 import { ActionSheetIOS } from 'react-native';
 import { ImagePicker, Permissions } from 'expo';
-import { createPost } from '../actions';
+import createPost from '../actions/createPost';
 import httpapi from '../api';
 
 const selectOptions = {
