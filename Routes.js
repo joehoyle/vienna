@@ -1,4 +1,8 @@
-import { StackNavigator } from 'react-navigation';
+import {
+	createStackNavigator,
+	createAppContainer
+} from 'react-navigation';
+
 import SitesList from './containers/Sites/List';
 import SitesAdd from './containers/Sites/Add';
 import PostsList from './containers/Posts/List';
@@ -16,7 +20,7 @@ import SitesView from './containers/Sites/View';
 import SettingsList from './containers/Settings/List';
 import CommentsEdit from './containers/Comments/Edit';
 
-export default StackNavigator(
+export default createAppContainer(createStackNavigator(
 	{
 		SitesList: { screen: SitesList },
 		SitesAdd: { screen: SitesAdd },
@@ -57,4 +61,4 @@ export default StackNavigator(
 			shadowColor: 'transparent',
 		},
 	}
-);
+));
