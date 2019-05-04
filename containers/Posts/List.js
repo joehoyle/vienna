@@ -45,9 +45,6 @@ class List extends Component {
 			</NavigationButton>
 		),
 	});
-	constructor(props) {
-		super(props);
-	}
 	componentDidMount() {
 		setTimeout(() => {
 			var posts = this.props.types[this.props.navigation.state.params.type.slug]

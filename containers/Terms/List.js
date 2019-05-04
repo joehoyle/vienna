@@ -26,9 +26,6 @@ class List extends Component {
 			</NavigationButton>
 		),
 	});
-	constructor(props) {
-		super(props);
-	}
 	componentDidMount() {
 		if (isEmpty(this.props.navigation.state.params.taxonomy.terms)) {
 			this.props.dispatch(
