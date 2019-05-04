@@ -30,7 +30,6 @@
     "redux-storage-decorator-filter": "^1.1.5",
     "redux-storage-engine-reactnativeasyncstorage": "^1.0.1",
     "redux-thunk": "^2.3.0",
-    "superagent": "^3.5.2",
     "urijs": "^1.18.10",
     "wordpress-rest-api-oauth-1": "^1.1.7"
   },
