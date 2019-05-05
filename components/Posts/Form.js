@@ -21,6 +21,14 @@ const styles = StyleSheet.create({
 	},
 });
 
+const ignoreProperties = [
+	'date_gmt',
+	'author',
+	'content',
+	'title',
+	'featured_media',
+];
+
 export default class Form extends Component {
 	static propTypes = {
 		post: PropTypes.object.isRequired,
@@ -53,13 +61,7 @@ export default class Form extends Component {
 			password: 'Post Password',
 			description: 'Description',
 		};
-		const ignoreProperties = [
-			'date_gmt',
-			'author',
-			'content',
-			'title',
-			'featured_media',
-		];
+
 		const buildOnChange = prop => value => this.props.onChangePropertyValue( prop, value );
 		const buildOnFocus = prop => () => this.setState( { focussed: prop } );
 
