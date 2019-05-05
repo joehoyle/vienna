@@ -6155,10 +6155,6 @@ react-native-branch@2.2.5:
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.2.5.tgz#4074dd63b4973e6397d9ce50e97b57c77a518e9d"
   integrity sha1-QHTdY7SXPmOX2c5Q6XtXx3pRjp0=
 
-react-native-custom-action-sheet@0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/react-native-custom-action-sheet/-/react-native-custom-action-sheet-0.0.11.tgz#9272ad018c7846880933289728fce7ac3f72c289"
-
 react-native-gesture-handler@~1.0.14:
   version "1.0.17"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.17.tgz#a046f371f277092157fc2781323d35a02a93daaf"
