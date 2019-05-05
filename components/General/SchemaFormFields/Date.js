@@ -7,8 +7,6 @@ import {
 	TouchableOpacity,
 	DatePickerIOS,
 } from 'react-native';
-// import CustomActionSheet from 'react-native-custom-action-sheet';
-const CustomActionSheet = props => null;
 
 import FormRow from '../FormRow';
 
@@ -40,41 +38,47 @@ export default class DateField extends Component {
 		onChange: PropTypes.func.isRequired,
 		onSave: PropTypes.func.isRequired,
 	};
-	constructor() {
-		super();
-		this.state = {
-			showingPicker: false,
-		};
-	}
-	onPressValue() {
+
+	state = {
+		showingPicker: false,
+	};
+
+	onShowPicker = () => {
 		this.setState({ showingPicker: true });
 	}
+
+	onHidePicker = () => {
+		this.setState({ showingPicker: false });
+	}
+
+	onTogglePicker = () => {
+		if ( this.state.showingPicker ) {
+			this.onHidePicker();
+		} else {
+			this.onShowPicker();
+		}
+	}
+
 	render() {
 		return (
-			<FormRow label={ this.props.name }>
-				<TouchableOpacity onPress={() => this.onPressValue()}>
-					<Text style={styles.label}>
-						{this.props.value ? this.props.value : 'Select Date'}
-					</Text>
-				</TouchableOpacity>
-				{this.state.showingPicker
-					? <CustomActionSheet
-							modalVisible={true}
-							onCancel={() => {
-								this.setState({ showingPicker: false });
-								this.props.onSave();
-							}}
-							backgroundColor="transparent"
-							buttonText="Done"
-						>
+			<View>
+				<FormRow label={ this.props.name }>
+					<TouchableOpacity onPress={ this.onTogglePicker }>
+						<Text style={styles.label}>
+							{this.props.value ? this.props.value : 'Select Date'}
+						</Text>
+					</TouchableOpacity>
+				</FormRow>
+				{ this.state.showingPicker && (
+					<View>
 							<DatePickerIOS
 								date={new Date(this.props.value)}
 								onDateChange={date => this.props.onChange(date.toISOString())}
 								style={styles.picker}
 							/>
-						</CustomActionSheet>
-					: null}
-			</FormRow>
+					</View>
+				) }
+			</View>
 		);
 	}
 }
