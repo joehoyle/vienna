@@ -69,14 +69,9 @@ export default class SchemaFormField extends Component {
 			console.log('no field found for schema', this.props.schema);
 			return null;
 		}
+
 		return (
-			<Field
-				value={this.props.value}
-				schema={this.props.schema}
-				name={this.props.name}
-				onChange={this.props.onChange}
-				onSave={this.props.onSave}
-			/>
+			<Field { ...this.props } />
 		);
 	}
 }
