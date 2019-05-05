@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
 	ScrollView,
 	View,
-	Text,
+	TextInput,
 	StyleSheet,
 } from 'react-native';
 
@@ -14,6 +14,12 @@ import UserSelectFormField from '../General/FormFields/UserSelect';
 import DateField from '../General/SchemaFormFields/Date';
 
 const styles = StyleSheet.create({
+	title: {
+		color: '#666666',
+		fontSize: 20,
+		lineHeight: 36,
+		height: 36,
+	},
 	list: {
 		paddingTop: 15,
 	},
@@ -72,12 +78,16 @@ export default class Form extends Component {
 		return (
 			<ScrollView>
 				<View style={styles.contentField}>
-					<MultilineTextFormField
+					<TextInput
+						autoFocus
+						placeholder="Enter title…"
+						style={ styles.title }
 						value={object.title ? object.title.raw : null}
-						onChange={value => this.props.onChangePropertyValue('title', value)}
-						onSave={() => {}}
+						onChangeText={value => this.props.onChangePropertyValue('title', value)}
+						onSubmitEditing={() => {}}
 					/>
 					<MultilineTextFormField
+						minHeight={ 60 }
 						value={object.content ? object.content.raw : null}
 						onChange={value =>
 							this.props.onChangePropertyValue('content', value)}
