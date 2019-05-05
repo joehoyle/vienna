@@ -11,6 +11,7 @@ import FormRow from '../General/FormRow';
 import SchemaFormField from '../General/SchemaFormField';
 import MultilineTextFormField from '../General/FormFields/MultilineText';
 import UserSelectFormField from '../General/FormFields/UserSelect';
+import DateField from '../General/SchemaFormFields/Date';
 
 const styles = StyleSheet.create({
 	list: {
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
 });
 
 const ignoreProperties = [
+	'date',
 	'date_gmt',
 	'author',
 	'content',
@@ -87,6 +89,17 @@ export default class Form extends Component {
 							this.props.onChangePropertyValue('author', value)}
 					/>
 				</FormRow>
+
+				<DateField
+					focussed={ focussed === 'date_gmt' }
+					name={ object.status === 'publish' ? 'Published on' : 'Publish on' }
+					schema={ schema.properties.date_gmt }
+					value={ object.date_gmt }
+					onBlur={ this.onBlur }
+					onChange={ buildOnChange( 'date_gmt' ) }
+					onFocus={ buildOnFocus( 'date_gmt' ) }
+					onSave={ () => {} }
+				/>
 
 				<View style={styles.list}>
 					{Object.entries(schema.properties)
