@@ -1,3 +1,4 @@
+import { Localization } from 'expo';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
@@ -10,6 +11,14 @@ import {
 
 import ExpandingView from '../ExpandingView';
 import FormRow from '../FormRow';
+
+const dateFormat = {
+	day: 'numeric',
+	year: 'numeric',
+	month: 'long',
+	hour: 'numeric',
+	minute: 'numeric',
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -41,8 +50,29 @@ export default class DateField extends Component {
 	};
 
 	state = {
+		date: null,
 		showingPicker: false,
 	};
+
+	constructor( props ) {
+		super( props );
+
+		this.formatter = new Intl.DateTimeFormat( Localization.locales, dateFormat );
+	}
+
+	componentDidMount() {
+		this.setState( {
+			date: new Date( this.props.value ),
+		} );
+	}
+
+	componentDidUpdate( prevProps ) {
+		if ( this.props.value !== prevProps.value ) {
+			this.setState( {
+				date: new Date( this.props.value ),
+			} );
+		}
+	}
 
 	onShowPicker = () => {
 		this.setState({ showingPicker: true });
@@ -61,12 +91,14 @@ export default class DateField extends Component {
 	}
 
 	render() {
+		const { date } = this.state;
+
 		return (
 			<View>
 				<FormRow label={ this.props.name }>
 					<TouchableOpacity onPress={ this.onTogglePicker }>
 						<Text style={styles.label}>
-							{this.props.value ? this.props.value : 'Select Date'}
+							{ ! isNaN( date ) ? this.formatter.format( date ) : 'Select Date' }
 						</Text>
 					</TouchableOpacity>
 				</FormRow>
@@ -75,9 +107,9 @@ export default class DateField extends Component {
 					height={ 216 }
 				>
 					<DatePickerIOS
-						date={new Date(this.props.value)}
-						onDateChange={date => this.props.onChange(date.toISOString())}
-						style={styles.picker}
+						date={ date }
+						style={ styles.picker }
+						onDateChange={ value => this.props.onChange( value.toISOString() ) }
 					/>
 				</ExpandingView>
 			</View>
