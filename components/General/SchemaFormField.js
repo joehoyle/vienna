@@ -66,7 +66,7 @@ export default class SchemaFormField extends Component {
 		}
 
 		if (!Field) {
-			console.log('no field found for schema', this.props.schema);
+			console.log( `no type found for ${ this.props.name }`, this.props.schema );
 			return null;
 		}
 
