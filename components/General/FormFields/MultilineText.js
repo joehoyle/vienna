@@ -17,11 +17,18 @@ export default class Text extends Component {
 		onSave: PropTypes.func.isRequired,
 		autoFocus: PropTypes.bool,
 	};
+
+	static defaultProps = {
+		minHeight: 0,
+		placeholder: 'Enter content…',
+	};
+
 	render() {
 		return (
 			<AutoGrowingTextInput
 				autoFocus={this.props.autoFocus}
-				placeholder={'Enter Content...'}
+				minHeight={ this.props.minHeight }
+				placeholder={ this.props.placeholder }
 				value={this.props.value}
 				style={styles.container}
 				onChangeText={this.props.onChange}
