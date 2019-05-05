@@ -15,6 +15,8 @@ import FormRow from '../FormRow';
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	label: {
 		height: 32,
 		fontSize: 16,
 		lineHeight: 30,
@@ -51,7 +53,7 @@ export default class DateField extends Component {
 		return (
 			<FormRow label={ this.props.name }>
 				<TouchableOpacity onPress={() => this.onPressValue()}>
-					<Text style={styles.container}>
+					<Text style={styles.label}>
 						{this.props.value ? this.props.value : 'Select Date'}
 					</Text>
 				</TouchableOpacity>

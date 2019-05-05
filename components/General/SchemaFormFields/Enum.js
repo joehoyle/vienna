@@ -52,7 +52,7 @@ export default class Enum extends Component {
 		return (
 			<FormRow label={ this.props.name }>
 				<TouchableOpacity onPress={() => this.onPressValue()}>
-					<Text style={styles.container}>{this.props.value}</Text>
+					<Text style={styles.label}>{ this.props.value || 'Select…' }</Text>
 				</TouchableOpacity>
 				{this.state.showingPicker
 					? <CustomActionSheet
