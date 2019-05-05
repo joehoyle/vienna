@@ -45,13 +45,14 @@ export default class DateField extends Component {
 		value: PropTypes.any,
 		schema: PropTypes.object.isRequired,
 		name: PropTypes.string.isRequired,
+		onBlur: PropTypes.func.isRequired,
 		onChange: PropTypes.func.isRequired,
+		onFocus: PropTypes.func.isRequired,
 		onSave: PropTypes.func.isRequired,
 	};
 
 	state = {
 		date: null,
-		showingPicker: false,
 	};
 
 	constructor( props ) {
@@ -74,19 +75,11 @@ export default class DateField extends Component {
 		}
 	}
 
-	onShowPicker = () => {
-		this.setState({ showingPicker: true });
-	}
-
-	onHidePicker = () => {
-		this.setState({ showingPicker: false });
-	}
-
-	onTogglePicker = () => {
-		if ( this.state.showingPicker ) {
-			this.onHidePicker();
+	onToggle = () => {
+		if ( this.props.focussed ) {
+			this.props.onBlur();
 		} else {
-			this.onShowPicker();
+			this.props.onFocus();
 		}
 	}
 
@@ -96,14 +89,14 @@ export default class DateField extends Component {
 		return (
 			<View>
 				<FormRow label={ this.props.name }>
-					<TouchableOpacity onPress={ this.onTogglePicker }>
+					<TouchableOpacity onPress={ this.onToggle }>
 						<Text style={styles.label}>
 							{ ! isNaN( date ) ? this.formatter.format( date ) : 'Select Date' }
 						</Text>
 					</TouchableOpacity>
 				</FormRow>
 				<ExpandingView
-					expanded={ this.state.showingPicker }
+					expanded={ this.props.focussed }
 					height={ 216 }
 				>
 					<DatePickerIOS

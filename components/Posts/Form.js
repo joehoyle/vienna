@@ -33,7 +33,14 @@ export default class Form extends Component {
 		schema: PropTypes.object.isRequired,
 		onChangePropertyValue: PropTypes.func.isRequired,
 	};
+
+	state = {
+		focussed: null,
+	}
+
 	render() {
+		const { focussed } = this.state;
+
 		const schema = this.props.schema;
 		const object = this.props.post;
 		const namesMap = {
@@ -97,9 +104,12 @@ export default class Form extends Component {
 									<SchemaFormField
 										name={namesMap[property] ? namesMap[property] : property}
 										schema={propertySchema}
+										focussed={ focussed === property }
 										value={value}
+										onBlur={ () => this.setState( { focussed: null } ) }
 										onChange={value =>
 											this.props.onChangePropertyValue(property, value)}
+										onFocus={ () => this.setState( { focussed: property } ) }
 										onSave={() => {}}
 									/>
 								</View>
