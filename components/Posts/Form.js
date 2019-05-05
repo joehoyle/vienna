@@ -71,6 +71,7 @@ export default class Form extends Component {
 			password: 'Post Password',
 			description: 'Description',
 		};
+		const isPublished = object.status === 'publish';
 
 		const buildOnChange = prop => value => this.props.onChangePropertyValue( prop, value );
 		const buildOnFocus = prop => () => this.setState( { focussed: prop } );
@@ -104,7 +105,7 @@ export default class Form extends Component {
 
 				<DateField
 					focussed={ focussed === 'date_gmt' }
-					name={ object.status === 'publish' ? 'Published on' : 'Publish on' }
+					name={ isPublished ? 'Published on' : 'Publish on' }
 					schema={ schema.properties.date_gmt }
 					value={ object.date_gmt }
 					onBlur={ this.onBlur }
