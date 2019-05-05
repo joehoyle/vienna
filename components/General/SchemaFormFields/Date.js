@@ -8,6 +8,7 @@ import {
 	DatePickerIOS,
 } from 'react-native';
 
+import ExpandingView from '../ExpandingView';
 import FormRow from '../FormRow';
 
 const styles = StyleSheet.create({
@@ -69,15 +70,16 @@ export default class DateField extends Component {
 						</Text>
 					</TouchableOpacity>
 				</FormRow>
-				{ this.state.showingPicker && (
-					<View>
-							<DatePickerIOS
-								date={new Date(this.props.value)}
-								onDateChange={date => this.props.onChange(date.toISOString())}
-								style={styles.picker}
-							/>
-					</View>
-				) }
+				<ExpandingView
+					expanded={ this.state.showingPicker }
+					height={ 216 }
+				>
+					<DatePickerIOS
+						date={new Date(this.props.value)}
+						onDateChange={date => this.props.onChange(date.toISOString())}
+						style={styles.picker}
+					/>
+				</ExpandingView>
 			</View>
 		);
 	}
