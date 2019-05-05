@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
+import FormRow from '../FormRow';
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -79,7 +81,7 @@ export default class ArrayEnum extends Component {
 	}
 	render() {
 		return (
-			<View>
+			<FormRow label={ this.props.name }>
 				<TouchableOpacity onPress={() => this.onPressValue()}>
 					<Text style={styles.container}>
 						{this.props.value.length
@@ -114,7 +116,7 @@ export default class ArrayEnum extends Component {
 							</ScrollView>
 						</Modal>
 					: null}
-			</View>
+			</FormRow>
 		);
 	}
 }

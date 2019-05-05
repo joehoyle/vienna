@@ -4,9 +4,13 @@ import { View, Text, StyleSheet, TouchableOpacity, Picker } from 'react-native';
 // import CustomActionSheet from 'react-native-custom-action-sheet';
 const CustomActionSheet = props => null;
 
+import FormRow from '../FormRow';
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	label: {
 		height: 32,
 		fontSize: 16,
 		lineHeight: 30,
@@ -46,7 +50,7 @@ export default class Enum extends Component {
 	}
 	render() {
 		return (
-			<View>
+			<FormRow label={ this.props.name }>
 				<TouchableOpacity onPress={() => this.onPressValue()}>
 					<Text style={styles.container}>{this.props.value}</Text>
 				</TouchableOpacity>
@@ -77,7 +81,7 @@ export default class Enum extends Component {
 							</Picker>
 						</CustomActionSheet>
 					: null}
-			</View>
+			</FormRow>
 		);
 	}
 }

@@ -10,6 +10,8 @@ import {
 // import CustomActionSheet from 'react-native-custom-action-sheet';
 const CustomActionSheet = props => null;
 
+import FormRow from '../FormRow';
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -47,7 +49,7 @@ export default class DateField extends Component {
 	}
 	render() {
 		return (
-			<View>
+			<FormRow label={ this.props.name }>
 				<TouchableOpacity onPress={() => this.onPressValue()}>
 					<Text style={styles.container}>
 						{this.props.value ? this.props.value : 'Select Date'}
@@ -70,7 +72,7 @@ export default class DateField extends Component {
 							/>
 						</CustomActionSheet>
 					: null}
-			</View>
+			</FormRow>
 		);
 	}
 }

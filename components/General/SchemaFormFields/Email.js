@@ -25,16 +25,18 @@ export default class Email extends Component {
 			? this.props.schema.default
 			: placeholder;
 		return (
-			<TextInput
-				value={this.props.value}
-				style={styles.container}
-				keyboardType="email-address"
-				autoCapitalize={'none'}
-				autoCorrect={false}
-				placeholder={placeholder}
-				onChangeText={this.props.onChange}
-				onSubmitEditing={this.props.onSave}
-			/>
+			<FormRow label={this.props.name}>
+				<TextInput
+					value={this.props.value}
+					style={styles.container}
+					keyboardType="email-address"
+					autoCapitalize={'none'}
+					autoCorrect={false}
+					placeholder={placeholder}
+					onChangeText={this.props.onChange}
+					onSubmitEditing={this.props.onSave}
+				/>
+			</FormRow>
 		);
 	}
 }
