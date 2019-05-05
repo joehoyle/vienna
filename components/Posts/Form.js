@@ -38,6 +38,10 @@ export default class Form extends Component {
 		focussed: null,
 	}
 
+	onBlur = () => {
+		this.setState( { focussed: null } )
+	}
+
 	render() {
 		const { focussed } = this.state;
 
@@ -62,6 +66,8 @@ export default class Form extends Component {
 			'title',
 			'featured_media',
 		];
+		const buildOnChange = prop => value => this.props.onChangePropertyValue( prop, value );
+		const buildOnFocus = prop => () => this.setState( { focussed: prop } );
 
 		return (
 			<ScrollView>
@@ -106,10 +112,9 @@ export default class Form extends Component {
 										schema={propertySchema}
 										focussed={ focussed === property }
 										value={value}
-										onBlur={ () => this.setState( { focussed: null } ) }
-										onChange={value =>
-											this.props.onChangePropertyValue(property, value)}
-										onFocus={ () => this.setState( { focussed: property } ) }
+										onBlur={ this.onBlur }
+										onChange={ buildOnChange( property ) }
+										onFocus={ buildOnFocus( property ) }
 										onSave={() => {}}
 									/>
 								</View>
