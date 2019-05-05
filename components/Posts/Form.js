@@ -12,18 +12,14 @@ import MultilineTextFormField
 import UserSelectFormField
 	from '../../components/General/FormFields/UserSelect';
 
+import FormRow from '../General/FormRow';
+
 const styles = StyleSheet.create({
 	list: {
 		paddingTop: 15,
 	},
 	contentField: {
 		margin: 10,
-	},
-	authorField: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		paddingLeft: 10,
-		paddingRight: 10,
 	},
 });
 
@@ -84,14 +80,14 @@ export default class Form extends Component {
 						onSave={() => {}}
 					/>
 				</View>
-				<View style={styles.authorField}>
-					<Text>Author</Text>
+				<FormRow label="Author">
 					<UserSelectFormField
 						value={object.author}
 						onChange={value =>
 							this.props.onChangePropertyValue('author', value)}
 					/>
-				</View>
+				</FormRow>
+
 				<View style={styles.list}>
 					{Object.entries(schema.properties)
 						.filter(
