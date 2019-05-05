@@ -6,13 +6,11 @@ import {
 	Text,
 	StyleSheet,
 } from 'react-native';
-import SchemaFormField from '../General/SchemaFormField';
-import MultilineTextFormField
-	from '../../components/General/FormFields/MultilineText';
-import UserSelectFormField
-	from '../../components/General/FormFields/UserSelect';
 
 import FormRow from '../General/FormRow';
+import SchemaFormField from '../General/SchemaFormField';
+import MultilineTextFormField from '../General/FormFields/MultilineText';
+import UserSelectFormField from '../General/FormFields/UserSelect';
 
 const styles = StyleSheet.create({
 	list: {
