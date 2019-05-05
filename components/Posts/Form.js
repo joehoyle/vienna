@@ -27,8 +27,10 @@ const ignoreProperties = [
 	'date_gmt',
 	'author',
 	'content',
+	'excerpt',
 	'title',
 	'featured_media',
+	'comment_count',
 ];
 
 export default class Form extends Component {
