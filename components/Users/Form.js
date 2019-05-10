@@ -3,11 +3,15 @@ import React, { Component } from 'react';
 import {
 	ScrollView,
 	View,
-	TouchableOpacity,
-	Text,
 	StyleSheet,
 } from 'react-native';
 import SchemaFormField from '../General/SchemaFormField';
+
+const styles = StyleSheet.create({
+	list: {
+		paddingTop: 15,
+	},
+});
 
 export default class Form extends Component {
 	static propTypes = {
@@ -61,9 +65,3 @@ export default class Form extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	list: {
-		paddingTop: 15,
-	},
-});

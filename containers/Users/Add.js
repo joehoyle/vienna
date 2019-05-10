@@ -1,11 +1,4 @@
 import React, { Component } from 'react';
-import {
-	ScrollView,
-	View,
-	TouchableOpacity,
-	Text,
-	StyleSheet,
-} from 'react-native';
 import { createUser } from '../../actions';
 import { connect } from 'react-redux';
 import Form from '../../components/Users/Form';

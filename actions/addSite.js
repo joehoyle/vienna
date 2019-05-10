@@ -1,18 +1,8 @@
-import OAuth from 'oauth-1.0a';
-import querystring from 'query-string';
-import { Linking } from 'react-native';
-import httpapi from '../api';
-import { values, trimEnd } from 'lodash';
 import URI from 'urijs'
-import fetchSiteData from './fetchSiteData';
 import authorizeSite from './authorizeSite';
 
 export default function addSite(url, args = {}) {
 	return (dispatch, getStore) => {
-		/*
-		 * Don't add duplicate sites.
-		 */
-		var siteUrls = values(getStore().sites).map(site => site.url);
 		dispatch({
 			type: 'SITE_CREATING',
 		});
@@ -20,7 +10,7 @@ export default function addSite(url, args = {}) {
 		var siteId =
 			Math.max.apply(
 				null,
-				values(getStore().sites).map(s => s.id).concat([0])
+				Object.values(getStore().sites).map(s => s.id).concat([0])
 			) + 1;
 
 		fetch(url, { redirect: 'follow' })

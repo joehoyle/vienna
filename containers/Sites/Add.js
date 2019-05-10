@@ -3,17 +3,67 @@ import {
 	StyleSheet,
 	TouchableOpacity,
 	View,
-	TextInput,
 	Text,
 	ActivityIndicator,
 	Image,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { values, trim } from 'lodash';
+import { trim } from 'lodash';
 import { addSite } from '../../actions';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import AddSiteInstructions from '../../components/Sites/AddSiteInstructions';
 import TextInputWithIcon from '../../components/General/TextInputWithIcon';
+
+const styles = StyleSheet.create({
+	container: {
+		backgroundColor: '#FFFFFF',
+		padding: 20,
+		paddingBottom: 100,
+		flex: 1,
+		alignItems: 'stretch',
+		justifyContent: 'center',
+	},
+	icon: {
+		alignSelf: 'center',
+		marginBottom: 10,
+	},
+	input: {
+		backgroundColor: '#f1f1f1',
+		height: 40,
+		padding: 3,
+		flexDirection: 'row',
+		alignItems: 'center',
+		borderBottomWidth: 1,
+		borderBottomColor: '#eeeeee',
+	},
+	inputText: {
+		flex: 1,
+		fontSize: 16,
+		lineHeight: 16,
+	},
+	addButton: {
+		margin: 10,
+		backgroundColor: 'rgba(0,0,0,.3)',
+		alignItems: 'center',
+		padding: 8,
+		borderRadius: 1,
+	},
+	addButtonText: {
+		color: '#FFFFFF',
+	},
+	errorMessage: {
+		color: 'red',
+		textAlign: 'center',
+		fontSize: 15,
+		marginTop: 10,
+		marginBottom: 5,
+	},
+	addOAuthText: {
+		color: '#333333',
+		textAlign: 'center',
+		margin: 10,
+	},
+});
 
 class Add extends Component {
 	static navigatorButtons = {
@@ -37,8 +87,8 @@ class Add extends Component {
 		//this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 	onNavigatorEvent(event) {
-		if (event.type == 'NavBarButtonPress') {
-			if (event.id == 'close') {
+		if (event.type === 'NavBarButtonPress') {
+			if (event.id === 'close') {
 				this.props.navigator.dismissModal();
 			}
 		}
@@ -141,56 +191,5 @@ class Add extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		backgroundColor: '#FFFFFF',
-		padding: 20,
-		paddingBottom: 100,
-		flex: 1,
-		alignItems: 'stretch',
-		justifyContent: 'center',
-	},
-	icon: {
-		alignSelf: 'center',
-		marginBottom: 10,
-	},
-	input: {
-		backgroundColor: '#f1f1f1',
-		height: 40,
-		padding: 3,
-		flexDirection: 'row',
-		alignItems: 'center',
-		borderBottomWidth: 1,
-		borderBottomColor: '#eeeeee',
-	},
-	inputText: {
-		flex: 1,
-		fontSize: 16,
-		lineHeight: 16,
-	},
-	addButton: {
-		margin: 10,
-		backgroundColor: 'rgba(0,0,0,.3)',
-		alignItems: 'center',
-		padding: 8,
-		borderRadius: 1,
-	},
-	addButtonText: {
-		color: '#FFFFFF',
-	},
-	errorMessage: {
-		color: 'red',
-		textAlign: 'center',
-		fontSize: 15,
-		marginTop: 10,
-		marginBottom: 5,
-	},
-	addOAuthText: {
-		color: '#333333',
-		textAlign: 'center',
-		margin: 10,
-	},
-});
 
 export default connect(s => s)(Add);

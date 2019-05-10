@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import {
 	ScrollView,
 	View,
-	TouchableOpacity,
 	Text,
 	StyleSheet,
 } from 'react-native';
@@ -12,6 +11,21 @@ import MultilineTextFormField
 	from '../../components/General/FormFields/MultilineText';
 import UserSelectFormField
 	from '../../components/General/FormFields/UserSelect';
+
+const styles = StyleSheet.create({
+	list: {
+		paddingTop: 15,
+	},
+	contentField: {
+		margin: 10,
+	},
+	authorField: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		paddingLeft: 10,
+		paddingRight: 10,
+	},
+});
 
 export default class Form extends Component {
 	static propTypes = {
@@ -96,18 +110,3 @@ export default class Form extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	list: {
-		paddingTop: 15,
-	},
-	contentField: {
-		margin: 10,
-	},
-	authorField: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		paddingLeft: 10,
-		paddingRight: 10,
-	},
-});

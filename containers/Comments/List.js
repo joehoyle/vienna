@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import {
 	ScrollView,
-	Image,
 	View,
 	RefreshControl,
 	StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { values, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import { fetchComments, createComment, trashComment } from '../../actions';
-import PropTypes from '../../PropTypes';
 import ListItem from '../../components/Comments/ListItem';
 import Filter from '../../components/Comments/Filter';
 import ListError from '../../components/General/ListError';
+
+const styles = StyleSheet.create({
+	listItem: {
+		padding: 15,
+		borderBottomColor: '#F7F7F7',
+		borderBottomWidth: 1,
+	},
+});
 
 class List extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
@@ -91,7 +97,7 @@ class List extends Component {
 						/>
 					}
 				>
-					{values(this.props.comments.comments)
+					{Object.values(this.props.comments.comments)
 						.filter(this.filterComments.bind(this))
 						.map(comment => {
 							return (
@@ -115,14 +121,6 @@ class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	listItem: {
-		padding: 15,
-		borderBottomColor: '#F7F7F7',
-		borderBottomWidth: 1,
-	},
-});
 
 export default connect(state => ({
 	...state,

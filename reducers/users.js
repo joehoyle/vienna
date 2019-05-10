@@ -30,6 +30,7 @@ export default function users( state = defaultState, action ) {
 		case 'USERS_UPDATE_ERRORED':
 			state.list.lastError = action.payload.error
 			return {...state}
+		default:
+			return state
 	}
-	return state
 }

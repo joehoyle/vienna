@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, ScrollView, Text } from 'react-native';
+import { TouchableOpacity, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { values } from 'lodash';
 import ListItem from '../../components/Sites/ListItem';
 import NavigationButton from '../../components/Navigation/Button';
 
@@ -48,7 +47,7 @@ class List extends Component {
 	render() {
 		return (
 			<ScrollView>
-				{values(this.props.sites).map(site => {
+				{Object.values(this.props.sites).map(site => {
 					return (
 						<TouchableOpacity
 							key={site.id}

@@ -3,6 +3,33 @@ import React, { Component } from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
+const styles = StyleSheet.create({
+	container: {
+		backgroundColor: '#f1f1f1',
+		height: 40,
+		padding: 3,
+		flexDirection: 'row',
+		alignItems: 'center',
+		borderBottomWidth: 1,
+		borderBottomColor: '#eeeeee',
+	},
+	icon: {
+		alignSelf: 'center',
+		marginBottom: 10,
+	},
+	inputIcon: {
+		marginLeft: 4,
+		marginRight: 6,
+		width: 20,
+		textAlign: 'center',
+	},
+	inputText: {
+		flex: 1,
+		fontSize: 16,
+		lineHeight: 16,
+	},
+});
+
 export default class TextInputWithIcon extends Component {
 	static propTypes = {
 		icon: PropTypes.string.isRequired,
@@ -36,30 +63,3 @@ export default class TextInputWithIcon extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		backgroundColor: '#f1f1f1',
-		height: 40,
-		padding: 3,
-		flexDirection: 'row',
-		alignItems: 'center',
-		borderBottomWidth: 1,
-		borderBottomColor: '#eeeeee',
-	},
-	icon: {
-		alignSelf: 'center',
-		marginBottom: 10,
-	},
-	inputIcon: {
-		marginLeft: 4,
-		marginRight: 6,
-		width: 20,
-		textAlign: 'center',
-	},
-	inputText: {
-		flex: 1,
-		fontSize: 16,
-		lineHeight: 16,
-	},
-});

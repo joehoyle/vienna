@@ -5,10 +5,37 @@ import {
 	View,
 	Text,
 	Image,
-	TouchableOpacity,
 	WebView,
 } from 'react-native';
-import ConfirmButton from '../ConfirmButton';
+
+const styles = StyleSheet.create({
+	container: {
+		marginBottom: 0,
+		marginTop: 5,
+		flexDirection: 'row',
+	},
+	authorName: {
+		lineHeight: 16,
+	},
+	contentRight: {
+		flex: 1,
+		backgroundColor: 'white',
+	},
+	content: {
+		marginBottom: 15,
+	},
+	webView: {
+		height: 10,
+		backgroundColor: 'white',
+	},
+	authorImage: {
+		marginRight: 15,
+		width: 30,
+		height: 30,
+		borderRadius: 15,
+		backgroundColor: '#EEEEEE',
+	},
+});
 
 export default class RichItem extends Component {
 	static propTypes = {
@@ -26,7 +53,7 @@ export default class RichItem extends Component {
 		if (!event.jsEvaluationValue) {
 			return;
 		}
-		this.setState({ webViewHeight: parseInt(event.jsEvaluationValue) });
+		this.setState({ webViewHeight: parseInt(event.jsEvaluationValue, 10) });
 	}
 	render() {
 		return (
@@ -75,32 +102,3 @@ export default class RichItem extends Component {
 		`;
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		marginBottom: 0,
-		marginTop: 5,
-		flexDirection: 'row',
-	},
-	authorName: {
-		lineHeight: 16,
-	},
-	contentRight: {
-		flex: 1,
-		backgroundColor: 'white',
-	},
-	content: {
-		marginBottom: 15,
-	},
-	webView: {
-		height: 10,
-		backgroundColor: 'white',
-	},
-	authorImage: {
-		marginRight: 15,
-		width: 30,
-		height: 30,
-		borderRadius: 15,
-		backgroundColor: '#EEEEEE',
-	},
-});

@@ -52,6 +52,7 @@ export default function comments( state = defaultState, action ) {
 		case 'COMMENTS_COMMENT_UPDATE_ERRORED':
 			state.list.lastError = action.payload.error
 			return {...state}
+		default:
+			return state;
 	}
-	return state
 }

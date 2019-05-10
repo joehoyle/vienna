@@ -1,8 +1,28 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
-import ConfirmButton from '../ConfirmButton';
+
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		height: 44,
+		padding: 10,
+	},
+	text: {
+		marginLeft: 5,
+	},
+	title: {
+		fontSize: 16,
+	},
+	url: {
+		color: '#999999',
+		fontSize: 12,
+		lineHeight: 12,
+	},
+});
 
 export default class ListItem extends Component {
 	static propTypes = {
@@ -26,24 +46,3 @@ export default class ListItem extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		height: 44,
-		padding: 10,
-	},
-	text: {
-		marginLeft: 5,
-	},
-	title: {
-		fontSize: 16,
-	},
-	url: {
-		color: '#999999',
-		fontSize: 12,
-		lineHeight: 12,
-	},
-});

@@ -1,8 +1,6 @@
 import { AuthSession } from 'expo';
 import querystring from 'query-string';
 import httpapi from '../api';
-import { values, trimEnd } from 'lodash';
-import fetchSiteData from './fetchSiteData';
 
 /**
  * Authorize a site to get / renew oauth credentials for that site. This will handle
@@ -40,7 +38,9 @@ export default function authorizeSite(site) {
 				})
 				.then(data => {
 					if (data.status === 'error') {
-						throw { message: 'Broker Error: ' + data.type, code: data.type };
+						const err = new Error( 'Broker Error: ' + data.type );
+						err.code = data.type;
+						throw err;
 					}
 
 					dispatch({
@@ -55,6 +55,27 @@ export default function authorizeSite(site) {
 				});
 		});
 
+		var handler = ( args ) => {
+			dispatch({
+				type: 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATING',
+				data: args,
+			});
+
+			var store = getStore();
+			var api = new httpapi(store.sites[store.activeSite.id]);
+
+			api
+				.post(site.authentication.oauth1.access, {
+					oauth_verifier: args.oauth_verifier,
+				})
+				.then(function(data) {
+					dispatch({
+						type: 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATED',
+						data: data,
+					});
+				});
+		};
+
 		promise
 			.then(function() {
 				var store = getStore();
@@ -63,7 +84,6 @@ export default function authorizeSite(site) {
 				dispatch({
 					type: 'AUTHORIZE_SITE_REQUEST_TOKEN_UPDATING',
 				});
-				const someURL = url;
 
 				return api.post(site.authentication.oauth1.request, {
 					callback_url: 'wordpress-react-native://site_callback',
@@ -133,26 +153,5 @@ export default function authorizeSite(site) {
 					error: error,
 				});
 			});
-
-		var handler = ( args ) => {
-			dispatch({
-				type: 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATING',
-				data: args,
-			});
-
-			var store = getStore();
-			var api = new httpapi(store.sites[store.activeSite.id]);
-
-			api
-				.post(site.authentication.oauth1.access, {
-					oauth_verifier: args.oauth_verifier,
-				})
-				.then(function(data) {
-					dispatch({
-						type: 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATED',
-						data: data,
-					});
-				});
-		};
 	};
 }

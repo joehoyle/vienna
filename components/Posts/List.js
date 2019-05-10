@@ -1,9 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
-import { values, isEmpty } from 'lodash';
 import ViennaPropTypes from '../../PropTypes';
 import ListItem from './ListItem';
+
+const styles = StyleSheet.create({
+	listItem: {
+		padding: 15,
+		borderBottomColor: '#F7F7F7',
+		borderBottomWidth: 1,
+	},
+});
 
 export default class List extends Component {
 	static propTypes = {
@@ -40,11 +47,3 @@ export default class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	listItem: {
-		padding: 15,
-		borderBottomColor: '#F7F7F7',
-		borderBottomWidth: 1,
-	},
-});

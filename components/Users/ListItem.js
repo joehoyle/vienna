@@ -1,8 +1,40 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
+
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		height: 44,
+		padding: 10,
+	},
+	left: {
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+	text: {},
+	title: {
+		fontSize: 16,
+		lineHeight: 16,
+	},
+	roleText: {
+		color: '#999999',
+		fontSize: 12,
+		lineHeight: 12,
+	},
+	image: {
+		marginRight: 15,
+		marginLeft: 5,
+		width: 30,
+		height: 30,
+		borderRadius: 15,
+		backgroundColor: '#EEEEEE',
+	},
+});
 
 export default class ListItem extends Component {
 	static propTypes = {
@@ -40,35 +72,3 @@ export default class ListItem extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		height: 44,
-		padding: 10,
-	},
-	left: {
-		flexDirection: 'row',
-		alignItems: 'center',
-	},
-	text: {},
-	title: {
-		fontSize: 16,
-		lineHeight: 16,
-	},
-	roleText: {
-		color: '#999999',
-		fontSize: 12,
-		lineHeight: 12,
-	},
-	image: {
-		marginRight: 15,
-		marginLeft: 5,
-		width: 30,
-		height: 30,
-		borderRadius: 15,
-		backgroundColor: '#EEEEEE',
-	},
-});

@@ -3,6 +3,13 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 
+const styles = StyleSheet.create({
+	container: {
+		color: '#666666',
+		fontSize: 16,
+	},
+});
+
 export default class Text extends Component {
 	static propTypes = {
 		value: PropTypes.string,
@@ -23,10 +30,3 @@ export default class Text extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		color: '#666666',
-		fontSize: 16,
-	},
-});

@@ -4,10 +4,22 @@ import {
 	StyleSheet,
 	View,
 	Text,
-	TouchableOpacity,
 	SegmentedControlIOS,
 	LayoutAnimation,
 } from 'react-native';
+
+const styles = StyleSheet.create({
+	container: {
+		padding: 10,
+		paddingTop: 0,
+		backgroundColor: '#2E73B0',
+	},
+	label: {
+		fontSize: 11,
+		color: 'white',
+		marginBottom: 5,
+	},
+});
 
 export default class ListItem extends Component {
 	static propTypes = {
@@ -58,16 +70,3 @@ export default class ListItem extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		padding: 10,
-		paddingTop: 0,
-		backgroundColor: '#2E73B0',
-	},
-	label: {
-		fontSize: 11,
-		color: 'white',
-		marginBottom: 5,
-	},
-});

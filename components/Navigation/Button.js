@@ -1,7 +1,17 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import NavigationButton from '../../components/Navigation/Button';
+
+const styles = StyleSheet.create({
+	container: {
+		paddingRight: 10,
+	},
+	text: {
+		lineHeight: 16,
+		fontSize: 16,
+		color: '#3578F6',
+	},
+});
 
 export default class Button extends Component {
 	static propTypes = {
@@ -15,14 +25,3 @@ export default class Button extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		paddingRight: 10,
-	},
-	text: {
-		lineHeight: 16,
-		fontSize: 16,
-		color: '#3578F6',
-	},
-});

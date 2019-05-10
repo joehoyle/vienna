@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import {
 	ScrollView,
 	View,
-	Image,
 	RefreshControl,
-	TouchableOpacity,
-	Text,
 	StyleSheet,
 } from 'react-native';
-import { values, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import { fetchSettings, changeSetting, updateSettings } from '../../actions';
-import PropTypes from '../../PropTypes';
-import ListItem from '../../components/Users/ListItem';
 import SchemaFormField from '../../components/General/SchemaFormField';
 import { connect } from 'react-redux';
-import NavigationButton from '../../components/Navigation/Button';
+
+const styles = StyleSheet.create({
+	list: {
+		paddingTop: 15,
+	},
+});
 
 class List extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
@@ -98,12 +98,6 @@ class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	list: {
-		paddingTop: 15,
-	},
-});
 
 export default connect(state => ({
 	...state,

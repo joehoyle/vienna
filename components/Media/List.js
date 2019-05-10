@@ -6,12 +6,24 @@ import {
 	StyleSheet,
 	ScrollView,
 	TouchableOpacity,
-	Text,
-	RefreshControl,
 } from 'react-native';
 import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
-import { isEmpty } from 'lodash';
+
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		flex: 1,
+		alignItems: 'flex-start',
+		flexWrap: 'wrap',
+	},
+	imageHighlight: {},
+	image: {
+		width: 93,
+		height: 93,
+	},
+});
 
 export default class List extends Component {
 	static propTypes = {
@@ -55,18 +67,3 @@ export default class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		flex: 1,
-		alignItems: 'flex-start',
-		flexWrap: 'wrap',
-	},
-	imageHighlight: {},
-	image: {
-		width: 93,
-		height: 93,
-	},
-});
