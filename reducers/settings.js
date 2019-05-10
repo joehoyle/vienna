@@ -38,6 +38,7 @@ export default function settings( state = defaultState, action ) {
 				},
 				settings: action.payload.settings
 			}
+		default:
+			return state;
 	}
-	return state
 }

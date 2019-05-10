@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import {
 	View,
 	Text,
@@ -6,7 +7,26 @@ import {
 	TouchableOpacity,
 	DatePickerIOS,
 } from 'react-native';
-import CustomActionSheet from 'react-native-custom-action-sheet';
+// import CustomActionSheet from 'react-native-custom-action-sheet';
+const CustomActionSheet = props => null;
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		height: 32,
+		fontSize: 16,
+		lineHeight: 30,
+		textAlign: 'right',
+		color: '#666666',
+	},
+	modal: {
+		paddingTop: 15,
+		height: 100,
+	},
+	picker: {
+		backgroundColor: 'white',
+	},
+});
 
 export default class DateField extends Component {
 	static propTypes = {
@@ -54,21 +74,3 @@ export default class DateField extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		height: 32,
-		fontSize: 16,
-		lineHeight: 30,
-		textAlign: 'right',
-		color: '#666666',
-	},
-	modal: {
-		paddingTop: 15,
-		height: 100,
-	},
-	picker: {
-		backgroundColor: 'white',
-	},
-});

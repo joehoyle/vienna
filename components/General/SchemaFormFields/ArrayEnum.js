@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import {
 	View,
 	Text,
@@ -7,8 +8,44 @@ import {
 	Modal,
 	ScrollView,
 } from 'react-native';
-import CustomActionSheet from 'react-native-custom-action-sheet';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome as Icon } from '@expo/vector-icons';
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		height: 32,
+		fontSize: 16,
+		lineHeight: 30,
+		textAlign: 'right',
+		color: '#666666',
+	},
+	modal: {
+		paddingTop: 15,
+		height: 100,
+	},
+	listItem: {
+		borderBottomWidth: 1,
+		borderBottomColor: '#F7F7F7',
+		paddingLeft: 10,
+		paddingRight: 10,
+		height: 42,
+		alignItems: 'center',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+	},
+	listItemText: {
+		fontSize: 16,
+	},
+	modalHeader: {
+		height: 42,
+		marginTop: 22,
+		padding: 10,
+	},
+	modalCloseText: {
+		fontSize: 18,
+		color: '#1F5FF3',
+	},
+});
 
 export default class ArrayEnum extends Component {
 	static propTypes = {
@@ -81,40 +118,3 @@ export default class ArrayEnum extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		height: 32,
-		fontSize: 16,
-		lineHeight: 30,
-		textAlign: 'right',
-		color: '#666666',
-	},
-	modal: {
-		paddingTop: 15,
-		height: 100,
-	},
-	listItem: {
-		borderBottomWidth: 1,
-		borderBottomColor: '#F7F7F7',
-		paddingLeft: 10,
-		paddingRight: 10,
-		height: 42,
-		alignItems: 'center',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-	},
-	listItemText: {
-		fontSize: 16,
-	},
-	modalHeader: {
-		height: 42,
-		marginTop: 22,
-		padding: 10,
-	},
-	modalCloseText: {
-		fontSize: 18,
-		color: '#1F5FF3',
-	},
-});

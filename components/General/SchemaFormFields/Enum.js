@@ -1,6 +1,31 @@
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Picker } from 'react-native';
-import CustomActionSheet from 'react-native-custom-action-sheet';
+// import CustomActionSheet from 'react-native-custom-action-sheet';
+const CustomActionSheet = props => null;
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		height: 32,
+		fontSize: 16,
+		lineHeight: 30,
+		textAlign: 'right',
+		color: '#666666',
+	},
+	modal: {
+		paddingTop: 15,
+		height: 100,
+	},
+	picker: {
+		// position: 'absolute',
+		backgroundColor: 'white',
+		// bottom: 0,
+		// left: 0,
+		// right: 0,
+		// top: 0,
+	},
+});
 
 export default class Enum extends Component {
 	static propTypes = {
@@ -56,26 +81,3 @@ export default class Enum extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		height: 32,
-		fontSize: 16,
-		lineHeight: 30,
-		textAlign: 'right',
-		color: '#666666',
-	},
-	modal: {
-		paddingTop: 15,
-		height: 100,
-	},
-	picker: {
-		// position: 'absolute',
-		backgroundColor: 'white',
-		// bottom: 0,
-		// left: 0,
-		// right: 0,
-		// top: 0,
-	},
-});

@@ -1,23 +1,49 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
 	StyleSheet,
 	View,
 	Text,
-	Image,
 	TouchableOpacity,
-	WebView,
 } from 'react-native';
-import PropTypes from '../../PropTypes';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import ViennaPropTypes from '../../PropTypes';
+import { FontAwesome as Icon } from '@expo/vector-icons';
 import ConfirmButton from '../ConfirmButton';
 import ReplyToItem from './ReplyToItem';
 import RichItem from '../General/RichItem';
 
+const styles = StyleSheet.create({
+	container: {
+		marginBottom: 0,
+		marginTop: 5,
+		flexDirection: 'column',
+	},
+	belowRighItem: {
+		marginLeft: 45,
+	},
+	actions: {
+		flexDirection: 'row',
+	},
+	actionsButton: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginRight: 10,
+	},
+	actionsButtonText: {
+		textAlign: 'center',
+		padding: 5,
+		fontSize: 14,
+		color: '#666666',
+	},
+	replyToItem: {},
+});
+
 export default class ListItem extends Component {
 	static propTypes = {
-		comment: PropTypes.Comment,
-		onEdit: React.PropTypes.func,
-		onReply: React.PropTypes.func,
+		comment: ViennaPropTypes.Comment,
+		onEdit: PropTypes.func,
+		onReply: PropTypes.func,
 	};
 
 	constructor() {
@@ -33,7 +59,7 @@ export default class ListItem extends Component {
 			return;
 		}
 		console.log(event.jsEvaluationValue);
-		this.setState({ webViewHeight: parseInt(event.jsEvaluationValue) });
+		this.setState({ webViewHeight: parseInt(event.jsEvaluationValue, 10) });
 	}
 
 	onReply(text) {
@@ -114,30 +140,3 @@ export default class ListItem extends Component {
 		`;
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		marginBottom: 0,
-		marginTop: 5,
-		flexDirection: 'column',
-	},
-	belowRighItem: {
-		marginLeft: 45,
-	},
-	actions: {
-		flexDirection: 'row',
-	},
-	actionsButton: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		marginRight: 10,
-	},
-	actionsButtonText: {
-		textAlign: 'center',
-		padding: 5,
-		fontSize: 14,
-		color: '#666666',
-	},
-	replyToItem: {},
-});

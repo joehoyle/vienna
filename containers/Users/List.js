@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import {
 	ScrollView,
-	Image,
 	RefreshControl,
 	TouchableOpacity,
-	Modal,
 	View,
-	Text,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { values, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import { fetchUsers } from '../../actions';
-import PropTypes from '../../PropTypes';
 import ListItem from '../../components/Users/ListItem';
-import EditItem from './Edit';
 import ListError from '../../components/General/ListError';
 import NavigationButton from '../../components/Navigation/Button';
 
@@ -75,7 +70,7 @@ class List extends Component {
 						/>
 					}
 				>
-					{values(this.props.users.users).map(user => {
+					{Object.values(this.props.users.users).map(user => {
 						return (
 							<TouchableOpacity
 								key={user.id}

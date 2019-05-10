@@ -1,17 +1,25 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
-import { values, isEmpty } from 'lodash';
-import PropTypes from '../../PropTypes';
+import ViennaPropTypes from '../../PropTypes';
 import ListItem from './ListItem';
+
+const styles = StyleSheet.create({
+	listItem: {
+		padding: 15,
+		borderBottomColor: '#F7F7F7',
+		borderBottomWidth: 1,
+	},
+});
 
 export default class List extends Component {
 	static propTypes = {
-		posts: React.PropTypes.arrayOf(PropTypes.Post).isRequired,
-		onEdit: React.PropTypes.func,
-		onView: React.PropTypes.func,
-		onTrash: React.PropTypes.func,
-		media: React.PropTypes.objectOf(PropTypes.Media),
-		users: React.PropTypes.objectOf(PropTypes.User),
+		posts: PropTypes.arrayOf(ViennaPropTypes.Post).isRequired,
+		onEdit: PropTypes.func,
+		onView: PropTypes.func,
+		onTrash: PropTypes.func,
+		media: PropTypes.objectOf(ViennaPropTypes.Media),
+		users: PropTypes.objectOf(ViennaPropTypes.User),
 	};
 	render() {
 		var posts = this.props.posts;
@@ -39,11 +47,3 @@ export default class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	listItem: {
-		padding: 15,
-		borderBottomColor: '#F7F7F7',
-		borderBottomWidth: 1,
-	},
-});

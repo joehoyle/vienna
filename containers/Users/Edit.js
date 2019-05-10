@@ -1,11 +1,4 @@
 import React, { Component } from 'react';
-import {
-	ScrollView,
-	View,
-	TouchableOpacity,
-	Text,
-	StyleSheet,
-} from 'react-native';
 import { updateUser } from '../../actions';
 import Form from '../../components/Users/Form';
 

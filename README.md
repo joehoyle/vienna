@@ -10,25 +10,35 @@ to interact with your WordPress install.
 
 ## Requirements
 
+Vienna is an [Expo](https://docs.expo.io/versions/latest/) React Native app. You can run the app directly without any iOS development environment.
+
 ### Local development setup
-- Xcode 7 or higher.
-- NPM 3.x.
-- Node 4.x.
+
+A standard npm and node environment is required. We recommend at least Node 8.14+.
 
 ### WordPress site
+
 - WordPress 4.7 or higher.
 - [WP REST API OAuth 1 plugin](https://github.com/WP-API/OAuth1)
 - [WP REST API Broker Auth Client](https://github.com/WP-API/broker-client)
 
+
 ## Development
 
 ### Project setup
-- Clone the repository.
-- In Terminal, change to the project folder, and run `npm install`.
 
-### Building the app
-- Open Xcode, and open the `ios/Vienna.xcodeproj` project.
-- Select _Product > Run_.
+Clone the repository, and run `npm install`:
+
+```
+git clone https://github.com/joehoyle/vienna.git
+cd vienna
+npm install
+```
+
+To run the app, run `npm start` and follow the on-screen directions.
+
+If you have the iOS Simulator installed, you can press <kbd>i</kbd> to start the simulator; otherwise, install the [Expo app](https://itunes.com/apps/exponent) from the App Store, then use your phone's camera to scan the QR code.
+
 
 ### Connecting to your WordPress site
 
@@ -48,10 +58,19 @@ In this case, you'll just need the [WP REST API OAuth 1 plugin](https://github.c
 - Press "OAuth 1.0"
 - Enter the Client Key and Client Secret for the JSON Consumer application
 
+
 ### Working on the app
-- Run the app in the iOS simulator.
-- Hit _CMD + D_ on the keyboard.
-- Select _Debug in Chrome_ to open a Chrome window ready for debugging.
+
+To open the Expo menu while using the app, shake your device, or press <kbd>Cmd-D</kbd> in the simulator.
+
+Download and install the [React Native Debugger app](https://github.com/jhen0409/react-native-debugger). This will provide a full debugging environment including Redux Dev Tools.
+
+To use the debugger:
+
+1. Open the Expo menu in the app, and enable remote debugging
+2. On your computer, open the React Native Debugger app
+3. Select Window > New Window (or press <kbd>Cmd-T</kbd>) and connect to port 19001
+
 
 ## Learning
 - Free [video course](https://learnredux.com) for learning Redux.

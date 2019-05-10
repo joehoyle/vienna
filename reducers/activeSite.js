@@ -7,6 +7,7 @@ export default function activeSite( state = { id: null }, action ) {
 		case 'SITE_CREATE_ERRORED':
 		case 'SITE_REMOVED':
 			return {...state, id: null }
+		default:
+			return state;
 	}
-	return state
 }

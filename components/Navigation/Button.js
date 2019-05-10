@@ -1,19 +1,6 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import NavigationButton from '../../components/Navigation/Button';
-
-export default class Button extends Component {
-	static propTypes = {
-		onPress: React.PropTypes.func.isRequired,
-	};
-	render() {
-		return (
-			<TouchableOpacity onPress={this.props.onPress} style={styles.container}>
-				<Text style={styles.text}>{this.props.children}</Text>
-			</TouchableOpacity>
-		);
-	}
-}
 
 const styles = StyleSheet.create({
 	container: {
@@ -25,3 +12,16 @@ const styles = StyleSheet.create({
 		color: '#3578F6',
 	},
 });
+
+export default class Button extends Component {
+	static propTypes = {
+		onPress: PropTypes.func.isRequired,
+	};
+	render() {
+		return (
+			<TouchableOpacity onPress={this.props.onPress} style={styles.container}>
+				<Text style={styles.text}>{this.props.children}</Text>
+			</TouchableOpacity>
+		);
+	}
+}

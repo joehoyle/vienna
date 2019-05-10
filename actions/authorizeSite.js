@@ -1,9 +1,6 @@
+import { AuthSession } from 'expo';
 import querystring from 'query-string';
-import { Linking } from 'react-native';
-import SafariView from 'react-native-safari-view';
 import httpapi from '../api';
-import { values, trimEnd } from 'lodash';
-import fetchSiteData from './fetchSiteData';
 
 /**
  * Authorize a site to get / renew oauth credentials for that site. This will handle
@@ -41,7 +38,9 @@ export default function authorizeSite(site) {
 				})
 				.then(data => {
 					if (data.status === 'error') {
-						throw { message: 'Broker Error: ' + data.type, code: data.type };
+						const err = new Error( 'Broker Error: ' + data.type );
+						err.code = data.type;
+						throw err;
 					}
 
 					dispatch({
@@ -56,69 +55,7 @@ export default function authorizeSite(site) {
 				});
 		});
 
-		promise
-			.then(function() {
-				var store = getStore();
-				var api = new httpapi(store.sites[store.activeSite.id]);
-
-				dispatch({
-					type: 'AUTHORIZE_SITE_REQUEST_TOKEN_UPDATING',
-				});
-				const someURL = url;
-
-				return api.post(site.authentication.oauth1.request, {
-					callback_url: 'wordpress-react-native://site_callback',
-				});
-			})
-			.then(data => {
-				var store = getStore();
-				var url = store.sites[store.activeSite.id].url;
-				url =
-					site.authentication.oauth1.authorize +
-					'?' +
-					querystring.stringify({
-						oauth_token: data.oauth_token,
-						oauth_callback: 'wordpress-react-native://site_callback',
-					});
-				dispatch({
-					type: 'AUTHORIZE_SITE_REQUEST_TOKEN_UPDATED',
-					data: data,
-				});
-
-				setTimeout(() => {
-					SafariView.show({
-						url: url,
-						tintColor: '#2E73B0',
-					});
-					Linking.addEventListener('url', listener);
-				}, 1000);
-			})
-			.catch(error => {
-				dispatch({
-					type: 'AUTHORIZE_SITE_FAILED',
-					error: error,
-				});
-			});
-
-		var dismissed = true;
-		var showErrorOnDismiss = SafariView.addEventListener('onDismiss', () => {
-			if (!dismissed) {
-				return;
-			}
-			Linking.removeEventListener('url', listener);
-			dispatch({
-				type: 'AUTHORIZE_SITE_FAILED',
-				error: { message: 'Login modal dismissed.' },
-			});
-		});
-
-		var listener = function(event) {
-			showErrorOnDismiss.remove();
-			dismissed = false;
-			SafariView.dismiss();
-			Linking.removeEventListener('url', listener);
-			var args = querystring.parse(event.url.split('?')[1]);
-
+		var handler = ( args ) => {
 			dispatch({
 				type: 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATING',
 				data: args,
@@ -138,5 +75,83 @@ export default function authorizeSite(site) {
 					});
 				});
 		};
+
+		promise
+			.then(function() {
+				var store = getStore();
+				var api = new httpapi(store.sites[store.activeSite.id]);
+
+				dispatch({
+					type: 'AUTHORIZE_SITE_REQUEST_TOKEN_UPDATING',
+				});
+
+				return api.post(site.authentication.oauth1.request, {
+					callback_url: 'wordpress-react-native://site_callback',
+				});
+			})
+			.then(data => {
+				const redirectUrl = AuthSession.getRedirectUrl();
+				console.log( `Redirect URL is: ${ redirectUrl }` );
+				var store = getStore();
+				var url = store.sites[store.activeSite.id].url;
+				url =
+					site.authentication.oauth1.authorize +
+					'?' +
+					querystring.stringify({
+						oauth_token: data.oauth_token,
+						oauth_callback: redirectUrl,
+					});
+				dispatch({
+					type: 'AUTHORIZE_SITE_REQUEST_TOKEN_UPDATED',
+					data: data,
+				});
+
+				setTimeout(async () => {
+					let result = await AuthSession.startAsync( {
+						authUrl: url,
+					} );
+
+					if ( result.type === 'dismiss' ) {
+						// Manually cancelled elsewhere.
+						return;
+					}
+
+					switch ( result.type ) {
+						case 'cancel':
+							dispatch({
+								type: 'AUTHORIZE_SITE_FAILED',
+								error: { message: 'Login modal dismissed.' },
+							});
+							break;
+
+						case 'success':
+							handler( result.params );
+							break;
+
+						case 'error':
+							console.log( result );
+							dispatch({
+								type: 'AUTHORIZE_SITE_FAILED',
+								error: { message: `Could not authorize: ${ result.errorCode }` },
+							});
+							break;
+
+						default:
+							console.log( result );
+							dispatch({
+								type: 'AUTHORIZE_SITE_FAILED',
+								error: { message: 'Unknown error occurred' },
+							});
+							break;
+					}
+				}, 1000);
+			})
+			.catch(error => {
+				console.log(error);
+				dispatch({
+					type: 'AUTHORIZE_SITE_FAILED',
+					error: error,
+				});
+			});
 	};
 }

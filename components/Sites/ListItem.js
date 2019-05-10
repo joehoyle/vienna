@@ -1,31 +1,7 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
-import PropTypes from '../../PropTypes';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import ConfirmButton from '../ConfirmButton';
-
-export default class ListItem extends Component {
-	static propTypes = {
-		site: React.PropTypes.object.isRequired,
-	};
-
-	render() {
-		return (
-			<View style={styles.container}>
-				<View style={styles.text}>
-					<Text style={styles.title}>{this.props.site.name}</Text>
-					<Text style={styles.url}>{this.props.site.url}</Text>
-				</View>
-				<Icon
-					name="chevron-right"
-					style={styles.chevron}
-					size={22}
-					color="#BBBBBB"
-				/>
-			</View>
-		);
-	}
-}
+import { StyleSheet, View, Text } from 'react-native';
+import { FontAwesome as Icon } from '@expo/vector-icons';
 
 const styles = StyleSheet.create({
 	container: {
@@ -47,3 +23,26 @@ const styles = StyleSheet.create({
 		lineHeight: 12,
 	},
 });
+
+export default class ListItem extends Component {
+	static propTypes = {
+		site: PropTypes.object.isRequired,
+	};
+
+	render() {
+		return (
+			<View style={styles.container}>
+				<View style={styles.text}>
+					<Text style={styles.title}>{this.props.site.name}</Text>
+					<Text style={styles.url}>{this.props.site.url}</Text>
+				</View>
+				<Icon
+					name="chevron-right"
+					style={styles.chevron}
+					size={22}
+					color="#BBBBBB"
+				/>
+			</View>
+		);
+	}
+}

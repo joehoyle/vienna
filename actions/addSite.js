@@ -1,19 +1,8 @@
-import OAuth from 'oauth-1.0a';
-import querystring from 'query-string';
-import { Linking } from 'react-native';
-import SafariView from 'react-native-safari-view';
-import httpapi from '../api';
-import { values, trimEnd } from 'lodash';
 import URI from 'urijs'
-import fetchSiteData from './fetchSiteData';
 import authorizeSite from './authorizeSite';
 
 export default function addSite(url, args = {}) {
 	return (dispatch, getStore) => {
-		/*
-		 * Don't add duplicate sites.
-		 */
-		var siteUrls = values(getStore().sites).map(site => site.url);
 		dispatch({
 			type: 'SITE_CREATING',
 		});
@@ -21,13 +10,13 @@ export default function addSite(url, args = {}) {
 		var siteId =
 			Math.max.apply(
 				null,
-				values(getStore().sites).map(s => s.id).concat([0])
+				Object.values(getStore().sites).map(s => s.id).concat([0])
 			) + 1;
 
 		fetch(url, { redirect: 'follow' })
 			.then(response => {
 				var linkHeaders = response.headers
-					.getAll('Link')
+					.get('Link').split(',')
 					.filter(link => link.match('rel="https://api.w.org/"'));
 
 				if (linkHeaders.length === 0) {
@@ -35,8 +24,9 @@ export default function addSite(url, args = {}) {
 				}
 
 				var restUrl = new URI(linkHeaders[0].match('<(.+)>; rel="https://api.w.org/"')[1]);
-				restUrl.addQuery('context', 'help')
-				return fetch(`${restUrl}`)
+				var helpUrl = restUrl.clone();
+				helpUrl.addQuery('context', 'help')
+				return fetch( '' + helpUrl )
 					.then(response => response.json())
 					.then(data => {
 						if (data.namespaces.indexOf('wp/v2') === -1) {
@@ -58,7 +48,7 @@ export default function addSite(url, args = {}) {
 							type: 'SITE_CREATED',
 							payload: {
 								site: data,
-								rest_url: restUrl,
+								rest_url: '' + restUrl,
 								id: siteId,
 								args: args,
 							},

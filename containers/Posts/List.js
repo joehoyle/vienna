@@ -1,22 +1,34 @@
 import React, { Component } from 'react';
 import {
 	StyleSheet,
-	ScrollView,
 	View,
 	RefreshControl,
 	ActivityIndicator,
 	Text,
 	Linking,
 } from 'react-native';
-import { values, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import { connect } from 'react-redux';
 import { trashPost, fetchPosts } from '../../actions';
-import PropTypes from '../../PropTypes';
 import PostsList from '../../components/Posts/List';
 import MediaList from '../../components/Media/List';
 import Filter from '../../components/Posts/Filter';
 import ListError from '../../components/General/ListError';
 import NavigationButton from '../../components/Navigation/Button';
+
+const styles = StyleSheet.create({
+	creating: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		paddingBottom: 5,
+		backgroundColor: '#2E73B0',
+	},
+	creatingText: {
+		marginLeft: 5,
+		lineHeight: 17,
+		color: 'rgba(255,255,255,.3)',
+	},
+});
 
 class List extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
@@ -33,9 +45,6 @@ class List extends Component {
 			</NavigationButton>
 		),
 	});
-	constructor(props) {
-		super(props);
-	}
 	componentDidMount() {
 		setTimeout(() => {
 			var posts = this.props.types[this.props.navigation.state.params.type.slug]
@@ -118,7 +127,7 @@ class List extends Component {
 							titleColor="#000000"
 						/>
 					}
-					posts={values(posts).filter(this.filterPosts.bind(this))}
+					posts={Object.values(posts).filter(this.filterPosts.bind(this))}
 					users={this.props.users.users}
 					media={this.props.types.attachment.posts}
 					onEdit={post => this.onSelectPost(post)}
@@ -129,20 +138,6 @@ class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	creating: {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		paddingBottom: 5,
-		backgroundColor: '#2E73B0',
-	},
-	creatingText: {
-		marginLeft: 5,
-		lineHeight: 17,
-		color: 'rgba(255,255,255,.3)',
-	},
-});
 
 export default connect(state => ({
 	...state,

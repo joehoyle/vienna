@@ -1,26 +1,66 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
 	StyleSheet,
 	View,
 	Text,
 	TouchableOpacity,
-	Image,
-	WebView,
 } from 'react-native';
-import PropTypes from '../../PropTypes';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import TimeAgo from './../TimeAgo';
+import ViennaPropTypes from '../../PropTypes';
+import { FontAwesome as Icon } from '@expo/vector-icons';
 import ConfirmButton from '../ConfirmButton';
 import RichItem from '../General/RichItem';
 
+const styles = StyleSheet.create({
+	container: {},
+	title: {
+		margin: 15,
+		height: 25,
+	},
+	dateText: {
+		fontSize: 12,
+		color: '#999',
+	},
+	date: {
+		marginLeft: 15,
+		marginRight: 15,
+		marginTop: 5,
+	},
+	actions: {
+		flexDirection: 'row',
+		marginLeft: 45,
+	},
+	actionsButton: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginRight: 10,
+	},
+	actionsButtonText: {
+		textAlign: 'center',
+		padding: 5,
+		fontSize: 14,
+		color: '#666666',
+	},
+	featuredMedia: {
+		height: 180,
+		flex: 1,
+		marginBottom: 5,
+	},
+	webView: {
+		marginLeft: 10,
+		marginRight: 10,
+	},
+});
+
 export default class ListItem extends Component {
 	static propTypes = {
-		post: PropTypes.Post.isRequired,
-		onEdit: React.PropTypes.func,
-		onView: React.PropTypes.func,
-		onTrash: React.PropTypes.func,
-		featuredMedia: PropTypes.Media,
-		author: PropTypes.User,
+		post: ViennaPropTypes.Post.isRequired,
+		onEdit: PropTypes.func,
+		onView: PropTypes.func,
+		onTrash: PropTypes.func,
+		featuredMedia: ViennaPropTypes.Media,
+		author: ViennaPropTypes.User,
 	};
 	constructor(props) {
 		super(props);
@@ -81,45 +121,3 @@ export default class ListItem extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {},
-	title: {
-		margin: 15,
-		height: 25,
-	},
-	dateText: {
-		fontSize: 12,
-		color: '#999',
-	},
-	date: {
-		marginLeft: 15,
-		marginRight: 15,
-		marginTop: 5,
-	},
-	actions: {
-		flexDirection: 'row',
-		marginLeft: 45,
-	},
-	actionsButton: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		marginRight: 10,
-	},
-	actionsButtonText: {
-		textAlign: 'center',
-		padding: 5,
-		fontSize: 14,
-		color: '#666666',
-	},
-	featuredMedia: {
-		height: 180,
-		flex: 1,
-		marginBottom: 5,
-	},
-	webView: {
-		marginLeft: 10,
-		marginRight: 10,
-	},
-});

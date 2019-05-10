@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { Text, TouchableOpacity } from 'react-native';
 
 export default class UserSelect extends Component {
 	static propTypes = {
@@ -24,10 +25,3 @@ export default class UserSelect extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		color: '#666666',
-		fontSize: 16,
-	},
-});

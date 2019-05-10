@@ -1,11 +1,4 @@
 import React, { Component } from 'react';
-import {
-	ScrollView,
-	View,
-	TouchableOpacity,
-	Text,
-	StyleSheet,
-} from 'react-native';
 import { updateTerm } from '../../actions';
 import Form from '../../components/Terms/Form';
 import { connect } from 'react-redux';
@@ -43,7 +36,6 @@ class Edit extends Component {
 		var schema = this.props.sites[this.props.activeSite.id].routes[
 			'/wp/v2/' + slug
 		].schema;
-		var object = this.state.term;
 
 		return (
 			<Form

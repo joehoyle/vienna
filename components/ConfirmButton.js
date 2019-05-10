@@ -1,17 +1,28 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome as Icon } from '@expo/vector-icons';
+
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+	},
+	icon: {},
+	text: {},
+});
 
 export default class ConfirmButton extends Component {
-	static propTypes: {
-		icon: React.PropTypes.string,
-		text: React.PropTypes.string,
-		confirmIcon: React.PropTypes.string,
-		confirmText: React.PropTypes.string,
+	static propTypes = {
+		icon: PropTypes.string,
+		text: PropTypes.string,
+		confirmIcon: PropTypes.string,
+		confirmText: PropTypes.string,
 	};
-	componentWillMount() {
-		this.state = { requiresConfirm: false };
-	}
+
+	state = {
+		requiresConfirm: false,
+	};
+
 	onPress() {
 		if (this.state.requiresConfirm) {
 			this.props.onPress();
@@ -45,11 +56,3 @@ export default class ConfirmButton extends Component {
 				</TouchableOpacity>;
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-	},
-	icon: {},
-	text: {},
-});

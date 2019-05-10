@@ -1,18 +1,23 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
 	ScrollView,
 	View,
-	TouchableOpacity,
-	Text,
 	StyleSheet,
 } from 'react-native';
 import SchemaFormField from '../General/SchemaFormField';
 
+const styles = StyleSheet.create({
+	list: {
+		paddingTop: 15,
+	},
+});
+
 export default class Form extends Component {
 	static propTypes = {
-		user: React.PropTypes.object.isRequired,
-		schema: React.PropTypes.object.isRequired,
-		onChangePropertyValue: React.PropTypes.func.isRequired,
+		user: PropTypes.object.isRequired,
+		schema: PropTypes.object.isRequired,
+		onChangePropertyValue: PropTypes.func.isRequired,
 	};
 	render() {
 		const schema = this.props.schema;
@@ -60,9 +65,3 @@ export default class Form extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	list: {
-		paddingTop: 15,
-	},
-});

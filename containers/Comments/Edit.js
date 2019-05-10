@@ -2,18 +2,23 @@ import React, { Component } from 'react';
 import {
 	ScrollView,
 	View,
-	TouchableOpacity,
-	Text,
 	StyleSheet,
 } from 'react-native';
-import { values, isEmpty } from 'lodash';
-import PropTypes from '../../PropTypes';
 import { updateComment } from '../../actions';
 import SchemaFormField from '../../components/General/SchemaFormField';
 import MultilineTextFormField
 	from '../../components/General/FormFields/MultilineText';
 import { connect } from 'react-redux';
 import NavigationButton from '../../components/Navigation/Button';
+
+const styles = StyleSheet.create({
+	list: {
+		paddingTop: 15,
+	},
+	contentField: {
+		margin: 10,
+	},
+});
 
 class Edit extends Component {
 	static navigationOptions = ({ navigationOptions, navigation }) => ({
@@ -74,7 +79,7 @@ class Edit extends Component {
 							properties =>
 								['author', 'date_gmt', 'parent', 'post', 'type'].indexOf(
 									properties[0]
-								) == -1
+								) === -1
 						)
 						.map(properties => {
 							const propertySchema = properties[1];
@@ -110,15 +115,6 @@ class Edit extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	list: {
-		paddingTop: 15,
-	},
-	contentField: {
-		margin: 10,
-	},
-});
 
 export default connect(state => ({
 	...state,

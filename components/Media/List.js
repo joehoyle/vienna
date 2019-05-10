@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
 	View,
@@ -5,17 +6,29 @@ import {
 	StyleSheet,
 	ScrollView,
 	TouchableOpacity,
-	Text,
-	RefreshControl,
 } from 'react-native';
-import PropTypes from '../../PropTypes';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { isEmpty } from 'lodash';
+import ViennaPropTypes from '../../PropTypes';
+import { FontAwesome as Icon } from '@expo/vector-icons';
+
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		flex: 1,
+		alignItems: 'flex-start',
+		flexWrap: 'wrap',
+	},
+	imageHighlight: {},
+	image: {
+		width: 93,
+		height: 93,
+	},
+});
 
 export default class List extends Component {
 	static propTypes = {
-		posts: React.PropTypes.arrayOf(PropTypes.Media).isRequired,
-		onEdit: React.PropTypes.func.isRequired,
+		posts: PropTypes.arrayOf(ViennaPropTypes.Media).isRequired,
+		onEdit: PropTypes.func.isRequired,
 	};
 
 	render() {
@@ -54,18 +67,3 @@ export default class List extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		flex: 1,
-		alignItems: 'flex-start',
-		flexWrap: 'wrap',
-	},
-	imageHighlight: {},
-	image: {
-		width: 93,
-		height: 93,
-	},
-});

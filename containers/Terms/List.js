@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import {
 	ScrollView,
-	Image,
 	RefreshControl,
 	TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { values, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import { fetchTerms } from '../../actions';
-import PropTypes from '../../PropTypes';
 import ListItem from '../../components/Terms/ListItem';
 import ListError from '../../components/General/ListError';
 import NavigationButton from '../../components/Navigation/Button';
@@ -28,9 +26,6 @@ class List extends Component {
 			</NavigationButton>
 		),
 	});
-	constructor(props) {
-		super(props);
-	}
 	componentDidMount() {
 		if (isEmpty(this.props.navigation.state.params.taxonomy.terms)) {
 			this.props.dispatch(
@@ -74,7 +69,7 @@ class List extends Component {
 				{taxonomy.list.lastError
 					? <ListError error={taxonomy.list.lastError} />
 					: null}
-				{values(terms).map(term => {
+				{Object.values(terms).map(term => {
 					return (
 						<TouchableOpacity
 							key={term.id}

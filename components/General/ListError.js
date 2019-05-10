@@ -1,18 +1,6 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-
-export default class ListError extends Component {
-	static propTypes = {
-		error: React.PropTypes.object.isRequired,
-	};
-	render() {
-		return (
-			<View style={styles.container}>
-				<Text style={styles.text}>{this.props.error.message}</Text>
-			</View>
-		);
-	}
-}
 
 const styles = StyleSheet.create({
 	container: {
@@ -26,3 +14,16 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 });
+
+export default class ListError extends Component {
+	static propTypes = {
+		error: PropTypes.object.isRequired,
+	};
+	render() {
+		return (
+			<View style={styles.container}>
+				<Text style={styles.text}>{this.props.error.message}</Text>
+			</View>
+		);
+	}
+}

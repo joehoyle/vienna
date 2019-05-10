@@ -1,4 +1,24 @@
 {
-  "name": "Vienna",
-  "displayName": "Vienna"
+  "expo": {
+    "name": "Vienna",
+    "slug": "vienna",
+    "privacy": "public",
+    "sdkVersion": "32.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./images/app-icon-1024.png",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
+  }
 }
