@@ -113,7 +113,7 @@ class Add extends Component {
 			};
 		}
 
-		this.props.dispatch( addSite( url, args ) );
+		this.props.addSite( url, args );
 	}
 
 	render() {
@@ -196,4 +196,11 @@ class Add extends Component {
 	}
 }
 
-export default connect(s => s)(Add);
+const mapStateToProps = state => ( {
+	newSite: state.newSite,
+} );
+const mapDispatchToProps = dispatch => ( {
+	addSite: ( ...args ) => dispatch( addSite( ...args ) ),
+} );
+
+export default connect( mapStateToProps, mapDispatchToProps )( Add );
