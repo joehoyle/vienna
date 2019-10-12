@@ -1,5 +1,7 @@
+import Constants from 'expo-constants';
 import React, { Component } from 'react';
 import {
+	KeyboardAvoidingView,
 	StyleSheet,
 	TouchableOpacity,
 	View,
@@ -7,8 +9,10 @@ import {
 	ActivityIndicator,
 	Image,
 } from 'react-native';
+import { Header } from 'react-navigation-stack';
 import { connect } from 'react-redux';
 import { trim } from 'lodash';
+
 import { addSite } from '../../actions';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
@@ -114,7 +118,11 @@ class Add extends Component {
 
 	render() {
 		return (
-			<View style={ styles.container }>
+			<KeyboardAvoidingView
+				behavior="height"
+				keyboardVerticalOffset={ Header.HEIGHT + Constants.statusBarHeight - 20 }
+				style={ styles.container }
+			>
 				<View style={ styles.main }>
 					<Image
 						source={ require('../../images/logo-black-40.png') }
@@ -193,7 +201,7 @@ class Add extends Component {
 						</TouchableOpacity>
 					) : null }
 				</View>
-			</View>
+			</KeyboardAvoidingView>
 		);
 	}
 }
