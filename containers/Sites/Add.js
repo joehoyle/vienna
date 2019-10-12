@@ -11,15 +11,19 @@ import { connect } from 'react-redux';
 import { trim } from 'lodash';
 import { addSite } from '../../actions';
 import { FontAwesome as Icon } from '@expo/vector-icons';
-import AddSiteInstructions from '../../components/Sites/AddSiteInstructions';
+
+import Button from '../../components/Sites/Button';
 import TextInputWithIcon from '../../components/General/TextInputWithIcon';
 
 const styles = StyleSheet.create( {
 	container: {
 		backgroundColor: '#FFFFFF',
 		padding: 20,
-		paddingBottom: 100,
 		flex: 1,
+		alignItems: 'stretch',
+	},
+	main: {
+		flexGrow: 1,
 		alignItems: 'stretch',
 		justifyContent: 'center',
 	},
@@ -48,14 +52,8 @@ const styles = StyleSheet.create( {
 		lineHeight: 16,
 	},
 	addButton: {
+		alignSelf: 'center',
 		margin: 10,
-		backgroundColor: 'rgba(0,0,0,.3)',
-		alignItems: 'center',
-		padding: 8,
-		borderRadius: 1,
-	},
-	addButtonText: {
-		color: '#FFFFFF',
 	},
 	errorMessage: {
 		color: 'red',
@@ -117,81 +115,83 @@ class Add extends Component {
 	render() {
 		return (
 			<View style={ styles.container }>
-				<Image
-					source={ require('../../images/logo-black-40.png') }
-					style={ styles.icon }
-				/>
+				<View style={ styles.main }>
+					<Image
+						source={ require('../../images/logo-black-40.png') }
+						style={ styles.icon }
+					/>
 
-				<Text style={ styles.description }>
-					Enter the address of the site you'd like to connect.
-				</Text>
-
-				{ ! this.props.newSite.status ? (
-					<View>
-						<TextInputWithIcon
-							icon="globe"
-							keyboardType="url"
-							placeholder="Site URL..."
-							value={ this.state.url }
-							returnKeyType="go"
-							onChangeText={ text => this.setState( { url: text } ) }
-							onSubmitEditing={ this.onSubmit }
-						/>
-
-						{ this.state.addOAuth ? (
-							<View>
-								<TextInputWithIcon
-									icon="key"
-									placeholder="OAuth Client Key..."
-									returnKeyType="next"
-									value={ this.state.key }
-									onChangeText={ text => this.setState( { key: text } ) }
-									onSubmitEditing={ this.onSubmit }
-								/>
-								<TextInputWithIcon
-									icon="lock"
-									placeholder="OAuth Client Secret..."
-									returnKeyType="go"
-									value={ this.state.secret }
-									onChangeText={ text => this.setState( { secret: text } ) }
-									onSubmitEditing={ this.onSubmit }
-								/>
-							</View>
-						) : null }
-					</View>
-				) : (
-					<View style={ styles.input }>
-						<ActivityIndicator
-							size="small"
-							color="#666666"
-							style={ { marginRight: 5, marginLeft: 5 } }
-						/>
-						<Text style={ styles.inputText }>{ this.props.newSite.status }</Text>
-					</View>
-				) }
-
-				{ this.props.newSite.errorStatus ? (
-					<Text style={ styles.errorMessage }>
-						<Icon name="exclamation-triangle" color="white" />
-						{ ' ' }
-						{ this.props.newSite.errorStatus }
+					<Text style={ styles.description }>
+						Enter the address of the site you'd like to connect.
 					</Text>
-				) : null }
 
-				{ ! this.props.newSite.status && this.state.url ? (
-					<TouchableOpacity
-						onPress={ this.onSubmit }
+					{ ! this.props.newSite.status ? (
+						<View>
+							<TextInputWithIcon
+								icon="globe"
+								keyboardType="url"
+								placeholder="Site URL..."
+								value={ this.state.url }
+								returnKeyType="go"
+								onChangeText={ text => this.setState( { url: text } ) }
+								onSubmitEditing={ this.onSubmit }
+							/>
+
+							{ this.state.addOAuth ? (
+								<View>
+									<TextInputWithIcon
+										icon="key"
+										placeholder="OAuth Client Key..."
+										returnKeyType="next"
+										value={ this.state.key }
+										onChangeText={ text => this.setState( { key: text } ) }
+										onSubmitEditing={ this.onSubmit }
+									/>
+									<TextInputWithIcon
+										icon="lock"
+										placeholder="OAuth Client Secret..."
+										returnKeyType="go"
+										value={ this.state.secret }
+										onChangeText={ text => this.setState( { secret: text } ) }
+										onSubmitEditing={ this.onSubmit }
+									/>
+								</View>
+							) : null }
+						</View>
+					) : (
+						<View style={ styles.input }>
+							<ActivityIndicator
+								size="small"
+								color="#666666"
+								style={ { marginRight: 5, marginLeft: 5 } }
+							/>
+							<Text style={ styles.inputText }>{ this.props.newSite.status }</Text>
+						</View>
+					) }
+
+					{ this.props.newSite.errorStatus ? (
+						<Text style={ styles.errorMessage }>
+							<Icon name="exclamation-triangle" color="white" />
+							{ ' ' }
+							{ this.props.newSite.errorStatus }
+						</Text>
+					) : null }
+
+					<Button
+						disabled={ Boolean( this.props.newSite.status || ! this.state.url ) }
 						style={ styles.addButton }
+						onPress={ this.onSubmit }
 					>
-						<Text style={ styles.addButtonText }>Add Site</Text>
-					</TouchableOpacity>
-				) : null }
-
-				{ ! this.state.addOAuth ? (
-					<TouchableOpacity onPress={ () => this.setState( { addOAuth: true } ) }>
-						<Text style={ styles.addOAuthText }>Using OAuth 1.0?</Text>
-					</TouchableOpacity>
-				) : null }
+						Add Site
+					</Button>
+				</View>
+				<View>
+					{ ! this.state.addOAuth ? (
+						<TouchableOpacity onPress={ () => this.setState( { addOAuth: true } ) }>
+							<Text style={ styles.addOAuthText }>Advanced Settings</Text>
+						</TouchableOpacity>
+					) : null }
+				</View>
 			</View>
 		);
 	}
