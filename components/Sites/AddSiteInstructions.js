@@ -1,4 +1,4 @@
-import { WebBrowser } from 'expo';
+import * as WebBrowser from 'expo-web-browser';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
