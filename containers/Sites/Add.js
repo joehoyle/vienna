@@ -171,7 +171,7 @@ class Add extends Component {
 
 					{ this.props.newSite.errorStatus ? (
 						<Text style={ styles.errorMessage }>
-							<Icon name="exclamation-triangle" color="white" />
+							<Icon name="exclamation-triangle" color="red" />
 							{ ' ' }
 							{ this.props.newSite.errorStatus }
 						</Text>
