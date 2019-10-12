@@ -31,7 +31,12 @@ const styles = StyleSheet.create({
 });
 
 export default class TextInputWithIcon extends Component {
+	static defaultProps = {
+		autoFocus: false,
+	}
+
 	static propTypes = {
+		autoFocus: PropTypes.bool,
 		icon: PropTypes.string.isRequired,
 		value: PropTypes.string.isRequired,
 		placeholder: PropTypes.string,
@@ -52,6 +57,7 @@ export default class TextInputWithIcon extends Component {
 				<TextInput
 					autoCapitalize="none"
 					autoCorrect={false}
+					autoFocus={ this.props.autoFocus }
 					style={styles.inputText}
 					placeholder={this.props.placeholder}
 					value={this.props.value}

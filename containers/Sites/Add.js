@@ -128,6 +128,7 @@ class Add extends Component {
 					{ ! this.props.newSite.status ? (
 						<View>
 							<TextInputWithIcon
+								autoFocus
 								icon="globe"
 								keyboardType="url"
 								placeholder="Site URL..."
