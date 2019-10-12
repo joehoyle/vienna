@@ -82,14 +82,6 @@ class Add extends Component {
 		addOAuth: false,
 	}
 
-	onNavigatorEvent( event ) {
-		if ( event.type === 'NavBarButtonPress' ) {
-			if ( event.id === 'close' ) {
-				this.props.navigator.dismissModal();
-			}
-		}
-	}
-
 	onSubmit = () => {
 		let url = this.state.url;
 
