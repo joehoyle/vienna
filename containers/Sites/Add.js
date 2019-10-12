@@ -23,6 +23,12 @@ const styles = StyleSheet.create( {
 		alignItems: 'stretch',
 		justifyContent: 'center',
 	},
+	description: {
+		color: '#666666',
+		marginTop: 15,
+		marginBottom: 15,
+		textAlign: 'center',
+	},
 	icon: {
 		alignSelf: 'center',
 		marginBottom: 10,
@@ -115,7 +121,10 @@ class Add extends Component {
 					source={ require('../../images/logo-black-40.png') }
 					style={ styles.icon }
 				/>
-				<AddSiteInstructions requiresAuthBrokerPlugin={ ! this.state.addOAuth } />
+
+				<Text style={ styles.description }>
+					Enter the address of the site you'd like to connect.
+				</Text>
 
 				{ ! this.props.newSite.status ? (
 					<View>
