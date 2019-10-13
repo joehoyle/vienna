@@ -6,18 +6,14 @@ import {
 	TouchableOpacity,
 	View,
 	Text,
-	ActivityIndicator,
-	Image,
 } from 'react-native';
 import { Header } from 'react-navigation-stack';
 import { connect } from 'react-redux';
 import { trim } from 'lodash';
 
-import { addSite } from '../../actions';
-import { FontAwesome as Icon } from '@expo/vector-icons';
+import addSite, { fetchIndex } from '../../actions/addSiteNew';
 
-import Button from '../../components/Sites/Button';
-import TextInputWithIcon from '../../components/General/TextInputWithIcon';
+import StartScreen from '../../components/Sites/Start';
 
 const styles = StyleSheet.create( {
 	container: {
@@ -31,47 +27,13 @@ const styles = StyleSheet.create( {
 		alignItems: 'stretch',
 		justifyContent: 'center',
 	},
-	description: {
-		color: '#666666',
-		marginTop: 15,
-		marginBottom: 15,
-		textAlign: 'center',
-	},
-	icon: {
-		alignSelf: 'center',
-		marginBottom: 10,
-	},
-	input: {
-		backgroundColor: '#f1f1f1',
-		height: 40,
-		padding: 3,
-		flexDirection: 'row',
-		alignItems: 'center',
-		borderBottomWidth: 1,
-		borderBottomColor: '#eeeeee',
-	},
-	inputText: {
-		flex: 1,
-		fontSize: 16,
-		lineHeight: 16,
-	},
-	addButton: {
-		alignSelf: 'center',
-		margin: 10,
-	},
-	errorMessage: {
-		color: 'red',
-		textAlign: 'center',
-		fontSize: 15,
-		marginTop: 10,
-		marginBottom: 5,
-	},
-	addOAuthText: {
-		color: '#333333',
-		textAlign: 'center',
-		margin: 10,
-	},
 } );
+
+const STEP = {
+	START: 'START',
+	INSTALL_CONNECT: 'INSTALL_CONNECT',
+	AUTHORIZE: 'AUTHORIZE',
+};
 
 class Add extends Component {
 	static navigatorButtons = {
@@ -84,123 +46,46 @@ class Add extends Component {
 	};
 
 	state = {
-		url: '',
-		key: '',
-		secret: '',
-		addOAuth: false,
+		step: STEP.START,
+		index: null,
 	}
 
-	onSubmit = () => {
-		let url = this.state.url;
+	onConnect = async index => {
+		// Store the index for future use.
+		this.setState( { index } );
 
-		// prepend http:// to the url if it wasn't set already.
-		if ( url.indexOf('http') !== 0 ) {
-			url = 'http://' + url;
+		// Does the site have App Connect installed?
+		if ( ! ( 'connect' in index.authentication ) ) {
+			console.log( 'needs connect' );
+			this.setState( {
+				index,
+				step: STEP.INSTALL_CONNECT,
+			} );
+		} else {
+			console.log( 'has connect' );
+			this.setState( {
+				index,
+				step: STEP.AUTHORIZE,
+			} );
 		}
 
-		// make sure the URL has a trailing slash
-		url = trim( url, '/' ) + '/';
-
-		this.setState( { url: url } );
-
-		let args = {};
-		if ( this.state.key && this.state.secret ) {
-			args = {
-				credentials: {
-					client_token: this.state.key,
-					client_secret: this.state.secret,
-				},
-			};
-		}
-
-		this.props.addSite( url, args );
+		// this.props.addSite( url, args );
 	}
 
 	render() {
+		const { index, step } = this.state;
+
 		return (
 			<KeyboardAvoidingView
 				behavior="height"
 				keyboardVerticalOffset={ Header.HEIGHT + Constants.statusBarHeight - 20 }
 				style={ styles.container }
 			>
-				<View style={ styles.main }>
-					<Image
-						source={ require('../../images/logo-black-40.png') }
-						style={ styles.icon }
+				{ step === STEP.START ? (
+					<StartScreen
+						onConnect={ this.onConnect }
 					/>
-
-					<Text style={ styles.description }>
-						Enter the address of the site you'd like to connect.
-					</Text>
-
-					{ ! this.props.newSite.status ? (
-						<View>
-							<TextInputWithIcon
-								autoFocus
-								icon="globe"
-								keyboardType="url"
-								placeholder="Site URL..."
-								value={ this.state.url }
-								returnKeyType="go"
-								onChangeText={ text => this.setState( { url: text } ) }
-								onSubmitEditing={ this.onSubmit }
-							/>
-
-							{ this.state.addOAuth ? (
-								<View>
-									<TextInputWithIcon
-										icon="key"
-										placeholder="OAuth Client Key..."
-										returnKeyType="next"
-										value={ this.state.key }
-										onChangeText={ text => this.setState( { key: text } ) }
-										onSubmitEditing={ this.onSubmit }
-									/>
-									<TextInputWithIcon
-										icon="lock"
-										placeholder="OAuth Client Secret..."
-										returnKeyType="go"
-										value={ this.state.secret }
-										onChangeText={ text => this.setState( { secret: text } ) }
-										onSubmitEditing={ this.onSubmit }
-									/>
-								</View>
-							) : null }
-						</View>
-					) : (
-						<View style={ styles.input }>
-							<ActivityIndicator
-								size="small"
-								color="#666666"
-								style={ { marginRight: 5, marginLeft: 5 } }
-							/>
-							<Text style={ styles.inputText }>{ this.props.newSite.status }</Text>
-						</View>
-					) }
-
-					{ this.props.newSite.errorStatus ? (
-						<Text style={ styles.errorMessage }>
-							<Icon name="exclamation-triangle" color="red" />
-							{ ' ' }
-							{ this.props.newSite.errorStatus }
-						</Text>
-					) : null }
-
-					<Button
-						disabled={ Boolean( this.props.newSite.status || ! this.state.url ) }
-						style={ styles.addButton }
-						onPress={ this.onSubmit }
-					>
-						Add Site
-					</Button>
-				</View>
-				<View>
-					{ ! this.state.addOAuth ? (
-						<TouchableOpacity onPress={ () => this.setState( { addOAuth: true } ) }>
-							<Text style={ styles.addOAuthText }>Advanced Settings</Text>
-						</TouchableOpacity>
-					) : null }
-				</View>
+				) : null }
 			</KeyboardAvoidingView>
 		);
 	}
