@@ -8,9 +8,10 @@ import {
 import { trim } from 'lodash';
 
 import { fetchIndex } from '../../actions/addSiteNew';
-import { FontAwesome as Icon } from '@expo/vector-icons';
 
 import Button from './Button';
+import Description from './Description';
+import ErrorMessage from './ErrorMessage';
 import Logo from './Logo';
 import TextInputWithIcon from '../General/TextInputWithIcon';
 
@@ -19,12 +20,6 @@ const styles = StyleSheet.create( {
 		flexGrow: 1,
 		alignItems: 'stretch',
 		justifyContent: 'center',
-	},
-	description: {
-		color: '#666666',
-		marginTop: 15,
-		marginBottom: 15,
-		textAlign: 'center',
 	},
 	input: {
 		backgroundColor: '#f1f1f1',
@@ -43,13 +38,6 @@ const styles = StyleSheet.create( {
 	addButton: {
 		alignSelf: 'center',
 		margin: 10,
-	},
-	errorMessage: {
-		color: 'red',
-		textAlign: 'center',
-		fontSize: 15,
-		marginTop: 10,
-		marginBottom: 5,
 	},
 } );
 
@@ -108,9 +96,9 @@ export default class Start extends Component {
 			<View style={ styles.container }>
 				<Logo />
 
-				<Text style={ styles.description }>
+				<Description>
 					Enter the address of the site you'd like to connect.
-				</Text>
+				</Description>
 
 				{ this.state.status !== STATUS.LOADING ? (
 					<View>
@@ -137,11 +125,9 @@ export default class Start extends Component {
 				) }
 
 				{ this.state.error ? (
-					<Text style={ styles.errorMessage }>
-						<Icon name="exclamation-triangle" color="red" />
-						{ ' ' }
+					<ErrorMessage>
 						{ this.state.error }
-					</Text>
+					</ErrorMessage>
 				) : null }
 
 				<Button
