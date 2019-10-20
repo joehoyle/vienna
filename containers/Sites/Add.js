@@ -114,6 +114,11 @@ class Add extends Component {
 						index={ index }
 						onInstall={ this.onInstall }
 					/>
+				) : step === STEP.AUTHORIZE ? (
+					<Authorize
+						index={ index }
+						onAuthorize={ this.onAuthorize }
+					/>
 				) : null }
 			</KeyboardAvoidingView>
 		);
