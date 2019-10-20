@@ -3,17 +3,15 @@ import React, { Component } from 'react';
 import {
 	KeyboardAvoidingView,
 	StyleSheet,
-	TouchableOpacity,
-	View,
-	Text,
 } from 'react-native';
 import { Header } from 'react-navigation-stack';
 import { connect } from 'react-redux';
-import { trim } from 'lodash';
 
-import addSite, { fetchIndex } from '../../actions/addSiteNew';
+import addSite from '../../actions/addSite';
 
+import Authorize from '../../components/Sites/Authorize';
 import StartScreen from '../../components/Sites/Start';
+import InstallConnect from '../../components/Sites/InstallConnect';
 
 const styles = StyleSheet.create( {
 	container: {
@@ -66,8 +64,36 @@ class Add extends Component {
 				step: STEP.AUTHORIZE,
 			} );
 		}
+	}
 
-		// this.props.addSite( url, args );
+	onInstall = async index => {
+		this.setState( {
+			// Update the index.
+			index,
+
+			// Move to authorization.
+			step: STEP.AUTHORIZE,
+		} );
+	}
+
+	onAuthorize = ( id, token ) => {
+		const { index } = this.state;
+		const url = index.routes['/']._links.self;
+		this.props.addSite(
+			url,
+			index,
+			{
+				client: {
+					id: id,
+				},
+				token: {
+					public: token,
+				},
+			}
+		);
+
+		// We're done, go home!
+		this.props.navigation.navigate( 'SitesList' );
 	}
 
 	render() {
@@ -82,6 +108,11 @@ class Add extends Component {
 				{ step === STEP.START ? (
 					<StartScreen
 						onConnect={ this.onConnect }
+					/>
+				) : step === STEP.INSTALL_CONNECT ? (
+					<InstallConnect
+						index={ index }
+						onInstall={ this.onInstall }
 					/>
 				) : null }
 			</KeyboardAvoidingView>

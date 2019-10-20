@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { trim } from 'lodash';
 
-import { fetchIndex } from '../../actions/addSiteNew';
+import { fetchIndex } from '../../actions/addSite';
 
 import Button from './Button';
 import Description from './Description';
