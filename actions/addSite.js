@@ -19,37 +19,33 @@ export async function fetchIndex( url ) {
 }
 
 export async function isMultisite( url ) {
-	return false;
-	/*
-	const testUrl = `${ url.replace( /\/$/, '' ) }/wp-activate.php`;
-	const opts = {
-		// method: 'POST',
-	};
+	const testUrl = `${ url.replace( /\/$/, '' ) }/wp-signup.php`;
 
 	let response;
 	try {
-		response = await fetch( testUrl, opts );
+		response = await fetch( testUrl );
 	} catch ( err ) {
 		console.log( err );
 		return;
 	}
 
-	console.log( url );
+	// If the file wasn't found at all, likely it has been blocked entirely.
+	if ( response.status !== 200 ) {
+		return false;
+	}
+
+	// If we haven't been redirected, we're on the signup page.
 	if ( response.url === testUrl ) {
-		console.log( 'not redirected, is multisite' );
-		console.log( response );
 		return true;
 	}
 
-	if ( response.url.indexOf( 'wp-signup.php' ) !== -1 || response.url.indexOf( 'registration=' ) !== -1 ) {
-		console.log( 'found signup.php, is multisite' );
+	// We might have been redirected to a correct signup page.
+	if ( response.url.indexOf( 'wp-signup.php' ) !== -1 ) {
 		return true;
 	}
 
-	console.log( 'no hints found, assume single' );
-	console.log( response );
+	// Otherwise, nothing found, so assume we're on single-site.
 	return false;
-	*/
 }
 
 export default function addSite( url, index, credentials = {} ) {
