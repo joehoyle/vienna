@@ -56,13 +56,11 @@ class Add extends Component {
 
 		// Does the site have App Connect installed?
 		if ( ! ( 'connect' in index.authentication ) ) {
-			console.log( 'needs connect' );
 			this.setState( {
 				index,
 				step: STEP.INSTALL_CONNECT,
 			} );
 		} else {
-			console.log( 'has connect' );
 			this.setState( {
 				index,
 				step: STEP.AUTHORIZE,
