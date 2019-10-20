@@ -9,9 +9,9 @@ import { connect } from 'react-redux';
 
 import addSite from '../../actions/addSite';
 
-import Authorize from '../../components/Sites/Authorize';
-import StartScreen from '../../components/Sites/Start';
-import InstallConnect from '../../components/Sites/InstallConnect';
+import Authorize from '../../components/Setup/Authorize';
+import StartScreen from '../../components/Setup/Start';
+import InstallConnect from '../../components/Setup/InstallConnect';
 
 const styles = StyleSheet.create( {
 	container: {
