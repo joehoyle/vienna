@@ -33,10 +33,12 @@ const styles = StyleSheet.create({
 export default class TextInputWithIcon extends Component {
 	static defaultProps = {
 		autoFocus: false,
+		keyboardType: "default",
 	}
 
 	static propTypes = {
 		autoFocus: PropTypes.bool,
+		keyboardType: PropTypes.string,
 		icon: PropTypes.string.isRequired,
 		value: PropTypes.string.isRequired,
 		placeholder: PropTypes.string,
@@ -58,6 +60,7 @@ export default class TextInputWithIcon extends Component {
 					autoCapitalize="none"
 					autoCorrect={false}
 					autoFocus={ this.props.autoFocus }
+					keyboardType={ this.props.keyboardType }
 					style={styles.inputText}
 					placeholder={this.props.placeholder}
 					value={this.props.value}
