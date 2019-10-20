@@ -16,7 +16,6 @@ import {
 	fetchTaxonomies,
 	removeSite,
 	fetchSiteData,
-	authorizeSite,
 } from '../../actions';
 
 const styles = StyleSheet.create({
@@ -120,9 +119,6 @@ class _View extends Component {
 			? site.name.substring(0, length - 3) + '...'
 			: site.name;
 		return trimmedString;
-	}
-	onReauthorize() {
-		this.props.dispatch(authorizeSite(this.props.activeSite.id));
 	}
 	render() {
 		var chevron = <Icon name="chevron-right" size={20} color="#BBBBBB" />;
@@ -276,12 +272,6 @@ class _View extends Component {
 						onPress={this.onRemoveLocalData.bind(this)}
 					>
 						<Text style={styles.listItemNameCentered}>Remove Local Data</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						style={styles.listItem}
-						onPress={this.onReauthorize.bind(this)}
-					>
-						<Text style={styles.listItemNameCentered}>Reauthorize</Text>
 					</TouchableOpacity>
 				</View>
 			</ScrollView>
