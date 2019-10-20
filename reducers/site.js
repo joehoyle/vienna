@@ -34,11 +34,7 @@ export default function site( state = defaultState, action ) {
 			state.routes = action.payload.site.routes
 			state.url = action.payload.site.home
 			state.authentication = action.payload.site.authentication
-			if ( action.payload.args.credentials ) {
-				state.credentials = { client: {} }
-				state.credentials.client.public = action.payload.args.credentials.client_token
-				state.credentials.client.secret = action.payload.args.credentials.client_secret
-			}
+			state.credentials = action.payload.credentials
 			return {...state}
 		case 'SITE_DATA_UPDATED':
 			state.name = unescape( action.payload.site.name )
