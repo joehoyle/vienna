@@ -42,21 +42,6 @@ export default function site( state = defaultState, action ) {
 			state.namespaces = action.payload.site.namespaces
 			state.routes = action.payload.site.routes
 			return {...state}
-		case 'AUTHORIZE_SITE_CLIENT_CREATED':
-			state.credentials = { client: {} }
-			state.credentials.client.public = action.data.client_token
-			state.credentials.client.secret = action.data.client_secret
-			return {...state}
-		case 'AUTHORIZE_SITE_REQUEST_TOKEN_UPDATED':
-			state.credentials.token = { secret: action.data.oauth_token_secret }
-			return {...state}
-		case 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATING':
-			state.credentials.token.public = action.data.oauth_token
-			return state
-		case 'AUTHORIZE_SITE_ACCESS_TOKEN_UPDATED':
-			state.credentials.token.public = action.data.oauth_token
-			state.credentials.token.secret = action.data.oauth_token_secret
-			return {...state}
 		case 'REMOVE_LOCAL_DATA':
 			state.data = {}
 			return {...state}

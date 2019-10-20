@@ -13,9 +13,6 @@ export default function sites( state = defaultState, action ) {
 	}
 
 	switch ( action.type ) {
-		case 'SITE_CREATE_ERRORED':
-			delete state[ action.siteId ]
-			return {...state}
 		case 'SITE_REMOVED':
 			delete state[ action.payload.siteId ]
 			return {...state}
