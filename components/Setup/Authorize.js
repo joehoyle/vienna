@@ -36,8 +36,6 @@ const CONNECT_AUTH_ENDPOINT = new URI( 'https://apps-beta.wp-api.org/broker/2/co
 const CLIENT_ID = 'awzvyrf3p74o';
 const CLIENT_SECRET = 'YaMKLzyFuxkQHFGRwSo0MEaperAsrKxNEseuRk7U0lKhM2NJ';
 
-console.log( AuthSession.getRedirectUrl() );
-
 export default class Authorize extends React.Component {
 	componentDidMount() {
 		this.onLaunchBrowser();
