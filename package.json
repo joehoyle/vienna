@@ -34,7 +34,7 @@
     "redux-storage-engine-reactnativeasyncstorage": "^1.0.1",
     "redux-thunk": "^2.3.0",
     "urijs": "^1.18.10",
-    "wordpress-rest-api-oauth-1": "^1.1.7"
+    "wordpress-rest-api-oauth-2": "^0.1.1"
   },
   "devDependencies": {
     "babel-jest": "24",

@@ -2146,10 +2146,6 @@ cross-spawn@^6.0.0, cross-spawn@^6.0.5:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-crypto-js@~3.1.2-2:
-  version "3.1.8"
-  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.1.8.tgz#715f070bf6014f2ae992a98b3929258b713f08d5"
-
 cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/cssom/-/cssom-0.3.2.tgz#b8036170c79f07a90ff2f16e22284027a243848b"
@@ -5069,12 +5065,6 @@ nwsapi@^2.0.7:
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.1.4.tgz#e006a878db23636f8e8a67d33ca0e4edf61a842f"
   integrity sha512-iGfd9Y6SFdTNldEy2L0GUhcarIutFmk+MPWIn9dmj8NMIup03G08uUF2KGbbmv/Ux4RT0VZJoP/sVbWA6d/VIw==
 
-oauth-1.0a@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/oauth-1.0a/-/oauth-1.0a-1.0.1.tgz#29a9b580d7cf5de29573e2269fb05eb3efb1d819"
-  dependencies:
-    crypto-js "~3.1.2-2"
-
 oauth-1.0a@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/oauth-1.0a/-/oauth-1.0a-2.2.5.tgz#943ee55a5c0db5c21143ec27e2f56c6d0e2a5e54"
@@ -7069,11 +7059,11 @@ wide-align@^1.1.0:
   dependencies:
     string-width "^1.0.2 || 2"
 
-wordpress-rest-api-oauth-1@^1.1.7:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/wordpress-rest-api-oauth-1/-/wordpress-rest-api-oauth-1-1.1.7.tgz#6510e52cdd7fdb7fcdbca9f7a1343f688de82e21"
+wordpress-rest-api-oauth-2@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/wordpress-rest-api-oauth-2/-/wordpress-rest-api-oauth-2-0.1.1.tgz#538628588ab0e0375848ec7e1b119ad1ecffb2d4"
+  integrity sha512-WGQXHmC+oLP5aZh5nATXuYA0WafMxvFTOGZvLnWNzE/0OH4YQgD/ZfuLpkyu132g31BbXcUI/bx2KwIMQ8L4TQ==
   dependencies:
-    oauth-1.0a "^1.0.1"
     qs "^6.2.0"
 
 wordwrap@^1.0.0, wordwrap@~1.0.0:
