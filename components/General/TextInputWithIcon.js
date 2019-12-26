@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 	inputText: {
 		flex: 1,
 		fontSize: 16,
-		lineHeight: 16,
+		lineHeight: 20,
 	},
 });
 

@@ -1,28 +1,27 @@
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 
-import SitesList from './containers/Sites/List';
-import SitesAdd from './containers/Sites/Add';
-import SitesReauth from './containers/Sites/Reauth';
-import PostsList from './containers/Posts/List';
-import PostsEdit from './containers/Posts/Edit';
-import PostsAdd from './containers/Posts/Add';
-import TermsEdit from './containers/Terms/Edit';
-import TermsAdd from './containers/Terms/Add';
-import TermsList from './containers/Terms/List';
-import UsersList from './containers/Users/List';
-import UsersEdit from './containers/Users/Edit';
-import UsersAdd from './containers/Users/Add';
-import UsersSelect from './containers/Users/Select';
-import CommentsList from './containers/Comments/List';
-import SitesView from './containers/Sites/View';
-import SettingsList from './containers/Settings/List';
-import CommentsEdit from './containers/Comments/Edit';
+import SitesList from "./containers/Sites/List";
+import SitesAdd from "./containers/Sites/Add";
+import SitesReauth from "./containers/Sites/Reauth";
+import PostsList from "./containers/Posts/List";
+import PostsEdit from "./containers/Posts/Edit";
+import PostsAdd from "./containers/Posts/Add";
+import TermsEdit from "./containers/Terms/Edit";
+import TermsAdd from "./containers/Terms/Add";
+import TermsList from "./containers/Terms/List";
+import UsersList from "./containers/Users/List";
+import UsersEdit from "./containers/Users/Edit";
+import UsersAdd from "./containers/Users/Add";
+import UsersSelect from "./containers/Users/Select";
+import CommentsList from "./containers/Comments/List";
+import SitesView from "./containers/Sites/View";
+import SettingsList from "./containers/Settings/List";
+import CommentsEdit from "./containers/Comments/Edit";
 
-export default createAppContainer(createStackNavigator(
+const mainStack = createStackNavigator(
 	{
 		SitesList: { screen: SitesList },
-		SitesAdd: { screen: SitesAdd },
 		SitesView: { screen: SitesView },
 		SitesReauth: { screen: SitesReauth },
 		PostsList: { screen: PostsList },
@@ -37,28 +36,46 @@ export default createAppContainer(createStackNavigator(
 		UsersSelect: { screen: UsersSelect },
 		CommentsList: { screen: CommentsList },
 		CommentsEdit: { screen: CommentsEdit },
-		SettingsList: { screen: SettingsList },
+		SettingsList: { screen: SettingsList }
 	},
 	{
+		initialRouteName: 'SitesList',
 		navigationOptions: {
 			headerStyle: {
-				backgroundColor: 'white',
+				backgroundColor: "white",
 				borderBottomWidth: 0,
-				shadowColor: 'transparent',
+				shadowColor: "transparent",
 				shadowRadius: 0,
 				shadowOffset: {
-					height: 0,
-				},
-			},
+					height: 0
+				}
+			}
 		},
 		cardStyle: {
-			backgroundColor: 'white',
+			backgroundColor: "white",
 			borderTopWidth: 0,
 			shadowRadius: 0,
 			shadowOffset: {
-				height: 0,
+				height: 0
 			},
-			shadowColor: 'transparent',
+			shadowColor: "transparent"
 		},
 	}
-));
+);
+
+export default createAppContainer(
+	createStackNavigator(
+		{
+			Main: {
+				screen: mainStack
+			},
+			SitesAdd: {
+				screen: SitesAdd,
+			}
+		},
+		{
+			mode: 'modal',
+			headerMode: 'none',
+		}
+	)
+);

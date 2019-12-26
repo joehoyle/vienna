@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import {
 	KeyboardAvoidingView,
 	StyleSheet,
+	Text,
+	TouchableOpacity,
 } from 'react-native';
 import { Header } from 'react-navigation-stack';
 import { connect } from 'react-redux';
@@ -25,6 +27,12 @@ const styles = StyleSheet.create( {
 		alignItems: 'stretch',
 		justifyContent: 'center',
 	},
+	closeButton: {
+		marginTop: 32,
+		alignSelf: 'flex-end',
+		color: 'dodgerblue',
+		fontSize: 16
+	}
 } );
 
 const STEP = {
@@ -34,15 +42,6 @@ const STEP = {
 };
 
 class Add extends Component {
-	static navigatorButtons = {
-		leftButtons: [
-			{
-				title: 'Back',
-				id: 'close',
-			},
-		],
-	};
-
 	state = {
 		step: STEP.START,
 		index: null,
@@ -105,6 +104,9 @@ class Add extends Component {
 				keyboardVerticalOffset={ Header.HEIGHT + Constants.statusBarHeight - 20 }
 				style={ styles.container }
 			>
+				<TouchableOpacity onPress={ () => this.props.navigation.goBack() }>
+					<Text style={ styles.closeButton }>Cancel</Text>
+				</TouchableOpacity>
 				{ step === STEP.START ? (
 					<StartScreen
 						onConnect={ this.onConnect }
