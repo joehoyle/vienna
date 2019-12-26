@@ -43,7 +43,7 @@ export default class Authorize extends React.Component {
 
 	async onLaunchBrowser() {
 		const authEndpoint = CONNECT_AUTH_ENDPOINT.addQuery( {
-			site: this.props.index.authentication.connect.url,
+			site: this.props.authentication.connect.url,
 			client_id: CLIENT_ID,
 
 			// Other OAuth parameters to pass through.
@@ -74,7 +74,7 @@ export default class Authorize extends React.Component {
 	}
 
 	async onExchangeCode( id, code, redirectUrl ) {
-		const tokenEndpoint = this.props.index.authentication.oauth2.endpoints.token;
+		const tokenEndpoint = this.props.authentication.oauth2.endpoints.token;
 		const body = new URLSearchParams( {
 			grant_type: 'authorization_code',
 			code,

@@ -116,7 +116,7 @@ class Add extends Component {
 					/>
 				) : step === STEP.AUTHORIZE ? (
 					<Authorize
-						index={ index }
+						authentication={ index.authentication }
 						onAuthorize={ this.onAuthorize }
 					/>
 				) : null }
