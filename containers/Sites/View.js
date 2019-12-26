@@ -16,7 +16,6 @@ import {
 	fetchTaxonomies,
 	removeSite,
 	fetchSiteData,
-	authorizeSite,
 } from '../../actions';
 
 const styles = StyleSheet.create({
@@ -113,6 +112,11 @@ class _View extends Component {
 		this.props.navigation.goBack();
 		this.props.dispatch(removeSite(this.props.activeSite.id));
 	}
+
+	onReauthorize = () => {
+		this.props.navigation.navigate( 'SitesReauth' );
+	}
+
 	getTruncatedTitle() {
 		const length = 10;
 		const site = this.props.sites[this.props.activeSite.id];
@@ -120,9 +124,6 @@ class _View extends Component {
 			? site.name.substring(0, length - 3) + '...'
 			: site.name;
 		return trimmedString;
-	}
-	onReauthorize() {
-		this.props.dispatch(authorizeSite(this.props.activeSite.id));
 	}
 	render() {
 		var chevron = <Icon name="chevron-right" size={20} color="#BBBBBB" />;

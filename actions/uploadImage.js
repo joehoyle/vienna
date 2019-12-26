@@ -45,7 +45,6 @@ export default function uploadImage() {
 				permissions = await Permissions.askAsync( permission );
 				if ( permissions.status !== 'granted' ) {
 					// No permission :(
-					console.log( 'fuk' );
 					return;
 				}
 			}

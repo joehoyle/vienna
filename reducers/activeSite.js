@@ -4,7 +4,6 @@ export default function activeSite( state = { id: null }, action ) {
 			return {...state, id: action.payload.id }
 		case 'ACTIVE_SITE_UPDATED':
 			return {...state, id: action.payload.site.id}
-		case 'SITE_CREATE_ERRORED':
 		case 'SITE_REMOVED':
 			return {...state, id: null }
 		default:

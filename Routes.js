@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import SitesList from './containers/Sites/List';
 import SitesAdd from './containers/Sites/Add';
+import SitesReauth from './containers/Sites/Reauth';
 import PostsList from './containers/Posts/List';
 import PostsEdit from './containers/Posts/Edit';
 import PostsAdd from './containers/Posts/Add';
@@ -23,6 +24,7 @@ export default createAppContainer(createStackNavigator(
 		SitesList: { screen: SitesList },
 		SitesAdd: { screen: SitesAdd },
 		SitesView: { screen: SitesView },
+		SitesReauth: { screen: SitesReauth },
 		PostsList: { screen: PostsList },
 		PostsEdit: { screen: PostsEdit },
 		PostsAdd: { screen: PostsAdd },

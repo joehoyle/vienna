@@ -5,8 +5,8 @@ import {
 	View,
 	Text,
 	Image,
-	WebView,
 } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 const styles = StyleSheet.create({
 	container: {
@@ -37,24 +37,50 @@ const styles = StyleSheet.create({
 	},
 });
 
+const injectedJavaScript = `
+window.ReactNativeWebView.postMessage( document.getElementById('text').scrollHeight );
+true;
+`;
+
 export default class RichItem extends Component {
 	static propTypes = {
 		avatarUrl: PropTypes.string,
 		title: PropTypes.string.isRequired,
 		content: PropTypes.string.isRequired,
 	};
-	constructor() {
-		super();
-		this.state = {
-			webViewHeight: 0,
-		};
+
+	state = {
+		webViewHeight: 0,
 	}
-	updateWebViewHeight(event) {
-		if (!event.jsEvaluationValue) {
-			return;
-		}
-		this.setState({ webViewHeight: parseInt(event.jsEvaluationValue, 10) });
+
+	onMessage = event => {
+		this.setState( {
+			webViewHeight: parseInt( event.nativeEvent.data, 10 ),
+		} );
 	}
+
+	htmlExcerpt() {
+		return `
+			<meta name="viewport" content="width = device-width" />
+			<style>
+				body {
+					font-size: 15px;
+					line-height: 20px;
+					color: #666;
+					font-family: sans-serif;
+					margin: 0;
+					max-width: 100%;
+				}
+
+				img {
+					max-width: 100%;
+				}
+
+			</style>
+			<div id="text">${this.props.content}</div>
+		`;
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -70,35 +96,17 @@ export default class RichItem extends Component {
 					</View>
 					<View style={styles.content}>
 						<WebView
-							scrollEnabled={false}
-							injectedJavaScript="document.getElementById('text').scrollHeight;"
+							scrollEnabled={ false }
+							injectedJavaScript={ injectedJavaScript }
+							originWhitelist={ [ '*' ] }
 							style={[styles.webView, { height: this.state.webViewHeight }]}
 							source={{ html: this.htmlExcerpt() }}
 							automaticallyAdjustContentInsets={true}
-							onNavigationStateChange={this.updateWebViewHeight.bind(this)}
+							onMessage={ this.onMessage }
 						/>
 					</View>
 				</View>
 			</View>
 		);
-	}
-
-	htmlExcerpt() {
-		return `<style>
-			body {
-				font-size: 15px;
-				line-height: 20px;
-				color: #666;
-				font-family: sans-serif;
-				margin: 0;
-			}
-
-			img {
-				max-width: 100%;
-			}
-
-		</style>
-		<div id="text">${this.props.content}</div>
-		`;
 	}
 }

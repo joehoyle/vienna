@@ -13,7 +13,6 @@ import trashComment from './actions/trashComment'
 import createPost from './actions/createPost'
 import updatePost from './actions/updatePost'
 import addSite from './actions/addSite'
-import authorizeSite from './actions/authorizeSite'
 import removeSite from './actions/removeSite'
 import uploadImage from './actions/uploadImage'
 import fetchSiteData from './actions/fetchSiteData'
@@ -49,5 +48,4 @@ export {
 	updateTerm,
 	createTerm,
 	updateComment,
-	authorizeSite,
 }

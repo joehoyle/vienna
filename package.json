@@ -24,6 +24,7 @@
     "react-native-autogrow-textinput": "^5.2.0",
     "react-native-custom-action-sheet": "0.0.11",
     "react-native-gesture-handler": "~1.5.0",
+    "react-native-webview": "7.4.3",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^1.9.4",
     "react-redux": "6",
@@ -34,7 +35,7 @@
     "redux-storage-engine-reactnativeasyncstorage": "^1.0.1",
     "redux-thunk": "^2.3.0",
     "urijs": "^1.18.10",
-    "wordpress-rest-api-oauth-1": "^1.1.7"
+    "wordpress-rest-api-oauth-2": "^0.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
