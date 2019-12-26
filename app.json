@@ -2,6 +2,7 @@
   "expo": {
     "name": "Vienna",
     "slug": "vienna",
+    "scheme": "vienna",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
