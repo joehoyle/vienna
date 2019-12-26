@@ -19,10 +19,19 @@ class List extends Component {
 			shownAddSiteOnLoad: false,
 		};
 	}
-	componentWillReceiveProps(newProps) {
+
+	componentDidMount() {
+		this.redirectIfNoSites();
+	}
+
+	componentDidUpdate() {
+		this.redirectIfNoSites();
+	}
+
+	redirectIfNoSites() {
 		if (
-			newProps.loaded &&
-			Object.values(newProps.sites).length === 0 &&
+			this.props.loaded &&
+			Object.values(this.props.sites).length === 0 &&
 			!this.state.shownAddSiteOnLoad
 		) {
 			this.setState(
@@ -35,6 +44,7 @@ class List extends Component {
 			);
 		}
 	}
+
 	onSelectSite(site) {
 		this.props.dispatch({
 			type: 'ACTIVE_SITE_UPDATED',
