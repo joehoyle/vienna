@@ -16,7 +16,8 @@ export default function users( state = defaultState, action ) {
 				schema: action.payload.site.routes['/wp/v2/users'].schema
 			}
 		case 'USERS_UPDATING':
-			state.list.loading = true
+			state.list.loading = true;
+			state.list.lastError = null;
 			return {...state}
 		case 'USERS_UPDATED':
 			action.data.forEach( user => {
@@ -29,6 +30,7 @@ export default function users( state = defaultState, action ) {
 			return {...state}
 		case 'USERS_UPDATE_ERRORED':
 			state.list.lastError = action.payload.error
+			state.list.loading = false;
 			return {...state}
 		default:
 			return state
