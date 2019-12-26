@@ -112,6 +112,11 @@ class _View extends Component {
 		this.props.navigation.goBack();
 		this.props.dispatch(removeSite(this.props.activeSite.id));
 	}
+
+	onReauthorize = () => {
+		this.props.navigation.navigate( 'SitesReauth' );
+	}
+
 	getTruncatedTitle() {
 		const length = 10;
 		const site = this.props.sites[this.props.activeSite.id];
@@ -272,6 +277,12 @@ class _View extends Component {
 						onPress={this.onRemoveLocalData.bind(this)}
 					>
 						<Text style={styles.listItemNameCentered}>Remove Local Data</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.listItem}
+						onPress={this.onReauthorize.bind(this)}
+					>
+						<Text style={styles.listItemNameCentered}>Reauthorize</Text>
 					</TouchableOpacity>
 				</View>
 			</ScrollView>

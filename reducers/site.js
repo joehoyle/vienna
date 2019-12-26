@@ -36,6 +36,13 @@ export default function site( state = defaultState, action ) {
 			state.authentication = action.payload.site.authentication
 			state.credentials = action.payload.credentials
 			return {...state}
+
+		case 'SITE_CREDENTIALS_UPDATED':
+			return {
+				...state,
+				credentials: action.payload.credentials,
+			};
+
 		case 'SITE_DATA_UPDATED':
 			state.name = unescape( action.payload.site.name )
 			state.description = action.payload.site.description
