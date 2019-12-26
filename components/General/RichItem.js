@@ -61,6 +61,7 @@ export default class RichItem extends Component {
 
 	htmlExcerpt() {
 		return `
+			<meta name="viewport" content="width = device-width" />
 			<style>
 				body {
 					font-size: 15px;
