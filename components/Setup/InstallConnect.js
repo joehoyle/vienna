@@ -79,7 +79,6 @@ export default class Start extends Component {
 		const multisite = await this.multisiteCheck;
 
 		// Prepare the browser.
-		// const multisite = false;
 		const baseUrl = url.replace( /\/$/, '' ) + '/wp-admin';
 		const adminUrl = new URI( multisite ? baseUrl + '/network/plugin-install.php' : url + '/plugin-install.php' );
 		const installUrl = adminUrl.addQuery( {
@@ -89,12 +88,7 @@ export default class Start extends Component {
 		} );
 
 		// Open the browser and wait.
-		openAuthSessionAsync( '' + installUrl ).then( this.onBrowserCallback );
-	}
-
-	onBrowserCallback = async () => {
-		console.log( 'dismissed' );
-		this.onCheck();
+		openAuthSessionAsync( '' + installUrl ).then( this.onCheck );
 	}
 
 	onCheck = async () => {

@@ -25,7 +25,6 @@ export async function isMultisite( url ) {
 	try {
 		response = await fetch( testUrl );
 	} catch ( err ) {
-		console.log( err );
 		return;
 	}
 
