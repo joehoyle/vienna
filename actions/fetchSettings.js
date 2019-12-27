@@ -13,13 +13,21 @@ export default function fetchSettings( args ) {
 		dispatch( {
 			type: 'SETTINGS_UPDATING',
 		} );
-		api.get( '/wp/v2/settings', args ).then( function ( data, err ) {
+		api.get( '/wp/v2/settings', args ).then( data => {
 			dispatch( {
 				type: 'SETTINGS_UPDATED',
 				payload: {
 					settings: data,
 				},
 			} );
-		} );
+		} ).catch( error => {
+			dispatch( {
+				type: 'SETTINGS_UPDATE_ERRORED',
+				payload: {
+					error,
+					siteId: store.activeSite.id,
+				},
+			} );
+		})
 	};
 }

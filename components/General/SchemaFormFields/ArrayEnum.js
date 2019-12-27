@@ -12,7 +12,7 @@ import { FontAwesome as Icon } from '@expo/vector-icons';
 
 import FormRow from '../FormRow';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
 		height: 32,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		color: '#1F5FF3',
 	},
-});
+} );
 
 export default class ArrayEnum extends Component {
 	static propTypes = {
@@ -64,58 +64,58 @@ export default class ArrayEnum extends Component {
 		};
 	}
 	onPressValue() {
-		this.setState({ showingModal: true });
+		this.setState( { showingModal: true } );
 	}
-	onToggleValue(value) {
-		var newValue = this.props.value.slice();
+	onToggleValue( value ) {
+		let newValue = this.props.value.slice();
 
-		if (newValue.indexOf(value) > -1) {
-			newValue.splice(newValue.indexOf(value), 1);
+		if ( newValue.indexOf( value ) > -1 ) {
+			newValue.splice( newValue.indexOf( value ), 1 );
 		} else {
-			newValue.push(value);
+			newValue.push( value );
 		}
 
-		console.log(newValue);
+		console.log( newValue );
 
-		this.props.onChange(newValue);
+		this.props.onChange( newValue );
 	}
 	render() {
 		return (
 			<FormRow label={ this.props.name }>
-				<TouchableOpacity onPress={() => this.onPressValue()}>
-					<Text style={styles.container}>
-						{this.props.value.length
-							? this.props.value.join(', ')
-							: 'Select...'}
+				<TouchableOpacity onPress={ () => this.onPressValue() }>
+					<Text style={ styles.container }>
+						{ this.props.value.length
+							? this.props.value.join( ', ' )
+							: 'Select...' }
 					</Text>
 				</TouchableOpacity>
-				{this.state.showingModal
-					? <Modal visible={true} animationType={'slide'}>
-							<View style={styles.modalHeader}>
-								<TouchableOpacity
-									onPress={() => this.setState({ showingModal: false })}
-								>
-									<Text style={styles.modalCloseText}>Done</Text>
-								</TouchableOpacity>
-							</View>
-							<ScrollView>
-								{this.props.schema.items.enum.map(value => {
-									return (
-										<TouchableOpacity
-											key={value}
-											style={styles.listItem}
-											onPress={() => this.onToggleValue(value)}
-										>
-											<Text style={styles.listItemText}>{value}</Text>
-											{this.props.value.indexOf(value) > -1
-												? <Icon name="check" size={20} color="#333333" />
-												: null}
-										</TouchableOpacity>
-									);
-								})}
-							</ScrollView>
-						</Modal>
-					: null}
+				{ this.state.showingModal ? (
+					<Modal visible={ true } animationType={ 'slide' }>
+						<View style={ styles.modalHeader }>
+							<TouchableOpacity
+								onPress={ () => this.setState( { showingModal: false } ) }
+							>
+								<Text style={ styles.modalCloseText }>Done</Text>
+							</TouchableOpacity>
+						</View>
+						<ScrollView>
+							{ this.props.schema.items.enum.map( value => {
+								return (
+									<TouchableOpacity
+										key={ value }
+										style={ styles.listItem }
+										onPress={ () => this.onToggleValue( value ) }
+									>
+										<Text style={ styles.listItemText }>{ value }</Text>
+										{ this.props.value.indexOf( value ) > -1 ? (
+											<Icon name="check" size={ 20 } color="#333333" />
+										) : null }
+									</TouchableOpacity>
+								);
+							} ) }
+						</ScrollView>
+					</Modal>
+				) : null }
 			</FormRow>
 		);
 	}

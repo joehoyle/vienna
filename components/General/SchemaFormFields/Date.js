@@ -20,7 +20,7 @@ const dateFormat = {
 	minute: 'numeric',
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
 	},
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 	picker: {
 		backgroundColor: 'white',
 	},
-});
+} );
 
 export default class DateField extends Component {
 	static propTypes = {

@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Picker } from 'react-native';
 import ExpandingView from '../ExpandingView';
 import FormRow from '../FormRow';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
 	},
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 		// right: 0,
 		// top: 0,
 	},
-});
+} );
 
 export default class Enum extends Component {
 	static propTypes = {
@@ -54,7 +54,7 @@ export default class Enum extends Component {
 			<View>
 				<FormRow label={ this.props.name }>
 					<TouchableOpacity onPress={ this.onToggle }>
-						<Text style={styles.label}>{ this.props.value || 'Select…' }</Text>
+						<Text style={ styles.label }>{ this.props.value || 'Select…' }</Text>
 					</TouchableOpacity>
 				</FormRow>
 				<ExpandingView
@@ -62,19 +62,19 @@ export default class Enum extends Component {
 					height={ 216 }
 				>
 					<Picker
-						selectedValue={this.props.value}
-						onValueChange={this.props.onChange}
-						style={styles.picker}
+						selectedValue={ this.props.value }
+						onValueChange={ this.props.onChange }
+						style={ styles.picker }
 					>
-						{this.props.schema.enum.map(value => {
+						{ this.props.schema.enum.map( value => {
 							return (
 								<Picker.Item
-									key={value}
-									label={String(value)}
-									value={value}
+									key={ value }
+									label={ String( value ) }
+									value={ value }
 								/>
 							);
-						})}
+						} ) }
 					</Picker>
 				</ExpandingView>
 			</View>

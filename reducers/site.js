@@ -48,6 +48,7 @@ export default function site( state = defaultState, action ) {
 			state.description = action.payload.site.description;
 			state.namespaces = action.payload.site.namespaces;
 			state.routes = action.payload.site.routes;
+			state.data = siteReducers( state.data, action );
 			return { ...state };
 		case 'REMOVE_LOCAL_DATA':
 			state.data = {};

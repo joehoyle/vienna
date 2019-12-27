@@ -19,8 +19,8 @@ export default class UserSelect extends Component {
 	}
 	render() {
 		return (
-			<TouchableOpacity onPress={() => this.onPressValue()}>
-				<Text>{this.props.value}</Text>
+			<TouchableOpacity onPress={ () => this.onPressValue() }>
+				<Text>{ this.props.value }</Text>
 			</TouchableOpacity>
 		);
 	}

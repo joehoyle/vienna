@@ -15,11 +15,11 @@ export default class Boolean extends Component {
 		return (
 			<FormRow label={ this.props.name }>
 				<Switch
-					value={this.props.value}
-					onValueChange={value => {
-						this.props.onChange(value);
+					value={ this.props.value }
+					onValueChange={ value => {
+						this.props.onChange( value );
 						this.props.onSave();
-					}}
+					} }
 				/>
 			</FormRow>
 		);

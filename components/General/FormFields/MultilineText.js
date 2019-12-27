@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		color: '#666666',
 		fontSize: 16,
 	},
-});
+} );
 
 export default class Text extends Component {
 	static propTypes = {
@@ -26,13 +26,13 @@ export default class Text extends Component {
 	render() {
 		return (
 			<AutoGrowingTextInput
-				autoFocus={this.props.autoFocus}
+				autoFocus={ this.props.autoFocus }
 				minHeight={ this.props.minHeight }
 				placeholder={ this.props.placeholder }
-				value={this.props.value}
-				style={styles.container}
-				onChangeText={this.props.onChange}
-				onSubmitEditing={this.props.onSave}
+				value={ this.props.value }
+				style={ styles.container }
+				onChangeText={ this.props.onChange }
+				onSubmitEditing={ this.props.onSave }
 			/>
 		);
 	}

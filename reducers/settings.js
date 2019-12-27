@@ -29,16 +29,28 @@ export default function settings( state = defaultState, action ) {
 			return {
 				...state,
 				list: {
+					...state.list,
 					loading: true,
+					lastError: null,
 				},
 			};
 		case 'SETTINGS_UPDATED':
 			return {
 				...state,
 				list: {
+					...state.list,
 					loading: false,
 				},
 				settings: action.payload.settings,
+			};
+		case 'SETTINGS_UPDATE_ERRORED':
+			return {
+				...state,
+				list: {
+					...state.list,
+					loading: false,
+					lastError: action.payload.error,
+				},
 			};
 		default:
 			return state;

@@ -3,6 +3,7 @@ import { ScrollView, View, RefreshControl, StyleSheet } from 'react-native';
 import { isEmpty } from 'lodash';
 import { fetchSettings, changeSetting, updateSettings } from '../../actions';
 import SchemaFormField from '../../components/General/SchemaFormField';
+import ListError from '../../components/General/ListError';
 import { connect } from 'react-redux';
 
 const styles = StyleSheet.create( {
@@ -67,6 +68,9 @@ class List extends Component {
 					/>
 				}
 			>
+				{ this.props.settings.list.lastError ? (
+					<ListError error={ this.props.settings.list.lastError } />
+				) : null }
 				<View style={ styles.list }>
 					{ Object.entries( settings ).map( properties => {
 						const value = properties[1];

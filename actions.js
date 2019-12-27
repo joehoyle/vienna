@@ -22,6 +22,7 @@ import updateTerm from './actions/updateTerm';
 import createTerm from './actions/createTerm';
 import updateComment from './actions/updateComment';
 import changeSetting from './actions/changeSetting';
+import updatePostfilter from './actions/updatePostsFilter';
 
 export {
 	removeLocalData,
@@ -48,4 +49,5 @@ export {
 	updateTerm,
 	createTerm,
 	updateComment,
+	updatePostfilter,
 };

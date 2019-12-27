@@ -1,18 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import {
-	StyleSheet,
-	View,
-	Text,
-	SegmentedControlIOS,
-	LayoutAnimation,
-} from 'react-native';
+import { StyleSheet, View, SegmentedControlIOS } from 'react-native';
 
 const styles = StyleSheet.create( {
 	container: {
 		padding: 10,
 		paddingTop: 0,
-		backgroundColor: '#2E73B0',
 	},
 	label: {
 		fontSize: 11,
@@ -28,26 +21,6 @@ export default class ListItem extends Component {
 		} ),
 	};
 
-	constructor( props ) {
-		super( props );
-		this.state = { h: 0 };
-	}
-
-	componentWillMount() {
-		// Animate creation
-		LayoutAnimation.configureNext(
-			LayoutAnimation.create( 100, 'linear', 'opacity' ),
-		);
-	}
-
-	componentDidMount() {
-		this.setState( { h: 60 } );
-	}
-
-	componentWillUnmount() {
-		this.setState( { h: 0 } );
-	}
-
 	onChange( event ) {
 		let statuses = [ 'all', 'draft', 'pending', 'publish', 'scheduled' ];
 		this.props.onChange( {
@@ -58,8 +31,7 @@ export default class ListItem extends Component {
 
 	render() {
 		return (
-			<View style={ [ styles.container, { height: this.state.h } ] }>
-				<Text style={ styles.label }>STATUS</Text>
+			<View style={ styles.container }>
 				<SegmentedControlIOS
 					values={ [ 'All', 'Draft', 'Pending', 'Published', 'Scheduled' ] }
 					selectedIndex={ 0 }
