@@ -20,18 +20,6 @@ import SitesView from './containers/Sites/View';
 import SettingsList from './containers/Settings/List';
 import CommentsEdit from './containers/Comments/Edit';
 
-// const screenOptions = {
-// 	headerStyle: {
-// 		backgroundColor: 'white',
-// 		borderBottomWidth: 0,
-// 		shadowColor: 'transparent',
-// 		shadowRadius: 0,
-// 		shadowOffset: {
-// 			height: 0,
-// 		},
-// 	},
-// };
-
 const defaultOptions = {
 	cardStyle: {
 		backgroundColor: 'white',
@@ -48,137 +36,137 @@ const defaultOptions = {
 	headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
 };
 
-const MainStack = createStackNavigator();
+const Main = createStackNavigator();
+const Root = createStackNavigator();
 
-const RootStack = () => {
+const MainStack = () => {
 	return (
-		<NavigationNativeContainer>
-			<MainStack.Navigator
-				initialRouteName="SitesList"
-				screenOptions={ defaultOptions }
-			>
-				<MainStack.Screen
-					name="SitesList"
-					component={ SitesList }
-					options={ {
-						title: 'Sites',
-					} }
-				/>
-				<MainStack.Screen
-					name="SitesView"
-					component={ SitesView }
-					options={ ( { route } ) => ( {
-						title: route.params ? route.params.site.name : '',
-					} ) }
-				/>
-				<MainStack.Screen
-					name="SitesReauth"
-					component={ SitesReauth }
-				/>
-				<MainStack.Screen
-					name="PostsList"
-					component={ PostsList }
-					options={ ( { route } ) => ( {
-						title: route.params ? route.params.type.name : '',
-					} ) }
-				/>
-				<MainStack.Screen
-					name="PostsEdit"
-					component={ PostsEdit }
-					options={ ( { route } ) => ( {
-						title: route.params ? `Edit ${ route.params.type.labels.singular_name }` : '',
-					} ) }
-				/>
-				<MainStack.Screen
-					name="PostsAdd"
-					component={ PostsAdd }
-				/>
-				<MainStack.Screen
-					name="TermsEdit"
-					component={ TermsEdit }
-					options={ ( { route } ) => ( {
-						title: route.params ? `Edit ${ route.params.taxonomy.labels.singular_name }` : '',
-					} ) }
-				/>
-				<MainStack.Screen
-					name="TermsAdd"
-					component={ TermsAdd }
-				/>
-				<MainStack.Screen
-					name="TermsList"
-					component={ TermsList }
-					options={ ( { route } ) => ( {
-						title: route.params ? route.params.taxonomy.name : '',
-					} ) }
-				/>
-				<MainStack.Screen
-					name="UsersList"
-					component={ UsersList }
-					options={ {
-						title: 'Users',
-					} }
-				/>
-				<MainStack.Screen
-					name="UsersAdd"
-					component={ UsersAdd }
-				/>
-				<MainStack.Screen
-					name="UsersEdit"
-					component={ UsersEdit }
-				/>
-				<MainStack.Screen
-					name="UsersSelect"
-					component={ UsersSelect }
-				/>
-				<MainStack.Screen
-					name="CommentsList"
-					component={ CommentsList }
-					options={ {
-						title: 'Comments',
-					} }
-				/>
-				<MainStack.Screen
-					name="CommentsEdit"
-					component={ CommentsEdit }
-					options={ {
-						title: 'Edit Comment',
-					} }
-				/>
-				<MainStack.Screen
-					name="SettingsList"
-					component={ SettingsList }
-					options={ {
-						title: 'Settings',
-					} }
-				/>
-			</MainStack.Navigator>
-		</NavigationNativeContainer>
+		<Main.Navigator
+			initialRouteName="SitesList"
+			screenOptions={ defaultOptions }
+		>
+			<Main.Screen
+				name="SitesList"
+				component={ SitesList }
+				options={ {
+					title: 'Sites',
+				} }
+			/>
+			<Main.Screen
+				name="SitesView"
+				component={ SitesView }
+				options={ ( { route } ) => ( {
+					title: route.params ? route.params.site.name : '',
+				} ) }
+			/>
+			<Main.Screen
+				name="SitesReauth"
+				component={ SitesReauth }
+			/>
+			<Main.Screen
+				name="PostsList"
+				component={ PostsList }
+				options={ ( { route } ) => ( {
+					title: route.params ? route.params.type.name : '',
+				} ) }
+			/>
+			<Main.Screen
+				name="PostsEdit"
+				component={ PostsEdit }
+				options={ ( { route } ) => ( {
+					title: route.params ? `Edit ${ route.params.type.labels.singular_name }` : '',
+				} ) }
+			/>
+			<Main.Screen
+				name="PostsAdd"
+				component={ PostsAdd }
+			/>
+			<Main.Screen
+				name="TermsEdit"
+				component={ TermsEdit }
+				options={ ( { route } ) => ( {
+					title: route.params ? `Edit ${ route.params.taxonomy.labels.singular_name }` : '',
+				} ) }
+			/>
+			<Main.Screen
+				name="TermsAdd"
+				component={ TermsAdd }
+			/>
+			<Main.Screen
+				name="TermsList"
+				component={ TermsList }
+				options={ ( { route } ) => ( {
+					title: route.params ? route.params.taxonomy.name : '',
+				} ) }
+			/>
+			<Main.Screen
+				name="UsersList"
+				component={ UsersList }
+				options={ {
+					title: 'Users',
+				} }
+			/>
+			<Main.Screen
+				name="UsersAdd"
+				component={ UsersAdd }
+			/>
+			<Main.Screen
+				name="UsersEdit"
+				component={ UsersEdit }
+			/>
+			<Main.Screen
+				name="UsersSelect"
+				component={ UsersSelect }
+			/>
+			<Main.Screen
+				name="CommentsList"
+				component={ CommentsList }
+				options={ {
+					title: 'Comments',
+				} }
+			/>
+			<Main.Screen
+				name="CommentsEdit"
+				component={ CommentsEdit }
+				options={ {
+					title: 'Edit Comment',
+				} }
+			/>
+			<Main.Screen
+				name="SettingsList"
+				component={ SettingsList }
+				options={ {
+					title: 'Settings',
+				} }
+			/>
+		</Main.Navigator>
 	)
 }
 
-export default RootStack;
-
-// export default createAppContainer(
-// 	createStackNavigator(
-// 		{
-// 			Main: {
-// 				screen: mainStack,
-// 			},
-// 			SitesAdd: {
-// 				screen: SitesAdd,
-// 				navigationOptions: {
-// 					title: 'Add New Site',
-// 				},
-// 			},
-// 		},
-// 		{
-// 			mode: 'modal',
-// 			headerMode: 'none',
-// 			defaultNavigationOptions: {
-// 				...TransitionPresets.ModalPresentationIOS,
-// 				cardOverlayEnabled: true,
-// 				gestureEnabled: true,
-// 			},
-// 		},
-// 	),
-// );
+export default function RootStack() {
+	return (
+		<NavigationNativeContainer>
+			<Root.Navigator
+				headerMode="none"
+				mode="modal"
+				screenOptions={ {
+					...TransitionPresets.ModalPresentationIOS,
+					cardOverlayEnabled: true,
+					gestureEnabled: true,
+				} }
+			>
+				<Root.Screen
+					name="Main"
+					component={ MainStack }
+				/>
+				<Root.Screen
+					name="SitesAdd"
+					component={ SitesAdd }
+					options={ {
+						title: 'Add New Site',
+					} }
+				/>
+			</Root.Navigator>
+		</NavigationNativeContainer>
+	);
+}

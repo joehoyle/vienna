@@ -7,11 +7,6 @@ import NavigationButton from '../../components/Navigation/Button';
 class List extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: 'Sites',
-		headerRight: () => (
-			<NavigationButton onPress={ () => navigation.navigate( 'SitesAdd' ) }>
-				Add Site
-			</NavigationButton>
-		),
 	} );
 	constructor( props ) {
 		super( props );
@@ -21,6 +16,14 @@ class List extends Component {
 	}
 
 	componentDidMount() {
+		this.props.navigation.setOptions( {
+			headerRight: () => (
+				<NavigationButton onPress={ () => this.props.navigation.navigate( 'SitesAdd' ) }>
+					Add Site
+				</NavigationButton>
+			),
+		} );
+
 		this.redirectIfNoSites();
 	}
 
