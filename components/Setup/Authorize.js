@@ -1,11 +1,9 @@
 import { AuthSession } from 'expo';
-// import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import URI from 'urijs';
 
 import Description from './Description';
-import ErrorMessage from './ErrorMessage';
 import Logo from './Logo';
 
 const styles = StyleSheet.create( {
@@ -33,7 +31,6 @@ const CONNECT_AUTH_ENDPOINT = new URI(
 	'https://apps-beta.wp-api.org/broker/2/connect',
 );
 const CLIENT_ID = 'awzvyrf3p74o';
-const CLIENT_SECRET = 'YaMKLzyFuxkQHFGRwSo0MEaperAsrKxNEseuRk7U0lKhM2NJ';
 
 export default class Authorize extends React.Component {
 	componentDidMount() {
