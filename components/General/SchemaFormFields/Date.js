@@ -90,7 +90,7 @@ export default class DateField extends Component {
 			<View>
 				<FormRow label={ this.props.name }>
 					<TouchableOpacity onPress={ this.onToggle }>
-						<Text style={styles.label}>
+						<Text style={ styles.label }>
 							{ ! isNaN( date ) ? this.formatter.format( date ) : 'Select Date' }
 						</Text>
 					</TouchableOpacity>

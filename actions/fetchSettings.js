@@ -28,6 +28,6 @@ export default function fetchSettings( args ) {
 					siteId: store.activeSite.id,
 				},
 			} );
-		})
+		} );
 	};
 }

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	field: {
 		backgroundColor: '#FFFFFF',
 		height: 44,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 		margin: 8,
 		marginBottom: 15,
 	},
-});
+} );
 
 export default class FormRow extends Component {
 	static propTypes = {
@@ -41,11 +41,13 @@ export default class FormRow extends Component {
 	render() {
 		return (
 			<View>
-				<View style={styles.field}>
-					<View style={styles.label}>
-						<Text style={styles.labelText}>{this.props.label}</Text>
+				<View style={ styles.field }>
+					<View style={ styles.label }>
+						<Text style={ styles.labelText }>
+							{ this.props.label }
+						</Text>
 					</View>
-					<View style={styles.inputField}>
+					<View style={ styles.inputField }>
 						{ this.props.children }
 					</View>
 				</View>

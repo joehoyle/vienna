@@ -4,7 +4,7 @@ import { Animated, StyleSheet } from 'react-native';
 const styles = StyleSheet.create( {
 	container: {
 		overflow: 'hidden',
-	}
+	},
 } );
 
 export default class ExpandingRow extends React.Component {
@@ -25,7 +25,7 @@ export default class ExpandingRow extends React.Component {
 			{
 				toValue: 1,
 				duration: this.props.duration,
-			}
+			},
 		).start();
 	}
 
@@ -35,12 +35,12 @@ export default class ExpandingRow extends React.Component {
 			{
 				toValue: 0,
 				duration: this.props.duration,
-			}
+			},
 		).start( status => {
 			if ( status.finished ) {
 				this.setState( { childrenVisible: false } );
 			}
-		});
+		} );
 	}
 
 	componentDidUpdate( prevProps ) {
