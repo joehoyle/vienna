@@ -1,20 +1,20 @@
 import httpapi from '../api';
 
-export default function updateSettings(settings) {
-	return (dispatch, getStore) => {
+export default function updateSettings( settings ) {
+	return ( dispatch, getStore ) => {
 		const store = getStore();
-		const api = new httpapi(store.sites[store.activeSite.id]);
+		const api = new httpapi( store.sites[store.activeSite.id] );
 
-		dispatch({
+		dispatch( {
 			type: 'SETTINGS_UPDATING',
-		});
-		api.post('/wp/v2/settings', settings).then(function(data, err) {
-			dispatch({
+		} );
+		api.post( '/wp/v2/settings', settings ).then( function ( data, err ) {
+			dispatch( {
 				type: 'SETTINGS_UPDATED',
 				payload: {
 					settings: data,
 				},
-			});
-		});
+			} );
+		} );
 	};
 }

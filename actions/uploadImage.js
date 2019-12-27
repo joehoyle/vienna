@@ -5,11 +5,7 @@ import { ImagePicker, Permissions } from 'expo';
 
 const selectOptions = {
 	title: 'Select Photo for Upload',
-	options: [
-		'Take Photo...',
-		'Choose from Library...',
-		'Cancel',
-	],
+	options: [ 'Take Photo...', 'Choose from Library...', 'Cancel' ],
 	destructiveButtonIndex: 2,
 };
 
@@ -24,7 +20,7 @@ const cameraOptions = {
 };
 
 export default function uploadImage() {
-	return (dispatch, getStore) => {
+	return ( dispatch, getStore ) => {
 		// const store = getStore();
 		// const api = new httpapi(store.sites[store.activeSite.id]);
 
@@ -36,7 +32,9 @@ export default function uploadImage() {
 			}
 
 			const takePhoto = option === 0;
-			const permission = takePhoto ? Permissions.CAMERA : Permissions.CAMERA_ROLL;
+			const permission = takePhoto
+				? Permissions.CAMERA
+				: Permissions.CAMERA_ROLL;
 
 			// Do we have permission?
 			let permissions = await Permissions.getAsync( permission );
@@ -49,9 +47,9 @@ export default function uploadImage() {
 				}
 			}
 
-			const response = await (
-				takePhoto ? ImagePicker.launchCameraAsync( cameraOptions ) : ImagePicker.launchImageLibraryAsync( libraryOptions )
-			);
+			const response = await ( takePhoto
+				? ImagePicker.launchCameraAsync( cameraOptions )
+				: ImagePicker.launchImageLibraryAsync( libraryOptions ) );
 
 			if ( response.cancelled ) {
 				return;
@@ -74,6 +72,6 @@ export default function uploadImage() {
 			// 	.catch(err => {
 			// 		console.error(err);
 			// 	});
-		});
+		} );
 	};
 }

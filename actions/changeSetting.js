@@ -1,4 +1,4 @@
-export default function changeSetting(setting, value) {
+export default function changeSetting( setting, value ) {
 	return {
 		type: 'SETTINGS_CHANGED',
 		payload: {

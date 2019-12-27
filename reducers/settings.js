@@ -7,7 +7,7 @@ const defaultState = {
 	},
 	settings: {},
 	lastError: null,
-}
+};
 export default function settings( state = defaultState, action ) {
 	switch ( action.type ) {
 		case 'SITE_DATA_UPDATED':
@@ -15,29 +15,31 @@ export default function settings( state = defaultState, action ) {
 			return {
 				...state,
 				available: action.payload.site.routes['/wp/v2/settings'] ? true : false,
-				schema: action.payload.site.routes['/wp/v2/settings'] ? action.payload.site.routes['/wp/v2/settings'].schema : null,
-			}
+				schema: action.payload.site.routes['/wp/v2/settings']
+					? action.payload.site.routes['/wp/v2/settings'].schema
+					: null,
+			};
 		case 'SETTINGS_CHANGED': {
-			state.settings[ action.payload.setting ] = action.payload.value
+			state.settings[action.payload.setting] = action.payload.value;
 			return {
 				...state,
-			}
+			};
 		}
 		case 'SETTINGS_UPDATING':
 			return {
 				...state,
 				list: {
-					loading: true
-				}
-			}
+					loading: true,
+				},
+			};
 		case 'SETTINGS_UPDATED':
 			return {
 				...state,
 				list: {
 					loading: false,
 				},
-				settings: action.payload.settings
-			}
+				settings: action.payload.settings,
+			};
 		default:
 			return state;
 	}

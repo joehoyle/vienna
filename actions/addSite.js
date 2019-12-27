@@ -5,7 +5,9 @@ export async function fetchIndex( url ) {
 	const opts = {
 		redirect: 'follow',
 	};
-	const apiIndex = parsed.addQuery( 'rest_route', '/' ).addQuery( 'context', 'help' );
+	const apiIndex = parsed
+		.addQuery( 'rest_route', '/' )
+		.addQuery( 'context', 'help' );
 	const response = await fetch( apiIndex, opts );
 
 	if ( response.status !== 200 ) {
@@ -19,7 +21,7 @@ export async function fetchIndex( url ) {
 }
 
 export async function isMultisite( url ) {
-	const testUrl = `${ url.replace( /\/$/, '' ) }/wp-signup.php`;
+	const testUrl = `${url.replace( /\/$/, '' )}/wp-signup.php`;
 
 	let response;
 	try {

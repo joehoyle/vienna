@@ -4,6 +4,6 @@ export default function updateSiteCredentials( id, credentials ) {
 		payload: {
 			id,
 			credentials,
-		}
+		},
 	};
 }

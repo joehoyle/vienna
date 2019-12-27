@@ -1,10 +1,10 @@
-export default function removeSite(siteId) {
+export default function removeSite( siteId ) {
 	return dispatch => {
-		dispatch({
+		dispatch( {
 			type: 'SITE_REMOVED',
 			payload: {
 				siteId: siteId,
 			},
-		});
+		} );
 	};
 }
