@@ -2,6 +2,7 @@
 # branches:
 #     only:
 #     - master
+os: osx
 language: node_js
 node_js:
     - node
