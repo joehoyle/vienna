@@ -1,3 +1,4 @@
+import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Localization from 'expo-localization';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -6,7 +7,6 @@ import {
 	Text,
 	StyleSheet,
 	TouchableOpacity,
-	DatePickerIOS,
 } from 'react-native';
 
 import ExpandingView from '../ExpandingView';
@@ -99,10 +99,10 @@ export default class DateField extends Component {
 					expanded={ this.props.focussed }
 					height={ 216 }
 				>
-					<DatePickerIOS
-						date={ date }
+					<DateTimePicker
 						style={ styles.picker }
-						onDateChange={ value => this.props.onChange( value.toISOString() ) }
+						value={ isNaN( date ) ? new Date() : date }
+						onChange={ ( _, value ) => this.props.onChange( value.toISOString() ) }
 					/>
 				</ExpandingView>
 			</View>

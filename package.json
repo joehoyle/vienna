@@ -14,6 +14,7 @@
     "preset": "jest-react-native"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "2.1.0",
     "@react-native-community/masked-view": "^0.1.5",
     "expo": "^36.0.0",
     "expo-localization": "~8.0.0",
