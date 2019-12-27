@@ -33,13 +33,13 @@ class Add extends Component {
 
 	onSave = () => {
 		this.props.dispatch(
-			createPost( this.state.post, this.props.navigation.state.params.type.slug ),
+			createPost( this.state.post, this.props.route.params.type.slug ),
 		);
 		this.props.navigation.goBack();
 	}
 
 	render() {
-		const type = this.props.navigation.state.params.type;
+		const type = this.props.route.params.type;
 		const slug = type._links['wp:items'][0].href.split( '/' ).slice( -1 )[0];
 		let schema = this.props.sites[this.props.activeSite.id].routes[
 			'/wp/v2/' + slug

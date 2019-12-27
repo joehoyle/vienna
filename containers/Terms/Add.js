@@ -35,14 +35,14 @@ class Add extends Component {
 		this.props.dispatch(
 			createTerm(
 				this.state.term,
-				this.props.navigation.state.params.taxonomy.slug,
+				this.props.route.params.taxonomy.slug,
 			),
 		);
 		this.props.navigation.goBack();
 	}
 
 	render() {
-		const taxonomy = this.props.navigation.state.params.taxonomy;
+		const taxonomy = this.props.route.params.taxonomy;
 		const slug = taxonomy._links['wp:items'][0].href.split( '/' ).slice( -1 )[0];
 		let schema = this.props.sites[this.props.activeSite.id].routes[
 			'/wp/v2/' + slug
