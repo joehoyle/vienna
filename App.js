@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
+import { enableScreens } from 'react-native-screens';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import * as storage from 'redux-storage';
@@ -38,6 +39,9 @@ const loadStorage = storage.createLoader( engine );
 loadStorage( store ).then( state => {} );
 
 StatusBar.setBarStyle( 'dark-content' );
+
+// Enable react-native-screens for performance.
+enableScreens();
 
 export default class App extends Component {
 	render() {
