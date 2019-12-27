@@ -12,11 +12,11 @@ export default class Boolean extends Component {
 	render() {
 		return (
 			<Switch
-				value={this.props.value}
-				onValueChange={value => {
-					this.props.onChange(value);
+				value={ this.props.value }
+				onValueChange={ value => {
+					this.props.onChange( value );
 					this.props.onSave();
-				}}
+				} }
 			/>
 		);
 	}

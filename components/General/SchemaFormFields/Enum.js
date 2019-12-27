@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Picker } from 'react-native';
 // import CustomActionSheet from 'react-native-custom-action-sheet';
 const CustomActionSheet = props => null;
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
 		height: 32,
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 		// right: 0,
 		// top: 0,
 	},
-});
+} );
 
 export default class Enum extends Component {
 	static propTypes = {
@@ -42,41 +42,41 @@ export default class Enum extends Component {
 		};
 	}
 	onPressValue() {
-		this.setState({ showingPicker: true });
+		this.setState( { showingPicker: true } );
 	}
 	render() {
 		return (
 			<View>
-				<TouchableOpacity onPress={() => this.onPressValue()}>
-					<Text style={styles.container}>{this.props.value}</Text>
+				<TouchableOpacity onPress={ () => this.onPressValue() }>
+					<Text style={ styles.container }>{ this.props.value }</Text>
 				</TouchableOpacity>
-				{this.state.showingPicker
-					? <CustomActionSheet
-							modalVisible={true}
-							onCancel={() => {
-								this.setState({ showingPicker: false });
-								this.props.onSave();
-							}}
-							backgroundColor="transparent"
-							buttonText="Done"
+				{ this.state.showingPicker ? (
+					<CustomActionSheet
+						modalVisible={ true }
+						onCancel={ () => {
+							this.setState( { showingPicker: false } );
+							this.props.onSave();
+						} }
+						backgroundColor="transparent"
+						buttonText="Done"
+					>
+						<Picker
+							selectedValue={ this.props.value }
+							onValueChange={ this.props.onChange }
+							style={ styles.picker }
 						>
-							<Picker
-								selectedValue={this.props.value}
-								onValueChange={this.props.onChange}
-								style={styles.picker}
-							>
-								{this.props.schema.enum.map(value => {
-									return (
-										<Picker.Item
-											key={value}
-											label={String(value)}
-											value={value}
-										/>
-									);
-								})}
-							</Picker>
-						</CustomActionSheet>
-					: null}
+							{ this.props.schema.enum.map( value => {
+								return (
+									<Picker.Item
+										key={ value }
+										label={ String( value ) }
+										value={ value }
+									/>
+								);
+							} ) }
+						</Picker>
+					</CustomActionSheet>
+				) : null }
 			</View>
 		);
 	}
