@@ -21,7 +21,7 @@ export default class List extends Component {
 	}
 	onSelectUser( user ) {
 		this.props.onSelect( user );
-		this.props.navigator.pop();
+		this.props.navigation.pop();
 	}
 	onRefresh() {
 		this.props.dispatch( fetchUsers( { per_page: 100 } ) );

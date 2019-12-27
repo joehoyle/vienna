@@ -1,4 +1,3 @@
-import Constants from 'expo-constants';
 import React, { Component } from 'react';
 import {
 	KeyboardAvoidingView,
@@ -7,7 +6,7 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
-import { Header, HeaderTitle } from 'react-navigation-stack';
+import { HeaderTitle } from '@react-navigation/stack';
 import { connect } from 'react-redux';
 
 import addSite from '../../actions/addSite';
@@ -105,7 +104,6 @@ class Add extends Component {
 		return (
 			<KeyboardAvoidingView
 				behavior="height"
-				keyboardVerticalOffset={ Header.HEIGHT + Constants.statusBarHeight - 20 }
 				style={ styles.container }
 			>
 				<View style={ styles.header }>

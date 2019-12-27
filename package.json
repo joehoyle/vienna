@@ -16,6 +16,8 @@
   "dependencies": {
     "@react-native-community/datetimepicker": "2.1.0",
     "@react-native-community/masked-view": "^0.1.5",
+    "@react-navigation/native": "^5.0.0-alpha.21",
+    "@react-navigation/stack": "^5.0.0-alpha.46",
     "expo": "^36.0.0",
     "expo-localization": "~8.0.0",
     "expo-web-browser": "~8.0.0",
@@ -30,8 +32,6 @@
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-webview": "7.4.3",
-    "react-navigation": "^4.0.10",
-    "react-navigation-stack": "^2.0.0-alpha.42",
     "react-redux": "6",
     "react-router-native": "5",
     "redux": "4",

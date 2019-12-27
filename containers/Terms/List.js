@@ -8,42 +8,42 @@ import ListError from '../../components/General/ListError';
 import NavigationButton from '../../components/Navigation/Button';
 
 class List extends Component {
-	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: navigation.state.params.taxonomy.name,
-		headerRight: () => (
-			<NavigationButton
-				onPress={ () => {
-					navigation.navigate( 'TermsAdd', {
-						taxonomy: navigation.state.params.taxonomy,
-					} );
-				} }
-			>
-				Add New
-			</NavigationButton>
-		),
-	} );
 	componentDidMount() {
-		if ( isEmpty( this.props.navigation.state.params.taxonomy.terms ) ) {
+		this.props.navigation.setOptions( {
+			headerRight: () => (
+				<NavigationButton
+					onPress={ () => {
+						this.props.navigation.navigate( 'TermsAdd', {
+							taxonomy: this.props.route.params.taxonomy,
+						} );
+					} }
+				>
+					Add New
+				</NavigationButton>
+			),
+		} );
+
+		if ( isEmpty( this.props.route.params.taxonomy.terms ) ) {
 			this.props.dispatch(
 				fetchTerms( {
-					taxonomy: this.props.navigation.state.params.taxonomy.slug,
+					taxonomy: this.props.route.params.taxonomy.slug,
 				} ),
 			);
 		}
 	}
 	onSelectTerm( term ) {
 		this.props.navigation.navigate( 'TermsEdit', {
-			taxonomy: this.props.navigation.state.params.taxonomy,
+			taxonomy: this.props.route.params.taxonomy,
 			term,
 		} );
 	}
 	onRefresh() {
 		this.props.dispatch(
-			fetchTerms( { taxonomy: this.props.navigation.state.params.taxonomy.slug } ),
+			fetchTerms( { taxonomy: this.props.route.params.taxonomy.slug } ),
 		);
 	}
 	render() {
-		let taxonomy = this.props.navigation.state.params.taxonomy;
+		let taxonomy = this.props.route.params.taxonomy;
 		let terms = taxonomy.terms;
 		return (
 			<ScrollView

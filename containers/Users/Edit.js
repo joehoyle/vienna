@@ -1,39 +1,47 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import { updateUser } from '../../actions';
 import Form from '../../components/Users/Form';
+import NavigationButton from '../../components/Navigation/Button';
 
-export default class Edit extends Component {
-	static navigatorButtons = {
-		rightButtons: [
-			{
-				title: 'Save',
-				id: 'save',
-			},
-		],
-	};
+export class Edit extends Component {
 	constructor( props ) {
 		super( props );
+
+		const users = props.site && props.site.data ? props.site.data.users.users : {};
 		this.state = {
-			user: { ...props.users.users[this.props.user] },
+			user: users[ props.route.params.user ],
 		};
-		//this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
-	onNavigatorEvent() {
-		this.onSave();
+
+	componentDidMount() {
+		this.props.navigation.setOptions( {
+			title: this.state.user.name,
+			headerRight: () => (
+				<NavigationButton
+					onPress={ this.onSave }
+				>
+					Save
+				</NavigationButton>
+			),
+		} );
 	}
+
 	onChangePropertyValue( property, value ) {
 		let user = this.state.user;
 		user[property] = value;
 		this.setState( { user: user } );
 	}
+
 	onSave() {
 		this.props.dispatch( updateUser( this.state.user ) );
-		this.props.navigator.pop();
+		this.props.navigation.pop();
 	}
+
 	render() {
-		let schema = this.props.sites[this.props.activeSite.id].routes[
-			'/wp/v2/users'
-		].schema;
+		const schema = this.props.site.routes['/wp/v2/users'].schema;
+
 		return (
 			<Form
 				user={ this.state.user }
@@ -43,3 +51,9 @@ export default class Edit extends Component {
 		);
 	}
 }
+
+const mapStateToProps = state => ( {
+	site: state.activeSite.id ? state.sites[ state.activeSite.id ] : null,
+} );
+
+export default connect( mapStateToProps )( Edit );

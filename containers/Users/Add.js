@@ -5,17 +5,6 @@ import Form from '../../components/Users/Form';
 import NavigationButton from '../../components/Navigation/Button';
 
 class Add extends Component {
-	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: 'Add User',
-		headerRight: () => (
-			<NavigationButton
-				onPress={ navigation.state.params.onSave || null }
-			>
-				Save
-			</NavigationButton>
-		),
-	} );
-
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -24,14 +13,14 @@ class Add extends Component {
 	}
 
 	componentDidMount() {
-		this.props.navigation.setParams( {
-			onSave: this.onSave,
-		} );
-	}
-
-	componentWillUnmount() {
-		this.props.navigation.setParams( {
-			onSave: null,
+		this.props.navigation.setOptions( {
+			headerRight: () => (
+				<NavigationButton
+					onPress={ this.onSave }
+				>
+					Save
+				</NavigationButton>
+			),
 		} );
 	}
 
