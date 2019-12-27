@@ -1,11 +1,6 @@
 import { openAuthSessionAsync } from 'expo-web-browser';
 import React, { Component } from 'react';
-import {
-	ActivityIndicator,
-	StyleSheet,
-	Text,
-	View,
-} from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import URI from 'urijs';
 
 import { fetchIndex, isMultisite } from '../../actions/addSite';
@@ -56,7 +51,7 @@ export default class Start extends Component {
 	state = {
 		status: STATUS.NONE,
 		error: null,
-	}
+	};
 
 	componentDidMount() {
 		this.multisiteCheck = this.onCheckMultisite();
@@ -66,7 +61,7 @@ export default class Start extends Component {
 		// Determine whether the site is multisite or not, and store.
 		const { url } = this.props.index;
 		return await isMultisite( url );
-	}
+	};
 
 	onInstall = async () => {
 		const { url } = this.props.index;
@@ -80,16 +75,20 @@ export default class Start extends Component {
 
 		// Prepare the browser.
 		const baseUrl = url.replace( /\/$/, '' ) + '/wp-admin';
-		const adminUrl = new URI( multisite ? baseUrl + '/network/plugin-install.php' : url + '/plugin-install.php' );
+		const adminUrl = new URI(
+			multisite
+				? baseUrl + '/network/plugin-install.php'
+				: url + '/plugin-install.php',
+		);
 		const installUrl = adminUrl.addQuery( {
 			tab: 'search',
 			type: 'term',
-			s: 'connect'
+			s: 'connect',
 		} );
 
 		// Open the browser and wait.
 		openAuthSessionAsync( '' + installUrl ).then( this.onCheck );
-	}
+	};
 
 	onCheck = async () => {
 		this.setState( {
@@ -104,7 +103,8 @@ export default class Start extends Component {
 			if ( ! ( 'connect' in index.authentication ) ) {
 				this.setState( {
 					status: STATUS.ERROR,
-					message: 'App Connect does not appear to be installed. Please try again.',
+					message:
+						'App Connect does not appear to be installed. Please try again.',
 				} );
 				return;
 			}
@@ -116,7 +116,7 @@ export default class Start extends Component {
 				message: err.message,
 			} );
 		}
-	}
+	};
 
 	render() {
 		const { status } = this.state;
@@ -125,17 +125,16 @@ export default class Start extends Component {
 				<Logo />
 
 				<Description>
-					Vienna requires the App Connect plugin. We'll take you to your site to install it.
+					Vienna requires the App Connect plugin. We'll take you to your site to
+					install it.
 				</Description>
 				<Description>
-					Once you've installed and activated the plugin, close the browser and hit reload below.
+					Once you've installed and activated the plugin, close the browser and
+					hit reload below.
 				</Description>
 
-				{ ( status === STATUS.NONE || status === STATUS.ERROR ) ? (
-					<Button
-						style={ styles.button }
-						onPress={ this.onInstall }
-					>
+				{ status === STATUS.NONE || status === STATUS.ERROR ? (
+					<Button style={ styles.button } onPress={ this.onInstall }>
 						Install
 					</Button>
 				) : null }
@@ -153,18 +152,13 @@ export default class Start extends Component {
 				) : null }
 
 				{ status === STATUS.WAITING ? (
-					<Button
-						style={ styles.button }
-						onPress={ this.onCheck }
-					>
+					<Button style={ styles.button } onPress={ this.onCheck }>
 						Check Site
 					</Button>
 				) : null }
 
 				{ status === STATUS.ERROR ? (
-					<ErrorMessage>
-						{ this.state.message }
-					</ErrorMessage>
+					<ErrorMessage>{ this.state.message }</ErrorMessage>
 				) : null }
 			</View>
 		);

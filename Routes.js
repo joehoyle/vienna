@@ -1,7 +1,7 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import SitesList from "./containers/Sites/List";
+import SitesList from './containers/Sites/List';
 import SitesAdd from './containers/Sites/Add';
 import SitesReauth from './containers/Sites/Reauth';
 import PostsList from './containers/Posts/List';

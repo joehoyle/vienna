@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-	StyleSheet,
-	Text,
-} from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 const styles = StyleSheet.create( {
 	description: {
@@ -16,9 +13,5 @@ const styles = StyleSheet.create( {
 export default function Description( props ) {
 	const style = StyleSheet.compose( styles.description, props.styles );
 
-	return (
-		<Text style={ style }>
-			{ props.children }
-		</Text>
-	);
+	return <Text style={ style }>{ props.children }</Text>;
 }

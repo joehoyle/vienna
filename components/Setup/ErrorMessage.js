@@ -1,9 +1,6 @@
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import React from 'react';
-import {
-	StyleSheet,
-	Text,
-} from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 const styles = StyleSheet.create( {
 	errorMessage: {
@@ -19,9 +16,7 @@ export default function ErrorMessage( props ) {
 	const style = StyleSheet.compose( styles.errorMessage, props.style );
 	return (
 		<Text style={ style }>
-			<Icon name="exclamation-triangle" color="red" />
-			{ ' ' }
-			{ props.children }
+			<Icon name="exclamation-triangle" color="red" /> { props.children }
 		</Text>
 	);
 }

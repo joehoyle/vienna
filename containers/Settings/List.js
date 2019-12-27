@@ -1,43 +1,38 @@
 import React, { Component } from 'react';
-import {
-	ScrollView,
-	View,
-	RefreshControl,
-	StyleSheet,
-} from 'react-native';
+import { ScrollView, View, RefreshControl, StyleSheet } from 'react-native';
 import { isEmpty } from 'lodash';
 import { fetchSettings, changeSetting, updateSettings } from '../../actions';
 import SchemaFormField from '../../components/General/SchemaFormField';
 import { connect } from 'react-redux';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	list: {
 		paddingTop: 15,
 	},
-});
+} );
 
 class List extends Component {
-	static navigationOptions = ({ navigationOptions, navigation }) => ({
+	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: 'Settings',
-	});
+	} );
 	componentWillMount() {
-		if (isEmpty(this.props.settings.settings)) {
-			this.props.dispatch(fetchSettings());
+		if ( isEmpty( this.props.settings.settings ) ) {
+			this.props.dispatch( fetchSettings() );
 		}
 	}
 	onRefresh() {
-		this.props.dispatch(fetchSettings());
+		this.props.dispatch( fetchSettings() );
 	}
-	onChangeSettingValue(setting, value) {
-		this.props.dispatch(changeSetting(setting, value));
+	onChangeSettingValue( setting, value ) {
+		this.props.dispatch( changeSetting( setting, value ) );
 	}
 	onUpdateSettings() {
-		this.props.dispatch(updateSettings(this.props.settings.settings));
+		this.props.dispatch( updateSettings( this.props.settings.settings ) );
 	}
 	render() {
-		var settings = this.props.settings.settings;
+		let settings = this.props.settings.settings;
 
-		var settingsNamesMap = {
+		let settingsNamesMap = {
 			title: 'Site Title',
 			description: 'Site Description',
 			url: 'Site URL',
@@ -59,9 +54,9 @@ class List extends Component {
 			<ScrollView
 				refreshControl={
 					<RefreshControl
-						refreshing={this.props.settings.list.loading}
-						style={{ backgroundColor: 'transparent' }}
-						onRefresh={this.onRefresh.bind(this)}
+						refreshing={ this.props.settings.list.loading }
+						style={ { backgroundColor: 'transparent' } }
+						onRefresh={ this.onRefresh.bind( this ) }
 						tintColor="#666666"
 						title={
 							this.props.settings.list.loading
@@ -72,34 +67,34 @@ class List extends Component {
 					/>
 				}
 			>
-				<View style={styles.list}>
-					{Object.entries(settings).map(properties => {
+				<View style={ styles.list }>
+					{ Object.entries( settings ).map( properties => {
 						const value = properties[1];
 						const setting = properties[0];
 						const schema = this.props.settings.schema.properties[setting];
 						return (
-							<View style={styles.listItem} key={setting}>
+							<View style={ styles.listItem } key={ setting }>
 								<SchemaFormField
 									name={
 										settingsNamesMap[setting]
 											? settingsNamesMap[setting]
 											: setting
 									}
-									schema={schema}
-									value={value}
-									onChange={value => this.onChangeSettingValue(setting, value)}
-									onSave={() => this.onUpdateSettings()}
+									schema={ schema }
+									value={ value }
+									onChange={ value => this.onChangeSettingValue( setting, value ) }
+									onSave={ () => this.onUpdateSettings() }
 								/>
 							</View>
 						);
-					})}
+					} ) }
 				</View>
 			</ScrollView>
 		);
 	}
 }
 
-export default connect(state => ({
+export default connect( state => ( {
 	...state,
-	...(state.activeSite.id ? state.sites[state.activeSite.id].data : null),
-}))(List);
+	...( state.activeSite.id ? state.sites[state.activeSite.id].data : null ),
+} ) )( List );

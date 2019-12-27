@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import PropTypes from '../../PropTypes';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
 	},
-});
+} );
 
 export default class Edit extends Component {
 	static propTypes = {
@@ -14,13 +14,13 @@ export default class Edit extends Component {
 	};
 
 	render() {
-		var attachment = this.props.post;
+		let attachment = this.props.post;
 
 		return (
-			<View style={styles.container}>
+			<View style={ styles.container }>
 				<Image
-					source={{ uri: attachment.media_details.sizes.full.source_url }}
-					style={{ flex: 1 }}
+					source={ { uri: attachment.media_details.sizes.full.source_url } }
+					style={ { flex: 1 } }
 					resizeMode="contain"
 				/>
 			</View>

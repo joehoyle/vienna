@@ -1,10 +1,7 @@
 import { AuthSession } from 'expo';
 // import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import {
-	StyleSheet,
-	View,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import URI from 'urijs';
 
 import Description from './Description';
@@ -32,7 +29,9 @@ const styles = StyleSheet.create( {
 	},
 } );
 
-const CONNECT_AUTH_ENDPOINT = new URI( 'https://apps-beta.wp-api.org/broker/2/connect' );
+const CONNECT_AUTH_ENDPOINT = new URI(
+	'https://apps-beta.wp-api.org/broker/2/connect',
+);
 const CLIENT_ID = 'awzvyrf3p74o';
 const CLIENT_SECRET = 'YaMKLzyFuxkQHFGRwSo0MEaperAsrKxNEseuRk7U0lKhM2NJ';
 
@@ -69,7 +68,6 @@ export default class Authorize extends React.Component {
 
 				// Exchange code for token.
 				await this.onExchangeCode( brokered_id, code, redirectUrl );
-
 		}
 	}
 
@@ -79,7 +77,7 @@ export default class Authorize extends React.Component {
 			grant_type: 'authorization_code',
 			code,
 			client_id: id,
-			redirect_uri: redirectUrl
+			redirect_uri: redirectUrl,
 		} );
 		const request = {
 			method: 'POST',
@@ -99,9 +97,7 @@ export default class Authorize extends React.Component {
 			<View style={ styles.container }>
 				<Logo />
 
-				<Description>
-					Waiting for authorization…
-				</Description>
+				<Description>Waiting for authorization…</Description>
 			</View>
 		);
 	}

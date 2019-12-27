@@ -10,7 +10,7 @@ import EnumField from './SchemaFormFields/Enum';
 import DateField from './SchemaFormFields/Date';
 import ArrayEnumField from './SchemaFormFields/ArrayEnum';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	field: {
 		backgroundColor: '#FFFFFF',
 		height: 44,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 		margin: 8,
 		marginBottom: 15,
 	},
-});
+} );
 
 export default class SchemaFormField extends Component {
 	static propTypes = {
@@ -51,16 +51,16 @@ export default class SchemaFormField extends Component {
 	};
 
 	render() {
-		var Field = null;
-		if (this.props.schema.enum) {
+		let Field = null;
+		if ( this.props.schema.enum ) {
 			Field = EnumField;
 		} else {
-			switch (this.props.schema.type) {
+			switch ( this.props.schema.type ) {
 				case 'boolean':
 					Field = BooleanField;
 					break;
 				case 'string':
-					switch (this.props.schema.format) {
+					switch ( this.props.schema.format ) {
 						case 'email':
 							Field = EmailField;
 							break;
@@ -75,13 +75,13 @@ export default class SchemaFormField extends Component {
 					}
 					break;
 				case 'array':
-					if (!this.props.schema.items) {
+					if ( ! this.props.schema.items ) {
 						console.log(
 							'schema for type array foes not have an items prop',
-							this.props.schema
+							this.props.schema,
 						);
 					} else {
-						if (this.props.schema.items.enum) {
+						if ( this.props.schema.items.enum ) {
 							Field = ArrayEnumField;
 						}
 					}
@@ -96,23 +96,23 @@ export default class SchemaFormField extends Component {
 			}
 		}
 
-		if (!Field) {
-			console.log('no field found for schema', this.props.schema);
+		if ( ! Field ) {
+			console.log( 'no field found for schema', this.props.schema );
 			return null;
 		}
 		return (
 			<View>
-				<View style={styles.field}>
-					<View style={styles.label}>
-						<Text style={styles.labelText}>{this.props.name}</Text>
+				<View style={ styles.field }>
+					<View style={ styles.label }>
+						<Text style={ styles.labelText }>{ this.props.name }</Text>
 					</View>
-					<View style={styles.inputField}>
+					<View style={ styles.inputField }>
 						<Field
-							value={this.props.value}
-							schema={this.props.schema}
-							name={this.props.name}
-							onChange={this.props.onChange}
-							onSave={this.props.onSave}
+							value={ this.props.value }
+							schema={ this.props.schema }
+							name={ this.props.name }
+							onChange={ this.props.onChange }
+							onSave={ this.props.onSave }
 						/>
 					</View>
 				</View>

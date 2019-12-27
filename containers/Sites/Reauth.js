@@ -6,21 +6,18 @@ import Authorize from '../../components/Setup/Authorize';
 
 class Reauth extends Component {
 	onAuthorize = ( id, token ) => {
-		this.props.updateSiteCredentials(
-			this.props.site.id,
-			{
-				client: {
-					id: id,
-				},
-				token: {
-					public: token,
-				},
-			}
-		);
+		this.props.updateSiteCredentials( this.props.site.id, {
+			client: {
+				id: id,
+			},
+			token: {
+				public: token,
+			},
+		} );
 
 		// We're done, go home!
 		this.props.navigation.goBack();
-	}
+	};
 
 	render() {
 		return (
@@ -34,7 +31,7 @@ class Reauth extends Component {
 
 const mapStateToProps = state => ( {
 	siteid: state.activeSite.id,
-	site: state.activeSite.id ? state.sites[ state.activeSite.id ] : null,
+	site: state.activeSite.id ? state.sites[state.activeSite.id] : null,
 } );
 
 const mapDispatchToProps = dispatch => ( {

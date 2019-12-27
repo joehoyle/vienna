@@ -11,8 +11,8 @@ export default class Edit extends Component {
 			},
 		],
 	};
-	constructor(props) {
-		super(props);
+	constructor( props ) {
+		super( props );
 		this.state = {
 			user: { ...props.users.users[this.props.user] },
 		};
@@ -21,24 +21,24 @@ export default class Edit extends Component {
 	onNavigatorEvent() {
 		this.onSave();
 	}
-	onChangePropertyValue(property, value) {
-		var user = this.state.user;
+	onChangePropertyValue( property, value ) {
+		let user = this.state.user;
 		user[property] = value;
-		this.setState({ user: user });
+		this.setState( { user: user } );
 	}
 	onSave() {
-		this.props.dispatch(updateUser(this.state.user));
+		this.props.dispatch( updateUser( this.state.user ) );
 		this.props.navigator.pop();
 	}
 	render() {
-		var schema = this.props.sites[this.props.activeSite.id].routes[
+		let schema = this.props.sites[this.props.activeSite.id].routes[
 			'/wp/v2/users'
 		].schema;
 		return (
 			<Form
-				user={this.state.user}
-				schema={schema}
-				onChangePropertyValue={(p, v) => this.onChangePropertyValue(p, v)}
+				user={ this.state.user }
+				schema={ schema }
+				onChangePropertyValue={ ( p, v ) => this.onChangePropertyValue( p, v ) }
 			/>
 		);
 	}
