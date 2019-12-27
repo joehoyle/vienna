@@ -8,25 +8,44 @@ class Add extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: 'Add User',
 		headerRight: () => (
-			<NavigationButton onPress={ () => _this.onSave() }>Save</NavigationButton>
+			<NavigationButton
+				onPress={ navigation.state.params.onSave || null }
+			>
+				Save
+			</NavigationButton>
 		),
 	} );
+
 	constructor( props ) {
 		super( props );
 		this.state = {
 			user: {},
 		};
-		_this = this; // Big hack, see https://github.com/react-community/react-navigation/issues/145
 	}
+
+	componentDidMount() {
+		this.props.navigation.setParams( {
+			onSave: this.onSave,
+		} );
+	}
+
+	componentWillUnmount() {
+		this.props.navigation.setParams( {
+			onSave: null,
+		} );
+	}
+
 	onChangePropertyValue( property, value ) {
 		let user = this.state.user;
 		user[property] = value;
 		this.setState( { user } );
 	}
-	onSave() {
+
+	onSave = () => {
 		this.props.dispatch( createUser( this.state.user ) );
 		this.props.navigation.toBack();
 	}
+
 	render() {
 		return (
 			<Form
