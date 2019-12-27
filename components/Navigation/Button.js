@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
+import { getSemanticColor } from '../../theme';
+
 const styles = StyleSheet.create( {
 	container: {
 		paddingRight: 10,
@@ -9,7 +11,7 @@ const styles = StyleSheet.create( {
 	text: {
 		lineHeight: 16,
 		fontSize: 16,
-		color: '#3578F6',
+		color: getSemanticColor( 'link' ),
 	},
 } );
 

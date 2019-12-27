@@ -18,17 +18,19 @@ import {
 	fetchSiteData,
 } from '../../actions';
 
+import { getBrandColor, getSemanticColor, getSystemColor } from '../../theme';
+
 const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
 	},
 	divider: {
-		borderBottomColor: '#F0F4F7',
+		borderBottomColor: getSystemColor( 'gray6' ),
 		borderBottomWidth: 1,
 		margin: 20,
 	},
 	sectionTitle: {
-		color: '#999999',
+		color: getSemanticColor( 'secondaryLabel' ),
 		fontSize: 11,
 		marginTop: 15,
 		marginLeft: 60,
@@ -42,17 +44,18 @@ const styles = StyleSheet.create( {
 		paddingLeft: 0,
 	},
 	listItemDivider: {
-		borderBottomColor: '#f1f1f1',
+		borderBottomColor: getSemanticColor( 'separator' ),
 		marginLeft: 60,
 		marginRight: 30,
 	},
 	listItemName: {
+		color: getSemanticColor( 'label' ),
 		fontSize: 16,
 		flex: 1,
 	},
 	listItemNameCentered: {
 		textAlign: 'center',
-		color: 'red',
+		color: getBrandColor( 'primary' ),
 		flex: 1,
 	},
 	listItemIcon: {
@@ -124,7 +127,7 @@ class _View extends Component {
 		return trimmedString;
 	}
 	render() {
-		let chevron = <Icon name="chevron-right" size={ 20 } color="#BBBBBB" />;
+		let chevron = <Icon name="chevron-right" size={ 20 } color={ getSemanticColor( 'secondaryLabel' ) } />;
 
 		if ( ! this.props.types ) {
 			return null;
@@ -138,7 +141,7 @@ class _View extends Component {
 						refreshing={ false }
 						style={ { backgroundColor: 'transparent' } }
 						onRefresh={ this.onRefresh.bind( this ) }
-						tintColor="#666666"
+						tintColor={ getBrandColor( 'primary' ) }
 						title="Pull to Refresh..."
 						titleColor="#000000"
 					/>
@@ -164,7 +167,7 @@ class _View extends Component {
 										style={ styles.listItemIcon }
 										name={ iconName }
 										size={ 16 }
-										color="#999999"
+										color={ getSemanticColor( 'secondaryLabel' ) }
 									/>
 									<Text style={ styles.listItemName }>{ type.name }</Text>
 									<View style={ styles.listItemValue }>{ chevron }</View>
@@ -198,7 +201,7 @@ class _View extends Component {
 										style={ styles.listItemIcon }
 										name={ iconName }
 										size={ 16 }
-										color="#999999"
+										color={ getSemanticColor( 'secondaryLabel' ) }
 									/>
 									<Text style={ styles.listItemName }>{ taxonomy.name }</Text>
 									<View style={ styles.listItemValue }>{ chevron }</View>
@@ -220,7 +223,7 @@ class _View extends Component {
 							style={ styles.listItemIcon }
 							name="comments"
 							size={ 16 }
-							color="#999999"
+							color={ getSemanticColor( 'secondaryLabel' ) }
 						/>
 						<Text style={ styles.listItemName }>Comments</Text>
 						<View style={ styles.listItemValue }>{ chevron }</View>
@@ -234,7 +237,7 @@ class _View extends Component {
 							style={ styles.listItemIcon }
 							name="users"
 							size={ 16 }
-							color="#999999"
+							color={ getSemanticColor( 'secondaryLabel' ) }
 						/>
 						<Text style={ styles.listItemName }>Users</Text>
 						<View style={ styles.listItemValue }>{ chevron }</View>
@@ -248,7 +251,7 @@ class _View extends Component {
 								style={ styles.listItemIcon }
 								name="gear"
 								size={ 20 }
-								color="#999999"
+								color={ getSemanticColor( 'secondaryLabel' ) }
 							/>
 							<Text style={ styles.listItemName }>Settings</Text>
 							<View style={ styles.listItemValue }>{ chevron }</View>
