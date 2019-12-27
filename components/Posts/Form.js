@@ -79,7 +79,7 @@ export default class Form extends Component {
 			<ScrollView>
 				<View style={ styles.contentField }>
 					<TextInput
-						autoFocus
+						autoFocus={ ! object.title }
 						placeholder="Enter title…"
 						style={ styles.title }
 						value={ object.title ? object.title.raw : null }
