@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import { createStore, applyMiddleware, compose } from 'redux';
-import { Provider, connect } from 'react-redux';
-import thunk from 'redux-thunk';
-
-import reducers from './reducers';
+import { Provider } from 'react-redux';
 import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
 import storageFilter from 'redux-storage-decorator-filter';
+import thunk from 'redux-thunk';
+
+import reducers from './reducers';
 import Routes from './Routes';
 
 // Error tracing
