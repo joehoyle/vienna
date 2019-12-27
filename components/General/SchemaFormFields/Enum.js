@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Picker } from 'react-native';
-// import CustomActionSheet from 'react-native-custom-action-sheet';
-const CustomActionSheet = props => null;
+
+import ExpandingView from '../ExpandingView';
+import FormRow from '../FormRow';
 
 const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
+	},
+	label: {
 		height: 32,
 		fontSize: 16,
 		lineHeight: 30,
@@ -32,51 +35,48 @@ export default class Enum extends Component {
 		value: PropTypes.any,
 		schema: PropTypes.object.isRequired,
 		name: PropTypes.string.isRequired,
+		onBlur: PropTypes.func.isRequired,
 		onChange: PropTypes.func.isRequired,
+		onFocus: PropTypes.func.isRequired,
 		onSave: PropTypes.func.isRequired,
 	};
-	constructor() {
-		super();
-		this.state = {
-			showingPicker: false,
-		};
+
+	onToggle = () => {
+		if ( this.props.focussed ) {
+			this.props.onBlur();
+		} else {
+			this.props.onFocus();
+		}
 	}
-	onPressValue() {
-		this.setState( { showingPicker: true } );
-	}
+
 	render() {
 		return (
 			<View>
-				<TouchableOpacity onPress={ () => this.onPressValue() }>
-					<Text style={ styles.container }>{ this.props.value }</Text>
-				</TouchableOpacity>
-				{ this.state.showingPicker ? (
-					<CustomActionSheet
-						modalVisible={ true }
-						onCancel={ () => {
-							this.setState( { showingPicker: false } );
-							this.props.onSave();
-						} }
-						backgroundColor="transparent"
-						buttonText="Done"
+				<FormRow label={ this.props.name }>
+					<TouchableOpacity onPress={ this.onToggle }>
+						<Text style={ styles.label }>{ this.props.value || 'Select…' }</Text>
+					</TouchableOpacity>
+				</FormRow>
+				<ExpandingView
+					expanded={ this.props.focussed }
+					height={ 216 }
+				>
+					<Picker
+						selectedValue={ this.props.value }
+						onValueChange={ this.props.onChange }
+						style={ styles.picker }
 					>
-						<Picker
-							selectedValue={ this.props.value }
-							onValueChange={ this.props.onChange }
-							style={ styles.picker }
-						>
-							{ this.props.schema.enum.map( value => {
-								return (
-									<Picker.Item
-										key={ value }
-										label={ String( value ) }
-										value={ value }
-									/>
-								);
-							} ) }
-						</Picker>
-					</CustomActionSheet>
-				) : null }
+						{ this.props.schema.enum.map( value => {
+							return (
+								<Picker.Item
+									key={ value }
+									label={ String( value ) }
+									value={ value }
+								/>
+							);
+						} ) }
+					</Picker>
+				</ExpandingView>
 			</View>
 		);
 	}

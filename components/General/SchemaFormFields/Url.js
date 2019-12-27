@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
+import FormRow from '../FormRow';
+
 const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
@@ -25,14 +27,16 @@ export default class Url extends Component {
 			? this.props.schema.default
 			: placeholder;
 		return (
-			<TextInput
-				value={ this.props.value }
-				style={ styles.container }
-				keyboardType="url"
-				placeholder={ placeholder }
-				onChangeText={ this.props.onChange }
-				onSubmitEditing={ this.props.onSave }
-			/>
+			<FormRow label={ this.props.name }>
+				<TextInput
+					value={ this.props.value }
+					style={ styles.container }
+					keyboardType="url"
+					placeholder={ placeholder }
+					onChangeText={ this.props.onChange }
+					onSubmitEditing={ this.props.onSave }
+				/>
+			</FormRow>
 		);
 	}
 }

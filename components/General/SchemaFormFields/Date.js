@@ -1,3 +1,5 @@
+import DateTimePicker from '@react-native-community/datetimepicker';
+import * as Localization from 'expo-localization';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
@@ -5,14 +7,24 @@ import {
 	Text,
 	StyleSheet,
 	TouchableOpacity,
-	DatePickerIOS,
 } from 'react-native';
-// import CustomActionSheet from 'react-native-custom-action-sheet';
-const CustomActionSheet = props => null;
+
+import ExpandingView from '../ExpandingView';
+import FormRow from '../FormRow';
+
+const dateFormat = {
+	day: 'numeric',
+	year: 'numeric',
+	month: 'long',
+	hour: 'numeric',
+	minute: 'numeric',
+};
 
 const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
+	},
+	label: {
 		height: 32,
 		fontSize: 16,
 		lineHeight: 30,
@@ -33,43 +45,66 @@ export default class DateField extends Component {
 		value: PropTypes.any,
 		schema: PropTypes.object.isRequired,
 		name: PropTypes.string.isRequired,
+		onBlur: PropTypes.func.isRequired,
 		onChange: PropTypes.func.isRequired,
+		onFocus: PropTypes.func.isRequired,
 		onSave: PropTypes.func.isRequired,
 	};
-	constructor() {
-		super();
-		this.state = {
-			showingPicker: false,
-		};
+
+	state = {
+		date: null,
+	};
+
+	constructor( props ) {
+		super( props );
+
+		this.formatter = new Intl.DateTimeFormat( Localization.locales, dateFormat );
 	}
-	onPressValue() {
-		this.setState( { showingPicker: true } );
+
+	componentDidMount() {
+		this.setState( {
+			date: new Date( this.props.value ),
+		} );
 	}
+
+	componentDidUpdate( prevProps ) {
+		if ( this.props.value !== prevProps.value ) {
+			this.setState( {
+				date: new Date( this.props.value ),
+			} );
+		}
+	}
+
+	onToggle = () => {
+		if ( this.props.focussed ) {
+			this.props.onBlur();
+		} else {
+			this.props.onFocus();
+		}
+	}
+
 	render() {
+		const { date } = this.state;
+
 		return (
 			<View>
-				<TouchableOpacity onPress={ () => this.onPressValue() }>
-					<Text style={ styles.container }>
-						{ this.props.value ? this.props.value : 'Select Date' }
-					</Text>
-				</TouchableOpacity>
-				{ this.state.showingPicker ? (
-					<CustomActionSheet
-						modalVisible={ true }
-						onCancel={ () => {
-							this.setState( { showingPicker: false } );
-							this.props.onSave();
-						} }
-						backgroundColor="transparent"
-						buttonText="Done"
-					>
-						<DatePickerIOS
-							date={ new Date( this.props.value ) }
-							onDateChange={ date => this.props.onChange( date.toISOString() ) }
-							style={ styles.picker }
-						/>
-					</CustomActionSheet>
-				) : null }
+				<FormRow label={ this.props.name }>
+					<TouchableOpacity onPress={ this.onToggle }>
+						<Text style={styles.label}>
+							{ ! isNaN( date ) ? this.formatter.format( date ) : 'Select Date' }
+						</Text>
+					</TouchableOpacity>
+				</FormRow>
+				<ExpandingView
+					expanded={ this.props.focussed }
+					height={ 216 }
+				>
+					<DateTimePicker
+						style={ styles.picker }
+						value={ isNaN( date ) ? new Date() : date }
+						onChange={ ( _, value ) => this.props.onChange( value.toISOString() ) }
+					/>
+				</ExpandingView>
 			</View>
 		);
 	}

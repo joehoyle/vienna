@@ -1,24 +1,43 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import {
+	ScrollView,
+	View,
+	TextInput,
+	StyleSheet,
+} from 'react-native';
+
+import FormRow from '../General/FormRow';
 import SchemaFormField from '../General/SchemaFormField';
-import MultilineTextFormField from '../../components/General/FormFields/MultilineText';
-import UserSelectFormField from '../../components/General/FormFields/UserSelect';
+import MultilineTextFormField from '../General/FormFields/MultilineText';
+import UserSelectFormField from '../General/FormFields/UserSelect';
+import DateField from '../General/SchemaFormFields/Date';
 
 const styles = StyleSheet.create( {
+	title: {
+		color: '#666666',
+		fontSize: 20,
+		lineHeight: 36,
+		height: 36,
+	},
 	list: {
 		paddingTop: 15,
 	},
 	contentField: {
 		margin: 10,
 	},
-	authorField: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		paddingLeft: 10,
-		paddingRight: 10,
-	},
 } );
+
+const ignoreProperties = [
+	'date',
+	'date_gmt',
+	'author',
+	'content',
+	'excerpt',
+	'title',
+	'featured_media',
+	'comment_count',
+];
 
 export default class Form extends Component {
 	static propTypes = {
@@ -26,7 +45,18 @@ export default class Form extends Component {
 		schema: PropTypes.object.isRequired,
 		onChangePropertyValue: PropTypes.func.isRequired,
 	};
+
+	state = {
+		focussed: null,
+	}
+
+	onBlur = () => {
+		this.setState( { focussed: null } )
+	}
+
 	render() {
+		const { focussed } = this.state;
+
 		const schema = this.props.schema;
 		const object = this.props.post;
 		const namesMap = {
@@ -41,39 +71,49 @@ export default class Form extends Component {
 			password: 'Post Password',
 			description: 'Description',
 		};
-		const ignoreProperties = [
-			'date_gmt',
-			'author',
-			'content',
-			'title',
-			'featured_media',
-		];
+		const isPublished = object.status === 'publish';
+
+		const buildOnChange = prop => value => this.props.onChangePropertyValue( prop, value );
+		const buildOnFocus = prop => () => this.setState( { focussed: prop } );
 
 		return (
 			<ScrollView>
 				<View style={ styles.contentField }>
-					<MultilineTextFormField
+					<TextInput
+						autoFocus
+						placeholder="Enter title…"
+						style={ styles.title }
 						value={ object.title ? object.title.raw : null }
-						onChange={ value => this.props.onChangePropertyValue( 'title', value ) }
-						onSave={ () => {} }
+						onChangeText={ value => this.props.onChangePropertyValue( 'title', value ) }
+						onSubmitEditing={ () => {} }
 					/>
 					<MultilineTextFormField
+						minHeight={ 60 }
 						value={ object.content ? object.content.raw : null }
-						onChange={ value =>
-							this.props.onChangePropertyValue( 'content', value )
-						}
+						onChange={ value => this.props.onChangePropertyValue( 'content', value ) }
 						onSave={ () => {} }
 					/>
 				</View>
-				<View style={ styles.authorField }>
-					<Text>Author</Text>
+				<FormRow label="Author">
 					<UserSelectFormField
 						value={ object.author }
 						onChange={ value =>
 							this.props.onChangePropertyValue( 'author', value )
 						}
 					/>
-				</View>
+				</FormRow>
+
+				<DateField
+					focussed={ focussed === 'date_gmt' }
+					name={ isPublished ? 'Published on' : 'Publish on' }
+					schema={ schema.properties.date_gmt }
+					value={ object.date_gmt }
+					onBlur={ this.onBlur }
+					onChange={ buildOnChange( 'date_gmt' ) }
+					onFocus={ buildOnFocus( 'date_gmt' ) }
+					onSave={ () => {} }
+				/>
+
 				<View style={ styles.list }>
 					{ Object.entries( schema.properties )
 						.filter(
@@ -90,12 +130,13 @@ export default class Form extends Component {
 							return (
 								<View style={ styles.listItem } key={ property }>
 									<SchemaFormField
-										name={ namesMap[property] ? namesMap[property] : property }
+										name={ namesMap[ property ] ? namesMap[ property ] : property }
 										schema={ propertySchema }
+										focussed={ focussed === property }
 										value={ value }
-										onChange={ value =>
-											this.props.onChangePropertyValue( property, value )
-										}
+										onBlur={ this.onBlur }
+										onChange={ buildOnChange( property ) }
+										onFocus={ buildOnFocus( property ) }
 										onSave={ () => {} }
 									/>
 								</View>

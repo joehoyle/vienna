@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+
 import BooleanField from './SchemaFormFields/Boolean';
 import EmailField from './SchemaFormFields/Email';
 import NumberField from './SchemaFormFields/Number';
@@ -9,36 +9,6 @@ import UrlField from './SchemaFormFields/Url';
 import EnumField from './SchemaFormFields/Enum';
 import DateField from './SchemaFormFields/Date';
 import ArrayEnumField from './SchemaFormFields/ArrayEnum';
-
-const styles = StyleSheet.create( {
-	field: {
-		backgroundColor: '#FFFFFF',
-		height: 44,
-		flexDirection: 'row',
-		alignItems: 'center',
-		borderBottomWidth: 1,
-		borderBottomColor: '#f9f9f9',
-	},
-	label: {
-		marginLeft: 10,
-	},
-	labelText: {
-		fontSize: 15,
-		lineHeight: 16,
-	},
-	inputField: {
-		flex: 1,
-		justifyContent: 'flex-end',
-		flexDirection: 'row',
-		marginRight: 10,
-	},
-	descriptionText: {
-		fontSize: 11,
-		color: '#999999',
-		margin: 8,
-		marginBottom: 15,
-	},
-} );
 
 export default class SchemaFormField extends Component {
 	static propTypes = {
@@ -96,26 +66,12 @@ export default class SchemaFormField extends Component {
 		}
 
 		if ( ! Field ) {
-			console.log( 'no field found for schema', this.props.schema );
+			console.log( `no type found for ${ this.props.name }`, this.props.schema );
 			return null;
 		}
+
 		return (
-			<View>
-				<View style={ styles.field }>
-					<View style={ styles.label }>
-						<Text style={ styles.labelText }>{ this.props.name }</Text>
-					</View>
-					<View style={ styles.inputField }>
-						<Field
-							value={ this.props.value }
-							schema={ this.props.schema }
-							name={ this.props.name }
-							onChange={ this.props.onChange }
-							onSave={ this.props.onSave }
-						/>
-					</View>
-				</View>
-			</View>
+			<Field { ...this.props } />
 		);
 	}
 }

@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
+import FormRow from '../FormRow';
+
 const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
@@ -25,16 +27,18 @@ export default class Number extends Component {
 			? String( this.props.schema.default )
 			: placeholder;
 		return (
-			<TextInput
-				value={ String( this.props.value ) }
-				style={ styles.container }
-				keyboardType="numeric"
-				placeholder={ placeholder }
-				onChangeText={ value => {
-					this.props.onChange( value ? parseFloat( value ) : 0 );
-				} }
-				onSubmitEditing={ this.props.onSave }
-			/>
+			<FormRow label={ name }>
+				<TextInput
+					value={ String( this.props.value ) }
+					style={ styles.container }
+					keyboardType="numeric"
+					placeholder={ placeholder }
+					onChangeText={ value => {
+						this.props.onChange( value ? parseFloat( value ) : 0 );
+					} }
+					onSubmitEditing={ this.props.onSave }
+				/>
+			</FormRow>
 		);
 	}
 }

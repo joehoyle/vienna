@@ -14,8 +14,10 @@
     "preset": "jest-react-native"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "2.1.0",
     "@react-native-community/masked-view": "^0.1.5",
     "expo": "^36.0.0",
+    "expo-localization": "~8.0.0",
     "expo-web-browser": "~8.0.0",
     "oauth-1.0a": "^2.2.5",
     "prop-types": "^15.7.2",
@@ -23,7 +25,6 @@
     "react": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",
     "react-native-autogrow-textinput": "^5.2.0",
-    "react-native-custom-action-sheet": "0.0.11",
     "react-native-gesture-handler": "~1.5.0",
     "react-native-reanimated": "~1.4.0",
     "react-native-safe-area-context": "0.6.0",
