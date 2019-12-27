@@ -5,8 +5,9 @@ import {
 	StyleSheet,
 	Text,
 	TouchableOpacity,
+	View,
 } from 'react-native';
-import { Header } from 'react-navigation-stack';
+import { Header, HeaderTitle } from 'react-navigation-stack';
 import { connect } from 'react-redux';
 
 import addSite from '../../actions/addSite';
@@ -22,13 +23,20 @@ const styles = StyleSheet.create( {
 		flex: 1,
 		alignItems: 'stretch',
 	},
+	header: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+	},
+	headerText: {
+		marginLeft: 60,
+
+	},
 	main: {
 		flexGrow: 1,
 		alignItems: 'stretch',
 		justifyContent: 'center',
 	},
 	closeButton: {
-		marginTop: 32,
 		alignSelf: 'flex-end',
 		color: 'dodgerblue',
 		fontSize: 16,
@@ -100,9 +108,13 @@ class Add extends Component {
 				keyboardVerticalOffset={ Header.HEIGHT + Constants.statusBarHeight - 20 }
 				style={ styles.container }
 			>
-				<TouchableOpacity onPress={ () => this.props.navigation.goBack() }>
-					<Text style={ styles.closeButton }>Cancel</Text>
-				</TouchableOpacity>
+				<View style={ styles.header }>
+					<View />
+					<HeaderTitle style={ styles.headerText }>Add New Site</HeaderTitle>
+					<TouchableOpacity onPress={ () => this.props.navigation.goBack() }>
+						<Text style={ styles.closeButton }>Cancel</Text>
+					</TouchableOpacity>
+				</View>
 				{ step === STEP.START ? (
 					<StartScreen onConnect={ this.onConnect } />
 				) : step === STEP.INSTALL_CONNECT ? (

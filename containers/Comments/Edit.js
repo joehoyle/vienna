@@ -18,7 +18,7 @@ const styles = StyleSheet.create( {
 class Edit extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: 'Edit Comment',
-		headerRight: (
+		headerRight: () => (
 			<NavigationButton onPress={ () => _this.onSave() }>Save</NavigationButton>
 		),
 	} );

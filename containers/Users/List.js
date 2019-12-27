@@ -15,7 +15,7 @@ import NavigationButton from '../../components/Navigation/Button';
 class List extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: 'Users',
-		headerRight: (
+		headerRight: () => (
 			<NavigationButton
 				onPress={ () => {
 					navigation.navigate( 'UsersAdd' );
@@ -31,7 +31,7 @@ class List extends Component {
 			editingUser: null,
 		};
 	}
-	componentWillMount() {
+	componentDidMount() {
 		if ( isEmpty( this.props.users.users ) ) {
 			this.props.dispatch( fetchUsers( { per_page: 100 } ) );
 		}

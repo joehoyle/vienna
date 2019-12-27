@@ -1,5 +1,5 @@
 import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator, TransitionPresets, HeaderStyleInterpolators } from 'react-navigation-stack';
 
 import SitesList from './containers/Sites/List';
 import SitesAdd from './containers/Sites/Add';
@@ -51,14 +51,20 @@ const mainStack = createStackNavigator(
 				},
 			},
 		},
-		cardStyle: {
-			backgroundColor: 'white',
-			borderTopWidth: 0,
-			shadowRadius: 0,
-			shadowOffset: {
-				height: 0,
+		defaultNavigationOptions: {
+			cardStyle: {
+				backgroundColor: 'white',
+				borderTopWidth: 0,
+				shadowRadius: 0,
+				shadowOffset: {
+					height: 0,
+				},
+				shadowColor: 'transparent',
 			},
-			shadowColor: 'transparent',
+			headerStyle: {
+				shadowOpacity: 0,
+			},
+			headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
 		},
 	},
 );
@@ -71,11 +77,19 @@ export default createAppContainer(
 			},
 			SitesAdd: {
 				screen: SitesAdd,
+				navigationOptions: {
+					title: 'Add New Site',
+				}
 			},
 		},
 		{
 			mode: 'modal',
 			headerMode: 'none',
+			defaultNavigationOptions: {
+				...TransitionPresets.ModalPresentationIOS,
+				cardOverlayEnabled: true,
+				gestureEnabled: true,
+			},
 		},
 	),
 );
