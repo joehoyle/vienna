@@ -45,6 +45,7 @@ export default class SchemaFormField extends Component {
 					break;
 				case 'array':
 					if ( ! this.props.schema.items ) {
+						// eslint-disable-next-line no-console
 						console.log(
 							'schema for type array foes not have an items prop',
 							this.props.schema,
@@ -66,6 +67,7 @@ export default class SchemaFormField extends Component {
 		}
 
 		if ( ! Field ) {
+			// eslint-disable-next-line no-console
 			console.log( `no type found for ${ this.props.name }`, this.props.schema );
 			return null;
 		}

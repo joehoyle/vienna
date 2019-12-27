@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
+import FormRow from '../FormRow';
+
 const styles = StyleSheet.create( {
 	container: {
 		flex: 1,

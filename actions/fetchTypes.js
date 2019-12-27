@@ -16,6 +16,7 @@ export default function fetchPosts( args ) {
 
 		api.get( '/wp/v2/types', args ).then( function ( data, err ) {
 			if ( err ) {
+				// eslint-disable-next-line no-console
 				return console.warn( err.message );
 			}
 			const site = store.sites[store.activeSite.id];

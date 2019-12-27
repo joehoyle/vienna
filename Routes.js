@@ -79,7 +79,7 @@ export default createAppContainer(
 				screen: SitesAdd,
 				navigationOptions: {
 					title: 'Add New Site',
-				}
+				},
 			},
 		},
 		{

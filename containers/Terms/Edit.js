@@ -8,28 +8,48 @@ class Edit extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: `Edit ${navigation.state.params.taxonomy.labels.singular_name}`,
 		headerRight: () => (
-			<NavigationButton onPress={ () => _this.onSave() }>Save</NavigationButton>
+			<NavigationButton
+				onPress={ navigation.state.params.onSave || null }
+			>
+				Save
+			</NavigationButton>
 		),
 	} );
+
 	constructor( props ) {
 		super( props );
 		this.state = {
 			term: { ...this.props.navigation.state.params.term },
 		};
-		_this = this; // Big hack, see https://github.com/react-community/react-navigation/issues/145
 	}
+
+	componentDidMount() {
+		this.props.navigation.setParams( {
+			onSave: this.onSave,
+		} );
+	}
+
+	componentWillUnmount() {
+		this.props.navigation.setParams( {
+			onSave: null,
+		} );
+	}
+
 	onNavigatorEvent() {
 		this.onSave();
 	}
+
 	onChangePropertyValue( property, value ) {
 		let term = this.state.term;
 		term[property] = value;
 		this.setState( { term } );
 	}
-	onSave() {
+
+	onSave = () => {
 		this.props.dispatch( updateTerm( this.state.term ) );
 		this.props.navigation.goBack();
 	}
+
 	render() {
 		const taxonomy = this.props.navigation.state.params.taxonomy;
 		const slug = taxonomy._links['wp:items'][0].href.split( '/' ).slice( -1 )[0];

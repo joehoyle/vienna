@@ -68,9 +68,10 @@ class List extends Component {
 		} );
 	}
 	onViewPost( post ) {
-		Linking.openURL( post.link ).catch( err =>
-			console.error( 'An error occurred', err ),
-		);
+		Linking.openURL( post.link ).catch( err => {
+			// eslint-disable-next-line no-console
+			console.error( 'An error occurred', err );
+		} );
 	}
 	onChangeFilter( filter ) {
 		this.props.dispatch( updatePostfilter( this.props.navigation.state.params.type.slug, filter ) );

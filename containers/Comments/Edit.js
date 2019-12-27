@@ -19,7 +19,11 @@ class Edit extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: 'Edit Comment',
 		headerRight: () => (
-			<NavigationButton onPress={ () => _this.onSave() }>Save</NavigationButton>
+			<NavigationButton
+				onPress={ navigation.state.params.onSave || null }
+			>
+				Save
+			</NavigationButton>
 		),
 	} );
 	constructor( props ) {
@@ -27,8 +31,20 @@ class Edit extends Component {
 		this.state = {
 			comment: { ...this.props.navigation.state.params.comment },
 		};
-		_this = this; // Big hack, see https://github.com/react-community/react-navigation/issues/145
 	}
+
+	componentDidMount() {
+		this.props.navigation.setParams( {
+			onSave: this.onSave,
+		} );
+	}
+
+	componentWillUnmount() {
+		this.props.navigation.setParams( {
+			onSave: null,
+		} );
+	}
+
 	onChangePropertyValue( property, value ) {
 		let comment = this.state.comment;
 
@@ -39,10 +55,12 @@ class Edit extends Component {
 		}
 		this.setState( { comment } );
 	}
-	onSave() {
+
+	onSave = () => {
 		this.props.dispatch( updateComment( this.state.comment ) );
 		this.props.navigation.goBack();
 	}
+
 	render() {
 		let schema = this.props.sites[this.props.activeSite.id].routes[
 			'/wp/v2/comments'
@@ -82,6 +100,7 @@ class Edit extends Component {
 							const value = object[property];
 
 							if ( typeof value === 'undefined' ) {
+								// eslint-disable-next-line no-console
 								console.log(
 									'Can not find schema property ' + property + ' in object.',
 								);

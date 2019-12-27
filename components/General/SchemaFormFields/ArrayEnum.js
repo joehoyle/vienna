@@ -75,8 +75,6 @@ export default class ArrayEnum extends Component {
 			newValue.push( value );
 		}
 
-		console.log( newValue );
-
 		this.props.onChange( newValue );
 	}
 	render() {
