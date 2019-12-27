@@ -14,6 +14,7 @@ script:
     - expo login --non-interactive -u joehoyle
     - export COMMIT=$(git rev-parse HEAD | cut -c1-7)
     - >
-      sed -i -E 's/(buildNumber": ")([^"]+)/\1'$COMMIT'/' app.json
+      sed -E 's/(buildNumber": ")([^"]+)/\1'$COMMIT'/' app.json > tmp
+    - mv tmp app.json
     - expo build:ios --apple-id joehoyle@gmail.com
     - expo upload:ios --apple-id joehoyle@gmail.com --latest
