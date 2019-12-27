@@ -20,17 +20,12 @@ export class Edit extends Component {
 		this.state = {
 			user: users[ props.route.params.user ],
 		};
-		//this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
 	}
 
 	componentDidMount() {
 		this.props.navigation.setOptions( {
 			title: this.state.user.name,
 		} );
-	}
-
-	onNavigatorEvent() {
-		this.onSave();
 	}
 
 	onChangePropertyValue( property, value ) {
