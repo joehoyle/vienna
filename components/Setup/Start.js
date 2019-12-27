@@ -58,7 +58,7 @@ export default class Start extends Component {
 	};
 
 	state = {
-		url: '',
+		url: 'https://',
 		status: STATUS.NONE,
 		error: null,
 	}

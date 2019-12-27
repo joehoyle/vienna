@@ -5,7 +5,7 @@ import newSite from './reducers/newSite';
 import Routes from './Routes';
 
 const initialState = Routes.router.getStateForAction(
-	Routes.router.getActionForPathAndParams('SitesList')
+	Routes.router.getActionForPathAndParams('Main/SitesList')
 );
 const navReducer = (state = initialState, action) => {
 	const nextState = Routes.router.getStateForAction(action, state);

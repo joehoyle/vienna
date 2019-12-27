@@ -1,7 +1,7 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import SitesList from './containers/Sites/List';
+import SitesList from "./containers/Sites/List";
 import SitesAdd from './containers/Sites/Add';
 import SitesReauth from './containers/Sites/Reauth';
 import PostsList from './containers/Posts/List';
@@ -19,10 +19,9 @@ import SitesView from './containers/Sites/View';
 import SettingsList from './containers/Settings/List';
 import CommentsEdit from './containers/Comments/Edit';
 
-export default createAppContainer(createStackNavigator(
+const mainStack = createStackNavigator(
 	{
 		SitesList: { screen: SitesList },
-		SitesAdd: { screen: SitesAdd },
 		SitesView: { screen: SitesView },
 		SitesReauth: { screen: SitesReauth },
 		PostsList: { screen: PostsList },
@@ -40,6 +39,7 @@ export default createAppContainer(createStackNavigator(
 		SettingsList: { screen: SettingsList },
 	},
 	{
+		initialRouteName: 'SitesList',
 		navigationOptions: {
 			headerStyle: {
 				backgroundColor: 'white',
@@ -60,5 +60,22 @@ export default createAppContainer(createStackNavigator(
 			},
 			shadowColor: 'transparent',
 		},
-	}
-));
+	},
+);
+
+export default createAppContainer(
+	createStackNavigator(
+		{
+			Main: {
+				screen: mainStack,
+			},
+			SitesAdd: {
+				screen: SitesAdd,
+			},
+		},
+		{
+			mode: 'modal',
+			headerMode: 'none',
+		},
+	),
+);
