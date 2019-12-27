@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
 	text: {
 		lineHeight: 16,
 		color: 'white',
-		flex: 1,
 		textAlign: 'center',
 	},
 });

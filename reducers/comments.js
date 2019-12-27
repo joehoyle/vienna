@@ -23,6 +23,7 @@ export default function comments( state = defaultState, action ) {
 			}
 		case 'COMMENTS_UPDATING':
 			state.list.loading = true
+			state.list.lastError = null;
 			return {...state}
 		case 'COMMENTS_UPDATED':
 			action.payload.comments.forEach( comment => {
@@ -51,6 +52,7 @@ export default function comments( state = defaultState, action ) {
 			return {...state}
 		case 'COMMENTS_COMMENT_UPDATE_ERRORED':
 			state.list.lastError = action.payload.error
+			state.list.loading = false;
 			return {...state}
 		default:
 			return state;

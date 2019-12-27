@@ -10,19 +10,18 @@ export default function fetchUsers(args) {
 		dispatch({
 			type: 'USERS_UPDATING',
 		});
-		api.get('/wp/v2/users', args).then(function(data, err) {
-			if (err) {
-				return dispatch({
-					type: 'USERS_UPDATE_ERRORED',
-					payload: {
-						error: err,
-					},
-				});
-			}
+		api.get('/wp/v2/users', args).then(function(data) {
 			dispatch({
 				type: 'USERS_UPDATED',
 				data: data,
 			});
-		});
+		}).catch( err => {
+			return dispatch({
+				type: 'USERS_UPDATE_ERRORED',
+				payload: {
+					error: err,
+				},
+			});
+		})
 	};
 }

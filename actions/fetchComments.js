@@ -11,16 +11,20 @@ export default function fetchComments(args) {
 		const site = store.sites[store.activeSite.id];
 		const api = new httpapi(site);
 
-		api.get('/wp/v2/comments', args).then(function(data, err) {
-			if (err) {
-				return;
-			}
+		api.get('/wp/v2/comments', args).then(function(data) {
 			dispatch({
 				type: 'COMMENTS_UPDATED',
 				payload: {
 					comments: data,
 				},
 			});
+		}).catch( error => {
+			dispatch( {
+				type: 'COMMENTS_COMMENT_UPDATE_ERRORED',
+				payload: {
+					error,
+				}
+			})
 		});
 	};
 }
