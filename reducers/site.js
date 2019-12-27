@@ -14,6 +14,7 @@ const defaultState = {
 	credentials: {},
 	url: '',
 	lastError: null,
+	icon: null,
 };
 
 const siteReducers = combineReducers( {
@@ -53,6 +54,19 @@ export default function site( state = defaultState, action ) {
 		case 'REMOVE_LOCAL_DATA':
 			state.data = {};
 			return { ...state };
+		case 'SITE_DATA_ICONS_UPDATED': {
+			const icons = action.payload.icons.filter( icon => icon.type !== 'image/x-icon' );
+			icons.sort( ( a, b ) => {
+				if ( a.src.indexOf( '.svg' ) > -1 ) {
+					return -1;
+				}
+				return ( parseInt( a.sizes ) > parseInt( b.sizes ) ) ? -1 : 1;
+			} );
+			return {
+				...state,
+				icon: icons[0],
+			};
+		}
 		default:
 			state.data = siteReducers( state.data, action );
 			return state;
