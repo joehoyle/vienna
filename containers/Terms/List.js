@@ -8,20 +8,21 @@ import ListError from '../../components/General/ListError';
 import NavigationButton from '../../components/Navigation/Button';
 
 class List extends Component {
-	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		headerRight: () => (
-			<NavigationButton
-				onPress={ () => {
-					navigation.navigate( 'TermsAdd', {
-						taxonomy: navigation.state.params.taxonomy,
-					} );
-				} }
-			>
-				Add New
-			</NavigationButton>
-		),
-	} );
 	componentDidMount() {
+		this.props.navigation.setOptions( {
+			headerRight: () => (
+				<NavigationButton
+					onPress={ () => {
+						this.props.navigation.navigate( 'TermsAdd', {
+							taxonomy: this.props.route.params.taxonomy,
+						} );
+					} }
+				>
+					Add New
+				</NavigationButton>
+			),
+		} );
+
 		if ( isEmpty( this.props.route.params.taxonomy.terms ) ) {
 			this.props.dispatch(
 				fetchTerms( {

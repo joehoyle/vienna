@@ -5,16 +5,6 @@ import { connect } from 'react-redux';
 import NavigationButton from '../../components/Navigation/Button';
 
 class Edit extends Component {
-	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		headerRight: () => (
-			<NavigationButton
-				onPress={ navigation.state.params.onSave || null }
-			>
-				Save
-			</NavigationButton>
-		),
-	} );
-
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -23,19 +13,15 @@ class Edit extends Component {
 	}
 
 	componentDidMount() {
-		this.props.navigation.setParams( {
-			onSave: this.onSave,
+		this.props.navigation.setOptions( {
+			headerRight: () => (
+				<NavigationButton
+					onPress={ this.onSave }
+				>
+					Save
+				</NavigationButton>
+			),
 		} );
-	}
-
-	componentWillUnmount() {
-		this.props.navigation.setParams( {
-			onSave: null,
-		} );
-	}
-
-	onNavigatorEvent() {
-		this.onSave();
 	}
 
 	onChangePropertyValue( property, value ) {

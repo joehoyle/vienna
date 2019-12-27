@@ -31,20 +31,21 @@ const styles = StyleSheet.create( {
 } );
 
 class List extends Component {
-	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		headerRight: () => (
-			<NavigationButton
-				onPress={ () => {
-					navigation.navigate( 'PostsAdd', {
-						type: navigation.state.params.type,
-					} );
-				} }
-			>
-				Add New
-			</NavigationButton>
-		),
-	} );
 	componentDidMount() {
+		this.props.navigation.setOptions( {
+			headerRight: () => (
+				<NavigationButton
+					onPress={ () => {
+						this.props.navigation.navigate( 'PostsAdd', {
+							type: this.props.route.params.type,
+						} );
+					} }
+				>
+					Add New
+				</NavigationButton>
+			),
+		} );
+
 		setTimeout( () => {
 			let posts = this.props.types[this.props.route.params.type.slug]
 				.posts;
@@ -55,6 +56,7 @@ class List extends Component {
 			}
 		}, 400 );
 	}
+
 	onRefresh() {
 		this.props.dispatch(
 			fetchPosts( { type: this.props.route.params.type.slug } ),

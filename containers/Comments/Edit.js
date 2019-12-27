@@ -16,15 +16,6 @@ const styles = StyleSheet.create( {
 } );
 
 class Edit extends Component {
-	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		headerRight: () => (
-			<NavigationButton
-				onPress={ route.params.onSave || null }
-			>
-				Save
-			</NavigationButton>
-		),
-	} );
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -33,14 +24,14 @@ class Edit extends Component {
 	}
 
 	componentDidMount() {
-		this.props.navigation.setParams( {
-			onSave: this.onSave,
-		} );
-	}
-
-	componentWillUnmount() {
-		this.props.navigation.setParams( {
-			onSave: null,
+		this.props.navigation.setOptions( {
+			headerRight: () => (
+				<NavigationButton
+					onPress={ this.onSave }
+				>
+					Save
+				</NavigationButton>
+			),
 		} );
 	}
 
