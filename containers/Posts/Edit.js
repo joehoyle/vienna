@@ -7,7 +7,7 @@ import NavigationButton from '../../components/Navigation/Button';
 class Edit extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: `Edit ${navigation.state.params.type.labels.singular_name}`,
-		headerRight: (
+		headerRight: () => (
 			<NavigationButton onPress={ () => _this.onSave() }>Save</NavigationButton>
 		),
 	} );

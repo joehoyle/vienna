@@ -19,7 +19,7 @@ class List extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: 'Comments',
 	} );
-	componentWillMount() {
+	componentDidMount() {
 		if ( isEmpty( this.props.comments.comments ) ) {
 			this.props.dispatch( fetchComments() );
 		}

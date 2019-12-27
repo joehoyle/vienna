@@ -33,7 +33,7 @@ const styles = StyleSheet.create( {
 class List extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: navigation.state.params.type.name,
-		headerRight: (
+		headerRight: () => (
 			<NavigationButton
 				onPress={ () => {
 					navigation.navigate( 'PostsAdd', {

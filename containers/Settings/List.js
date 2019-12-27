@@ -15,7 +15,7 @@ class List extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: 'Settings',
 	} );
-	componentWillMount() {
+	componentDidMount() {
 		if ( isEmpty( this.props.settings.settings ) ) {
 			this.props.dispatch( fetchSettings() );
 		}

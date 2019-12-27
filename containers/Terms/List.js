@@ -10,7 +10,7 @@ import NavigationButton from '../../components/Navigation/Button';
 class List extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: navigation.state.params.taxonomy.name,
-		headerRight: (
+		headerRight: () => (
 			<NavigationButton
 				onPress={ () => {
 					navigation.navigate( 'TermsAdd', {

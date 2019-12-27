@@ -7,9 +7,9 @@ import NavigationButton from '../../components/Navigation/Button';
 class List extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: 'Sites',
-		headerRight: (
+		headerRight: () => (
 			<NavigationButton onPress={ () => navigation.navigate( 'SitesAdd' ) }>
-				Add site
+				Add Site
 			</NavigationButton>
 		),
 	} );
