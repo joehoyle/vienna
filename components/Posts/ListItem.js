@@ -6,7 +6,7 @@ import { FontAwesome as Icon } from '@expo/vector-icons';
 import ConfirmButton from '../ConfirmButton';
 import RichItem from '../General/RichItem';
 
-import { getBrandColor, getSemanticColor, getSystemColor } from '../../theme';
+import { getSemanticColor } from '../../theme';
 
 const styles = StyleSheet.create( {
 	container: {},
@@ -85,7 +85,7 @@ export default class ListItem extends Component {
 							onPress={ this.props.onEdit }
 						>
 							<View style={ styles.actionsButton }>
-								<Icon name="pencil" size={ 14 } color={ getSemanticColor( 'secondaryLabel' )} />
+								<Icon name="pencil" size={ 14 } color={ getSemanticColor( 'secondaryLabel' ) } />
 								<Text style={ styles.actionsButtonText }>Edit</Text>
 							</View>
 						</TouchableOpacity>
@@ -96,7 +96,7 @@ export default class ListItem extends Component {
 							onPress={ this.props.onView }
 						>
 							<View style={ styles.actionsButton }>
-								<Icon name="external-link" size={ 14 } color={ getSemanticColor( 'secondaryLabel' )} />
+								<Icon name="external-link" size={ 14 } color={ getSemanticColor( 'secondaryLabel' ) } />
 								<Text style={ styles.actionsButtonText }>View</Text>
 							</View>
 						</TouchableOpacity>
