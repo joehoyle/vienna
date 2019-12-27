@@ -31,6 +31,7 @@ export default function settings( state = defaultState, action ) {
 				list: {
 					...state.list,
 					loading: true,
+					lastError: null,
 				},
 			};
 		case 'SETTINGS_UPDATED':
