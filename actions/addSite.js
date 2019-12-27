@@ -5,7 +5,7 @@ export async function fetchIndex( url ) {
 	const opts = {
 		redirect: 'follow',
 	};
-	const apiIndex = parsed.addQuery( 'rest_route', '/' );
+	const apiIndex = parsed.addQuery( 'rest_route', '/' ).addQuery( 'context', 'help' );
 	const response = await fetch( apiIndex, opts );
 
 	if ( response.status !== 200 ) {
