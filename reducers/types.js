@@ -8,7 +8,7 @@ export default function types( state = {}, action ) {
 				type.posts = {};
 				type.list = {
 					filter: { status: 'all' },
-					isShowingFilter: false,
+					isShowingFilter: true,
 					loading: false,
 					lastError: null,
 				};
