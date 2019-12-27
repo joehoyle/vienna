@@ -53,7 +53,6 @@ export default class ListItem extends Component {
 		if ( ! event.jsEvaluationValue ) {
 			return;
 		}
-		console.log( event.jsEvaluationValue );
 		this.setState( { webViewHeight: parseInt( event.jsEvaluationValue, 10 ) } );
 	}
 

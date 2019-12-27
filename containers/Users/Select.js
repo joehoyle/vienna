@@ -27,7 +27,6 @@ export default class List extends Component {
 		this.props.dispatch( fetchUsers( { per_page: 100 } ) );
 	}
 	render() {
-		console.log( this.props );
 		return (
 			<View style={ { flex: 1 } }>
 				{ this.props.users.list.lastError ? (
