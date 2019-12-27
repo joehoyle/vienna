@@ -1,4 +1,4 @@
-import { Localization } from 'expo';
+import * as Localization from 'expo-localization';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
