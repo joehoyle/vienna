@@ -13,5 +13,5 @@ before_script:
     - yarn global add expo-cli
 script:
     - yarn install
-    - expo expo login --non-interactive -u joehoyle
-    - expo build:ios
+    - expo login --non-interactive -u joehoyle
+    - expo build:ios --apple-id joehoyle@gmail.com
