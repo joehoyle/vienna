@@ -2,13 +2,12 @@
     language: node_js
     node_js:
       - node
-      - lts/*
     cache:
       directories:
         - ~/.npm
         - .jest
     before_script:
-      - yarn add -g expo-cli
+      - yarn global add expo-cli
     script:
       - yarn install
       - yarn build:ios
