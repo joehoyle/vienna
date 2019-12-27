@@ -20,7 +20,7 @@ const styles = StyleSheet.create( {
 		borderBottomColor: '#f9f9f9',
 	},
 	label: {
-		width: 130,
+
 		marginLeft: 10,
 	},
 	labelText: {
