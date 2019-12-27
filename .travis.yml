@@ -5,13 +5,11 @@
 language: node_js
 node_js:
     - node
-cache:
-    directories:
-    - ~/.npm
-    - .jest
+cache: yarn
 before_script:
     - yarn global add expo-cli
 script:
     - yarn install
     - expo login --non-interactive -u joehoyle
     - expo build:ios --apple-id joehoyle@gmail.com
+    - expo upload:ios --apple-id joehoyle@gmail.com --latest
