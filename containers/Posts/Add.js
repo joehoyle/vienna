@@ -45,7 +45,7 @@ class Add extends Component {
 		this.props.dispatch(
 			createPost( this.state.post, this.props.navigation.state.params.type.slug ),
 		);
-		this.props.navigation.toBack();
+		this.props.navigation.goBack();
 	}
 
 	render() {

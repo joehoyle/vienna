@@ -48,7 +48,7 @@ class Add extends Component {
 				this.props.navigation.state.params.taxonomy.slug,
 			),
 		);
-		this.props.navigation.toBack();
+		this.props.navigation.goBack();
 	}
 
 	render() {

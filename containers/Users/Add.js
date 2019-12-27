@@ -43,7 +43,7 @@ class Add extends Component {
 
 	onSave = () => {
 		this.props.dispatch( createUser( this.state.user ) );
-		this.props.navigation.toBack();
+		this.props.navigation.goBack();
 	}
 
 	render() {
