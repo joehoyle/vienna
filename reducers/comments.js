@@ -22,15 +22,26 @@ export default function comments( state = defaultState, action ) {
 				schema: action.payload.site.routes['/wp/v2/comments'].schema,
 			};
 		case 'COMMENTS_UPDATING':
-			state.list.loading = true;
-			state.list.lastError = null;
-			return { ...state };
+			return {
+				...state,
+				list: {
+					...state.list,
+					loading: true,
+					lastError: null,
+				},
+			};
 		case 'COMMENTS_UPDATED':
-			action.payload.comments.forEach( comment => {
-				state.comments[comment.id] = comment;
-			} );
-			state.list.loading = false;
-			return { ...state };
+			return {
+				...state,
+				list: {
+					...state.list,
+					loading: false,
+					comments: {
+						...state.list.comments,
+						...comments,
+					},
+				},
+			}
 		case 'COMMENTS_NEW_UPDATING':
 			state.new.loading = true;
 			return { ...state };

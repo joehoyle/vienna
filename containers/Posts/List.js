@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { isEmpty } from 'lodash';
 import { connect } from 'react-redux';
-import { trashPost, fetchPosts } from '../../actions';
+import { trashPost, fetchPosts, updatePostfilter } from '../../actions';
 import PostsList from '../../components/Posts/List';
 import MediaList from '../../components/Media/List';
 import Filter from '../../components/Posts/Filter';
@@ -72,7 +72,9 @@ class List extends Component {
 			console.error( 'An error occurred', err ),
 		);
 	}
-	onChangeFilter( filter ) {}
+	onChangeFilter( filter ) {
+		this.props.dispatch( updatePostfilter( this.props.navigation.state.params.type.slug, filter ) );
+	}
 
 	filterPosts( post ) {
 		let type = this.props.types[this.props.navigation.state.params.type.slug];
