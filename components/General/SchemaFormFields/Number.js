@@ -27,7 +27,7 @@ export default class Number extends Component {
 			? String( this.props.schema.default )
 			: placeholder;
 		return (
-			<FormRow label={ name }>
+			<FormRow label={ this.props.name }>
 				<TextInput
 					value={ String( this.props.value ) }
 					style={ styles.container }
