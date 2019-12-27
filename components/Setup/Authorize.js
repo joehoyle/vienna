@@ -63,11 +63,17 @@ export default class Authorize extends React.Component {
 			case 'error':
 				return;
 
-			case 'success':
+			case 'success': {
 				const { brokered_id, code } = result.params;
 
 				// Exchange code for token.
 				await this.onExchangeCode( brokered_id, code, redirectUrl );
+
+				return;
+			}
+
+			default:
+				return;
 		}
 	}
 
