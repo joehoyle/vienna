@@ -82,6 +82,7 @@ class Edit extends Component {
 							const value = object[property];
 
 							if ( typeof value === 'undefined' ) {
+								// eslint-disable-next-line no-console
 								console.log(
 									'Can not find schema property ' + property + ' in object.',
 								);
