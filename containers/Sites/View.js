@@ -65,9 +65,6 @@ const styles = StyleSheet.create( {
 } );
 
 class _View extends Component {
-	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: navigation.state.params.site.name,
-	} );
 	componentDidMount() {
 		if (
 			isEmpty( this.props.types ) &&

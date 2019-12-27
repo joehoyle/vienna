@@ -13,37 +13,31 @@ import ListError from '../../components/General/ListError';
 import NavigationButton from '../../components/Navigation/Button';
 
 class List extends Component {
-	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: 'Users',
-		headerRight: () => (
-			<NavigationButton
-				onPress={ () => {
-					navigation.navigate( 'UsersAdd' );
-				} }
-			>
-				Add New
-			</NavigationButton>
-		),
-	} );
 	constructor( props ) {
 		super( props );
 		this.state = {
 			editingUser: null,
 		};
 	}
+
 	componentDidMount() {
+		this.props.navigation.setOptions( {
+			headerRight: () => (
+				<NavigationButton
+					onPress={ () => this.props.navigation.navigate( 'UsersAdd' ) }
+				>
+					Add New
+				</NavigationButton>
+			),
+		} );
+
 		if ( isEmpty( this.props.users.users ) ) {
 			this.props.dispatch( fetchUsers( { per_page: 100 } ) );
 		}
 	}
+
 	onSelectUser( user ) {
-		this.props.navigator.push( {
-			screen: 'UsersEdit',
-			passProps: {
-				user: user.id,
-			},
-			title: user.name,
-		} );
+		this.props.navigation.push( 'UsersEdit', { user: user.id } );
 	}
 	onRefresh() {
 		this.props.dispatch( fetchUsers( { per_page: 100 } ) );

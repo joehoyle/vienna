@@ -43,15 +43,6 @@ const STATUS = {
 };
 
 export default class Start extends Component {
-	static navigatorButtons = {
-		leftButtons: [
-			{
-				title: 'Back',
-				id: 'close',
-			},
-		],
-	};
-
 	state = {
 		url: 'https://',
 		status: STATUS.NONE,

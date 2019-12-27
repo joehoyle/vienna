@@ -16,9 +16,6 @@ const styles = StyleSheet.create( {
 } );
 
 class List extends Component {
-	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: 'Comments',
-	} );
 	componentDidMount() {
 		if ( isEmpty( this.props.comments.comments ) ) {
 			this.props.dispatch( fetchComments() );

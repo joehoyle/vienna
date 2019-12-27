@@ -16,32 +16,22 @@ const styles = StyleSheet.create( {
 } );
 
 class Edit extends Component {
-	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: 'Edit Comment',
-		headerRight: () => (
-			<NavigationButton
-				onPress={ navigation.state.params.onSave || null }
-			>
-				Save
-			</NavigationButton>
-		),
-	} );
 	constructor( props ) {
 		super( props );
 		this.state = {
-			comment: { ...this.props.navigation.state.params.comment },
+			comment: { ...this.props.route.params.comment },
 		};
 	}
 
 	componentDidMount() {
-		this.props.navigation.setParams( {
-			onSave: this.onSave,
-		} );
-	}
-
-	componentWillUnmount() {
-		this.props.navigation.setParams( {
-			onSave: null,
+		this.props.navigation.setOptions( {
+			headerRight: () => (
+				<NavigationButton
+					onPress={ this.onSave }
+				>
+					Save
+				</NavigationButton>
+			),
 		} );
 	}
 
