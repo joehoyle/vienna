@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import {
-	StyleSheet,
-	View,
-	SegmentedControlIOS,
-} from 'react-native';
+import { StyleSheet, View, SegmentedControlIOS } from 'react-native';
 
 const styles = StyleSheet.create( {
 	container: {

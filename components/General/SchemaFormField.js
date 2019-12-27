@@ -20,7 +20,6 @@ const styles = StyleSheet.create( {
 		borderBottomColor: '#f9f9f9',
 	},
 	label: {
-
 		marginLeft: 10,
 	},
 	labelText: {

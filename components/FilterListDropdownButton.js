@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		flexDirection: 'row',
 	},
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 		marginTop: -4,
 		marginLeft: 8,
 	},
-});
+} );
 
 export default class FilterListDropdownButton extends Component {
 	static propTypes = {
@@ -25,9 +25,9 @@ export default class FilterListDropdownButton extends Component {
 
 	render() {
 		return (
-			<TouchableOpacity style={styles.container} onPress={this.props.onPress}>
-				<Text style={styles.text}>{this.props.children}</Text>
-				<Icon name="sort-desc" color="#333333" size={18} style={styles.icon} />
+			<TouchableOpacity style={ styles.container } onPress={ this.props.onPress }>
+				<Text style={ styles.text }>{ this.props.children }</Text>
+				<Icon name="sort-desc" color="#333333" size={ 18 } style={ styles.icon } />
 			</TouchableOpacity>
 		);
 	}
