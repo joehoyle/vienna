@@ -142,7 +142,7 @@ class _View extends Component {
 						style={ { backgroundColor: 'transparent' } }
 						onRefresh={ this.onRefresh.bind( this ) }
 						tintColor="#666666"
-						title="Pull to refresh..."
+						title="Pull to Refresh..."
 						titleColor="#000000"
 					/>
 				}
