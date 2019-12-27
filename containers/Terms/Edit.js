@@ -6,7 +6,6 @@ import NavigationButton from '../../components/Navigation/Button';
 
 class Edit extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: `Edit ${navigation.state.params.taxonomy.labels.singular_name}`,
 		headerRight: () => (
 			<NavigationButton
 				onPress={ navigation.state.params.onSave || null }
@@ -19,7 +18,7 @@ class Edit extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			term: { ...this.props.navigation.state.params.term },
+			term: { ...this.props.route.params.term },
 		};
 	}
 
@@ -51,7 +50,7 @@ class Edit extends Component {
 	}
 
 	render() {
-		const taxonomy = this.props.navigation.state.params.taxonomy;
+		const taxonomy = this.props.route.params.taxonomy;
 		const slug = taxonomy._links['wp:items'][0].href.split( '/' ).slice( -1 )[0];
 		let schema = this.props.sites[this.props.activeSite.id].routes[
 			'/wp/v2/' + slug

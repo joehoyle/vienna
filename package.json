@@ -16,6 +16,8 @@
   "dependencies": {
     "@react-native-community/datetimepicker": "2.1.0",
     "@react-native-community/masked-view": "^0.1.5",
+    "@react-navigation/native": "^5.0.0-alpha.21",
+    "@react-navigation/stack": "^5.0.0-alpha.46",
     "expo": "^36.0.0",
     "expo-localization": "~8.0.0",
     "expo-web-browser": "~8.0.0",

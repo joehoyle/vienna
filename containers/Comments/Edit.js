@@ -17,10 +17,9 @@ const styles = StyleSheet.create( {
 
 class Edit extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: 'Edit Comment',
 		headerRight: () => (
 			<NavigationButton
-				onPress={ navigation.state.params.onSave || null }
+				onPress={ route.params.onSave || null }
 			>
 				Save
 			</NavigationButton>
@@ -29,7 +28,7 @@ class Edit extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			comment: { ...this.props.navigation.state.params.comment },
+			comment: { ...this.props.route.params.comment },
 		};
 	}
 

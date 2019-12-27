@@ -6,7 +6,6 @@ import NavigationButton from '../../components/Navigation/Button';
 
 class Edit extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: `Edit ${navigation.state.params.type.labels.singular_name}`,
 		headerRight: () => (
 			<NavigationButton
 				onPress={ navigation.state.params.onSave || null }
@@ -19,7 +18,7 @@ class Edit extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			post: { ...props.navigation.state.params.post },
+			post: { ...props.route.params.post },
 		};
 	}
 
@@ -51,7 +50,11 @@ class Edit extends Component {
 	}
 
 	render() {
-		const type = this.props.navigation.state.params.type;
+		if ( ! this.props.route.params ) {
+			return null;
+		}
+
+		const type = this.props.route.params.type;
 		const slug = type._links['wp:items'][0].href.split( '/' ).slice( -1 )[0];
 		let schema = this.props.sites[this.props.activeSite.id].routes[
 			'/wp/v2/' + slug

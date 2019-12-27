@@ -14,7 +14,6 @@ import NavigationButton from '../../components/Navigation/Button';
 
 class List extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: 'Users',
 		headerRight: () => (
 			<NavigationButton
 				onPress={ () => {
@@ -37,13 +36,7 @@ class List extends Component {
 		}
 	}
 	onSelectUser( user ) {
-		this.props.navigator.push( {
-			screen: 'UsersEdit',
-			passProps: {
-				user: user.id,
-			},
-			title: user.name,
-		} );
+		this.props.navigation.push( 'UsersEdit', { user: user.id } );
 	}
 	onRefresh() {
 		this.props.dispatch( fetchUsers( { per_page: 100 } ) );

@@ -32,7 +32,6 @@ const styles = StyleSheet.create( {
 
 class List extends Component {
 	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: navigation.state.params.type.name,
 		headerRight: () => (
 			<NavigationButton
 				onPress={ () => {
@@ -47,24 +46,24 @@ class List extends Component {
 	} );
 	componentDidMount() {
 		setTimeout( () => {
-			let posts = this.props.types[this.props.navigation.state.params.type.slug]
+			let posts = this.props.types[this.props.route.params.type.slug]
 				.posts;
 			if ( isEmpty( posts ) ) {
 				this.props.dispatch(
-					fetchPosts( { type: this.props.navigation.state.params.type.slug } ),
+					fetchPosts( { type: this.props.route.params.type.slug } ),
 				);
 			}
 		}, 400 );
 	}
 	onRefresh() {
 		this.props.dispatch(
-			fetchPosts( { type: this.props.navigation.state.params.type.slug } ),
+			fetchPosts( { type: this.props.route.params.type.slug } ),
 		);
 	}
 	onSelectPost( post ) {
 		this.props.navigation.navigate( 'PostsEdit', {
 			post: post,
-			type: this.props.navigation.state.params.type,
+			type: this.props.route.params.type,
 		} );
 	}
 	onViewPost( post ) {
@@ -74,11 +73,11 @@ class List extends Component {
 		} );
 	}
 	onChangeFilter( filter ) {
-		this.props.dispatch( updatePostfilter( this.props.navigation.state.params.type.slug, filter ) );
+		this.props.dispatch( updatePostfilter( this.props.route.params.type.slug, filter ) );
 	}
 
 	filterPosts( post ) {
-		let type = this.props.types[this.props.navigation.state.params.type.slug];
+		let type = this.props.types[this.props.route.params.type.slug];
 		if ( type.list.filter.status === 'all' ) {
 			return true;
 		}
@@ -87,7 +86,7 @@ class List extends Component {
 	}
 
 	render() {
-		let type = this.props.navigation.state.params.type;
+		let type = this.props.route.params.type;
 		let posts = type.posts;
 
 		const componentMap = {
@@ -95,9 +94,9 @@ class List extends Component {
 		};
 
 		let ListComponent = componentMap[
-			this.props.navigation.state.params.type.slug
+			this.props.route.params.type.slug
 		]
-			? componentMap[this.props.navigation.state.params.type.slug]
+			? componentMap[this.props.route.params.type.slug]
 			: PostsList;
 
 		return (

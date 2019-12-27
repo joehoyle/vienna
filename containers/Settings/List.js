@@ -13,9 +13,6 @@ const styles = StyleSheet.create( {
 } );
 
 class List extends Component {
-	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
-		title: 'Settings',
-	} );
 	componentDidMount() {
 		if ( isEmpty( this.props.settings.settings ) ) {
 			this.props.dispatch( fetchSettings() );

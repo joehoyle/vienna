@@ -1175,6 +1175,16 @@
     query-string "^6.4.2"
     react-is "^16.8.6"
 
+"@react-navigation/core@^5.0.0-alpha.29":
+  version "5.0.0-alpha.29"
+  resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-5.0.0-alpha.29.tgz#547f3468c2c9fab839e72c76d5582c0396006a29"
+  integrity sha512-4lsy04cjFeo08SG/gzgSXXV5tCVqqMC2YfWOoFHKpjTtoxX2hYsVFPrWMwQGB6efXFB4nHxXBGLDfHz67zpN2Q==
+  dependencies:
+    escape-string-regexp "^2.0.0"
+    query-string "^6.9.0"
+    shortid "^2.2.15"
+    use-subscription "^1.3.0"
+
 "@react-navigation/native@^3.6.2":
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-3.6.2.tgz#3634697b6350cc5189657ae4551f2d52b57fbbf0"
@@ -1183,6 +1193,29 @@
     hoist-non-react-statics "^3.0.1"
     react-native-safe-area-view "^0.14.1"
     react-native-screens "^1.0.0 || ^1.0.0-alpha"
+
+"@react-navigation/native@^5.0.0-alpha.21":
+  version "5.0.0-alpha.21"
+  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-5.0.0-alpha.21.tgz#346827f68b7667fc51a31eda784213a5f5041297"
+  integrity sha512-bui4ePYd00ElsmrKUAyCEcYZ99dme2NDXkQCJ6gZ5QEU3U+Gp2Q80TIJKegMMA4ypFy57oMQ/Sub4ckMJV0zgg==
+  dependencies:
+    "@react-navigation/core" "^5.0.0-alpha.29"
+
+"@react-navigation/routers@^5.0.0-alpha.18":
+  version "5.0.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/@react-navigation/routers/-/routers-5.0.0-alpha.18.tgz#515ae91c5c4cd0156c505e4de810c3fe996ecd75"
+  integrity sha512-XRbGHD43C2hJ8gCvCfnDNGvk5r4pJd2k8UQUjfKauVRB1UObxnLCvuB1lsXaAL7lxLmHOkkwTXSoCMmrTQnmnw==
+  dependencies:
+    "@react-navigation/core" "^5.0.0-alpha.29"
+    shortid "^2.2.15"
+
+"@react-navigation/stack@^5.0.0-alpha.46":
+  version "5.0.0-alpha.46"
+  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.0.0-alpha.46.tgz#a0a5f5eb757f688ae8ae0354a9d0f5f5c2aaa864"
+  integrity sha512-pZVpZgBlFFE0SIS7nyjzx5ZCIDfhhMW8sUoW/nFtFAbbnuoNUlHRj4mzdFQe400gKOY+S93zvWNLjHQVZUbuaA==
+  dependencies:
+    "@react-navigation/routers" "^5.0.0-alpha.18"
+    color "^3.1.2"
 
 "@types/babel__core@^7.1.0":
   version "7.1.3"
@@ -2607,7 +2640,7 @@ escape-html@~1.0.3:
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
   integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
 
-escape-string-regexp@2.0.0:
+escape-string-regexp@2.0.0, escape-string-regexp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz#a30304e99daa32e23b2fd20f51babd07cffca344"
   integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
@@ -5224,6 +5257,11 @@ nan@^2.12.1:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
 
+nanoid@^2.1.0:
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.8.tgz#2dbb0224231b246e3b4c819de7bfea6384dabf08"
+  integrity sha512-g1z+n5s26w0TGKh7gjn7HCqurNKMZWzH08elXzh/gM/csQHd/UqDV6uxMghQYg9IvqRPm1QpeMk50YMofHvEjQ==
+
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"
@@ -5916,7 +5954,7 @@ query-string@6.5:
     split-on-first "^1.0.0"
     strict-uri-encode "^2.0.0"
 
-query-string@^6.4.2:
+query-string@^6.4.2, query-string@^6.9.0:
   version "6.9.0"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.9.0.tgz#1c3b727c370cf00f177c99f328fda2108f8fa3dd"
   integrity sha512-KG4bhCFYapExLsUHrFt+kQVEegF2agm4cpF/VNc6pZVthIfCc/GK8t8VyNIE3nyXG9DK3Tf2EGkxjR6/uRdYsA==
@@ -6680,6 +6718,13 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
+shortid@^2.2.15:
+  version "2.2.15"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.15.tgz#2b902eaa93a69b11120373cd42a1f1fe4437c122"
+  integrity sha512-5EaCy2mx2Jgc/Fdn9uuDuNIIfWBpzY4XIlhoqtXF6qsf+/+SGZ+FxDdX/ZsMZiWupIWNqAEmiNY4RC+LSmCeOw==
+  dependencies:
+    nanoid "^2.1.0"
+
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
@@ -7371,6 +7416,13 @@ url-parse@^1.4.4:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
+
+use-subscription@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/use-subscription/-/use-subscription-1.3.0.tgz#3df13a798e826c8d462899423293289a3362e4e6"
+  integrity sha512-buZV7FUtnbOr+65dN7PHK7chHhQGfk/yjgqfpRLoWuHIAc4klAD/rdot2FsPNtFthN1ZydvA8tR/mWBMQ+/fDQ==
+  dependencies:
+    object-assign "^4.1.1"
 
 use@^3.1.0:
   version "3.1.1"

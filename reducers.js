@@ -4,11 +4,13 @@ import activeSite from './reducers/activeSite';
 import newSite from './reducers/newSite';
 import Routes from './Routes';
 
-const initialState = Routes.router.getStateForAction(
-	Routes.router.getActionForPathAndParams( 'Main/SitesList' ),
-);
+// const initialState = Routes.router.getStateForAction(
+	// Routes.router.getActionForPathAndParams( 'Main/SitesList' ),
+// );
+const initialState = {};
 const navReducer = ( state = initialState, action ) => {
-	const nextState = Routes.router.getStateForAction( action, state );
+	// const nextState = Routes.router.getStateForAction( action, state );
+	const nextState = null;
 	// Simply return the original `state` if `nextState` is null or undefined.
 	return nextState || state;
 };
