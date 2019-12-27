@@ -1,13 +1,16 @@
 ---
-    language: node_js
-    node_js:
-      - node
-    cache:
-      directories:
-        - ~/.npm
-        - .jest
-    before_script:
-      - yarn global add expo-cli
-    script:
-      - yarn install
-      - yarn build:ios
+# branches:
+#     only:
+#     - master
+language: node_js
+node_js:
+    - node
+cache:
+    directories:
+    - ~/.npm
+    - .jest
+before_script:
+    - yarn global add expo-cli
+script:
+    - yarn install
+    - expo build:ios
