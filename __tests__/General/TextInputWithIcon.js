@@ -1,11 +1,9 @@
-import 'react-native'
-import React from 'react'
-import TextInputWithIcon from '../../components/General/TextInputWithIcon'
-import renderer from 'react-test-renderer'
+import 'react-native';
+import React from 'react';
+import TextInputWithIcon from '../../components/General/TextInputWithIcon';
+import renderer from 'react-test-renderer';
 
-it('renders correctly', () => {
-	const tree = renderer.create(
-		<TextInputWithIcon />
-	).toJSON()
-	expect(tree).toMatchSnapshot()
-});
+it( 'renders correctly', () => {
+	const tree = renderer.create( <TextInputWithIcon /> ).toJSON();
+	expect( tree ).toMatchSnapshot();
+} );
