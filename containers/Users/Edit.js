@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { updateUser } from '../../actions';
 import Form from '../../components/Users/Form';
+import NavigationButton from '../../components/Navigation/Button';
 
 export class Edit extends Component {
-	static navigatorButtons = {
-		rightButtons: [
-			{
-				title: 'Save',
-				id: 'save',
-			},
-		],
-	};
-
 	constructor( props ) {
 		super( props );
 
@@ -25,6 +18,13 @@ export class Edit extends Component {
 	componentDidMount() {
 		this.props.navigation.setOptions( {
 			title: this.state.user.name,
+			headerRight: () => (
+				<NavigationButton
+					onPress={ this.onSave }
+				>
+					Save
+				</NavigationButton>
+			),
 		} );
 	}
 
