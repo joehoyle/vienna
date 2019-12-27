@@ -20,6 +20,10 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "splash": {
+      "image": "./images/splash.png",
+      "resizeMode": "contain"
     }
   }
 }
