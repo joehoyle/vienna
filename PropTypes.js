@@ -1,44 +1,44 @@
 import PropTypes from 'prop-types';
 
 export default {
-	User: PropTypes.shape({
+	User: PropTypes.shape( {
 		id: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
 		description: PropTypes.string.isRequired,
-		avatar_urls: PropTypes.shape({
+		avatar_urls: PropTypes.shape( {
 			24: PropTypes.string.isRequired,
 			48: PropTypes.string.isRequired,
 			96: PropTypes.string.isRequired,
-		}),
-	}),
-	Post: PropTypes.shape({
+		} ),
+	} ),
+	Post: PropTypes.shape( {
 		id: PropTypes.number.isRequired,
-		title: PropTypes.shape({
+		title: PropTypes.shape( {
 			raw: PropTypes.string.isRequired,
 			rendered: PropTypes.string.isRequired,
-		}),
-		content: PropTypes.shape({
+		} ),
+		content: PropTypes.shape( {
 			raw: PropTypes.string.isRequired,
 			rendered: PropTypes.string.isRequired,
-		}),
+		} ),
 		date: PropTypes.string,
-		excerpt: PropTypes.shape({
+		excerpt: PropTypes.shape( {
 			raw: PropTypes.string.isRequired,
 			rendered: PropTypes.string.isRequired,
-		}),
-	}),
-	Term: PropTypes.shape({
+		} ),
+	} ),
+	Term: PropTypes.shape( {
 		id: PropTypes.number.isRequired,
 		count: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
 		slug: PropTypes.string.isRequired,
 		parent: PropTypes.number,
-	}),
-	Media: PropTypes.shape({
+	} ),
+	Media: PropTypes.shape( {
 		id: PropTypes.number.isRequired,
 		media_details: PropTypes.object.isRequired,
-	}),
-	Comment: PropTypes.shape({
+	} ),
+	Comment: PropTypes.shape( {
 		id: PropTypes.number.isRequired,
-	}),
+	} ),
 };

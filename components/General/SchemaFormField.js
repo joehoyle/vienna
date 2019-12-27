@@ -20,16 +20,16 @@ export default class SchemaFormField extends Component {
 	};
 
 	render() {
-		var Field = null;
-		if (this.props.schema.enum) {
+		let Field = null;
+		if ( this.props.schema.enum ) {
 			Field = EnumField;
 		} else {
-			switch (this.props.schema.type) {
+			switch ( this.props.schema.type ) {
 				case 'boolean':
 					Field = BooleanField;
 					break;
 				case 'string':
-					switch (this.props.schema.format) {
+					switch ( this.props.schema.format ) {
 						case 'email':
 							Field = EmailField;
 							break;
@@ -44,13 +44,13 @@ export default class SchemaFormField extends Component {
 					}
 					break;
 				case 'array':
-					if (!this.props.schema.items) {
+					if ( ! this.props.schema.items ) {
 						console.log(
 							'schema for type array foes not have an items prop',
-							this.props.schema
+							this.props.schema,
 						);
 					} else {
-						if (this.props.schema.items.enum) {
+						if ( this.props.schema.items.enum ) {
 							Field = ArrayEnumField;
 						}
 					}
@@ -65,7 +65,7 @@ export default class SchemaFormField extends Component {
 			}
 		}
 
-		if (!Field) {
+		if ( ! Field ) {
 			console.log( `no type found for ${ this.props.name }`, this.props.schema );
 			return null;
 		}

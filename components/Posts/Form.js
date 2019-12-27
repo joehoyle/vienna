@@ -13,7 +13,7 @@ import MultilineTextFormField from '../General/FormFields/MultilineText';
 import UserSelectFormField from '../General/FormFields/UserSelect';
 import DateField from '../General/SchemaFormFields/Date';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	title: {
 		color: '#666666',
 		fontSize: 20,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 	contentField: {
 		margin: 10,
 	},
-});
+} );
 
 const ignoreProperties = [
 	'date',
@@ -78,28 +78,28 @@ export default class Form extends Component {
 
 		return (
 			<ScrollView>
-				<View style={styles.contentField}>
+				<View style={ styles.contentField }>
 					<TextInput
 						autoFocus
 						placeholder="Enter title…"
 						style={ styles.title }
-						value={object.title ? object.title.raw : null}
-						onChangeText={value => this.props.onChangePropertyValue('title', value)}
-						onSubmitEditing={() => {}}
+						value={ object.title ? object.title.raw : null }
+						onChangeText={ value => this.props.onChangePropertyValue( 'title', value ) }
+						onSubmitEditing={ () => {} }
 					/>
 					<MultilineTextFormField
 						minHeight={ 60 }
-						value={object.content ? object.content.raw : null}
-						onChange={value =>
-							this.props.onChangePropertyValue('content', value)}
-						onSave={() => {}}
+						value={ object.content ? object.content.raw : null }
+						onChange={ value => this.props.onChangePropertyValue( 'content', value ) }
+						onSave={ () => {} }
 					/>
 				</View>
 				<FormRow label="Author">
 					<UserSelectFormField
-						value={object.author}
-						onChange={value =>
-							this.props.onChangePropertyValue('author', value)}
+						value={ object.author }
+						onChange={ value =>
+							this.props.onChangePropertyValue( 'author', value )
+						}
 					/>
 				</FormRow>
 
@@ -114,34 +114,34 @@ export default class Form extends Component {
 					onSave={ () => {} }
 				/>
 
-				<View style={styles.list}>
-					{Object.entries(schema.properties)
+				<View style={ styles.list }>
+					{ Object.entries( schema.properties )
 						.filter(
-							properties => ignoreProperties.indexOf(properties[0]) === -1
+							properties => ignoreProperties.indexOf( properties[0] ) === -1,
 						)
-						.map(properties => {
+						.map( properties => {
 							const propertySchema = properties[1];
 							const property = properties[0];
 							const value = object[property];
-							if (propertySchema.readonly) {
+							if ( propertySchema.readonly ) {
 								return null;
 							}
 
 							return (
-								<View style={styles.listItem} key={property}>
+								<View style={ styles.listItem } key={ property }>
 									<SchemaFormField
-										name={namesMap[property] ? namesMap[property] : property}
-										schema={propertySchema}
+										name={ namesMap[ property ] ? namesMap[ property ] : property }
+										schema={ propertySchema }
 										focussed={ focussed === property }
-										value={value}
+										value={ value }
 										onBlur={ this.onBlur }
 										onChange={ buildOnChange( property ) }
 										onFocus={ buildOnFocus( property ) }
-										onSave={() => {}}
+										onSave={ () => {} }
 									/>
 								</View>
 							);
-						})}
+						} ) }
 				</View>
 			</ScrollView>
 		);

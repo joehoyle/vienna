@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		padding: 10,
 		backgroundColor: 'red',
@@ -10,10 +10,9 @@ const styles = StyleSheet.create({
 	text: {
 		lineHeight: 16,
 		color: 'white',
-		flex: 1,
 		textAlign: 'center',
 	},
-});
+} );
 
 export default class ListError extends Component {
 	static propTypes = {
@@ -21,8 +20,8 @@ export default class ListError extends Component {
 	};
 	render() {
 		return (
-			<View style={styles.container}>
-				<Text style={styles.text}>{this.props.error.message}</Text>
+			<View style={ styles.container }>
+				<Text style={ styles.text }>{ this.props.error.message }</Text>
 			</View>
 		);
 	}

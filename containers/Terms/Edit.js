@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import NavigationButton from '../../components/Navigation/Button';
 
 class Edit extends Component {
-	static navigationOptions = ({ navigationOptions, navigation }) => ({
+	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: `Edit ${navigation.state.params.taxonomy.labels.singular_name}`,
-		headerRight: (
-			<NavigationButton onPress={() => _this.onSave()}>Save</NavigationButton>
+		headerRight: () => (
+			<NavigationButton onPress={ () => _this.onSave() }>Save</NavigationButton>
 		),
-	});
-	constructor(props) {
-		super(props);
+	} );
+	constructor( props ) {
+		super( props );
 		this.state = {
 			term: { ...this.props.navigation.state.params.term },
 		};
@@ -21,33 +21,33 @@ class Edit extends Component {
 	onNavigatorEvent() {
 		this.onSave();
 	}
-	onChangePropertyValue(property, value) {
-		var term = this.state.term;
+	onChangePropertyValue( property, value ) {
+		let term = this.state.term;
 		term[property] = value;
-		this.setState({ term });
+		this.setState( { term } );
 	}
 	onSave() {
-		this.props.dispatch(updateTerm(this.state.term));
+		this.props.dispatch( updateTerm( this.state.term ) );
 		this.props.navigation.goBack();
 	}
 	render() {
 		const taxonomy = this.props.navigation.state.params.taxonomy;
-		const slug = taxonomy._links['wp:items'][0].href.split('/').slice(-1)[0];
-		var schema = this.props.sites[this.props.activeSite.id].routes[
+		const slug = taxonomy._links['wp:items'][0].href.split( '/' ).slice( -1 )[0];
+		let schema = this.props.sites[this.props.activeSite.id].routes[
 			'/wp/v2/' + slug
 		].schema;
 
 		return (
 			<Form
-				term={this.state.term}
-				schema={schema}
-				onChangePropertyValue={(p, v) => this.onChangePropertyValue(p, v)}
+				term={ this.state.term }
+				schema={ schema }
+				onChangePropertyValue={ ( p, v ) => this.onChangePropertyValue( p, v ) }
 			/>
 		);
 	}
 }
 
-export default connect(state => ({
+export default connect( state => ( {
 	...state,
-	...(state.activeSite.id ? state.sites[state.activeSite.id].data : null),
-}))(Edit);
+	...( state.activeSite.id ? state.sites[state.activeSite.id].data : null ),
+} ) )( Edit );

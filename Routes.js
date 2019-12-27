@@ -1,10 +1,9 @@
-import {
-	createStackNavigator,
-	createAppContainer
-} from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator, TransitionPresets, HeaderStyleInterpolators } from 'react-navigation-stack';
 
 import SitesList from './containers/Sites/List';
 import SitesAdd from './containers/Sites/Add';
+import SitesReauth from './containers/Sites/Reauth';
 import PostsList from './containers/Posts/List';
 import PostsEdit from './containers/Posts/Edit';
 import PostsAdd from './containers/Posts/Add';
@@ -20,11 +19,11 @@ import SitesView from './containers/Sites/View';
 import SettingsList from './containers/Settings/List';
 import CommentsEdit from './containers/Comments/Edit';
 
-export default createAppContainer(createStackNavigator(
+const mainStack = createStackNavigator(
 	{
 		SitesList: { screen: SitesList },
-		SitesAdd: { screen: SitesAdd },
 		SitesView: { screen: SitesView },
+		SitesReauth: { screen: SitesReauth },
 		PostsList: { screen: PostsList },
 		PostsEdit: { screen: PostsEdit },
 		PostsAdd: { screen: PostsAdd },
@@ -40,6 +39,7 @@ export default createAppContainer(createStackNavigator(
 		SettingsList: { screen: SettingsList },
 	},
 	{
+		initialRouteName: 'SitesList',
 		navigationOptions: {
 			headerStyle: {
 				backgroundColor: 'white',
@@ -51,14 +51,45 @@ export default createAppContainer(createStackNavigator(
 				},
 			},
 		},
-		cardStyle: {
-			backgroundColor: 'white',
-			borderTopWidth: 0,
-			shadowRadius: 0,
-			shadowOffset: {
-				height: 0,
+		defaultNavigationOptions: {
+			cardStyle: {
+				backgroundColor: 'white',
+				borderTopWidth: 0,
+				shadowRadius: 0,
+				shadowOffset: {
+					height: 0,
+				},
+				shadowColor: 'transparent',
 			},
-			shadowColor: 'transparent',
+			headerStyle: {
+				shadowOpacity: 0,
+			},
+			headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
 		},
-	}
-));
+	},
+);
+
+export default createAppContainer(
+	createStackNavigator(
+		{
+			Main: {
+				screen: mainStack,
+			},
+			SitesAdd: {
+				screen: SitesAdd,
+				navigationOptions: {
+					title: 'Add New Site',
+				}
+			},
+		},
+		{
+			mode: 'modal',
+			headerMode: 'none',
+			defaultNavigationOptions: {
+				...TransitionPresets.ModalPresentationIOS,
+				cardOverlayEnabled: true,
+				gestureEnabled: true,
+			},
+		},
+	),
+);

@@ -5,61 +5,71 @@ import ListItem from '../../components/Sites/ListItem';
 import NavigationButton from '../../components/Navigation/Button';
 
 class List extends Component {
-	static navigationOptions = ({ navigationOptions, navigation }) => ({
+	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: 'Sites',
-		headerRight: (
-			<NavigationButton onPress={() => navigation.navigate('SitesAdd')}>
-				Add site
+		headerRight: () => (
+			<NavigationButton onPress={ () => navigation.navigate( 'SitesAdd' ) }>
+				Add Site
 			</NavigationButton>
 		),
-	});
-	constructor(props) {
-		super(props);
+	} );
+	constructor( props ) {
+		super( props );
 		this.state = {
 			shownAddSiteOnLoad: false,
 		};
 	}
-	componentWillReceiveProps(newProps) {
+
+	componentDidMount() {
+		this.redirectIfNoSites();
+	}
+
+	componentDidUpdate() {
+		this.redirectIfNoSites();
+	}
+
+	redirectIfNoSites() {
 		if (
-			newProps.loaded &&
-			Object.values(newProps.sites).length === 0 &&
-			!this.state.shownAddSiteOnLoad
+			this.props.loaded &&
+			Object.values( this.props.sites ).length === 0 &&
+			! this.state.shownAddSiteOnLoad
 		) {
 			this.setState(
 				{
 					shownAddSiteOnLoad: true,
 				},
 				() => {
-					this.props.navigation.navigate('SitesAdd');
-				}
+					this.props.navigation.navigate( 'SitesAdd' );
+				},
 			);
 		}
 	}
-	onSelectSite(site) {
-		this.props.dispatch({
+
+	onSelectSite( site ) {
+		this.props.dispatch( {
 			type: 'ACTIVE_SITE_UPDATED',
 			payload: {
 				site,
 			},
-		});
-		this.props.navigation.navigate('SitesView', { site });
+		} );
+		this.props.navigation.navigate( 'SitesView', { site } );
 	}
 	render() {
 		return (
 			<ScrollView>
-				{Object.values(this.props.sites).map(site => {
+				{ Object.values( this.props.sites ).map( site => {
 					return (
 						<TouchableOpacity
-							key={site.id}
-							onPress={() => this.onSelectSite(site)}
+							key={ site.id }
+							onPress={ () => this.onSelectSite( site ) }
 						>
-							<ListItem site={site} />
+							<ListItem site={ site } />
 						</TouchableOpacity>
 					);
-				})}
+				} ) }
 			</ScrollView>
 		);
 	}
 }
 
-export default connect(s => s)(List);
+export default connect( s => s )( List );

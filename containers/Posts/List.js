@@ -16,7 +16,7 @@ import Filter from '../../components/Posts/Filter';
 import ListError from '../../components/General/ListError';
 import NavigationButton from '../../components/Navigation/Button';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	creating: {
 		flexDirection: 'row',
 		justifyContent: 'center',
@@ -28,55 +28,55 @@ const styles = StyleSheet.create({
 		lineHeight: 17,
 		color: 'rgba(255,255,255,.3)',
 	},
-});
+} );
 
 class List extends Component {
-	static navigationOptions = ({ navigationOptions, navigation }) => ({
+	static navigationOptions = ( { navigationOptions, navigation } ) => ( {
 		title: navigation.state.params.type.name,
-		headerRight: (
+		headerRight: () => (
 			<NavigationButton
-				onPress={() => {
-					navigation.navigate('PostsAdd', {
+				onPress={ () => {
+					navigation.navigate( 'PostsAdd', {
 						type: navigation.state.params.type,
-					});
-				}}
+					} );
+				} }
 			>
 				Add New
 			</NavigationButton>
 		),
-	});
+	} );
 	componentDidMount() {
-		setTimeout(() => {
-			var posts = this.props.types[this.props.navigation.state.params.type.slug]
+		setTimeout( () => {
+			let posts = this.props.types[this.props.navigation.state.params.type.slug]
 				.posts;
-			if (isEmpty(posts)) {
+			if ( isEmpty( posts ) ) {
 				this.props.dispatch(
-					fetchPosts({ type: this.props.navigation.state.params.type.slug })
+					fetchPosts( { type: this.props.navigation.state.params.type.slug } ),
 				);
 			}
-		}, 400);
+		}, 400 );
 	}
 	onRefresh() {
 		this.props.dispatch(
-			fetchPosts({ type: this.props.navigation.state.params.type.slug })
+			fetchPosts( { type: this.props.navigation.state.params.type.slug } ),
 		);
 	}
-	onSelectPost(post) {
-		this.props.navigation.navigate('PostsEdit', {
+	onSelectPost( post ) {
+		this.props.navigation.navigate( 'PostsEdit', {
 			post: post,
 			type: this.props.navigation.state.params.type,
-		});
+		} );
 	}
-	onViewPost(post) {
-		Linking.openURL(post.link).catch(err =>
-			console.error('An error occurred', err)
+	onViewPost( post ) {
+		Linking.openURL( post.link ).catch( err =>
+			console.error( 'An error occurred', err ),
 		);
 	}
-	onChangeFilter(filter) {}
+	onChangeFilter( filter ) {}
 
-	filterPosts(post) {
-		var type = this.props.types[this.props.navigation.state.params.type.slug];
-		if (type.list.filter.status === 'all') {
+	filterPosts( post ) {
+		let type = this.props.types[this.props.navigation.state.params.type.slug];
+		if ( type.list.filter.status === 'all' ) {
 			return true;
 		}
 
@@ -84,40 +84,40 @@ class List extends Component {
 	}
 
 	render() {
-		var type = this.props.navigation.state.params.type;
-		var posts = type.posts;
+		let type = this.props.navigation.state.params.type;
+		let posts = type.posts;
 
 		const componentMap = {
 			attachment: MediaList,
 		};
 
-		var ListComponent = componentMap[
+		let ListComponent = componentMap[
 			this.props.navigation.state.params.type.slug
 		]
 			? componentMap[this.props.navigation.state.params.type.slug]
 			: PostsList;
 
 		return (
-			<View style={{ flex: 1 }}>
-				{type.list.isShowingFilter
-					? <Filter
-							filter={type.list.filter}
-							onChange={this.onChangeFilter.bind(this)}
-						/>
-					: null}
-				{type.new.loading
-					? <View style={styles.creating}>
-							<ActivityIndicator />
-							<Text style={styles.creatingText}>Creating {type.name}</Text>
-						</View>
-					: null}
-				{type.list.lastError ? <ListError error={type.list.lastError} /> : null}
+			<View style={ { flex: 1 } }>
+				{ type.list.isShowingFilter ? (
+					<Filter
+						filter={ type.list.filter }
+						onChange={ this.onChangeFilter.bind( this ) }
+					/>
+				) : null }
+				{ type.new.loading ? (
+					<View style={ styles.creating }>
+						<ActivityIndicator />
+						<Text style={ styles.creatingText }>Creating { type.name }</Text>
+					</View>
+				) : null }
+				{ type.list.lastError ? <ListError error={ type.list.lastError } /> : null }
 				<ListComponent
 					refreshControl={
 						<RefreshControl
-							refreshing={type.list.loading}
-							style={{ backgroundColor: 'transparent' }}
-							onRefresh={this.onRefresh.bind(this)}
+							refreshing={ type.list.loading }
+							style={ { backgroundColor: 'transparent' } }
+							onRefresh={ this.onRefresh.bind( this ) }
 							tintColor="#666666"
 							title={
 								type.list.loading
@@ -127,19 +127,19 @@ class List extends Component {
 							titleColor="#000000"
 						/>
 					}
-					posts={Object.values(posts).filter(this.filterPosts.bind(this))}
-					users={this.props.users.users}
-					media={this.props.types.attachment.posts}
-					onEdit={post => this.onSelectPost(post)}
-					onView={post => this.onViewPost(post)}
-					onTrash={post => this.props.dispatch(trashPost(post))}
+					posts={ Object.values( posts ).filter( this.filterPosts.bind( this ) ) }
+					users={ this.props.users.users }
+					media={ this.props.types.attachment.posts }
+					onEdit={ post => this.onSelectPost( post ) }
+					onView={ post => this.onViewPost( post ) }
+					onTrash={ post => this.props.dispatch( trashPost( post ) ) }
 				/>
 			</View>
 		);
 	}
 }
 
-export default connect(state => ({
+export default connect( state => ( {
 	...state,
-	...(state.activeSite.id ? state.sites[state.activeSite.id].data : null),
-}))(List);
+	...( state.activeSite.id ? state.sites[state.activeSite.id].data : null ),
+} ) )( List );

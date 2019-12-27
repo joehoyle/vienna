@@ -1,195 +1,140 @@
+import Constants from 'expo-constants';
 import React, { Component } from 'react';
 import {
+	KeyboardAvoidingView,
 	StyleSheet,
+	Text,
 	TouchableOpacity,
 	View,
-	Text,
-	ActivityIndicator,
-	Image,
 } from 'react-native';
+import { Header, HeaderTitle } from 'react-navigation-stack';
 import { connect } from 'react-redux';
-import { trim } from 'lodash';
-import { addSite } from '../../actions';
-import { FontAwesome as Icon } from '@expo/vector-icons';
-import AddSiteInstructions from '../../components/Sites/AddSiteInstructions';
-import TextInputWithIcon from '../../components/General/TextInputWithIcon';
 
-const styles = StyleSheet.create({
+import addSite from '../../actions/addSite';
+
+import Authorize from '../../components/Setup/Authorize';
+import StartScreen from '../../components/Setup/Start';
+import InstallConnect from '../../components/Setup/InstallConnect';
+
+const styles = StyleSheet.create( {
 	container: {
 		backgroundColor: '#FFFFFF',
 		padding: 20,
-		paddingBottom: 100,
 		flex: 1,
+		alignItems: 'stretch',
+	},
+	header: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+	},
+	headerText: {
+		marginLeft: 60,
+
+	},
+	main: {
+		flexGrow: 1,
 		alignItems: 'stretch',
 		justifyContent: 'center',
 	},
-	icon: {
-		alignSelf: 'center',
-		marginBottom: 10,
-	},
-	input: {
-		backgroundColor: '#f1f1f1',
-		height: 40,
-		padding: 3,
-		flexDirection: 'row',
-		alignItems: 'center',
-		borderBottomWidth: 1,
-		borderBottomColor: '#eeeeee',
-	},
-	inputText: {
-		flex: 1,
+	closeButton: {
+		alignSelf: 'flex-end',
+		color: 'dodgerblue',
 		fontSize: 16,
-		lineHeight: 16,
 	},
-	addButton: {
-		margin: 10,
-		backgroundColor: 'rgba(0,0,0,.3)',
-		alignItems: 'center',
-		padding: 8,
-		borderRadius: 1,
-	},
-	addButtonText: {
-		color: '#FFFFFF',
-	},
-	errorMessage: {
-		color: 'red',
-		textAlign: 'center',
-		fontSize: 15,
-		marginTop: 10,
-		marginBottom: 5,
-	},
-	addOAuthText: {
-		color: '#333333',
-		textAlign: 'center',
-		margin: 10,
-	},
-});
+} );
+
+const STEP = {
+	START: 'START',
+	INSTALL_CONNECT: 'INSTALL_CONNECT',
+	AUTHORIZE: 'AUTHORIZE',
+};
 
 class Add extends Component {
-	static navigatorButtons = {
-		leftButtons: [
-			{
-				title: 'Back',
-				id: 'close',
-			},
-		],
+	state = {
+		step: STEP.START,
+		index: null,
 	};
-	constructor(props) {
-		super(props);
-		this.state = {
-			url: '',
-			//key: 'RGZ9uqScRvNI',
-			//secret: 'lQ95vLKvqFB6xgsmqww0a7PNd0H9bRAT6T3VU082Cz0Bsd5J',
-			key: '',
-			secret: '',
-			addOAuth: false,
-		};
-		//this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
-	}
-	onNavigatorEvent(event) {
-		if (event.type === 'NavBarButtonPress') {
-			if (event.id === 'close') {
-				this.props.navigator.dismissModal();
-			}
+
+	onConnect = async index => {
+		// Store the index for future use.
+		this.setState( { index } );
+
+		// Does the site have App Connect installed?
+		if ( ! ( 'connect' in index.authentication ) ) {
+			this.setState( {
+				index,
+				step: STEP.INSTALL_CONNECT,
+			} );
+		} else {
+			this.setState( {
+				index,
+				step: STEP.AUTHORIZE,
+			} );
 		}
-	}
-	onSubmit() {
-		var url = this.state.url;
+	};
 
-		// prepend http:// to the url if it wasn't set already.
-		if (url.indexOf('http') !== 0) {
-			url = 'http://' + url;
-		}
+	onInstall = async index => {
+		this.setState( {
+			// Update the index.
+			index,
 
-		// make sure the URL has a trailing slash
-		url = trim(url, '/') + '/';
+			// Move to authorization.
+			step: STEP.AUTHORIZE,
+		} );
+	};
 
-		this.setState({ url: url });
+	onAuthorize = ( id, token ) => {
+		const { index } = this.state;
+		const url = index.routes['/']._links.self;
+		this.props.addSite( url, index, {
+			client: {
+				id: id,
+			},
+			token: {
+				public: token,
+			},
+		} );
 
-		if (this.state.key && this.state.secret) {
-			var args = {
-				credentials: {
-					client_token: this.state.key,
-					client_secret: this.state.secret,
-				},
-			};
-		}
-		this.props.dispatch(addSite(url, args));
-	}
+		// We're done, go home!
+		this.props.navigation.navigate( 'SitesList' );
+	};
 
 	render() {
+		const { index, step } = this.state;
+
 		return (
-			<View style={styles.container}>
-				<Image
-					source={require('../../images/logo-black-40.png')}
-					style={styles.icon}
-				/>
-				<AddSiteInstructions requiresAuthBrokerPlugin={!this.state.addOAuth} />
-
-				{!this.props.newSite.status
-					? <View>
-							<TextInputWithIcon
-								icon="globe"
-								keyboardType="url"
-								placeholder="Site URL..."
-								value={this.state.url}
-								returnKeyType="go"
-								onChangeText={text => this.setState({ url: text })}
-								onSubmitEditing={this.onSubmit.bind(this)}
-							/>
-							{this.state.addOAuth
-								? <View>
-										<TextInputWithIcon
-											icon="key"
-											placeholder="OAuth Client Key..."
-											returnKeyType="next"
-											value={this.state.key}
-											onChangeText={text => this.setState({ key: text })}
-											onSubmitEditing={this.onSubmit.bind(this)}
-										/>
-										<TextInputWithIcon
-											icon="lock"
-											placeholder="OAuth Client Secret..."
-											returnKeyType="go"
-											value={this.state.secret}
-											onChangeText={text => this.setState({ secret: text })}
-											onSubmitEditing={this.onSubmit.bind(this)}
-										/>
-									</View>
-								: null}
-						</View>
-					: <View style={styles.input}>
-							<ActivityIndicator
-								size="small"
-								color="#666666"
-								style={{ marginRight: 5, marginLeft: 5 }}
-							/>
-							<Text style={styles.inputText}>{this.props.newSite.status}</Text>
-						</View>}
-				{this.props.newSite.errorStatus
-					? <Text style={styles.errorMessage}>
-							<Icon name="exclamation-triangle" color="white" />
-							{' '}
-							{this.props.newSite.errorStatus}
-						</Text>
-					: null}
-				{!this.props.newSite.status && this.state.url
-					? <TouchableOpacity
-							onPress={this.onSubmit.bind(this)}
-							style={styles.addButton}
-						>
-							<Text style={styles.addButtonText}>Add Site</Text>
-						</TouchableOpacity>
-					: null}
-
-				{!this.state.addOAuth
-					? <TouchableOpacity onPress={() => this.setState({ addOAuth: true })}>
-							<Text style={styles.addOAuthText}>Using OAuth 1.0?</Text>
-						</TouchableOpacity>
-					: null}
-			</View>
+			<KeyboardAvoidingView
+				behavior="height"
+				keyboardVerticalOffset={ Header.HEIGHT + Constants.statusBarHeight - 20 }
+				style={ styles.container }
+			>
+				<View style={ styles.header }>
+					<View />
+					<HeaderTitle style={ styles.headerText }>Add New Site</HeaderTitle>
+					<TouchableOpacity onPress={ () => this.props.navigation.goBack() }>
+						<Text style={ styles.closeButton }>Cancel</Text>
+					</TouchableOpacity>
+				</View>
+				{ step === STEP.START ? (
+					<StartScreen onConnect={ this.onConnect } />
+				) : step === STEP.INSTALL_CONNECT ? (
+					<InstallConnect index={ index } onInstall={ this.onInstall } />
+				) : step === STEP.AUTHORIZE ? (
+					<Authorize
+						authentication={ index.authentication }
+						onAuthorize={ this.onAuthorize }
+					/>
+				) : null }
+			</KeyboardAvoidingView>
 		);
 	}
 }
 
-export default connect(s => s)(Add);
+const mapStateToProps = state => ( {
+	newSite: state.newSite,
+} );
+const mapDispatchToProps = dispatch => ( {
+	addSite: ( ...args ) => dispatch( addSite( ...args ) ),
+} );
+
+export default connect( mapStateToProps, mapDispatchToProps )( Add );
