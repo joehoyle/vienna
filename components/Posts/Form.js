@@ -17,7 +17,6 @@ const styles = StyleSheet.create( {
 	title: {
 		color: '#666666',
 		fontSize: 20,
-		lineHeight: 36,
 		height: 36,
 	},
 	list: {
