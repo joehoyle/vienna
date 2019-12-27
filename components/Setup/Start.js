@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-	StyleSheet,
-	View,
-	Text,
-	ActivityIndicator,
-} from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import { trim } from 'lodash';
 
 import { fetchIndex } from '../../actions/addSite';
@@ -61,7 +56,7 @@ export default class Start extends Component {
 		url: 'https://',
 		status: STATUS.NONE,
 		error: null,
-	}
+	};
 
 	onSubmit = async () => {
 		let url = this.state.url;
@@ -89,7 +84,7 @@ export default class Start extends Component {
 			} );
 			return;
 		}
-	}
+	};
 
 	render() {
 		return (
@@ -118,20 +113,23 @@ export default class Start extends Component {
 						<ActivityIndicator
 							size="small"
 							color="#666666"
-							style={ { marginRight: 5, marginLeft: 5 } }
+							style={ {
+								marginRight: 5,
+								marginLeft: 5,
+							} }
 						/>
 						<Text style={ styles.inputText }>{ this.state.url }</Text>
 					</View>
 				) }
 
 				{ this.state.error ? (
-					<ErrorMessage>
-						{ this.state.error }
-					</ErrorMessage>
+					<ErrorMessage>{ this.state.error }</ErrorMessage>
 				) : null }
 
 				<Button
-					disabled={ Boolean( this.state.status === STATUS.LOADING || ! this.state.url ) }
+					disabled={ Boolean(
+						this.state.status === STATUS.LOADING || ! this.state.url,
+					) }
 					style={ styles.addButton }
 					onPress={ this.onSubmit }
 				>

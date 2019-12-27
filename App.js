@@ -20,27 +20,25 @@ import Routes from './Routes';
 // 	}).install();
 // });
 
-const engine = storageFilter(createEngine('my-save-keydd'), [
+const engine = storageFilter( createEngine( 'my-save-keydd' ), [
 	'activeSite',
 	'sites',
-]);
+] );
 
-const storageMiddleware = storage.createMiddleware(engine);
-const middleware = [thunk, storageMiddleware];
+const storageMiddleware = storage.createMiddleware( engine );
+const middleware = [ thunk, storageMiddleware ];
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const enhancer = composeEnhancers( applyMiddleware( ...middleware ) );
-const store = createStore(storage.reducer(reducers), enhancer);
-const loadStorage = storage.createLoader(engine);
+const store = createStore( storage.reducer( reducers ), enhancer );
+const loadStorage = storage.createLoader( engine );
 
-loadStorage(store).then(state => {
-
-});
+loadStorage( store ).then( state => {} );
 
 export default class App extends Component {
 	render() {
 		return (
-			<Provider store={store}>
+			<Provider store={ store }>
 				<Routes />
 			</Provider>
 		);

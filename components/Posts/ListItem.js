@@ -1,17 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import {
-	StyleSheet,
-	View,
-	Text,
-	TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import ConfirmButton from '../ConfirmButton';
 import RichItem from '../General/RichItem';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {},
 	title: {
 		margin: 15,
@@ -51,7 +46,7 @@ const styles = StyleSheet.create({
 		marginLeft: 10,
 		marginRight: 10,
 	},
-});
+} );
 
 export default class ListItem extends Component {
 	static propTypes = {
@@ -62,16 +57,16 @@ export default class ListItem extends Component {
 		featuredMedia: ViennaPropTypes.Media,
 		author: ViennaPropTypes.User,
 	};
-	constructor(props) {
-		super(props);
+	constructor( props ) {
+		super( props );
 		this.state = { webViewHeight: 100 };
 	}
 	render() {
 		return (
-			<View style={styles.container}>
+			<View style={ styles.container }>
 				<RichItem
-					title={this.props.post.title.rendered}
-					content={this.props.post.excerpt.rendered}
+					title={ this.props.post.title.rendered }
+					content={ this.props.post.excerpt.rendered }
 					avatarUrl={
 						this.props.author ? this.props.author.avatar_urls['96'] : null
 					}
@@ -81,41 +76,41 @@ export default class ListItem extends Component {
 							: null
 					}
 				/>
-				<View style={styles.actions}>
-					{this.props.onEdit
-						? <TouchableOpacity
-								style={styles.actionsButton}
-								onPress={this.props.onEdit}
-							>
-								<View style={styles.actionsButton}>
-									<Icon name="pencil" size={14} color="#888888" />
-									<Text style={styles.actionsButtonText}>Edit</Text>
-								</View>
-							</TouchableOpacity>
-						: null}
-					{this.props.onView
-						? <TouchableOpacity
-								style={styles.actionsButton}
-								onPress={this.props.onView}
-							>
-								<View style={styles.actionsButton}>
-									<Icon name="external-link" size={14} color="#888888" />
-									<Text style={styles.actionsButtonText}>View</Text>
-								</View>
-							</TouchableOpacity>
-						: null}
-					{this.props.onTrash
-						? <ConfirmButton
-								style={styles.actionsButton}
-								onPress={this.props.onTrash}
-								text="Trash"
-								textStyle={styles.actionsButtonText}
-								confirmText="Confirm"
-								confirmTextStyle={styles.actionsButtonText}
-								icon="trash"
-								confirmIcon="check"
-							/>
-						: null}
+				<View style={ styles.actions }>
+					{ this.props.onEdit ? (
+						<TouchableOpacity
+							style={ styles.actionsButton }
+							onPress={ this.props.onEdit }
+						>
+							<View style={ styles.actionsButton }>
+								<Icon name="pencil" size={ 14 } color="#888888" />
+								<Text style={ styles.actionsButtonText }>Edit</Text>
+							</View>
+						</TouchableOpacity>
+					) : null }
+					{ this.props.onView ? (
+						<TouchableOpacity
+							style={ styles.actionsButton }
+							onPress={ this.props.onView }
+						>
+							<View style={ styles.actionsButton }>
+								<Icon name="external-link" size={ 14 } color="#888888" />
+								<Text style={ styles.actionsButtonText }>View</Text>
+							</View>
+						</TouchableOpacity>
+					) : null }
+					{ this.props.onTrash ? (
+						<ConfirmButton
+							style={ styles.actionsButton }
+							onPress={ this.props.onTrash }
+							text="Trash"
+							textStyle={ styles.actionsButtonText }
+							confirmText="Confirm"
+							confirmTextStyle={ styles.actionsButtonText }
+							icon="trash"
+							confirmIcon="check"
+						/>
+					) : null }
 				</View>
 			</View>
 		);

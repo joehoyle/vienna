@@ -1,18 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import {
-	StyleSheet,
-	View,
-	Text,
-	TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 import ConfirmButton from '../ConfirmButton';
 import ReplyToItem from './ReplyToItem';
 import RichItem from '../General/RichItem';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		marginBottom: 0,
 		marginTop: 5,
@@ -37,7 +32,7 @@ const styles = StyleSheet.create({
 		color: '#666666',
 	},
 	replyToItem: {},
-});
+} );
 
 export default class ListItem extends Component {
 	static propTypes = {
@@ -54,72 +49,74 @@ export default class ListItem extends Component {
 		};
 	}
 
-	updateWebViewHeight(event) {
-		if (!event.jsEvaluationValue) {
+	updateWebViewHeight( event ) {
+		if ( ! event.jsEvaluationValue ) {
 			return;
 		}
-		console.log(event.jsEvaluationValue);
-		this.setState({ webViewHeight: parseInt(event.jsEvaluationValue, 10) });
+		console.log( event.jsEvaluationValue );
+		this.setState( { webViewHeight: parseInt( event.jsEvaluationValue, 10 ) } );
 	}
 
-	onReply(text) {
-		this.setState({ isReplying: false });
-		this.props.onReply(this.props.comment, text);
+	onReply( text ) {
+		this.setState( { isReplying: false } );
+		this.props.onReply( this.props.comment, text );
 	}
 
 	render() {
 		return (
-			<View style={styles.container}>
+			<View style={ styles.container }>
 				<RichItem
-					title={this.props.comment.author_name}
-					content={this.props.comment.content.rendered}
-					avatarUrl={this.props.comment.author_avatar_urls['24']}
+					title={ this.props.comment.author_name }
+					content={ this.props.comment.content.rendered }
+					avatarUrl={ this.props.comment.author_avatar_urls['24'] }
 				/>
-				<View style={styles.belowRighItem}>
-					{this.state.isReplying
-						? <View style={styles.replyToItem}>
-								<ReplyToItem
-									comment={this.props.comment}
-									onCancel={() => this.setState({ isReplying: false })}
-									onReply={text => this.onReply(text)}
+				<View style={ styles.belowRighItem }>
+					{ this.state.isReplying ? (
+						<View style={ styles.replyToItem }>
+							<ReplyToItem
+								comment={ this.props.comment }
+								onCancel={ () => this.setState( { isReplying: false } ) }
+								onReply={ text => this.onReply( text ) }
+							/>
+						</View>
+					) : (
+						<View style={ styles.actions }>
+							{ this.props.onEdit ? (
+								<TouchableOpacity
+									style={ styles.actionsButton }
+									onPress={ this.props.onEdit }
+								>
+									<View style={ styles.actionsButton }>
+										<Icon name="pencil" size={ 14 } color="#888888" />
+										<Text style={ styles.actionsButtonText }>Edit</Text>
+									</View>
+								</TouchableOpacity>
+							) : null }
+							{ this.props.onReply ? (
+								<TouchableOpacity
+									style={ styles.actionsButton }
+									onPress={ () => this.setState( { isReplying: true } ) }
+								>
+									<View style={ styles.actionsButton }>
+										<Icon name="reply" size={ 14 } color="#888888" />
+										<Text style={ styles.actionsButtonText }>Reply</Text>
+									</View>
+								</TouchableOpacity>
+							) : null }
+							{ this.props.onTrash ? (
+								<ConfirmButton
+									style={ styles.actionsButton }
+									onPress={ this.props.onTrash }
+									text="Trash"
+									textStyle={ styles.actionsButtonText }
+									confirmText="Confirm"
+									confirmTextStyle={ styles.actionsButtonText }
+									icon="trash"
+									confirmIcon="check"
 								/>
-							</View>
-						: <View style={styles.actions}>
-								{this.props.onEdit
-									? <TouchableOpacity
-											style={styles.actionsButton}
-											onPress={this.props.onEdit}
-										>
-											<View style={styles.actionsButton}>
-												<Icon name="pencil" size={14} color="#888888" />
-												<Text style={styles.actionsButtonText}>Edit</Text>
-											</View>
-										</TouchableOpacity>
-									: null}
-								{this.props.onReply
-									? <TouchableOpacity
-											style={styles.actionsButton}
-											onPress={() => this.setState({ isReplying: true })}
-										>
-											<View style={styles.actionsButton}>
-												<Icon name="reply" size={14} color="#888888" />
-												<Text style={styles.actionsButtonText}>Reply</Text>
-											</View>
-										</TouchableOpacity>
-									: null}
-								{this.props.onTrash
-									? <ConfirmButton
-											style={styles.actionsButton}
-											onPress={this.props.onTrash}
-											text="Trash"
-											textStyle={styles.actionsButtonText}
-											confirmText="Confirm"
-											confirmTextStyle={styles.actionsButtonText}
-											icon="trash"
-											confirmIcon="check"
-										/>
-									: null}
-							</View>}
+							) : null }
+						</View>
+					) }
 				</View>
 			</View>
 		);

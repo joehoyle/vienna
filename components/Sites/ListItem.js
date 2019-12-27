@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 		lineHeight: 12,
 	},
-});
+} );
 
 export default class ListItem extends Component {
 	static propTypes = {
@@ -31,15 +31,15 @@ export default class ListItem extends Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
-				<View style={styles.text}>
-					<Text style={styles.title}>{this.props.site.name}</Text>
-					<Text style={styles.url}>{this.props.site.url}</Text>
+			<View style={ styles.container }>
+				<View style={ styles.text }>
+					<Text style={ styles.title }>{ this.props.site.name }</Text>
+					<Text style={ styles.url }>{ this.props.site.url }</Text>
 				</View>
 				<Icon
 					name="chevron-right"
-					style={styles.chevron}
-					size={22}
+					style={ styles.chevron }
+					size={ 22 }
 					color="#BBBBBB"
 				/>
 			</View>

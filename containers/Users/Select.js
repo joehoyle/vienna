@@ -15,30 +15,30 @@ export default class List extends Component {
 		navBarNoBorder: true,
 	};
 	componentWillMount() {
-		if (isEmpty(this.props.users.users)) {
-			this.props.dispatch(fetchUsers({ per_page: 100 }));
+		if ( isEmpty( this.props.users.users ) ) {
+			this.props.dispatch( fetchUsers( { per_page: 100 } ) );
 		}
 	}
-	onSelectUser(user) {
-		this.props.onSelect(user);
+	onSelectUser( user ) {
+		this.props.onSelect( user );
 		this.props.navigator.pop();
 	}
 	onRefresh() {
-		this.props.dispatch(fetchUsers({ per_page: 100 }));
+		this.props.dispatch( fetchUsers( { per_page: 100 } ) );
 	}
 	render() {
-		console.log(this.props);
+		console.log( this.props );
 		return (
-			<View style={{ flex: 1 }}>
-				{this.props.users.list.lastError
-					? <ListError error={this.props.users.list.lastError} />
-					: null}
+			<View style={ { flex: 1 } }>
+				{ this.props.users.list.lastError ? (
+					<ListError error={ this.props.users.list.lastError } />
+				) : null }
 				<ScrollView
 					refreshControl={
 						<RefreshControl
-							refreshing={this.props.users.list.loading}
-							style={{ backgroundColor: 'transparent' }}
-							onRefresh={this.onRefresh.bind(this)}
+							refreshing={ this.props.users.list.loading }
+							style={ { backgroundColor: 'transparent' } }
+							onRefresh={ this.onRefresh.bind( this ) }
 							tintColor="#666666"
 							title={
 								this.props.users.list.loading
@@ -49,21 +49,21 @@ export default class List extends Component {
 						/>
 					}
 				>
-					{Object.values(this.props.users.users).map(user => {
+					{ Object.values( this.props.users.users ).map( user => {
 						return (
 							<TouchableOpacity
-								key={user.id}
-								onPress={this.onSelectUser.bind(this, user)}
+								key={ user.id }
+								onPress={ this.onSelectUser.bind( this, user ) }
 							>
 								<ListItem
-									user={user}
-									onEdit={() => this.onSelectUser(user)}
-									onTrash={() => {}}
+									user={ user }
+									onEdit={ () => this.onSelectUser( user ) }
+									onTrash={ () => {} }
 									icon=""
 								/>
 							</TouchableOpacity>
 						);
-					})}
+					} ) }
 				</ScrollView>
 			</View>
 		);

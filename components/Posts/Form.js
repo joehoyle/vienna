@@ -1,18 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import {
-	ScrollView,
-	View,
-	Text,
-	StyleSheet,
-} from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import SchemaFormField from '../General/SchemaFormField';
-import MultilineTextFormField
-	from '../../components/General/FormFields/MultilineText';
-import UserSelectFormField
-	from '../../components/General/FormFields/UserSelect';
+import MultilineTextFormField from '../../components/General/FormFields/MultilineText';
+import UserSelectFormField from '../../components/General/FormFields/UserSelect';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	list: {
 		paddingTop: 15,
 	},
@@ -25,7 +18,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 10,
 		paddingRight: 10,
 	},
-});
+} );
 
 export default class Form extends Component {
 	static propTypes = {
@@ -58,53 +51,56 @@ export default class Form extends Component {
 
 		return (
 			<ScrollView>
-				<View style={styles.contentField}>
+				<View style={ styles.contentField }>
 					<MultilineTextFormField
-						value={object.title ? object.title.raw : null}
-						onChange={value => this.props.onChangePropertyValue('title', value)}
-						onSave={() => {}}
+						value={ object.title ? object.title.raw : null }
+						onChange={ value => this.props.onChangePropertyValue( 'title', value ) }
+						onSave={ () => {} }
 					/>
 					<MultilineTextFormField
-						value={object.content ? object.content.raw : null}
-						onChange={value =>
-							this.props.onChangePropertyValue('content', value)}
-						onSave={() => {}}
+						value={ object.content ? object.content.raw : null }
+						onChange={ value =>
+							this.props.onChangePropertyValue( 'content', value )
+						}
+						onSave={ () => {} }
 					/>
 				</View>
-				<View style={styles.authorField}>
+				<View style={ styles.authorField }>
 					<Text>Author</Text>
 					<UserSelectFormField
-						value={object.author}
-						onChange={value =>
-							this.props.onChangePropertyValue('author', value)}
+						value={ object.author }
+						onChange={ value =>
+							this.props.onChangePropertyValue( 'author', value )
+						}
 					/>
 				</View>
-				<View style={styles.list}>
-					{Object.entries(schema.properties)
+				<View style={ styles.list }>
+					{ Object.entries( schema.properties )
 						.filter(
-							properties => ignoreProperties.indexOf(properties[0]) === -1
+							properties => ignoreProperties.indexOf( properties[0] ) === -1,
 						)
-						.map(properties => {
+						.map( properties => {
 							const propertySchema = properties[1];
 							const property = properties[0];
 							const value = object[property];
-							if (propertySchema.readonly) {
+							if ( propertySchema.readonly ) {
 								return null;
 							}
 
 							return (
-								<View style={styles.listItem} key={property}>
+								<View style={ styles.listItem } key={ property }>
 									<SchemaFormField
-										name={namesMap[property] ? namesMap[property] : property}
-										schema={propertySchema}
-										value={value}
-										onChange={value =>
-											this.props.onChangePropertyValue(property, value)}
-										onSave={() => {}}
+										name={ namesMap[property] ? namesMap[property] : property }
+										schema={ propertySchema }
+										value={ value }
+										onChange={ value =>
+											this.props.onChangePropertyValue( property, value )
+										}
+										onSave={ () => {} }
 									/>
 								</View>
 							);
-						})}
+						} ) }
 				</View>
 			</ScrollView>
 		);

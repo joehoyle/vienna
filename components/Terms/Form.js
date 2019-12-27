@@ -1,17 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import {
-	ScrollView,
-	View,
-	StyleSheet,
-} from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
 import SchemaFormField from '../General/SchemaFormField';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	list: {
 		paddingTop: 15,
 	},
-});
+} );
 
 export default class Form extends Component {
 	static propTypes = {
@@ -30,28 +26,29 @@ export default class Form extends Component {
 
 		return (
 			<ScrollView>
-				<View style={styles.list}>
-					{Object.entries(schema.properties).map(properties => {
+				<View style={ styles.list }>
+					{ Object.entries( schema.properties ).map( properties => {
 						const propertySchema = properties[1];
 						const property = properties[0];
 						const value = object[property];
-						if (propertySchema.readonly) {
+						if ( propertySchema.readonly ) {
 							return null;
 						}
 
 						return (
-							<View style={styles.listItem} key={property}>
+							<View style={ styles.listItem } key={ property }>
 								<SchemaFormField
-									name={namesMap[property] ? namesMap[property] : property}
-									schema={propertySchema}
-									value={value}
-									onChange={value =>
-										this.props.onChangePropertyValue(property, value)}
-									onSave={() => {}}
+									name={ namesMap[property] ? namesMap[property] : property }
+									schema={ propertySchema }
+									value={ value }
+									onChange={ value =>
+										this.props.onChangePropertyValue( property, value )
+									}
+									onSave={ () => {} }
 								/>
 							</View>
 						);
-					})}
+					} ) }
 				</View>
 			</ScrollView>
 		);

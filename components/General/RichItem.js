@@ -1,14 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import {
-	StyleSheet,
-	View,
-	Text,
-	Image,
-} from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		marginBottom: 0,
 		marginTop: 5,
@@ -35,7 +30,7 @@ const styles = StyleSheet.create({
 		borderRadius: 15,
 		backgroundColor: '#EEEEEE',
 	},
-});
+} );
 
 const injectedJavaScript = `
 window.ReactNativeWebView.postMessage( document.getElementById('text').scrollHeight );
@@ -51,13 +46,13 @@ export default class RichItem extends Component {
 
 	state = {
 		webViewHeight: 0,
-	}
+	};
 
 	onMessage = event => {
 		this.setState( {
 			webViewHeight: parseInt( event.nativeEvent.data, 10 ),
 		} );
-	}
+	};
 
 	htmlExcerpt() {
 		return `
@@ -83,25 +78,27 @@ export default class RichItem extends Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
-				{this.props.avatarUrl
-					? <Image
-							style={styles.authorImage}
-							source={{ uri: this.props.avatarUrl }}
-						/>
-					: <View style={styles.authorImage} />}
-				<View style={styles.contentRight}>
-					<View style={styles.authorText}>
-						<Text style={styles.authorName}>{this.props.title}</Text>
+			<View style={ styles.container }>
+				{ this.props.avatarUrl ? (
+					<Image
+						style={ styles.authorImage }
+						source={ { uri: this.props.avatarUrl } }
+					/>
+				) : (
+					<View style={ styles.authorImage } />
+				) }
+				<View style={ styles.contentRight }>
+					<View style={ styles.authorText }>
+						<Text style={ styles.authorName }>{ this.props.title }</Text>
 					</View>
-					<View style={styles.content}>
+					<View style={ styles.content }>
 						<WebView
 							scrollEnabled={ false }
 							injectedJavaScript={ injectedJavaScript }
 							originWhitelist={ [ '*' ] }
-							style={[styles.webView, { height: this.state.webViewHeight }]}
-							source={{ html: this.htmlExcerpt() }}
-							automaticallyAdjustContentInsets={true}
+							style={ [ styles.webView, { height: this.state.webViewHeight } ] }
+							source={ { html: this.htmlExcerpt() } }
+							automaticallyAdjustContentInsets={ true }
 							onMessage={ this.onMessage }
 						/>
 					</View>

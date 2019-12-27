@@ -31,8 +31,8 @@ const styles = StyleSheet.create( {
 		marginTop: 32,
 		alignSelf: 'flex-end',
 		color: 'dodgerblue',
-		fontSize: 16
-	}
+		fontSize: 16,
+	},
 } );
 
 const STEP = {
@@ -45,7 +45,7 @@ class Add extends Component {
 	state = {
 		step: STEP.START,
 		index: null,
-	}
+	};
 
 	onConnect = async index => {
 		// Store the index for future use.
@@ -63,7 +63,7 @@ class Add extends Component {
 				step: STEP.AUTHORIZE,
 			} );
 		}
-	}
+	};
 
 	onInstall = async index => {
 		this.setState( {
@@ -73,27 +73,23 @@ class Add extends Component {
 			// Move to authorization.
 			step: STEP.AUTHORIZE,
 		} );
-	}
+	};
 
 	onAuthorize = ( id, token ) => {
 		const { index } = this.state;
 		const url = index.routes['/']._links.self;
-		this.props.addSite(
-			url,
-			index,
-			{
-				client: {
-					id: id,
-				},
-				token: {
-					public: token,
-				},
-			}
-		);
+		this.props.addSite( url, index, {
+			client: {
+				id: id,
+			},
+			token: {
+				public: token,
+			},
+		} );
 
 		// We're done, go home!
 		this.props.navigation.navigate( 'SitesList' );
-	}
+	};
 
 	render() {
 		const { index, step } = this.state;
@@ -108,14 +104,9 @@ class Add extends Component {
 					<Text style={ styles.closeButton }>Cancel</Text>
 				</TouchableOpacity>
 				{ step === STEP.START ? (
-					<StartScreen
-						onConnect={ this.onConnect }
-					/>
+					<StartScreen onConnect={ this.onConnect } />
 				) : step === STEP.INSTALL_CONNECT ? (
-					<InstallConnect
-						index={ index }
-						onInstall={ this.onInstall }
-					/>
+					<InstallConnect index={ index } onInstall={ this.onInstall } />
 				) : step === STEP.AUTHORIZE ? (
 					<Authorize
 						authentication={ index.authentication }

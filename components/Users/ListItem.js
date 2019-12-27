@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
 	container: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 		borderRadius: 15,
 		backgroundColor: '#EEEEEE',
 	},
-});
+} );
 
 export default class ListItem extends Component {
 	static propTypes = {
@@ -49,25 +49,25 @@ export default class ListItem extends Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
-				<View style={styles.left}>
+			<View style={ styles.container }>
+				<View style={ styles.left }>
 					<Image
-						style={styles.image}
-						source={{ uri: this.props.user.avatar_urls['96'] }}
+						style={ styles.image }
+						source={ { uri: this.props.user.avatar_urls['96'] } }
 					/>
-					<View style={styles.text}>
-						<Text style={styles.title}>{this.props.user.name}</Text>
-						<Text style={styles.roleText}>{this.props.user.roles[0]}</Text>
+					<View style={ styles.text }>
+						<Text style={ styles.title }>{ this.props.user.name }</Text>
+						<Text style={ styles.roleText }>{ this.props.user.roles[0] }</Text>
 					</View>
 				</View>
-				{this.props.icon
-					? <Icon
-							name={this.props.icon}
-							style={styles.chevron}
-							size={22}
-							color="#BBBBBB"
-						/>
-					: null}
+				{ this.props.icon ? (
+					<Icon
+						name={ this.props.icon }
+						style={ styles.chevron }
+						size={ 22 }
+						color="#BBBBBB"
+					/>
+				) : null }
 			</View>
 		);
 	}
