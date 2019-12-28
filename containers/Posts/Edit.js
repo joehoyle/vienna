@@ -3,6 +3,7 @@ import { updatePost } from '../../actions';
 import Form from '../../components/Posts/Form';
 import { connect } from 'react-redux';
 import NavigationButton from '../../components/Navigation/Button';
+import MediaEdit from '../../components/Media/Edit';
 
 class Edit extends Component {
 	constructor( props ) {
@@ -51,11 +52,16 @@ class Edit extends Component {
 		].schema;
 
 		return (
-			<Form
-				post={ this.state.post }
-				schema={ schema }
-				onChangePropertyValue={ ( p, v ) => this.onChangePropertyValue( p, v ) }
-			/>
+			<>
+				{ type.slug === 'attachment' &&
+					<MediaEdit post={ this.state.post } />
+				}
+				<Form
+					post={ this.state.post }
+					schema={ schema }
+					onChangePropertyValue={ ( p, v ) => this.onChangePropertyValue( p, v ) }
+				/>
+			</>
 		);
 	}
 }
