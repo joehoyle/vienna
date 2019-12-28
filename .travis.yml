@@ -12,9 +12,11 @@ before_script:
 script:
     - yarn install
     - expo login --non-interactive -u joehoyle
-    - export COMMIT=$(git rev-parse HEAD | cut -c1-7)
+    - export branch=${1:-'master'}
+    - export buildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))
+    - echo "Updating build number to $buildNumber using branch '$branch'."
     - >
-      sed -E 's/(buildNumber": ")([^"]+)/\1'$COMMIT'/' app.json > tmp
+      sed -E 's/(buildNumber": ")([^"]+)/\1'$buildNumber'/' app.json > tmp
     - mv tmp app.json
     - expo build:ios --apple-id joehoyle@gmail.com
     - expo upload:ios --apple-id joehoyle@gmail.com --latest
