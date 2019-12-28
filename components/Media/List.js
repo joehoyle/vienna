@@ -6,22 +6,30 @@ import {
 	StyleSheet,
 	ScrollView,
 	TouchableOpacity,
+	Dimensions,
 } from 'react-native';
 import ViennaPropTypes from '../../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
+const imageSize = ( ( Dimensions.get( 'screen' ).width - 6 ) / 3 );
+
 const styles = StyleSheet.create( {
 	container: {
 		flexDirection: 'row',
-		justifyContent: 'flex-start',
+		justifyContent: 'space-between',
 		flex: 1,
 		alignItems: 'flex-start',
 		flexWrap: 'wrap',
 	},
-	imageHighlight: {},
+	imageHighlight: {
+		width: imageSize,
+		height: imageSize,
+		marginBottom: 3,
+		backgroundColor: '#f8f8f8',
+	},
 	image: {
-		width: 93,
-		height: 93,
+		width: imageSize,
+		height: imageSize,
 	},
 } );
 
@@ -56,8 +64,8 @@ export default class List extends Component {
 									) : (
 										<Icon
 											name="file"
-											style={ { margin: 19 } }
-											size={ 61 }
+											style={ { margin: imageSize - 60 } }
+											size={ 60 }
 											color="#9999"
 										/>
 									) }

@@ -2995,6 +2995,11 @@ expo-permissions@~8.0.0:
   resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-8.0.0.tgz#5a45e8451dd7ff37c9e6ce5e2447818372547813"
   integrity sha512-GHTRmwh1rd1b0FcibluPFu93NNQyl9b1anBBDVPmomoo9Prz7kDcO5p2hFqM99r896yvAUSe0fPloPKUq4g/1A==
 
+expo-sharing@~8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/expo-sharing/-/expo-sharing-8.0.0.tgz#71195e6a24d6e36839e80d15581017d9cf02099c"
+  integrity sha512-pucK9IaO7ZgKumUlQtmiKENP1zfZeh6TDyWF9Nlt37GJDBl+j9pPW+fS6dYfhF7UoPGEjactpYCtozoMu2fF2A==
+
 expo-sqlite@~8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/expo-sqlite/-/expo-sqlite-8.0.0.tgz#293b45c78d612ab25400c8c579bd7d73f06ccb6f"
@@ -5986,6 +5991,11 @@ react-native-gesture-handler@~1.5.0:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.4"
     prop-types "^15.7.2"
+
+react-native-image-view@^2.1.8:
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/react-native-image-view/-/react-native-image-view-2.1.8.tgz#3cca23117400523c18013593e8bd08984dd0f953"
+  integrity sha512-x2jZBMA/HeNP8FhBosGKlCIKt0JQ0vYzgzqmZj5dHrjtU2ZruEsSiLH+VIe+CgGG1FiROFoYytso8CUdQSsUcw==
 
 react-native-reanimated@~1.4.0:
   version "1.4.0"
