@@ -12,6 +12,7 @@ before_script:
 script:
     - yarn install
     - expo login --non-interactive -u $EXPO_USERNAME
+    - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
     - git fetch -a
     - export branch=${1:-'origin/master'}
     - export buildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))
