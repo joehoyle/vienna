@@ -17,7 +17,6 @@ const styles = StyleSheet.create( {
 	title: {
 		color: '#666666',
 		fontSize: 20,
-		lineHeight: 36,
 		height: 36,
 	},
 	list: {
@@ -80,7 +79,7 @@ export default class Form extends Component {
 			<ScrollView>
 				<View style={ styles.contentField }>
 					<TextInput
-						autoFocus
+						autoFocus={ ! object.title }
 						placeholder="Enter title…"
 						style={ styles.title }
 						value={ object.title ? object.title.raw : null }
