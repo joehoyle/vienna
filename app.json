@@ -19,11 +19,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "org.humanmade.vienna",
+      "buildNumber": "19"
     },
     "splash": {
       "image": "./images/splash.png",
-      "resizeMode": "contain"
+      "resizeMode": "contain",
     }
   }
 }

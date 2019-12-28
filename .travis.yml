@@ -1,0 +1,25 @@
+---
+branches:
+    only:
+    - master
+os: osx
+osx_image: xcode11.3
+language: node_js
+node_js:
+    - node
+cache: yarn
+before_script:
+    - yarn global add expo-cli
+script:
+    - yarn install
+    - expo login --non-interactive -u $EXPO_USERNAME
+    - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+    - git fetch -a
+    - export branch=${1:-'origin/master'}
+    - export buildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))
+    - echo "Updating build number to $buildNumber using branch '$branch'."
+    - >
+      sed -E 's/(buildNumber": ")([^"]+)/\1'$buildNumber'/' app.json > tmp
+    - mv tmp app.json
+    - expo build:ios --apple-id $EXPO_APPLE_ID
+    - expo upload:ios --latest
