@@ -22,7 +22,9 @@
       "supportsTablet": true,
       "config": {
         "usesNonExemptEncryption": false
-      }
+      },
+      "bundleIdentifier": "org.humanmade.vienna",
+      "buildNumber": "19"
     },
     "splash": {
       "image": "./images/splash.png",

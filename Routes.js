@@ -20,6 +20,8 @@ import SitesView from './containers/Sites/View';
 import SettingsList from './containers/Settings/List';
 import CommentsEdit from './containers/Comments/Edit';
 
+import ProfileButton from './components/Sites/ProfileButton.js';
+
 const defaultOptions = {
 	cardStyle: {
 		backgroundColor: 'white',
@@ -57,6 +59,9 @@ const MainStack = () => {
 				component={ SitesView }
 				options={ ( { route } ) => ( {
 					title: route.params ? route.params.site.name : '',
+					headerRight: () => {
+						return <ProfileButton />
+					},
 				} ) }
 			/>
 			<Main.Screen
@@ -111,10 +116,6 @@ const MainStack = () => {
 				component={ UsersAdd }
 			/>
 			<Main.Screen
-				name="UsersEdit"
-				component={ UsersEdit }
-			/>
-			<Main.Screen
 				name="UsersSelect"
 				component={ UsersSelect }
 			/>
@@ -150,6 +151,7 @@ export default function RootStack() {
 				headerMode="none"
 				mode="modal"
 				screenOptions={ {
+					...defaultOptions,
 					...TransitionPresets.ModalPresentationIOS,
 					cardOverlayEnabled: true,
 					gestureEnabled: true,
@@ -165,6 +167,10 @@ export default function RootStack() {
 					options={ {
 						title: 'Add New Site',
 					} }
+				/>
+				<Root.Screen
+					name="UsersEdit"
+					component={ UsersEdit }
 				/>
 			</Root.Navigator>
 		</NavigationNativeContainer>

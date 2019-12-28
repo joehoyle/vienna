@@ -10,22 +10,26 @@ export default function updateObject( object, actionPrefix = '' ) {
 				object,
 			},
 		} );
-		api.post( object._links.self[0].href, object ).then( function ( data, err ) {
-			if ( err ) {
-				return dispatch( {
+		return api
+			.post( object._links.self[0].href, object )
+			.then( data => {
+				dispatch( {
+					type: actionPrefix + '_UPDATED',
+					payload: {
+						object: data,
+					},
+				} );
+				return data;
+			} )
+			.catch( error => {
+				dispatch( {
 					type: actionPrefix + '_UPDATE_ERRORED',
 					payload: {
 						object,
-						error: err,
+						error,
 					},
 				} );
-			}
-			dispatch( {
-				type: actionPrefix + '_UPDATED',
-				payload: {
-					object: data,
-				},
+
 			} );
-		} );
 	};
 }

@@ -6,6 +6,11 @@ const defaultState = {
 		loading: false,
 		lastError: null,
 	},
+	profile: {
+		loading: false,
+		lastError: null,
+		data: null,
+	},
 };
 export default function users( state = defaultState, action ) {
 	switch ( action.type ) {
@@ -32,6 +37,38 @@ export default function users( state = defaultState, action ) {
 			state.list.lastError = action.payload.error;
 			state.list.loading = false;
 			return { ...state };
+		case 'SITE_DATA_PROFILE_UPDATING':
+			return {
+				...state,
+				profile: {
+					...state.profile,
+					loading: true,
+					lastError: null,
+				},
+			};
+		case 'SITE_DATA_PROFILE_UPDATED':
+			return {
+				...state,
+				users: {
+					...state.users,
+					[ action.payload.data.id ]: action.payload.data,
+				},
+				profile: {
+					...state.profile,
+					data: action.payload.data,
+					loading: false,
+					lastError: null,
+				},
+			};
+		case 'SITE_DATA_PROFILE_UPDATE_ERRORED':
+			return {
+				...state,
+				profile: {
+					...state.profile,
+					loading: false,
+					lastError: action.payload.error,
+				},
+			};
 		default:
 			return state;
 	}
