@@ -10,6 +10,7 @@ import { HeaderTitle } from '@react-navigation/stack';
 import { connect } from 'react-redux';
 
 import addSite from '../../actions/addSite';
+import { fetchSiteData } from '../../actions';
 
 import Authorize from '../../components/Setup/Authorize';
 import StartScreen from '../../components/Setup/Start';
@@ -132,7 +133,11 @@ const mapStateToProps = state => ( {
 	newSite: state.newSite,
 } );
 const mapDispatchToProps = dispatch => ( {
-	addSite: ( ...args ) => dispatch( addSite( ...args ) ),
+	addSite: ( ...args ) => {
+		const addSiteAction = addSite( ...args );
+		dispatch( addSiteAction );
+		dispatch( fetchSiteData() );
+	},
 } );
 
 export default connect( mapStateToProps, mapDispatchToProps )( Add );

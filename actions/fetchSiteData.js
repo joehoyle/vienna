@@ -29,6 +29,30 @@ export default function fetchSiteData() {
 				} );
 			} );
 
+		dispatch( {
+			type: 'SITE_DATA_PROFILE_UPDATING',
+		} );
+
+		api.get( '/wp/v2/users/me', { context: 'edit' } )
+			.then( data => {
+				dispatch( {
+					type: 'SITE_DATA_PROFILE_UPDATED',
+					payload: {
+						data,
+						siteId: site.id,
+					},
+				} );
+			} )
+			.catch( error => {
+				dispatch( {
+					type: 'SITE_DATA_PROFILE_UPDATE_ERRORED',
+					payload: {
+						error,
+						siteId: site.id,
+					},
+				} );
+			} );
+
 		fetch(
 			`http://favicongrabber.com/api/grab/${
 				parseUrl( site.url ).hostname
