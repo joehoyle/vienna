@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { WebView } from 'react-native-webview';
 
+import { getSemanticColor } from '../../theme';
+
 const styles = StyleSheet.create( {
 	container: {
 		marginBottom: 0,
@@ -11,17 +13,17 @@ const styles = StyleSheet.create( {
 	},
 	authorName: {
 		lineHeight: 16,
+		color: getSemanticColor( 'label' ),
 	},
 	contentRight: {
 		flex: 1,
-		backgroundColor: 'white',
 	},
 	content: {
 		marginBottom: 15,
 	},
 	webView: {
 		height: 10,
-		backgroundColor: 'white',
+		backgroundColor: 'transparent',
 	},
 	authorImage: {
 		marginRight: 15,
@@ -45,7 +47,7 @@ export default class RichItem extends Component {
 	};
 
 	state = {
-		webViewHeight: 0,
+		webViewHeight: 150,
 	};
 
 	onMessage = event => {
@@ -59,9 +61,10 @@ export default class RichItem extends Component {
 			<meta name="viewport" content="width = device-width" />
 			<style>
 				body {
+					background: ${ getSemanticColor( 'systemBackground' ) };
 					font-size: 15px;
 					line-height: 20px;
-					color: #666;
+					color: ${ getSemanticColor( 'secondaryLabel' ) };
 					font-family: sans-serif;
 					margin: 0;
 					max-width: 100%;

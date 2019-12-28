@@ -2,20 +2,23 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+import { getSemanticColor } from '../../theme';
+
 const styles = StyleSheet.create( {
 	field: {
-		backgroundColor: '#FFFFFF',
+		backgroundColor: getSemanticColor( 'systemBackground' ),
 		height: 44,
 		flexDirection: 'row',
 		alignItems: 'center',
 		borderBottomWidth: 1,
-		borderBottomColor: '#f9f9f9',
+		borderBottomColor: getSemanticColor( 'separator' ),
 	},
 	label: {
 		width: 130,
 		marginLeft: 10,
 	},
 	labelText: {
+		color: getSemanticColor( 'label' ),
 		fontSize: 15,
 		lineHeight: 16,
 	},
@@ -24,12 +27,6 @@ const styles = StyleSheet.create( {
 		justifyContent: 'flex-end',
 		flexDirection: 'row',
 		marginRight: 10,
-	},
-	descriptionText: {
-		fontSize: 11,
-		color: '#999999',
-		margin: 8,
-		marginBottom: 15,
 	},
 } );
 

@@ -4,10 +4,12 @@ import { ScrollView, View, StyleSheet } from 'react-native';
 import ViennaPropTypes from '../../PropTypes';
 import ListItem from './ListItem';
 
+import { getSemanticColor } from '../../theme';
+
 const styles = StyleSheet.create( {
 	listItem: {
 		padding: 15,
-		borderBottomColor: '#F7F7F7',
+		borderBottomColor: getSemanticColor( 'separator' ),
 		borderBottomWidth: 1,
 	},
 } );

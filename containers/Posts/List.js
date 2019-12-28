@@ -9,12 +9,14 @@ import {
 } from 'react-native';
 import { isEmpty } from 'lodash';
 import { connect } from 'react-redux';
+
 import { trashPost, fetchPosts, updatePostfilter } from '../../actions';
 import PostsList from '../../components/Posts/List';
 import MediaList from '../../components/Media/List';
 import Filter from '../../components/Posts/Filter';
 import ListError from '../../components/General/ListError';
 import NavigationButton from '../../components/Navigation/Button';
+import { getSemanticColor } from '../../theme';
 
 const styles = StyleSheet.create( {
 	creating: {
@@ -122,13 +124,13 @@ class List extends Component {
 							refreshing={ type.list.loading }
 							style={ { backgroundColor: 'transparent' } }
 							onRefresh={ this.onRefresh.bind( this ) }
-							tintColor="#666666"
+							tintColor={ getSemanticColor( 'secondaryLabel' ) }
 							title={
 								type.list.loading
 									? 'Loading ' + type.name + '...'
 									: 'Pull to Refresh...'
 							}
-							titleColor="#000000"
+							titleColor={ getSemanticColor( 'label' ) }
 						/>
 					}
 					posts={ Object.values( posts ).filter( this.filterPosts.bind( this ) ) }

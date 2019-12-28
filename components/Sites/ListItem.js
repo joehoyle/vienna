@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
+import { getSemanticColor } from '../../theme';
+
 const styles = StyleSheet.create( {
 	container: {
 		flexDirection: 'row',
@@ -15,10 +17,11 @@ const styles = StyleSheet.create( {
 		marginLeft: 5,
 	},
 	title: {
+		color: getSemanticColor( 'label' ),
 		fontSize: 16,
 	},
 	url: {
-		color: '#999999',
+		color: getSemanticColor( 'secondaryLabel' ),
 		fontSize: 12,
 		lineHeight: 12,
 	},

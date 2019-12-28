@@ -20,18 +20,11 @@ import SitesView from './containers/Sites/View';
 import SettingsList from './containers/Settings/List';
 import CommentsEdit from './containers/Comments/Edit';
 
+import { getBrandColor, getSemanticColor } from './theme';
+
 const defaultOptions = {
 	cardStyle: {
-		backgroundColor: 'white',
-		borderTopWidth: 0,
-		shadowRadius: 0,
-		shadowOffset: {
-			height: 0,
-		},
-		shadowColor: 'transparent',
-	},
-	headerStyle: {
-		shadowOpacity: 0,
+		backgroundColor: getSemanticColor( 'systemBackground' ),
 	},
 	headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
 };
@@ -144,12 +137,26 @@ const MainStack = () => {
 }
 
 export default function RootStack() {
+	const theme = {
+		dark: false,
+		colors: {
+			primary: getBrandColor( 'primary' ),
+			backgroundColor: getSemanticColor( 'systemBackground' ),
+			card: getSemanticColor( 'secondarySystemBackground' ),
+			text: getSemanticColor( 'label' ),
+			border: getSemanticColor( 'separator' ),
+		},
+	};
+
 	return (
-		<NavigationNativeContainer>
+		<NavigationNativeContainer
+			theme={ theme }
+		>
 			<Root.Navigator
 				headerMode="none"
 				mode="modal"
 				screenOptions={ {
+					...defaultOptions,
 					...TransitionPresets.ModalPresentationIOS,
 					cardOverlayEnabled: true,
 					gestureEnabled: true,
