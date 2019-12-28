@@ -12,7 +12,7 @@ before_script:
 script:
     - yarn install
     - expo login --non-interactive -u $EXPO_USERNAME
-    - export branch=${1:-'master'}
+    - export branch=${1:-'origin/master'}
     - export buildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))
     - echo "Updating build number to $buildNumber using branch '$branch'."
     - >
