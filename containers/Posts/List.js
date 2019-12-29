@@ -116,7 +116,6 @@ class List extends Component {
 						<Text style={ styles.creatingText }>Creating { type.name }</Text>
 					</View>
 				) : null }
-				{ type.list.lastError ? <ListError error={ type.list.lastError } /> : null }
 				<Animated.ScrollView
 					onScroll={Animated.event(
 						[{ nativeEvent: { contentOffset: { y: this.scrollAnimatedValue }} }],
@@ -132,9 +131,9 @@ class List extends Component {
 					refreshControl={
 						<View style={ { marginTop: 80 } }>
 							<RefreshControl
-								refreshing={ type.list.loading }
+								//refreshing={ type.list.loading }
 								style={ { backgroundColor: 'transparent' } }
-								onRefresh={ this.onRefresh.bind( this ) }
+								//onRefresh={ () => this.onRefresh() }
 								tintColor="#666666"
 								title={ type.list.loading ? 'Loading ' + type.name + '...' : 'Pull to Refresh...' }
 								titleColor="#000000"
@@ -142,6 +141,7 @@ class List extends Component {
 						</View>
 					}
 				>
+					{ type.list.lastError && <ListError error={ type.list.lastError } /> }
 					<ListComponent
 						posts={ Object.values( posts ) }
 						users={ this.props.users.users }
