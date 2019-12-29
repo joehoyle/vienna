@@ -17,10 +17,7 @@ export default function fetchPosts( args ) {
 		const site = store.sites[store.activeSite.id];
 		const api = new httpapi( site );
 		let url = site.data.types[args.type]._links['wp:items'][0].href;
-		api.get( url, args ).then( function ( data, err ) {
-			if ( err ) {
-				return;
-			}
+		api.get( url, args ).then( data => {
 			dispatch( {
 				type: 'TYPE_POSTS_UPDATED',
 				payload: {
@@ -28,6 +25,15 @@ export default function fetchPosts( args ) {
 					posts: data,
 				},
 			} );
-		} );
+		} )
+		.catch( error => {
+			dispatch( {
+				type: 'TYPES_POSTS_POST_UPDATE_ERRORED',
+				payload: {
+					type: args.type,
+					error,
+				},
+			} );
+		})
 	};
 }

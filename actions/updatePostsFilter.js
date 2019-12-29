@@ -1,3 +1,5 @@
+import fetchPosts from './fetchPosts';
+
 export default function updatePostsFilter( type, filter = {} ) {
 	return dispatch => {
 		dispatch( {
@@ -7,5 +9,9 @@ export default function updatePostsFilter( type, filter = {} ) {
 				type,
 			},
 		} );
-	}
+		dispatch( fetchPosts( {
+			type,
+			...filter,
+		} ) );
+	};
 }

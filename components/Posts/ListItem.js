@@ -71,7 +71,7 @@ export default class ListItem extends Component {
 						this.props.author ? this.props.author.avatar_urls['96'] : null
 					}
 					imageUrl={
-						this.props.featuredMedia
+						this.props.featuredMedia && this.props.featuredMedia.media_details.sizes.medium
 							? this.props.featuredMedia.media_details.sizes.medium.source_url
 							: null
 					}

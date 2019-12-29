@@ -9,16 +9,30 @@ export default function type( state = {}, action ) {
 			state.list.loading = false;
 			return { ...state };
 		case 'POSTS_LIST_FILTER_UPDATED':
-			state.list.filter = {
-				...state.filter,
-				...action.payload.filter,
+			return {
+				...state,
+				posts: {},
+				list: {
+					...state.list,
+					filter: {
+						...state.list.filter,
+						...action.payload.filter,
+					},
+				},
 			};
-			return { ...state };
 		case 'POSTS_LIST_TOGGLE_FILTER':
 			state.list.isShowingFilter = ! state.list.isShowingFilter;
 			return { ...state };
 		case 'TYPE_POSTS_UPDATING':
-			state.list.loading = true;
+			return {
+				...state,
+				posts: {},
+				list: {
+					...state.list,
+					loading: true,
+					lastError: null,
+				},
+			};
 			return { ...state };
 		case 'TYPES_POSTS_POST_UPDATED':
 			state.posts[action.payload.object.id] = {

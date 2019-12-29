@@ -158,7 +158,7 @@ class _View extends Component {
 							<View key={ type.slug }>
 								<TouchableOpacity
 									style={ styles.listItem }
-									onPress={ this.onSelectType.bind( this, type ) }
+									onPress={ this.onSelectType.bind( this, type.slug ) }
 								>
 									<Icon
 										style={ styles.listItemIcon }

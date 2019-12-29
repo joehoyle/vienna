@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavigationNativeContainer } from '@react-navigation/native';
+import { Text } from 'react-native';
 import { createStackNavigator, TransitionPresets, HeaderStyleInterpolators } from '@react-navigation/stack';
-
+import { connect } from 'react-redux';
 import SitesList from './containers/Sites/List';
 import SitesAdd from './containers/Sites/Add';
 import SitesReauth from './containers/Sites/Reauth';
@@ -42,6 +43,10 @@ const Main = createStackNavigator();
 const Root = createStackNavigator();
 
 const MainStack = () => {
+	const PostTitle = connect( ( state, props ) => ( { ...state.sites[ state.activeSite.id ].data.types[ props.route.params.type ] } ) )( props => {
+		return <Text>{ props.name }</Text>;
+	} );
+
 	return (
 		<Main.Navigator
 			initialRouteName="SitesList"
@@ -72,7 +77,7 @@ const MainStack = () => {
 				name="PostsList"
 				component={ PostsList }
 				options={ ( { route } ) => ( {
-					title: route.params ? route.params.type.name : '',
+					title: <PostTitle route={ route } />
 				} ) }
 			/>
 			<Main.Screen

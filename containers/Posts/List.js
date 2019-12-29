@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-	StyleSheet,
-	View,
-	RefreshControl,
-	ActivityIndicator,
-	Text,
-	Linking,
-} from 'react-native';
+import { StyleSheet, View, RefreshControl, ActivityIndicator, Text, Linking, ScrollView, Animated } from 'react-native';
 import { isEmpty } from 'lodash';
 import { connect } from 'react-redux';
 import { trashPost, fetchPosts, updatePostfilter } from '../../actions';
@@ -31,13 +24,14 @@ const styles = StyleSheet.create( {
 } );
 
 class List extends Component {
+	scrollAnimatedValue = new Animated.Value( 80 );
 	componentDidMount() {
 		this.props.navigation.setOptions( {
 			headerRight: () => (
 				<NavigationButton
 					onPress={ () => {
 						this.props.navigation.navigate( 'PostsAdd', {
-							type: this.props.route.params.type,
+							type: this.props.types[this.props.route.params.type],
 						} );
 					} }
 				>
@@ -47,25 +41,20 @@ class List extends Component {
 		} );
 
 		setTimeout( () => {
-			let posts = this.props.types[this.props.route.params.type.slug]
-				.posts;
+			let posts = this.props.types[this.props.route.params.type].posts;
 			if ( isEmpty( posts ) ) {
-				this.props.dispatch(
-					fetchPosts( { type: this.props.route.params.type.slug } ),
-				);
+				this.props.dispatch( fetchPosts( { type: this.props.route.params.type } ) );
 			}
 		}, 400 );
 	}
 
 	onRefresh() {
-		this.props.dispatch(
-			fetchPosts( { type: this.props.route.params.type.slug } ),
-		);
+		this.props.dispatch( fetchPosts( { type: this.props.route.params.type } ) );
 	}
 	onSelectPost( post ) {
 		this.props.navigation.navigate( 'PostsEdit', {
 			post: post,
-			type: this.props.route.params.type,
+			type: this.props.types[this.props.route.params.type],
 		} );
 	}
 	onViewPost( post ) {
@@ -75,40 +64,52 @@ class List extends Component {
 		} );
 	}
 	onChangeFilter( filter ) {
-		this.props.dispatch( updatePostfilter( this.props.route.params.type.slug, filter ) );
-	}
-
-	filterPosts( post ) {
-		let type = this.props.types[this.props.route.params.type.slug];
-		if ( type.list.filter.status === 'all' ) {
-			return true;
-		}
-
-		return type.list.filter.status === post.status;
+		this.props.dispatch( updatePostfilter( this.props.route.params.type, filter ) );
 	}
 
 	render() {
-		let type = this.props.route.params.type;
+		let type = this.props.types[this.props.route.params.type];
 		let posts = type.posts;
 
 		const componentMap = {
 			attachment: MediaList,
 		};
 
-		let ListComponent = componentMap[
-			this.props.route.params.type.slug
-		]
-			? componentMap[this.props.route.params.type.slug]
-			: PostsList;
+		let ListComponent = componentMap[type.slug] ? componentMap[type.slug] : PostsList;
 
 		return (
 			<View style={ { flex: 1 } }>
-				{ type.list.isShowingFilter ? (
-					<Filter
-						filter={ type.list.filter }
-						onChange={ this.onChangeFilter.bind( this ) }
-					/>
-				) : null }
+				<Animated.View
+					style={ [
+						{
+							position: 'absolute',
+							left: 0,
+							right: 0,
+							top: -80,
+							zIndex: 2,
+							opacity: 0,
+						},
+						{
+							transform: [
+								{
+									translateY: this.scrollAnimatedValue.interpolate( {
+										inputRange: [ 0, 80 ],
+										outputRange: [ 80, 0 ],
+										extrapolateRight: 'clamp',
+										extrapolateLeft: 'clamp',
+									} ),
+								},
+							],
+							opacity: this.scrollAnimatedValue.interpolate( {
+								inputRange: [ 0, 80 / 2, 80 ],
+								outputRange: [ 1, 0.2, 0 ],
+								extrapolateRight: 'clamp',
+							} ),
+						},
+					] }
+				>
+					<Filter filter={ type.list.filter } onChange={ this.onChangeFilter.bind( this ) } />
+				</Animated.View>
 				{ type.new.loading ? (
 					<View style={ styles.creating }>
 						<ActivityIndicator />
@@ -116,28 +117,40 @@ class List extends Component {
 					</View>
 				) : null }
 				{ type.list.lastError ? <ListError error={ type.list.lastError } /> : null }
-				<ListComponent
+				<Animated.ScrollView
+					onScroll={Animated.event(
+						[{ nativeEvent: { contentOffset: { y: this.scrollAnimatedValue }} }],
+						/**
+						* That's where the magic happens ✨
+						* Try to enable the `runCPUburner` function in the componentDidMount,
+						* then play with `useNativeDriver` to false / true and enjoy the result!
+						**/
+						{ useNativeDriver: true },
+					  )}
+					scrollEventThrottle={ 16 } // target 120fps
+					contentOffset={ { y: 80 } }
 					refreshControl={
-						<RefreshControl
-							refreshing={ type.list.loading }
-							style={ { backgroundColor: 'transparent' } }
-							onRefresh={ this.onRefresh.bind( this ) }
-							tintColor="#666666"
-							title={
-								type.list.loading
-									? 'Loading ' + type.name + '...'
-									: 'Pull to Refresh...'
-							}
-							titleColor="#000000"
-						/>
+						<View style={ { marginTop: 80 } }>
+							<RefreshControl
+								refreshing={ type.list.loading }
+								style={ { backgroundColor: 'transparent' } }
+								onRefresh={ this.onRefresh.bind( this ) }
+								tintColor="#666666"
+								title={ type.list.loading ? 'Loading ' + type.name + '...' : 'Pull to Refresh...' }
+								titleColor="#000000"
+							/>
+						</View>
 					}
-					posts={ Object.values( posts ).filter( this.filterPosts.bind( this ) ) }
-					users={ this.props.users.users }
-					media={ this.props.types.attachment.posts }
-					onEdit={ post => this.onSelectPost( post ) }
-					onView={ post => this.onViewPost( post ) }
-					onTrash={ post => this.props.dispatch( trashPost( post ) ) }
-				/>
+				>
+					<ListComponent
+						posts={ Object.values( posts ) }
+						users={ this.props.users.users }
+						media={ this.props.types.attachment.posts }
+						onEdit={ post => this.onSelectPost( post ) }
+						onView={ post => this.onViewPost( post ) }
+						onTrash={ post => this.props.dispatch( trashPost( post ) ) }
+					/>
+				</Animated.ScrollView>
 			</View>
 		);
 	}
