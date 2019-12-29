@@ -78,7 +78,7 @@ class List extends Component {
 	render() {
 		let type = this.props.types[this.props.route.params.type];
 		let posts = Object.values( type.posts );
-		posts.sort( ( a, b ) => a.date_gmt > b.date_gmt ? -1 : 1 )
+		posts.sort( ( a, b ) => ( a.date_gmt > b.date_gmt ? -1 : 1 ) );
 
 		const componentMap = {
 			attachment: MediaList,
@@ -137,7 +137,10 @@ class List extends Component {
 					) }
 					onMomentumScrollEnd={ () => this.onLoadMore() }
 					scrollEventThrottle={ 16 } // target 120fps
-					contentContainerStyle={ { paddingBottom: 100 } }
+					contentContainerStyle={ {
+						paddingBottom: 100,
+						minHeight: 800,
+					} }
 					contentOffset={ { y: 80 } }
 					refreshControl={
 						<View style={ { marginTop: 80 } }>

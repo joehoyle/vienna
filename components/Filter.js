@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, SegmentedControlIOS } from 'react-native';
-import ViennaPropTypes from '../PropTypes';
 import { FontAwesome as Icon } from '@expo/vector-icons';
 
 function ucFirst( s ) {
