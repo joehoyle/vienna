@@ -14,7 +14,7 @@ import createPost from './actions/createPost';
 import updatePost from './actions/updatePost';
 import addSite from './actions/addSite';
 import removeSite from './actions/removeSite';
-import uploadImage from './actions/uploadImage';
+import uploadImage from './actions/uploadFile';
 import fetchSiteData from './actions/fetchSiteData';
 import fetchSettings from './actions/fetchSettings';
 import updateSettings from './actions/updateSettings';
