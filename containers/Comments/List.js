@@ -43,7 +43,7 @@ class List extends Component {
 				parent: comment.id,
 				content: text,
 				post: comment.post,
-			} ),
+			} )
 		);
 	}
 
@@ -58,13 +58,13 @@ class List extends Component {
 		);
 	}
 	onChangeFilter( filter ) {
-		console.log( filter )
+		console.log( filter );
 		this.props.dispatch( updateCommentsFilter( filter ) );
 	}
 
 	render() {
-		let comments = Object.values( this.props.comments.comments )
-		comments.sort( ( a, b ) => a.date_gmt > b.date_gmt ? -1 : 1 )
+		let comments = Object.values( this.props.comments.comments );
+		comments.sort( ( a, b ) => ( a.date_gmt > b.date_gmt ? -1 : 1 ) );
 
 		return (
 			<View style={ { flex: 1 } }>
@@ -128,16 +128,11 @@ class List extends Component {
 				>
 					{ this.props.comments.list.lastError && <ListError error={ this.props.comments.list.lastError } /> }
 					{ comments.map( comment => {
-						console.log( comment )
 						return (
 							<View style={ styles.listItem } key={ comment.id }>
 								<ListItem
 									comment={ comment }
-									post={
-										comment.post && this.props.types.post.posts[comment.post]
-											? this.props.types.post.posts[comment.post]
-											: null
-									}
+									post={ comment.post && this.props.types.post.posts[comment.post] ? this.props.types.post.posts[comment.post] : null }
 									onEdit={ this.onSelectComment.bind( this, comment ) }
 									onTrash={ this.onTrashComment.bind( this, comment ) }
 									onReply={ this.onReplyToComment.bind( this ) }
@@ -155,5 +150,3 @@ export default connect( state => ( {
 	...state,
 	...( state.activeSite.id ? state.sites[state.activeSite.id].data : null ),
 } ) )( List );
-
-
