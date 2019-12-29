@@ -22,7 +22,7 @@ import updateTerm from './actions/updateTerm';
 import createTerm from './actions/createTerm';
 import updateComment from './actions/updateComment';
 import changeSetting from './actions/changeSetting';
-import updatePostfilter from './actions/updatePostsFilter';
+import updatePostFilter from './actions/updatePostsFilter';
 import updateCommentsFilter from './actions/updateCommentsFilter';
 
 export {
@@ -50,6 +50,6 @@ export {
 	updateTerm,
 	createTerm,
 	updateComment,
-	updatePostfilter,
+	updatePostFilter,
 	updateCommentsFilter,
 };
