@@ -21,7 +21,6 @@ const styles = StyleSheet.create( {
 	},
 	inputField: {
 		flex: 1,
-		justifyContent: 'flex-end',
 		flexDirection: 'row',
 		marginRight: 10,
 	},

@@ -29,8 +29,11 @@ export default function fetchPosts( args ) {
 				if ( ! site.routes['/' + route] ) {
 					return;
 				}
-
 				type.schema = site.routes['/' + route].schema;
+				const getEndpoints = site.routes['/' + route].endpoints.filter( endpoint => endpoint.methods.indexOf( 'GET') > -1 );
+				if ( getEndpoints.length ) {
+					type.args = getEndpoints[0].args;
+				}
 			} );
 
 			dispatch( {

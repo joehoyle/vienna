@@ -4,6 +4,7 @@ export default function fetchComments( args ) {
 	args = {
 		context: 'edit',
 		...args,
+		status: ! args.status ? 'all' : args.status,
 	};
 	return ( dispatch, getStore ) => {
 		dispatch( {

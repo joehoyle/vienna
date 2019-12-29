@@ -26,7 +26,6 @@ export default function type( state = {}, action ) {
 		case 'TYPE_POSTS_UPDATING':
 			return {
 				...state,
-				posts: {},
 				list: {
 					...state.list,
 					loading: true,

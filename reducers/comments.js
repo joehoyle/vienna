@@ -4,7 +4,10 @@ const defaultState = {
 		loading: false,
 		schema: null,
 		isShowingFilter: false,
-		filter: { status: 'all' },
+		filter: {
+			status: '',
+			search: '',
+		},
 		lastError: null,
 	},
 	new: {
@@ -16,11 +19,20 @@ const defaultState = {
 export default function comments( state = defaultState, action ) {
 	switch ( action.type ) {
 		case 'SITE_DATA_UPDATED':
-		case 'SITE_CREATED':
+		case 'SITE_CREATED': {
+			const getEndpoints = action.payload.site.routes['/wp/v2/comments'].endpoints.filter( endpoint => endpoint.methods.indexOf( 'GET' ) > -1 );
+			const schema = action.payload.site.routes['/wp/v2/comments'].schema;
+			const args = getEndpoints.length ? getEndpoints[0].args : null;
+			// Fix up some missing items in args
+			if ( args ) {
+				args.status.enum = [ 'approve', 'hold', 'spam', 'trash' ];
+			}
 			return {
 				...state,
-				schema: action.payload.site.routes['/wp/v2/comments'].schema,
+				schema,
+				args,
 			};
+		}
 		case 'COMMENTS_UPDATING':
 			return {
 				...state,
@@ -36,12 +48,15 @@ export default function comments( state = defaultState, action ) {
 				list: {
 					...state.list,
 					loading: false,
-					comments: {
-						...state.list.comments,
-						...comments,
-					},
 				},
-			}
+				comments: {
+					...state.comments,
+					...action.payload.comments.reduce( ( all, comment ) => ( {
+						...all,
+						[comment.id]: comment,
+					} ), {} ),
+				},
+			};
 		case 'COMMENTS_NEW_UPDATING':
 			state.new.loading = true;
 			return { ...state };
@@ -56,8 +71,14 @@ export default function comments( state = defaultState, action ) {
 			state.list.isShowingFilter = ! state.list.isShowingFilter;
 			return { ...state };
 		case 'COMMENTS_LIST_FILTER_UPDATED':
-			state.list.filter = action.payload.filter;
-			return { ...state };
+			return {
+				...state,
+				comments: {},
+				list: {
+					...state.list,
+					filter: action.payload.filter,
+				},
+			};
 		case 'COMMENTS_COMMENT_UPDATED':
 			state.comments[action.payload.object.id] = action.payload.object;
 			return { ...state };

@@ -42,6 +42,7 @@
     "redux-storage-decorator-filter": "^1.1.5",
     "redux-storage-engine-reactnativeasyncstorage": "^1.0.1",
     "redux-thunk": "^2.3.0",
+    "simple-entity-decode": "^0.0.3",
     "urijs": "^1.18.10",
     "wordpress-rest-api-oauth-2": "^0.1.1"
   },
@@ -51,17 +52,20 @@
     "babel-jest": "24",
     "babel-loader": "8.0.6",
     "babel-preset-expo": "^7.0.0",
-    "eslint": "6.x",
+    "eslint": "5.x",
     "eslint-config-humanmade": "0.7.0",
+    "eslint-config-prettier": "^6.9.0",
     "eslint-config-react-app": "5.0.0",
     "eslint-plugin-flowtype": "3.x",
     "eslint-plugin-import": "2.x",
     "eslint-plugin-jsx-a11y": "6.x",
-    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "1.x",
     "jest": "24",
     "jest-react-native": "^18.0.0",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1",
     "react-test-renderer": "16.5"
   }
 }

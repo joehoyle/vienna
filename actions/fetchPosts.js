@@ -4,6 +4,7 @@ export default function fetchPosts( args ) {
 	args = {
 		context: 'edit',
 		...args,
+		per_page: 20,
 	};
 	return ( dispatch, getStore ) => {
 		dispatch( {

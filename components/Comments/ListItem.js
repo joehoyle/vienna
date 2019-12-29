@@ -10,8 +10,10 @@ import RichItem from '../General/RichItem';
 const styles = StyleSheet.create( {
 	container: {
 		marginBottom: 0,
-		marginTop: 5,
 		flexDirection: 'column',
+		padding: 15,
+		borderBottomColor: '#F7F7F7',
+		borderBottomWidth: 1,
 	},
 	belowRighItem: {
 		marginLeft: 45,
