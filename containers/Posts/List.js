@@ -79,7 +79,7 @@ class List extends Component {
 	render() {
 		let type = this.props.type;
 		let posts = Object.values( type.posts );
-		posts.sort( ( a, b ) => a.date_gmt > b.date_gmt ? -1 : 1 )
+		posts.sort( ( a, b ) => ( a.date_gmt > b.date_gmt ? -1 : 1 ) );
 
 		const componentMap = {
 			attachment: MediaList,
@@ -149,11 +149,11 @@ class List extends Component {
 				>
 					{ type.list.lastError && <ListError error={ type.list.lastError } /> }
 					{ type.new.loading ? (
-					<View style={ styles.creating }>
-						<ActivityIndicator />
-						<Text style={ styles.creatingText }>Creating { type.name }</Text>
-					</View>
-				) : null }
+						<View style={ styles.creating }>
+							<ActivityIndicator />
+							<Text style={ styles.creatingText }>Creating { type.name }</Text>
+						</View>
+					) : null }
 					<ListComponent
 						posts={ posts }
 						users={ this.props.users.users }
