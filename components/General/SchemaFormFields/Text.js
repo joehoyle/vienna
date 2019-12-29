@@ -8,7 +8,9 @@ const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
 		height: 32,
-		color: '#666666',
+		color: '#8D8E92',
+		fontSize: 16.5,
+		textAlign: 'right',
 	},
 } );
 

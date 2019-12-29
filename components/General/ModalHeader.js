@@ -5,7 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create( {
 	container: {
-		paddingTop: 20,
+		paddingTop: 22,
+		marginBottom: 5,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 	},
@@ -15,9 +16,9 @@ const styles = StyleSheet.create( {
 	},
 	closeButton: {
 		alignSelf: 'flex-end',
-		color: 'dodgerblue',
-		fontSize: 16,
-		marginLeft: 10,
+		fontSize: 16.6,
+		color: '#007CFF',
+		marginLeft: 16,
 		width: 80,
 	},
 	headerRight: {

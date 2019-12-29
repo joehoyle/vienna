@@ -4,20 +4,21 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create( {
 	field: {
-		backgroundColor: '#FFFFFF',
 		height: 44,
 		flexDirection: 'row',
 		alignItems: 'center',
-		borderBottomWidth: 1,
-		borderBottomColor: '#f9f9f9',
+	},
+	line: {
+		borderBottomWidth: StyleSheet.hairlineWidth,
+		borderBottomColor: '#DBDCDE',
+		marginLeft: 16,
 	},
 	label: {
 		width: 130,
-		marginLeft: 10,
+		marginLeft: 16,
 	},
 	labelText: {
-		fontSize: 15,
-		lineHeight: 16,
+		fontSize: 16.5,
 	},
 	inputField: {
 		flex: 1,
@@ -50,6 +51,7 @@ export default class FormRow extends Component {
 						{ this.props.children }
 					</View>
 				</View>
+				<View style={ styles.line } />
 			</View>
 		);
 	}
