@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, RefreshControl, ActivityIndicator, Text, Linking, Animated } from 'react-native';
 import { isEmpty } from 'lodash';
 import { connect } from 'react-redux';
-import { trashPost, fetchPosts, updatePostfilter } from '../../actions';
+import { trashPost, fetchPosts, updatePostFilter, uploadImage } from '../../actions';
 import PostsList from '../../components/Posts/List';
 import MediaList from '../../components/Media/List';
 import Filter from '../../components/Filter';
@@ -14,12 +14,11 @@ const styles = StyleSheet.create( {
 		flexDirection: 'row',
 		justifyContent: 'center',
 		paddingBottom: 5,
-		backgroundColor: '#2E73B0',
 	},
 	creatingText: {
 		marginLeft: 5,
 		lineHeight: 17,
-		color: 'rgba(255,255,255,.3)',
+		color: 'rgba(0,0,0,.3)',
 	},
 } );
 
@@ -28,33 +27,35 @@ class List extends Component {
 	componentDidMount() {
 		this.props.navigation.setOptions( {
 			headerRight: () => (
-				<NavigationButton
-					onPress={ () => {
-						this.props.navigation.navigate( 'PostsAdd', {
-							type: this.props.types[this.props.route.params.type],
-						} );
-					} }
-				>
-					Add New
-				</NavigationButton>
+				<NavigationButton onPress={ () => this.onPressNewPost() }>{ this.props.type.slug === 'attachment' ? 'Upload' : 'Add New' }</NavigationButton>
 			),
 		} );
 
 		setTimeout( () => {
-			let posts = this.props.types[this.props.route.params.type].posts;
+			let posts = this.props.type.posts;
 			if ( isEmpty( posts ) ) {
-				this.props.dispatch( fetchPosts( { type: this.props.route.params.type } ) );
+				this.props.dispatch( fetchPosts( { type: this.props.type.slug } ) );
 			}
 		}, 400 );
 	}
 
+	onPressNewPost() {
+		if ( this.props.type.slug === 'attachment' ) {
+			this.props.dispatch( uploadImage( this.props.type ) );
+		} else {
+			this.props.navigation.navigate( 'PostsAdd', {
+				type: this.props.type,
+			} );
+		}
+	}
+
 	onRefresh() {
-		this.props.dispatch( fetchPosts( { type: this.props.route.params.type } ) );
+		this.props.dispatch( fetchPosts( { type: this.props.type.slug } ) );
 	}
 	onSelectPost( post ) {
 		this.props.navigation.navigate( 'PostsEdit', {
 			post: post,
-			type: this.props.types[this.props.route.params.type],
+			type: this.props.type,
 		} );
 	}
 	onViewPost( post ) {
@@ -66,17 +67,17 @@ class List extends Component {
 	onLoadMore() {
 		this.props.dispatch(
 			fetchPosts( {
-				type: this.props.route.params.type,
-				offset: Object.keys( this.props.types[this.props.route.params.type].posts ).length,
+				type: this.props.type.slug,
+				offset: Object.keys( this.props.type.posts ).length,
 			} )
 		);
 	}
 	onChangeFilter( filter ) {
-		this.props.dispatch( updatePostfilter( this.props.route.params.type, filter ) );
+		this.props.dispatch( updatePostFilter( this.props.type.slug, filter ) );
 	}
 
 	render() {
-		let type = this.props.types[this.props.route.params.type];
+		let type = this.props.type;
 		let posts = Object.values( type.posts );
 		posts.sort( ( a, b ) => a.date_gmt > b.date_gmt ? -1 : 1 )
 
@@ -119,12 +120,6 @@ class List extends Component {
 				>
 					<Filter type={ type } filter={ type.list.filter } onChange={ this.onChangeFilter.bind( this ) } />
 				</Animated.View>
-				{ type.new.loading ? (
-					<View style={ styles.creating }>
-						<ActivityIndicator />
-						<Text style={ styles.creatingText }>Creating { type.name }</Text>
-					</View>
-				) : null }
 				<Animated.ScrollView
 					onScroll={ Animated.event(
 						[ { nativeEvent: { contentOffset: { y: this.scrollAnimatedValue } } } ],
@@ -153,6 +148,12 @@ class List extends Component {
 					}
 				>
 					{ type.list.lastError && <ListError error={ type.list.lastError } /> }
+					{ type.new.loading ? (
+					<View style={ styles.creating }>
+						<ActivityIndicator />
+						<Text style={ styles.creatingText }>Creating { type.name }</Text>
+					</View>
+				) : null }
 					<ListComponent
 						posts={ posts }
 						users={ this.props.users.users }
@@ -167,7 +168,8 @@ class List extends Component {
 	}
 }
 
-export default connect( state => ( {
+export default connect( ( state, props ) => ( {
 	...state,
 	...( state.activeSite.id ? state.sites[state.activeSite.id].data : null ),
+	type: state.sites[state.activeSite.id].data.types[props.route.params.type],
 } ) )( List );
