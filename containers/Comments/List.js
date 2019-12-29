@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
-import { ScrollView, View, RefreshControl, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
+import { StyleSheet, View, RefreshControl, Animated } from 'react-native';
 import { isEmpty } from 'lodash';
-import { fetchComments, createComment, trashComment } from '../../actions';
+import { connect } from 'react-redux';
+import { fetchComments, createComment, trashComment, updateCommentsFilter } from '../../actions';
 import ListItem from '../../components/Comments/ListItem';
-import Filter from '../../components/Comments/Filter';
+import Filter from '../../components/Filter';
 import ListError from '../../components/General/ListError';
 
 const styles = StyleSheet.create( {
-	listItem: {
-		padding: 15,
-		borderBottomColor: '#F7F7F7',
-		borderBottomWidth: 1,
+	creating: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		paddingBottom: 5,
+		backgroundColor: '#2E73B0',
+	},
+	creatingText: {
+		marginLeft: 5,
+		lineHeight: 17,
+		color: 'rgba(255,255,255,.3)',
 	},
 } );
 
 class List extends Component {
+	scrollAnimatedValue = new Animated.Value( 80 );
 	componentDidMount() {
 		if ( isEmpty( this.props.comments.comments ) ) {
-			this.props.dispatch( fetchComments() );
+			this.props.dispatch( fetchComments( this.props.comments.list.filter ) );
 		}
+	}
+
+	onRefresh() {
+		this.props.dispatch( fetchComments( this.props.comments.list.filter ) );
 	}
 
 	onSelectComment( comment ) {
@@ -32,83 +43,104 @@ class List extends Component {
 				parent: comment.id,
 				content: text,
 				post: comment.post,
-			} ),
+			} )
 		);
 	}
 
 	onTrashComment( comment ) {
 		this.props.dispatch( trashComment( comment.id ) );
 	}
-
-	onRefresh() {
-		this.props.dispatch( fetchComments() );
+	onLoadMore() {
+		this.props.dispatch(
+			fetchComments( {
+				offset: Object.keys( this.props.comments.comments ).length,
+			} )
+		);
 	}
-
 	onChangeFilter( filter ) {
-		this.props.dispatch( {
-			type: 'COMMENTS_LIST_FILTER_UPDATED',
-			payload: {
-				filter: filter,
-			},
-		} );
-	}
-
-	filterComments( comment ) {
-		if ( this.props.comments.list.filter.status === 'all' ) {
-			return true;
-		}
-
-		return this.props.comments.list.filter.status === comment.status;
+		console.log( filter );
+		this.props.dispatch( updateCommentsFilter( filter ) );
 	}
 
 	render() {
+		let comments = Object.values( this.props.comments.comments );
+		comments.sort( ( a, b ) => ( a.date_gmt > b.date_gmt ? -1 : 1 ) );
+
 		return (
 			<View style={ { flex: 1 } }>
-				{ this.props.comments.list.isShowingFilter ? (
-					<Filter
-						filter={ this.props.comments.list.filter }
-						onChange={ this.onChangeFilter.bind( this ) }
-					/>
-				) : null }
-				{ this.props.comments.list.lastError ? (
-					<ListError error={ this.props.comments.list.lastError } />
-				) : null }
-				<ScrollView
+				<Animated.View
+					style={ [
+						{
+							position: 'absolute',
+							left: 0,
+							right: 0,
+							top: -80,
+							zIndex: 2,
+							opacity: 0,
+						},
+						{
+							transform: [
+								{
+									translateY: this.scrollAnimatedValue.interpolate( {
+										inputRange: [ 0, 80 ],
+										outputRange: [ 80, 0 ],
+										extrapolateRight: 'clamp',
+										extrapolateLeft: 'clamp',
+									} ),
+								},
+							],
+							opacity: this.scrollAnimatedValue.interpolate( {
+								inputRange: [ 0, 80 / 2, 80 ],
+								outputRange: [ 1, 0.2, 0 ],
+								extrapolateRight: 'clamp',
+							} ),
+						},
+					] }
+				>
+					<Filter type={ this.props.comments } filter={ this.props.comments.list.filter } onChange={ this.onChangeFilter.bind( this ) } />
+				</Animated.View>
+				<Animated.ScrollView
+					onScroll={ Animated.event(
+						[ { nativeEvent: { contentOffset: { y: this.scrollAnimatedValue } } } ],
+						/**
+						 * That's where the magic happens ✨
+						 * Try to enable the `runCPUburner` function in the componentDidMount,
+						 * then play with `useNativeDriver` to false / true and enjoy the result!
+						 **/
+						{ useNativeDriver: true }
+					) }
+					onMomentumScrollEnd={ () => this.onLoadMore() }
+					scrollEventThrottle={ 16 } // target 120fps
+					contentContainerStyle={ { paddingBottom: 100 } }
+					contentOffset={ { y: 80 } }
 					refreshControl={
-						<RefreshControl
-							refreshing={ this.props.comments.list.loading }
-							style={ { backgroundColor: 'transparent' } }
-							onRefresh={ this.onRefresh.bind( this ) }
-							tintColor="#666666"
-							title={
-								this.props.comments.list.loading
-									? 'Loading Comments...'
-									: 'Pull to Refresh...'
-							}
-							titleColor="#000000"
-						/>
+						<View style={ { marginTop: 80 } }>
+							<RefreshControl
+								refreshing={ false }
+								style={ { backgroundColor: 'transparent' } }
+								onRefresh={ () => this.onRefresh() }
+								tintColor="#666666"
+								title={ this.props.comments.list.loading ? 'Loading Comments...' : 'Pull to Refresh...' }
+								titleColor="#000000"
+							/>
+						</View>
 					}
 				>
-					{ Object.values( this.props.comments.comments )
-						.filter( this.filterComments.bind( this ) )
-						.map( comment => {
-							return (
-								<View style={ styles.listItem } key={ comment.id }>
-									<ListItem
-										comment={ comment }
-										post={
-											comment.post && this.props.types.post.posts[comment.post]
-												? this.props.types.post.posts[comment.post]
-												: null
-										}
-										onEdit={ this.onSelectComment.bind( this, comment ) }
-										onTrash={ this.onTrashComment.bind( this, comment ) }
-										onReply={ this.onReplyToComment.bind( this ) }
-									/>
-								</View>
-							);
-						} ) }
-				</ScrollView>
+					{ this.props.comments.list.lastError && <ListError error={ this.props.comments.list.lastError } /> }
+					{ comments.map( comment => {
+						return (
+							<View style={ styles.listItem } key={ comment.id }>
+								<ListItem
+									comment={ comment }
+									post={ comment.post && this.props.types.post.posts[comment.post] ? this.props.types.post.posts[comment.post] : null }
+									onEdit={ this.onSelectComment.bind( this, comment ) }
+									onTrash={ this.onTrashComment.bind( this, comment ) }
+									onReply={ this.onReplyToComment.bind( this ) }
+								/>
+							</View>
+						);
+					} ) }
+				</Animated.ScrollView>
 			</View>
 		);
 	}

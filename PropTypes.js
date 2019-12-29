@@ -41,4 +41,9 @@ export default {
 	Comment: PropTypes.shape( {
 		id: PropTypes.number.isRequired,
 	} ),
+	Type: PropTypes.shape( {
+		slug: PropTypes.string.isRequired,
+		name: PropTypes.string.isRequired,
+		schema: PropTypes.object.isRequired,
+	} ),
 };

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import { WebView } from 'react-native-webview';
+import decodeEntities from 'simple-entity-decode';
 
 const styles = StyleSheet.create( {
 	container: {
@@ -17,11 +17,8 @@ const styles = StyleSheet.create( {
 		backgroundColor: 'white',
 	},
 	content: {
-		marginBottom: 15,
-	},
-	webView: {
-		height: 10,
-		backgroundColor: 'white',
+		color: '#666',
+		fontSize: 13,
 	},
 	authorImage: {
 		marginRight: 15,
@@ -31,11 +28,6 @@ const styles = StyleSheet.create( {
 		backgroundColor: '#EEEEEE',
 	},
 } );
-
-const injectedJavaScript = `
-window.ReactNativeWebView.postMessage( document.getElementById('text').scrollHeight );
-true;
-`;
 
 export default class RichItem extends Component {
 	static propTypes = {
@@ -54,29 +46,8 @@ export default class RichItem extends Component {
 		} );
 	};
 
-	htmlExcerpt() {
-		return `
-			<meta name="viewport" content="width = device-width" />
-			<style>
-				body {
-					font-size: 15px;
-					line-height: 20px;
-					color: #666;
-					font-family: sans-serif;
-					margin: 0;
-					max-width: 100%;
-				}
-
-				img {
-					max-width: 100%;
-				}
-
-			</style>
-			<div id="text">${this.props.content}</div>
-		`;
-	}
-
 	render() {
+		const content = decodeEntities( this.props.content.replace( /(<([^>]+)>)/ig, '' ) );
 		return (
 			<View style={ styles.container }>
 				{ this.props.avatarUrl ? (
@@ -91,17 +62,7 @@ export default class RichItem extends Component {
 					<View style={ styles.authorText }>
 						<Text style={ styles.authorName }>{ this.props.title }</Text>
 					</View>
-					<View style={ styles.content }>
-						<WebView
-							scrollEnabled={ false }
-							injectedJavaScript={ injectedJavaScript }
-							originWhitelist={ [ '*' ] }
-							style={ [ styles.webView, { height: this.state.webViewHeight } ] }
-							source={ { html: this.htmlExcerpt() } }
-							automaticallyAdjustContentInsets={ true }
-							onMessage={ this.onMessage }
-						/>
-					</View>
+					<Text style={ styles.content }>{ content }</Text>
 				</View>
 			</View>
 		);

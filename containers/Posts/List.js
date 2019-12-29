@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, RefreshControl, ActivityIndicator, Text, Linking, ScrollView, Animated } from 'react-native';
+import { StyleSheet, View, RefreshControl, ActivityIndicator, Text, Linking, Animated } from 'react-native';
 import { isEmpty } from 'lodash';
 import { connect } from 'react-redux';
 import { trashPost, fetchPosts, updatePostfilter } from '../../actions';
 import PostsList from '../../components/Posts/List';
 import MediaList from '../../components/Media/List';
-import Filter from '../../components/Posts/Filter';
+import Filter from '../../components/Filter';
 import ListError from '../../components/General/ListError';
 import NavigationButton from '../../components/Navigation/Button';
 
@@ -63,13 +63,22 @@ class List extends Component {
 			console.error( 'An error occurred', err );
 		} );
 	}
+	onLoadMore() {
+		this.props.dispatch(
+			fetchPosts( {
+				type: this.props.route.params.type,
+				offset: Object.keys( this.props.types[this.props.route.params.type].posts ).length,
+			} )
+		);
+	}
 	onChangeFilter( filter ) {
 		this.props.dispatch( updatePostfilter( this.props.route.params.type, filter ) );
 	}
 
 	render() {
 		let type = this.props.types[this.props.route.params.type];
-		let posts = type.posts;
+		let posts = Object.values( type.posts );
+		posts.sort( ( a, b ) => a.date_gmt > b.date_gmt ? -1 : 1 )
 
 		const componentMap = {
 			attachment: MediaList,
@@ -108,7 +117,7 @@ class List extends Component {
 						},
 					] }
 				>
-					<Filter filter={ type.list.filter } onChange={ this.onChangeFilter.bind( this ) } />
+					<Filter type={ type } filter={ type.list.filter } onChange={ this.onChangeFilter.bind( this ) } />
 				</Animated.View>
 				{ type.new.loading ? (
 					<View style={ styles.creating }>
@@ -117,23 +126,25 @@ class List extends Component {
 					</View>
 				) : null }
 				<Animated.ScrollView
-					onScroll={Animated.event(
-						[{ nativeEvent: { contentOffset: { y: this.scrollAnimatedValue }} }],
+					onScroll={ Animated.event(
+						[ { nativeEvent: { contentOffset: { y: this.scrollAnimatedValue } } } ],
 						/**
-						* That's where the magic happens ✨
-						* Try to enable the `runCPUburner` function in the componentDidMount,
-						* then play with `useNativeDriver` to false / true and enjoy the result!
-						**/
-						{ useNativeDriver: true },
-					  )}
+						 * That's where the magic happens ✨
+						 * Try to enable the `runCPUburner` function in the componentDidMount,
+						 * then play with `useNativeDriver` to false / true and enjoy the result!
+						 **/
+						{ useNativeDriver: true }
+					) }
+					onMomentumScrollEnd={ () => this.onLoadMore() }
 					scrollEventThrottle={ 16 } // target 120fps
+					contentContainerStyle={ { paddingBottom: 100 } }
 					contentOffset={ { y: 80 } }
 					refreshControl={
 						<View style={ { marginTop: 80 } }>
 							<RefreshControl
-								//refreshing={ type.list.loading }
+								refreshing={ false }
 								style={ { backgroundColor: 'transparent' } }
-								//onRefresh={ () => this.onRefresh() }
+								onRefresh={ () => this.onRefresh() }
 								tintColor="#666666"
 								title={ type.list.loading ? 'Loading ' + type.name + '...' : 'Pull to Refresh...' }
 								titleColor="#000000"
@@ -143,7 +154,7 @@ class List extends Component {
 				>
 					{ type.list.lastError && <ListError error={ type.list.lastError } /> }
 					<ListComponent
-						posts={ Object.values( posts ) }
+						posts={ posts }
 						users={ this.props.users.users }
 						media={ this.props.types.attachment.posts }
 						onEdit={ post => this.onSelectPost( post ) }

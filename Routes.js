@@ -43,15 +43,12 @@ const Main = createStackNavigator();
 const Root = createStackNavigator();
 
 const MainStack = () => {
-	const PostTitle = connect( ( state, props ) => ( { ...state.sites[ state.activeSite.id ].data.types[ props.route.params.type ] } ) )( props => {
+	const PostTitle = connect( ( state, props ) => ( { ...state.sites[state.activeSite.id].data.types[props.route.params.type] } ) )( props => {
 		return <Text>{ props.name }</Text>;
 	} );
 
 	return (
-		<Main.Navigator
-			initialRouteName="SitesList"
-			screenOptions={ defaultOptions }
-		>
+		<Main.Navigator initialRouteName="SitesList" screenOptions={ defaultOptions }>
 			<Main.Screen
 				name="SitesList"
 				component={ SitesList }
@@ -65,43 +62,34 @@ const MainStack = () => {
 				options={ ( { route } ) => ( {
 					title: route.params ? route.params.site.name : '',
 					headerRight: () => {
-						return <ProfileButton />
+						return <ProfileButton />;
 					},
 				} ) }
 			/>
-			<Main.Screen
-				name="SitesReauth"
-				component={ SitesReauth }
-			/>
+			<Main.Screen name="SitesReauth" component={ SitesReauth } />
 			<Main.Screen
 				name="PostsList"
 				component={ PostsList }
 				options={ ( { route } ) => ( {
-					title: <PostTitle route={ route } />
+					title: <PostTitle route={ route } />,
 				} ) }
 			/>
 			<Main.Screen
 				name="PostsEdit"
 				component={ PostsEdit }
 				options={ ( { route } ) => ( {
-					title: route.params ? `Edit ${ route.params.type.labels.singular_name }` : '',
+					title: route.params ? `Edit ${route.params.type.labels.singular_name}` : '',
 				} ) }
 			/>
-			<Main.Screen
-				name="PostsAdd"
-				component={ PostsAdd }
-			/>
+			<Main.Screen name="PostsAdd" component={ PostsAdd } />
 			<Main.Screen
 				name="TermsEdit"
 				component={ TermsEdit }
 				options={ ( { route } ) => ( {
-					title: route.params ? `Edit ${ route.params.taxonomy.labels.singular_name }` : '',
+					title: route.params ? `Edit ${route.params.taxonomy.labels.singular_name}` : '',
 				} ) }
 			/>
-			<Main.Screen
-				name="TermsAdd"
-				component={ TermsAdd }
-			/>
+			<Main.Screen name="TermsAdd" component={ TermsAdd } />
 			<Main.Screen
 				name="TermsList"
 				component={ TermsList }
@@ -116,14 +104,8 @@ const MainStack = () => {
 					title: 'Users',
 				} }
 			/>
-			<Main.Screen
-				name="UsersAdd"
-				component={ UsersAdd }
-			/>
-			<Main.Screen
-				name="UsersSelect"
-				component={ UsersSelect }
-			/>
+			<Main.Screen name="UsersAdd" component={ UsersAdd } />
+			<Main.Screen name="UsersSelect" component={ UsersSelect } />
 			<Main.Screen
 				name="CommentsList"
 				component={ CommentsList }
@@ -146,8 +128,8 @@ const MainStack = () => {
 				} }
 			/>
 		</Main.Navigator>
-	)
-}
+	);
+};
 
 export default function RootStack() {
 	return (
@@ -162,10 +144,7 @@ export default function RootStack() {
 					gestureEnabled: true,
 				} }
 			>
-				<Root.Screen
-					name="Main"
-					component={ MainStack }
-				/>
+				<Root.Screen name="Main" component={ MainStack } />
 				<Root.Screen
 					name="SitesAdd"
 					component={ SitesAdd }
@@ -173,10 +152,7 @@ export default function RootStack() {
 						title: 'Add New Site',
 					} }
 				/>
-				<Root.Screen
-					name="UsersEdit"
-					component={ UsersEdit }
-				/>
+				<Root.Screen name="UsersEdit" component={ UsersEdit } />
 			</Root.Navigator>
 		</NavigationNativeContainer>
 	);

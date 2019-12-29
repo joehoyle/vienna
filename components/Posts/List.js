@@ -24,17 +24,13 @@ export default class List extends Component {
 	render() {
 		let posts = this.props.posts;
 		return (
-			<ScrollView refreshControl={ this.props.refreshControl }>
+			<>
 				{ posts.map( post => {
 					return (
 						<View style={ styles.listItem } key={ post.id }>
 							<ListItem
 								post={ post }
-								featuredMedia={
-									post.featured_media
-										? this.props.media[post.featured_media]
-										: null
-								}
+								featuredMedia={ post.featured_media ? this.props.media[post.featured_media] : null }
 								onEdit={ this.props.onEdit.bind( this, post ) }
 								onView={ this.props.onView.bind( this, post ) }
 								onTrash={ this.props.onTrash.bind( this, post ) }
@@ -43,7 +39,7 @@ export default class List extends Component {
 						</View>
 					);
 				} ) }
-			</ScrollView>
+			</>
 		);
 	}
 }
