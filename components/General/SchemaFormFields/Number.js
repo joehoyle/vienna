@@ -9,6 +9,7 @@ const styles = StyleSheet.create( {
 		flex: 1,
 		height: 32,
 		color: '#666666',
+		textAlign: 'right',
 	},
 } );
 

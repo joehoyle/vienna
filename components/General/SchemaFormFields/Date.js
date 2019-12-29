@@ -26,10 +26,10 @@ const styles = StyleSheet.create( {
 	},
 	label: {
 		height: 32,
-		fontSize: 16,
 		lineHeight: 30,
 		textAlign: 'right',
-		color: '#666666',
+		color: '#8D8E92',
+		fontSize: 16.5,
 	},
 	modal: {
 		paddingTop: 15,

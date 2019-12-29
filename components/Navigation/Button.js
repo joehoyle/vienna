@@ -4,12 +4,12 @@ import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 const styles = StyleSheet.create( {
 	container: {
-		paddingRight: 10,
+		paddingRight: 16,
 	},
 	text: {
-		lineHeight: 16,
-		fontSize: 16,
-		color: '#3578F6',
+		fontSize: 16.6,
+		color: '#007CFF',
+		fontWeight: '600',
 	},
 } );
 
