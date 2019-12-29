@@ -58,7 +58,6 @@ class List extends Component {
 		);
 	}
 	onChangeFilter( filter ) {
-		console.log( filter );
 		this.props.dispatch( updateCommentsFilter( filter ) );
 	}
 
@@ -111,7 +110,10 @@ class List extends Component {
 					) }
 					onMomentumScrollEnd={ () => this.onLoadMore() }
 					scrollEventThrottle={ 16 } // target 120fps
-					contentContainerStyle={ { paddingBottom: 100 } }
+					contentContainerStyle={ {
+						paddingBottom: 100,
+						minHeight: 800,
+					} }
 					contentOffset={ { y: 80 } }
 					refreshControl={
 						<View style={ { marginTop: 80 } }>
