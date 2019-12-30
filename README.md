@@ -2,11 +2,9 @@
 
 # Vienna
 
-Vienna is an open-source native iOS app for interacting with your WordPress
-site.
+Vienna is an open-source native iOS app for interacting with your WordPress site.
 
-Vienna is written in React Native and uses the [WP REST API](https://github.com/WP-API/WP-API)
-to interact with your WordPress install.
+Vienna is written in React Native and uses the [WP REST API](https://github.com/WP-API/WP-API) to interact with your WordPress install.
 
 ## Requirements
 
@@ -19,20 +17,18 @@ A standard npm and node environment is required. We recommend at least Node 8.14
 ### WordPress site
 
 - WordPress 4.7 or higher.
-- [WP REST API OAuth 1 plugin](https://github.com/WP-API/OAuth1)
-- [WP REST API Broker Auth Client](https://github.com/WP-API/broker-client)
 
 
 ## Development
 
 ### Project setup
 
-Clone the repository, and run `npm install`:
+Clone the repository, and run `yarn install`:
 
 ```
 git clone https://github.com/joehoyle/vienna.git
 cd vienna
-npm install
+yarn install
 ```
 
 To run the app, run `npm start` and follow the on-screen directions.
@@ -42,22 +38,8 @@ If you have the iOS Simulator installed, you can press <kbd>i</kbd> to start the
 
 ### Connecting to your WordPress site
 
-#### Using a site with the Authentication Broker
-
 - Add a new site from the App
 - Enter the URL of your WordPress site
-
-#### Using  site without the Authentication Broker
-
-In this case, you'll just need the [WP REST API OAuth 1 plugin](https://github.com/WP-API/OAuth1) on your site.
-
-- Add a new JSON Consumer in the WordPress Dashboard of your site by browsing to Users > Applications and clicking Add New
-- Enter `wordpress-react-native://site_callback` as the callback URL
-- Add a new site from the App
-- Enter the URL of your WordPress site
-- Press "OAuth 1.0"
-- Enter the Client Key and Client Secret for the JSON Consumer application
-
 
 ### Working on the app
 
