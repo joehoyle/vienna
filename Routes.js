@@ -3,12 +3,11 @@ import { NavigationNativeContainer } from '@react-navigation/native';
 import { Text } from 'react-native';
 import { createStackNavigator, TransitionPresets, HeaderStyleInterpolators } from '@react-navigation/stack';
 import { connect } from 'react-redux';
+
 import SitesList from './containers/Sites/List';
 import SitesAdd from './containers/Sites/Add';
 import SitesReauth from './containers/Sites/Reauth';
 import PostsList from './containers/Posts/List';
-import PostsEdit from './containers/Posts/Edit';
-import PostsAdd from './containers/Posts/Add';
 import TermsEdit from './containers/Terms/Edit';
 import TermsAdd from './containers/Terms/Add';
 import TermsList from './containers/Terms/List';
@@ -21,6 +20,7 @@ import SitesView from './containers/Sites/View';
 import SettingsList from './containers/Settings/List';
 import CommentsEdit from './containers/Comments/Edit';
 
+import EditScreen from './components/Posts/EditScreen';
 import ProfileButton from './components/Sites/ProfileButton.js';
 
 const defaultOptions = {
@@ -76,12 +76,12 @@ const MainStack = () => {
 			/>
 			<Main.Screen
 				name="PostsEdit"
-				component={ PostsEdit }
-				options={ ( { route } ) => ( {
-					title: route.params ? `Edit ${route.params.type.labels.singular_name}` : '',
-				} ) }
+				component={ EditScreen }
 			/>
-			<Main.Screen name="PostsAdd" component={ PostsAdd } />
+			<Main.Screen
+				name="PostsAdd"
+				component={ EditScreen }
+			/>
 			<Main.Screen
 				name="TermsEdit"
 				component={ TermsEdit }
