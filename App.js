@@ -1,3 +1,4 @@
+import * as Font from 'expo-font';
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import { enableScreens } from 'react-native-screens';
@@ -44,6 +45,12 @@ StatusBar.setBarStyle( 'dark-content' );
 enableScreens();
 
 export default class App extends Component {
+	componentDidMount() {
+		Font.loadAsync( {
+			'sfsymbols': require( './images/SFSymbolsFallback.ttf' ),
+		} );
+	}
+
 	render() {
 		return (
 			<Provider store={ store }>
