@@ -116,6 +116,10 @@ class EditScreen extends Component {
 		} else {
 			this.props.dispatch( updatePost( this.state.post ) );
 		}
+
+		this.setState( {
+			isChanged: false,
+		} );
 	}
 
 	onClose = () => {
