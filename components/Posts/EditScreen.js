@@ -53,6 +53,10 @@ class EditScreen extends Component {
 	}
 
 	onChangePropertyValue = ( property, value ) => {
+		if ( this.state.post[ property ] === value ) {
+			return;
+		}
+
 		const post = {
 			...this.state.post,
 			[ property ]: value,
