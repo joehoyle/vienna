@@ -6,6 +6,10 @@ const styles = StyleSheet.create( {
 	container: {
 		paddingRight: 16,
 	},
+	back: {
+		paddingLeft: 16,
+		paddingRight: 0,
+	},
 	text: {
 		fontSize: 16.6,
 		color: '#007CFF',
@@ -15,11 +19,15 @@ const styles = StyleSheet.create( {
 
 export default class Button extends Component {
 	static propTypes = {
+		back: PropTypes.bool,
 		onPress: PropTypes.func.isRequired,
 	};
 	render() {
 		return (
-			<TouchableOpacity onPress={ this.props.onPress } style={ styles.container }>
+			<TouchableOpacity
+				style={ [ styles.container, this.props.back && styles.back ] }
+				onPress={ this.props.onPress }
+			>
 				<Text style={ styles.text }>{ this.props.children }</Text>
 			</TouchableOpacity>
 		);

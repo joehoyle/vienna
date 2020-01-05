@@ -41,3 +41,6 @@ android/keystores/debug.keystore
 
 # Expo
 .expo/*
+
+# Custom icons
+images/SFSymbolsFallback.ttf

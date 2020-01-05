@@ -12,6 +12,7 @@ before_script:
     - yarn global add expo-cli
 script:
     - yarn install
+    - yarn run get-icons
     - expo login --non-interactive -u $EXPO_USERNAME
     - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
     - git fetch -a

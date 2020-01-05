@@ -14,7 +14,7 @@ export default function createPost( post, type ) {
 		type = site.data.types[type];
 		const api = new httpapi( site );
 
-		api
+		return api
 			.post( type._links['wp:items'][0].href, post )
 			.then( post => {
 				dispatch( {
