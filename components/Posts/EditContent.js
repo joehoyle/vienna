@@ -11,7 +11,9 @@ import {
 import { Editor } from 'react-native-tinymce';
 import { connect } from 'react-redux';
 
+import Icon from '../Icon';
 import NavigationButton from '../Navigation/Button';
+import icons from '../icons';
 
 const styles = StyleSheet.create( {
 	title: {
@@ -49,14 +51,20 @@ class EditContent extends Component {
 					back
 					onPress={ this.onClose }
 				>
-					Close
+					<Icon
+						fallback="Close"
+						icon={ icons.xmark }
+					/>
 				</NavigationButton>
 			),
 			headerRight: () => (
 				<NavigationButton
 					onPress={ () => this.props.navigation.push( 'properties' ) }
 				>
-					Options
+					<Icon
+						fallback="Options"
+						icon={ icons['ellipsis.circle'] }
+					/>
 				</NavigationButton>
 			),
 		} );
