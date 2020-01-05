@@ -23,6 +23,9 @@ const styles = StyleSheet.create( {
 		marginLeft: 8,
 		marginRight: 8,
 	},
+	headerRight: {
+		flexDirection: 'row',
+	},
 } );
 
 const CONTENT_CSS = `
@@ -58,14 +61,22 @@ class EditContent extends Component {
 				</NavigationButton>
 			),
 			headerRight: () => (
-				<NavigationButton
-					onPress={ () => this.props.navigation.push( 'properties' ) }
-				>
-					<Icon
-						fallback="Options"
-						icon={ icons['ellipsis.circle'] }
-					/>
-				</NavigationButton>
+				<View style={ styles.headerRight }>
+					<NavigationButton
+						onPress={ this.onPressSave }
+					>
+						Save…
+					</NavigationButton>
+
+					<NavigationButton
+						onPress={ () => this.props.navigation.push( 'properties' ) }
+					>
+						<Icon
+							fallback="Options"
+							icon={ icons['ellipsis.circle'] }
+						/>
+					</NavigationButton>
+				</View>
 			),
 		} );
 
@@ -89,6 +100,14 @@ class EditContent extends Component {
 
 		this.props.onChangePropertyValue( 'content', content );
 		this.props.onClose();
+	}
+
+	onPressSave = async () => {
+		// Flush the editor first.
+		const content = await this.editor.getContent();
+
+		this.props.onChangePropertyValue( 'content', content );
+		this.props.onPressSave();
 	}
 
 	render() {
