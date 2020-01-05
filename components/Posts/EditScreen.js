@@ -1,6 +1,6 @@
 import { createStackNavigator, TransitionPresets, HeaderStyleInterpolators } from '@react-navigation/stack';
 import React, { Component } from 'react';
-import { ActionSheetIOS, Text, View } from 'react-native';
+import { ActionSheetIOS } from 'react-native';
 import { connect } from 'react-redux';
 
 import EditContent from './EditContent';
