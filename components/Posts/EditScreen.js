@@ -31,6 +31,7 @@ class EditScreen extends Component {
 		currentStatus: 'draft',
 		isChanged: false,
 		isNew: false,
+		isSaving: false,
 	}
 
 	constructor( props ) {
@@ -109,16 +110,23 @@ class EditScreen extends Component {
 	}
 
 	onSave = () => {
+		this.setState( {
+			isSaving: true,
+		} );
+
+		let action;
 		if ( this.state.isNew ) {
-			this.props.dispatch(
-				createPost( this.state.post, this.props.route.params.type.slug ),
-			);
+			action = createPost( this.state.post, this.props.route.params.type.slug );
 		} else {
-			this.props.dispatch( updatePost( this.state.post ) );
+			action = updatePost( this.state.post );
 		}
 
-		this.setState( {
-			isChanged: false,
+		this.props.dispatch( action ).then( () => {
+			this.setState( {
+				currentStatus: this.state.post.status || this.state.currentStatus,
+				isChanged: false,
+				isSaving: false,
+			} );
 		} );
 	}
 
@@ -185,6 +193,7 @@ class EditScreen extends Component {
 						<EditContent
 							{ ...props }
 							currentStatus={ this.state.currentStatus }
+							isSaving={ this.state.isSaving }
 							post={ post }
 							onClose={ this.onClose }
 							onChangePropertyValue={ this.onChangePropertyValue }

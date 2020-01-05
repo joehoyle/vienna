@@ -5,6 +5,7 @@ import {
 	SafeAreaView,
 	StatusBar,
 	StyleSheet,
+	Text,
 	TextInput,
 	View,
 } from 'react-native';
@@ -25,6 +26,12 @@ const styles = StyleSheet.create( {
 	},
 	headerRight: {
 		flexDirection: 'row',
+	},
+	saving: {
+		marginRight: 16,
+	},
+	savingText: {
+		fontSize: 16.6,
 	},
 } );
 
@@ -61,22 +68,34 @@ class EditContent extends Component {
 				</NavigationButton>
 			),
 			headerRight: () => (
-				<View style={ styles.headerRight }>
-					<NavigationButton
-						onPress={ this.onPressSave }
+				this.props.isSaving ? (
+					<View
+						style={ styles.saving }
 					>
-						{ this.props.currentStatus === 'publish' ? 'Update' : 'Save…' }
-					</NavigationButton>
+						<Text
+							style={ styles.savingText }
+						>
+							Saving…
+						</Text>
+					</View>
+				) : (
+					<View style={ styles.headerRight }>
+						<NavigationButton
+							onPress={ this.onPressSave }
+						>
+							{ this.props.currentStatus === 'publish' ? 'Update' : 'Save…' }
+						</NavigationButton>
 
-					<NavigationButton
-						onPress={ () => this.props.navigation.push( 'properties' ) }
-					>
-						<Icon
-							fallback="Options"
-							icon={ icons['ellipsis.circle'] }
-						/>
-					</NavigationButton>
-				</View>
+						<NavigationButton
+							onPress={ () => this.props.navigation.push( 'properties' ) }
+						>
+							<Icon
+								fallback="Options"
+								icon={ icons['ellipsis.circle'] }
+							/>
+						</NavigationButton>
+					</View>
+				)
 			),
 		} );
 
