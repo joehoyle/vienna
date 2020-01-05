@@ -1,6 +1,6 @@
 import { createStackNavigator, TransitionPresets, HeaderStyleInterpolators } from '@react-navigation/stack';
 import React, { Component } from 'react';
-import { ActionSheetIOS } from 'react-native';
+import { ActionSheetIOS, Alert } from 'react-native';
 import { connect } from 'react-redux';
 
 import EditContent from './EditContent';
@@ -28,6 +28,7 @@ const defaultOptions = {
 class EditScreen extends Component {
 	state = {
 		post: {},
+		currentStatus: 'draft',
 		isChanged: false,
 		isNew: false,
 	}
@@ -37,6 +38,7 @@ class EditScreen extends Component {
 
 		if ( props.route.params.post ) {
 			this.state.post = props.route.params.post;
+			this.state.currentStatus = props.route.params.post.status;
 			this.state.isNew = false;
 		} else {
 			this.state.isNew = true;
@@ -58,6 +60,47 @@ class EditScreen extends Component {
 		this.setState( {
 			post,
 			isChanged: true,
+		} );
+	}
+
+	onPressSave = () => {
+		if ( ! this.state.post.title ) {
+			Alert.alert(
+				'Unable to Publish',
+				'Cannot save post without title.',
+			);
+			return;
+		}
+
+		// If the post is published, update and move on.
+		if ( this.state.currentStatus === 'publish' ) {
+			this.onSave();
+			return;
+		}
+
+		const args = {
+			options: [
+				'Save as Draft',
+				'Save and Publish',
+				'Cancel',
+			],
+			cancelButtonIndex: 2,
+		}
+		ActionSheetIOS.showActionSheetWithOptions( args, idx => {
+			switch ( idx ) {
+				case 0:
+					this.onSave();
+					break;
+
+				case 1:
+					this.onChangePropertyValue( 'status', 'publish' );
+					this.onSave();
+					break;
+
+				default:
+					// Cancel, no action.
+					return;
+			}
 		} );
 	}
 
@@ -136,6 +179,7 @@ class EditScreen extends Component {
 							post={ post }
 							onClose={ this.onClose }
 							onChangePropertyValue={ this.onChangePropertyValue }
+							onPressSave={ this.onPressSave }
 						/>
 					) }
 				</EditStack.Screen>
