@@ -65,7 +65,7 @@ class EditContent extends Component {
 					<NavigationButton
 						onPress={ this.onPressSave }
 					>
-						Save…
+						{ this.props.currentStatus === 'publish' ? 'Update' : 'Save…' }
 					</NavigationButton>
 
 					<NavigationButton

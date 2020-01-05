@@ -184,6 +184,7 @@ class EditScreen extends Component {
 					{ props => (
 						<EditContent
 							{ ...props }
+							currentStatus={ this.state.currentStatus }
 							post={ post }
 							onClose={ this.onClose }
 							onChangePropertyValue={ this.onChangePropertyValue }
