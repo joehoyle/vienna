@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
+	Keyboard,
 	SafeAreaView,
+	StatusBar,
 	StyleSheet,
 	TextInput,
 	View,
@@ -58,6 +60,19 @@ class EditContent extends Component {
 				</NavigationButton>
 			),
 		} );
+
+		// Workaround for https://github.com/react-native-community/react-native-webview/issues/735#issuecomment-548059083
+		Keyboard.addListener( 'keyboardWillShow', this.onKeyboardShow );
+		StatusBar.setBarStyle( 'dark-content' );
+	}
+
+	componentWillUnmount() {
+		Keyboard.removeListener( 'keyboardWillShow', this.onKeyboardShow );
+		StatusBar.setBarStyle( 'dark-content' );
+	}
+
+	onKeyboardShow = () => {
+		StatusBar.setBarStyle( 'dark-content' );
 	}
 
 	onClose = async () => {
@@ -73,6 +88,11 @@ class EditContent extends Component {
 
 		return (
 			<SafeAreaView style={ { flex: 1 } }>
+				<StatusBar
+					animated={ false }
+					barStyle="dark-content"
+					hidden={ false }
+				/>
 				<TextInput
 					autoFocus={ ! post.title }
 					placeholder="Enter title…"
