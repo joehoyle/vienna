@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { StyleSheet, View, TextInput, SegmentedControlIOS } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import { FontAwesome as Icon } from '@expo/vector-icons';
+import SegmentedControlIOS from '@react-native-community/segmented-control';
 
 function ucFirst( s ) {
 	return s.charAt( 0 ).toUpperCase() + s.slice( 1 );
 }
+
 const styles = StyleSheet.create( {
 	container: {
 		padding: 10,
