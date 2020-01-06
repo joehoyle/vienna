@@ -20,7 +20,8 @@ import SitesView from './containers/Sites/View';
 import SettingsList from './containers/Settings/List';
 import CommentsEdit from './containers/Comments/Edit';
 
-import EditScreen from './components/Posts/EditScreen';
+import PostsEditScreen from './components/Posts/EditScreen';
+import MediaEditScreen from './components/Media/EditScreen';
 import ProfileButton from './components/Sites/ProfileButton.js';
 
 const defaultOptions = {
@@ -76,12 +77,13 @@ const MainStack = () => {
 			/>
 			<Main.Screen
 				name="PostsEdit"
-				component={ EditScreen }
+				component={ PostsEditScreen }
 			/>
 			<Main.Screen
 				name="PostsAdd"
-				component={ EditScreen }
+				component={ PostsEditScreen }
 			/>
+
 			<Main.Screen
 				name="TermsEdit"
 				component={ TermsEdit }
@@ -153,6 +155,13 @@ export default function RootStack() {
 					} }
 				/>
 				<Root.Screen name="UsersEdit" component={ UsersEdit } />
+				<Root.Screen
+					name="MediaEdit"
+					component={ MediaEditScreen }
+					options={ {
+						title: 'Edit Media',
+					} }
+				/>
 			</Root.Navigator>
 		</NavigationNativeContainer>
 	);

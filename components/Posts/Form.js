@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import {
-	ScrollView,
-	View,
-	StyleSheet,
-} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import FormRow from '../General/FormRow';
 import SchemaFormField from '../General/SchemaFormField';
@@ -18,23 +14,14 @@ const styles = StyleSheet.create( {
 		height: 36,
 	},
 	list: {
-		paddingTop: 15,
+
 	},
 	contentField: {
 		margin: 10,
 	},
 } );
 
-const ignoreProperties = [
-	'date',
-	'date_gmt',
-	'author',
-	'content',
-	'excerpt',
-	'title',
-	'featured_media',
-	'comment_count',
-];
+const ignoreProperties = [ 'date', 'date_gmt', 'author', 'content', 'excerpt', 'title', 'featured_media', 'comment_count' ];
 
 export default class Form extends Component {
 	static propTypes = {
@@ -45,11 +32,11 @@ export default class Form extends Component {
 
 	state = {
 		focussed: null,
-	}
+	};
 
 	onBlur = () => {
-		this.setState( { focussed: null } )
-	}
+		this.setState( { focussed: null } );
+	};
 
 	render() {
 		const { focussed } = this.state;
@@ -67,6 +54,9 @@ export default class Form extends Component {
 			sticky: 'Stick to Front',
 			password: 'Post Password',
 			description: 'Description',
+			parent: 'Parent',
+			menu_order: 'Menu Position',
+			template: 'Template',
 		};
 		const isPublished = object.status === 'publish';
 
@@ -74,14 +64,9 @@ export default class Form extends Component {
 		const buildOnFocus = prop => () => this.setState( { focussed: prop } );
 
 		return (
-			<ScrollView>
+			<>
 				<FormRow label="Author">
-					<UserSelectFormField
-						value={ object.author }
-						onChange={ value =>
-							this.props.onChangePropertyValue( 'author', value )
-						}
-					/>
+					<UserSelectFormField value={ object.author } onChange={ value => this.props.onChangePropertyValue( 'author', value ) } />
 				</FormRow>
 
 				<DateField
@@ -97,9 +82,7 @@ export default class Form extends Component {
 
 				<View style={ styles.list }>
 					{ Object.entries( schema.properties )
-						.filter(
-							properties => ignoreProperties.indexOf( properties[0] ) === -1,
-						)
+						.filter( properties => ignoreProperties.indexOf( properties[0] ) === -1 )
 						.map( properties => {
 							const propertySchema = properties[1];
 							const property = properties[0];
@@ -111,7 +94,7 @@ export default class Form extends Component {
 							return (
 								<View style={ styles.listItem } key={ property }>
 									<SchemaFormField
-										name={ namesMap[ property ] ? namesMap[ property ] : property }
+										name={ namesMap[property] ? namesMap[property] : property }
 										schema={ propertySchema }
 										focussed={ focussed === property }
 										value={ value }
@@ -124,7 +107,7 @@ export default class Form extends Component {
 							);
 						} ) }
 				</View>
-			</ScrollView>
+			</>
 		);
 	}
 }

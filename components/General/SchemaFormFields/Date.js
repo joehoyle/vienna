@@ -2,12 +2,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Localization from 'expo-localization';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import {
-	View,
-	Text,
-	StyleSheet,
-	TouchableOpacity,
-} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import ExpandingView from '../ExpandingView';
 import FormRow from '../FormRow';
@@ -81,7 +76,7 @@ export default class DateField extends Component {
 		} else {
 			this.props.onFocus();
 		}
-	}
+	};
 
 	render() {
 		const { date } = this.state;
@@ -89,16 +84,11 @@ export default class DateField extends Component {
 		return (
 			<View>
 				<FormRow label={ this.props.name }>
-					<TouchableOpacity onPress={ this.onToggle }>
-						<Text style={ styles.label }>
-							{ ! isNaN( date ) ? this.formatter.format( date ) : 'Select Date' }
-						</Text>
+					<TouchableOpacity onPress={ this.onToggle } style={ { marginLeft: 'auto' } }>
+						<Text style={ styles.label }>{ ! isNaN( date ) ? this.formatter.format( date ) : 'Select Date' }</Text>
 					</TouchableOpacity>
 				</FormRow>
-				<ExpandingView
-					expanded={ this.props.focussed }
-					height={ 216 }
-				>
+				<ExpandingView expanded={ this.props.focussed } height={ 216 }>
 					<DateTimePicker
 						style={ styles.picker }
 						value={ isNaN( date ) ? new Date() : date }

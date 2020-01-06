@@ -23,7 +23,7 @@ const styles = StyleSheet.create( {
 	inputField: {
 		flex: 1,
 		flexDirection: 'row',
-		marginRight: 10,
+		marginRight: 16,
 	},
 	descriptionText: {
 		fontSize: 11,

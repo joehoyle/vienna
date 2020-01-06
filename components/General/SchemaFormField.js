@@ -9,6 +9,7 @@ import UrlField from './SchemaFormFields/Url';
 import EnumField from './SchemaFormFields/Enum';
 import DateField from './SchemaFormFields/Date';
 import ArrayEnumField from './SchemaFormFields/ArrayEnum';
+import ObjectField from './SchemaFormFields/Object';
 
 export default class SchemaFormField extends Component {
 	static propTypes = {
@@ -58,6 +59,9 @@ export default class SchemaFormField extends Component {
 					break;
 				case 'integer':
 					Field = NumberField;
+					break;
+				case 'object':
+					Field = ObjectField;
 					break;
 
 				default:

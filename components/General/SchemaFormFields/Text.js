@@ -23,7 +23,7 @@ export default class Text extends Component {
 		onSave: PropTypes.func.isRequired,
 	};
 	render() {
-		let placeholder = this.props.schema.required ? 'Required' : '';
+		let placeholder = this.props.schema.required ? 'Required' : 'Empty';
 		placeholder = this.props.schema.default
 			? this.props.schema.default
 			: placeholder;

@@ -8,7 +8,8 @@ const styles = StyleSheet.create( {
 	container: {
 		flex: 1,
 		height: 32,
-		color: '#666666',
+		color: '#8D8E92',
+		fontSize: 16.5,
 		textAlign: 'right',
 	},
 } );
@@ -22,14 +23,12 @@ export default class Number extends Component {
 		onSave: PropTypes.func.isRequired,
 	};
 	render() {
-		let placeholder = this.props.schema.required ? 'Required' : '';
-		placeholder = this.props.schema.default
-			? String( this.props.schema.default )
-			: placeholder;
+		let placeholder = this.props.schema.required ? 'Required' : 'None';
+		placeholder = this.props.schema.default ? String( this.props.schema.default ) : placeholder;
 		return (
 			<FormRow label={ this.props.name }>
 				<TextInput
-					value={ String( this.props.value ) }
+					value={ this.props.value && String( this.props.value ) }
 					style={ styles.container }
 					keyboardType="numeric"
 					placeholder={ placeholder }

@@ -53,7 +53,7 @@ class List extends Component {
 		this.props.dispatch( fetchPosts( { type: this.props.type.slug } ) );
 	}
 	onSelectPost( post ) {
-		this.props.navigation.navigate( 'PostsEdit', {
+		this.props.navigation.navigate( post.type === 'attachment' ? 'MediaEdit' : 'PostsEdit', {
 			post: post,
 			type: this.props.type,
 		} );

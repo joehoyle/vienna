@@ -1,6 +1,6 @@
 import { createStackNavigator, TransitionPresets, HeaderStyleInterpolators } from '@react-navigation/stack';
 import React, { Component } from 'react';
-import { ActionSheetIOS, Alert } from 'react-native';
+import { ActionSheetIOS, Alert, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
 import EditContent from './EditContent';
@@ -209,12 +209,14 @@ class EditScreen extends Component {
 					} }
 				>
 					{ props => (
-						<Form
-							{ ...props }
-							post={ post }
-							schema={ schema }
-							onChangePropertyValue={ this.onChangePropertyValue }
-						/>
+						<ScrollView>
+							<Form
+								{ ...props }
+								post={ post }
+								schema={ schema }
+								onChangePropertyValue={ this.onChangePropertyValue }
+							/>
+						</ScrollView>
 					) }
 				</EditStack.Screen>
 			</EditStack.Navigator>
