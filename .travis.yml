@@ -18,9 +18,8 @@ script:
     - expo login --non-interactive -u $EXPO_USERNAME
     - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
     - git fetch -a
-    - export branch=${1:-'origin/master'}
-    - export buildNumber=$(expr $(git rev-list $branch --count) - $(git rev-list HEAD..$branch --count))
-    - echo "Updating build number to $buildNumber using branch '$branch'."
+    - export buildNumber=$(git rev-list $( git describe --tags $(git rev-list --tags --max-count=1) )..master --count)
+    - echo "Updating build number to $buildNumber using branch 'master'."
     - >
       sed -E 's/(buildNumber": ")([^"]+)/\1'$buildNumber'/' app.json > tmp
     - mv tmp app.json
