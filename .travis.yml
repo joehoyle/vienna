@@ -23,4 +23,4 @@ script:
       sed -E 's/(buildNumber": ")([^"]+)/\1'$buildNumber'/' app.json > tmp
     - mv tmp app.json
     - expo build:ios --apple-id $EXPO_APPLE_ID
-    - expo upload:ios --latest
+    - travis_wait 40 expo upload:ios --latest
