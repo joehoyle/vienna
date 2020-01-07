@@ -9,6 +9,8 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "test": "jest",
+    "test:e2e": "detox test --reuse",
+    "generate-screenshots": "detox test --reuse --take-screenshots all",
     "get-icons": "test -f images/SFSymbolsFallback.ttf || bash ./get-sf-symbols.sh"
   },
   "jest": {
@@ -58,6 +60,8 @@
     "babel-jest": "24",
     "babel-loader": "8.0.6",
     "babel-preset-expo": "^7.0.0",
+    "detox": "^15.0.0",
+    "detox-expo-helpers": "^0.6.0",
     "eslint": "5.x",
     "eslint-config-humanmade": "0.7.0",
     "eslint-config-prettier": "^6.9.0",
@@ -68,10 +72,23 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "1.x",
+    "expo-detox-hook": "^1.0.10",
     "jest": "24",
+    "jest-expo": "^36.0.1",
     "jest-react-native": "^18.0.0",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",
-    "react-test-renderer": "16.5"
+    "react-native-testing-library": "^1.12.0",
+    "react-test-renderer": "^16.12.0"
+  },
+  "detox": {
+    "test-runner": "jest",
+    "configurations": {
+      "ios.sim": {
+        "binaryPath": "bin/Exponent.app",
+        "type": "ios.simulator",
+        "name": "iPhone 11 Pro"
+      }
+    }
   }
 }
