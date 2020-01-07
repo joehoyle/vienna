@@ -4,6 +4,8 @@ branches:
     - master
 os: osx
 osx_image: xcode11.3
+git:
+    depth: false
 language: node_js
 node_js:
     - node
