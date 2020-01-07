@@ -9,6 +9,8 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "test": "jest",
+    "test:e2e": "detox test --reuse",
+    "generate-screenshots": "detox test --reuse --take-screenshots all",
     "get-icons": "test -f images/SFSymbolsFallback.ttf || bash ./get-sf-symbols.sh"
   },
   "jest": {

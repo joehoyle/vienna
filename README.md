@@ -54,5 +54,24 @@ To use the debugger:
 3. Select Window > New Window (or press <kbd>Cmd-T</kbd>) and connect to port 19001
 
 
+## Testing
+
+### Running end-to-end tests
+
+To run end-to-end tests, you'll need [Detox and native dependencies](https://github.com/wix/Detox/blob/master/docs/Introduction.GettingStarted.md#step-1-install-dependencies) it requires:
+
+```
+$ brew tap wix/brew
+$ brew install applesimutils
+$ yarn global add detox-cli
+```
+
+You'll also need a copy of the Expo app. Download the IPA from [Expo's site](https://expo.io/tools#client). Unzip the downloaded archive, then rename the unzipped directory to `Exponent.app`, and move to `vienna/bin/`.
+
+Then, run `yarn start` to start Vienna. Once it's running, run `yarn run test:e2e` to run Detox's tests in the simulator.
+
+To generate screenshots, run `yarn run generate-screenshots`.
+
+
 ## Learning
 - Free [video course](https://learnredux.com) for learning Redux.
