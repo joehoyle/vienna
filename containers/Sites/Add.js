@@ -107,7 +107,10 @@ class Add extends Component {
 				behavior="height"
 				style={ styles.container }
 			>
-				<View style={ styles.header }>
+				<View
+					style={ styles.header }
+					testID="Sites/Add"
+				>
 					<View />
 					<HeaderTitle style={ styles.headerText }>Add New Site</HeaderTitle>
 					<TouchableOpacity onPress={ () => this.props.navigation.goBack() }>
