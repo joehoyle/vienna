@@ -6135,10 +6135,10 @@ react-native-screens@2.0.0-alpha.12:
   dependencies:
     debounce "^1.2.0"
 
-react-native-tinymce@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-tinymce/-/react-native-tinymce-0.1.1.tgz#07390fa971ca00be94d08145a02fc7a38c95c1e1"
-  integrity sha512-Axjet5UQgcwZoiTq1LNFy0ixm/QckZwpesPm5iDqXiVocFSLrwjyfTDQFt5nZY9OiBk/03YTpTzDRXD8H6jTQw==
+react-native-tinymce@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-tinymce/-/react-native-tinymce-0.1.2.tgz#0642951384bca607211f9c6423dfa416b5cf36e3"
+  integrity sha512-d76eZlh/MwyZTuLj/dyRqM2zD1S/AUl+GBxNRbcBE89YhRYGA+8khk199KGjJXxMzNpmXNSz8mRhA2xE4bTW+Q==
   dependencies:
     "@rmccue/sfsymbols" "^0.0.2"
     react-native-keyboard-accessory "^0.1.10"
