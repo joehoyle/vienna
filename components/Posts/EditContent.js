@@ -9,7 +9,7 @@ import {
 	TextInput,
 	View,
 } from 'react-native';
-import { Editor } from 'react-native-tinymce';
+import { Editor, Provider, Tools } from 'react-native-tinymce';
 import { connect } from 'react-redux';
 
 import Icon from '../Icon';
@@ -133,29 +133,33 @@ class EditContent extends Component {
 		const { post } = this.props;
 
 		return (
-			<SafeAreaView style={ { flex: 1 } }>
-				<StatusBar
-					animated={ false }
-					barStyle="dark-content"
-					hidden={ false }
-				/>
-				<TextInput
-					autoFocus={ ! post.title }
-					placeholder="Enter title…"
-					style={ styles.title }
-					value={ post.title ? post.title.raw : null }
-					onChangeText={ value => this.props.onChangePropertyValue( 'title', value ) }
-					onSubmitEditing={ () => {} }
-				/>
-				<View style={ { flex: 1 } }>
-					<Editor
-						ref={ ref => this.editor = ref }
-						contentCss={ CONTENT_CSS }
-						placeholder="Start writing…"
-						value={ post.content ? post.content.raw : null }
+			<Provider>
+				<SafeAreaView style={ { flex: 1 } }>
+					<StatusBar
+						animated={ false }
+						barStyle="dark-content"
+						hidden={ false }
 					/>
-				</View>
-			</SafeAreaView>
+					<TextInput
+						autoFocus={ ! post.title }
+						placeholder="Enter title…"
+						style={ styles.title }
+						value={ post.title ? post.title.raw : null }
+						onChangeText={ value => this.props.onChangePropertyValue( 'title', value ) }
+						onSubmitEditing={ () => {} }
+					/>
+					<View style={ { flex: 1 } }>
+						<Editor
+							ref={ ref => this.editor = ref }
+							contentCss={ CONTENT_CSS }
+							placeholder="Start writing…"
+							value={ post.content ? post.content.raw : null }
+						/>
+					</View>
+
+					<Tools />
+				</SafeAreaView>
+			</Provider>
 		);
 	}
 }

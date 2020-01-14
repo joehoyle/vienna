@@ -1203,6 +1203,11 @@
     "@react-navigation/routers" "^5.0.0-alpha.18"
     color "^3.1.2"
 
+"@rmccue/sfsymbols@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@rmccue/sfsymbols/-/sfsymbols-0.0.2.tgz#fb276aa57f3ba99f60010524574574145d425351"
+  integrity sha512-IOATlJatTEAvp68gLBfNuWSvkOf7dD83h9SLJ665cs15r/cFOIzdzCsZW6VPtiawyZ4mSTKohK9j1l+YX2cRFg==
+
 "@types/babel__core@^7.1.0":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.3.tgz#e441ea7df63cd080dfcd02ab199e6d16a735fc30"
@@ -6130,11 +6135,12 @@ react-native-screens@2.0.0-alpha.12:
   dependencies:
     debounce "^1.2.0"
 
-react-native-tinymce@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/react-native-tinymce/-/react-native-tinymce-0.0.6.tgz#6b17d2bb7e456a471971518fac2729021096bef9"
-  integrity sha512-DchltdSySruWHYLQkEbXapp1wY5bgwi4xIcFzZpErAgWrWe65Tz3utWPyXnL6/ligi28BVgNnCgTWJdk5Tjdkw==
+react-native-tinymce@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-tinymce/-/react-native-tinymce-0.1.2.tgz#0642951384bca607211f9c6423dfa416b5cf36e3"
+  integrity sha512-d76eZlh/MwyZTuLj/dyRqM2zD1S/AUl+GBxNRbcBE89YhRYGA+8khk199KGjJXxMzNpmXNSz8mRhA2xE4bTW+Q==
   dependencies:
+    "@rmccue/sfsymbols" "^0.0.2"
     react-native-keyboard-accessory "^0.1.10"
     tinymce "^5.1.5"
 
