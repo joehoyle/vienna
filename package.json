@@ -49,7 +49,7 @@
     "redux-storage-engine-reactnativeasyncstorage": "^1.0.1",
     "redux-thunk": "^2.3.0",
     "simple-entity-decode": "^0.0.3",
-    "urijs": "^1.18.10",
+    "urijs": "^1.19.9",
     "wordpress-rest-api-oauth-2": "^0.1.1"
   },
   "devDependencies": {
