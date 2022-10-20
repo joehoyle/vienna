@@ -36,7 +36,7 @@
     "react-native-autogrow-textinput": "^5.2.0",
     "react-native-gesture-handler": "~1.5.0",
     "react-native-image-view": "^2.1.8",
-    "react-native-reanimated": "~1.4.0",
+    "react-native-reanimated": "~2.10.0",
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-tinymce": "^0.1.2",
